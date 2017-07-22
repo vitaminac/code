@@ -1,7 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 # encoding=utf-8
-class Solution:
+# hashMap complexity was O(1)
+class WrongSolution:
     def twoSum (self, nums, target):
         """
         :type nums: List[int]
@@ -38,6 +39,21 @@ class Solution:
                 left += 1
 
 
+class Solution:
+    def twoSum (self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        buffer_dic = {}
+        for i in range(len(nums)):
+            if nums[i] in buffer_dic:
+                return [buffer_dic[nums[i]], i]
+            else:
+                buffer_dic[target - nums[i]] = i
+
+
 from functools import reduce
 from random import randint
 
@@ -68,4 +84,4 @@ def test (test_time: int, list_size: int = 50, up_num: int = 999999999999) -> No
     print("test success")
 
 
-test(100000, 100, 99999999999999999999999999999999999999)
+test(1000, 100, 99999999999999999999999999999999999999)
