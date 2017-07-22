@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# encoding=utf8
+# encoding=utf-8
 class Solution:
     def twoSum (self, nums, target):
         """
@@ -47,6 +47,7 @@ def test (test_time: int, list_size: int = 50, up_num: int = 999999999999) -> No
     solution = Solution()
     sol = []
     for i in range(test_time):
+        # with up nums enough big, ensure by probabilistic that only have one solution, although not 100%
         given_nums = frozenset([randint(0, up_num) for x in range(randint(5, list_size))])
         given_nums = sorted(given_nums)
         l = len(given_nums)
@@ -64,6 +65,7 @@ def test (test_time: int, list_size: int = 50, up_num: int = 999999999999) -> No
         assert t == target
         assert sol[0] == x
         assert sol[1] == y
+    print("test success")
 
 
-test(10000, 100, 9999999999999999)
+test(100000, 100, 99999999999999999999999999999999999999)
