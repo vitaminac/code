@@ -1,6 +1,8 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 # encoding=utf8
 class Solution:
-    def twoSum(self, nums, target):
+    def twoSum (self, nums, target):
         """
         :type nums: List[int]
         :type target: int
@@ -9,6 +11,7 @@ class Solution:
 
         # assuming that array was ordered
         # assuming that has only one solution
+        # O(n) overall complexity
         # binary search for the greatest number smaller than target
         # O(log n) complexity
         left = 0
@@ -23,8 +26,8 @@ class Solution:
         right = left
         left = 0
         # O(n) complexity
-        # try right and left, if is correted finish
-        # increments left if less,decrements right if greater
+        # try nums[left] + nums[right], if is correted finish
+        # increments left if less, decrements right if greater
         while (right - left) > 0:
             intent = nums[right] + nums[left]
             if intent == target:
@@ -36,30 +39,31 @@ class Solution:
 
 
 from functools import reduce
+from random import randint
 
 
-def test(given_nums: list, target: int) -> bool:
+def test (test_time: int, list_size: int = 50, up_num: int = 999999999999) -> None:
     # test driven
     solution = Solution()
     sol = []
-    try:
-        sol = solution.twoSum(given_nums, target)
-        assert sol
-    except Exception as e:
-        sol = solution.twoSum(given_nums, target)
-    t = reduce(lambda x, y: x + y, list(map(lambda x: given_nums[x], sol)))
-    print(sol, ": ", t)
-    return t == target
+    for i in range(test_time):
+        given_nums = frozenset([randint(0, up_num) for x in range(randint(5, list_size))])
+        given_nums = sorted(given_nums)
+        l = len(given_nums)
+        x = randint(0, l - 2)
+        y = randint(x + 1, l - 1)
+        target = given_nums[x] + given_nums[y]
+        print(given_nums, "result ", x, " ", y, "finding ", target, end=" ", flush=True)
+        try:
+            sol = solution.twoSum(given_nums, target)
+            assert sol
+        except Exception as e:
+            sol = solution.twoSum(given_nums, target)
+        t = reduce(lambda x, y: x + y, list(map(lambda x: given_nums[x], sol)))
+        print(sol, ": ", t)
+        assert t == target
+        assert sol[0] == x
+        assert sol[1] == y
 
 
-from random import randint
-
-for i in range(10000):
-    s = frozenset([randint(0, 999999999999) for x in range(30)])
-    s = sorted(s)
-    l = len(s)
-    x = randint(0, l - 2)
-    y = randint(x + 1, l - 1)
-    result = s[x] + s[y]
-    print(s, "result ", x, " ", y, "finding ", result, end=" ", flush=True)
-    assert test(s, result)
+test(10000, 100, 9999999999999999)
