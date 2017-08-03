@@ -58,10 +58,10 @@ BOOST_AUTO_TEST_CASE(Karatsuba)
 // BOOST_DATA_TEST_CASE(test1, bdata::random((bdata::seed = 100UL, bdata::distribution = std::uniform_int_distribution<>(1, maxlimit), bdata::engine = rng)) ^ bdata::make(random()), a, b)
 BOOST_AUTO_TEST_CASE(randomnessTest)
 {
-	auto itr = Iterator();
-	for (auto i = 0; i < 1000; i++)
+	auto itr = Iterator(1000);
+	for (auto i = itr.begin(); !itr.end(); ++itr)
 	{
-		auto a = *(++itr);
+		auto a = *itr;
 		auto b = *(++itr);
 		BOOST_TEST(a + b == sum(a, b));
 		BOOST_TEST(a - b == subtract(a, b));

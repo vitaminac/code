@@ -10,6 +10,7 @@ class Iterator
 {
 	int n;
 	int seed;
+	int itr_time;
 	std::uniform_int_distribution <> dist;
 	RNGType rng;
 public:
@@ -17,7 +18,7 @@ public:
 	{
 	};
 
-	Iterator (int seed, int number) : n(number), seed(seed)
+	Iterator (int time, int seed = 0) : n(0), seed(seed), itr_time(time)
 	{
 		dist = std::uniform_int_distribution <>(0, maxRangeRight);
 		rng.seed(static_cast <int>(std::time(nullptr)) ^ seed);
@@ -25,9 +26,13 @@ public:
 
 	Iterator operator ++ (int);
 
-	Iterator operator ++ ();
+	Iterator & operator ++ ();
 
 	int operator* () const;
+
+	Iterator & begin ();
+
+	int end () const;
 };
 
 inline Iterator Iterator::operator++ (int)
@@ -37,13 +42,25 @@ inline Iterator Iterator::operator++ (int)
 	return temp;
 }
 
-inline Iterator Iterator::operator++ ()
+inline Iterator & Iterator::operator++ ()
 {
 	n = dist(rng);
+	itr_time--;
 	return *this;
 }
 
 inline int Iterator::operator* () const
 {
 	return n;
+}
+
+inline Iterator & Iterator::begin ()
+{
+	++(*this);
+	return *this;
+}
+
+inline int Iterator::end () const
+{
+	return itr_time <= 0;
 }
