@@ -2,6 +2,10 @@
 #include <boost/math/tools/config.hpp>
 
 int sum (int a, int b) {
+	return sum(static_cast <unsigned long long>(a), static_cast <unsigned long long>(b));
+}
+
+unsigned long long sum (unsigned long long a, unsigned long long b) {
 	auto sum = a;
 	auto carry = b;
 	while (carry) {
@@ -47,19 +51,24 @@ int exp_mod (int base, int exp, int m) {
 }
 
 int multiply (int a, int b) {
+	unsigned int multiplicand = (static_cast <unsigned>(a << 1) >> 1) == a ? a : sum(~a, 1);
+	unsigned int multiplier = (static_cast <unsigned>(b << 1) >> 1) == b ? b : sum(~b, 1);
+	auto product = static_cast <unsigned int>(multiply(multiplicand, multiplier));
+	if (static_cast <unsigned>((a ^ b) << 1) >> 1 != (a ^ b)) {
+		product = sum(~product, 1);
+	}
+	return product;
+}
+
+unsigned long long int multiply (unsigned int multiplicand, unsigned int multiplier) {
 	auto mark = 0x1;
-	auto multiplicand = (a << 1) >> 1;
-	auto multiplier = (b << 1) >> 1;
-	auto product = 0;
+	long long unsigned product = 0;
 	while (multiplier) {
 		if (multiplier & mark) {
 			product = sum(product, multiplicand);
 		}
 		multiplicand <<= 1;
 		multiplier >>= 1;
-	}
-	if (((a ^ b) << 1) >> 1 != (a ^ b)) {
-		product = sum(~product, 1);
 	}
 	return product;
 }
@@ -99,14 +108,16 @@ int divide (int dividend, int divisor) {
 	return dividend / divisor;
 }
 
+// copy comment from wikipedia: https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 // exponentiating by squaring is a general method for fast computation 
 // of large positive integer powers of a number n and n is positive
-long long unsigned pow_sqrt (int base, unsigned int exp) {
+long long unsigned pow_sqrt (unsigned int base, unsigned int exp) {
 	long long unsigned temp = 1;
-	while (exp) {
+	while (exp) { // if exp is not 0
 		if (exp & 0x1) { //exp is odd
+			// cached value to temp variable
 			exp ^= 0x1; // exp = exp - 1
-			temp = multiply(temp, base);
+			temp = multiply(base, temp);
 		} else { // exp is even
 			base = multiply(base, base);
 			exp >>= 1; // exp = exp / 2

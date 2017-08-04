@@ -18,6 +18,7 @@ BOOST_AUTO_TEST_CASE(Sum) {
 	BOOST_TEST(sum(0, 0) == 0);
 	BOOST_TEST(sum(0, 1) == 1);
 	BOOST_TEST(sum(1, 0) == 1);
+	BOOST_TEST(sum(-5, -3) == -8);
 }
 
 BOOST_AUTO_TEST_CASE(Subtract) {
@@ -39,6 +40,9 @@ BOOST_AUTO_TEST_CASE(Multiply) {
 	BOOST_TEST(multiply(0, 0) == 0);
 	BOOST_TEST(multiply(1, 1) == 1 * 1);
 	BOOST_TEST(multiply(2, 10) == 2 * 10);
+	BOOST_TEST(multiply(-1, -1) == 1);
+	BOOST_TEST(multiply(-1, 1) == -1);
+	BOOST_TEST(multiply(1, -1) == -1);
 }
 
 BOOST_AUTO_TEST_CASE(Karatsuba) {
@@ -64,18 +68,29 @@ BOOST_AUTO_TEST_CASE(Pow_Sqrt) {
 	BOOST_TEST(pow_sqrt(1, 10) == 1);
 	BOOST_TEST(pow_sqrt(1, 11) == 1);
 	BOOST_TEST(pow_sqrt(2, 30) == static_cast <long long unsigned>(pow(2, 30)));
-
+	BOOST_TEST(pow_sqrt(12, 8) == static_cast <long long unsigned>(pow(12, 8)));
+	BOOST_TEST(pow_sqrt(9, 10) == static_cast <long long unsigned>(pow(9, 10)));
 }
 
 // BOOST_DATA_TEST_CASE(test1, bdata::random((bdata::seed = 100UL, bdata::distribution = std::uniform_int_distribution<>(1, maxlimit), bdata::engine = rng)) ^ bdata::make(random()), a, b)
 BOOST_AUTO_TEST_CASE(randomnessTest) {
 	auto itr = Iterator(1000);
-	for (auto i = itr.begin(); !itr.end(); ++itr) {
+	auto smaller_itr = Iterator(1000, 18, 1, 11);
+	for (auto i = itr.begin(), s = smaller_itr.begin(); !(itr.end() || smaller_itr.end()); ++itr , ++smaller_itr) {
 		auto a = *itr;
 		auto b = *(++itr);
 		BOOST_TEST(a + b == sum(a, b));
 		BOOST_TEST(a - b == subtract(a, b));
 		BOOST_TEST(a * b == multiply(a, b));
 		BOOST_TEST(a * b == karatsuba(a, b));
+		auto base = *smaller_itr;
+		auto exp = *(++smaller_itr);
+		auto modulo = *(++smaller_itr);
+		auto p = pow(base, exp);
+		auto pi = static_cast <unsigned int>(p);
+		if (pi == p) {
+			BOOST_TEST(pow_sqrt(base, exp) == pi, "falied in base " << base <<" exponent " << exp);
+			BOOST_TEST(exp_mod(base, exp, modulo) == pi % modulo);
+		}
 	}
 }
