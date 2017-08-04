@@ -18,7 +18,7 @@ public:
 	{
 	};
 
-	Iterator (int time, int seed = 0) : n(0), seed(seed), itr_time(time)
+	explicit Iterator (int time, int seed = 0) : n(0), seed(seed), itr_time(time)
 	{
 		dist = std::uniform_int_distribution <>(0, maxRangeRight);
 		rng.seed(static_cast <int>(std::time(nullptr)) ^ seed);
