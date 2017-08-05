@@ -2,6 +2,7 @@
 #include <boost/math/tools/config.hpp>
 
 int sum (int a, int b) {
+	// force cast to unsigned, to prevent calling it self
 	return sum(static_cast <unsigned long long>(a), static_cast <unsigned long long>(b));
 }
 
