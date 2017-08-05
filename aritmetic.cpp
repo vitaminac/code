@@ -1,22 +1,6 @@
 #include "aritmetic.hpp"
 #include <boost/math/tools/config.hpp>
 
-int sum (int a, int b) {
-	// force cast to unsigned, to prevent calling it self
-	return sum(static_cast <unsigned long long>(a), static_cast <unsigned long long>(b));
-}
-
-unsigned long long sum (unsigned long long a, unsigned long long b) {
-	auto sum = a;
-	auto carry = b;
-	while (carry) {
-		auto temp = sum;
-		sum = temp ^ carry;
-		carry = (temp & carry) << 1;
-	}
-	return sum;
-}
-
 int subtract (int a, int b) {
 	return sum(a, sum(~b, 1));
 }
@@ -49,29 +33,6 @@ int exp_mod (int base, int exp, int m) {
 		exp >>= 1;
 	}
 	return result;
-}
-
-int multiply (int a, int b) {
-	unsigned int multiplicand = (static_cast <unsigned>(a << 1) >> 1) == a ? a : sum(~a, 1);
-	unsigned int multiplier = (static_cast <unsigned>(b << 1) >> 1) == b ? b : sum(~b, 1);
-	auto product = static_cast <unsigned int>(multiply(multiplicand, multiplier));
-	if (static_cast <unsigned>((a ^ b) << 1) >> 1 != (a ^ b)) {
-		product = sum(~product, 1);
-	}
-	return product;
-}
-
-unsigned long long int multiply (unsigned int multiplicand, unsigned int multiplier) {
-	auto mark = 0x1;
-	long long unsigned product = 0;
-	while (multiplier) {
-		if (multiplier & mark) {
-			product = sum(product, multiplicand);
-		}
-		multiplicand <<= 1;
-		multiplier >>= 1;
-	}
-	return product;
 }
 
 int find_first_significant_bit_position (int n) {
@@ -112,15 +73,15 @@ int divide (int dividend, int divisor) {
 // copy comment from wikipedia: https://en.wikipedia.org/wiki/Exponentiation_by_squaring
 // exponentiating by squaring is a general method for fast computation 
 // of large positive integer powers of a number n and n is positive
-long long unsigned pow_sqrt (unsigned int base, unsigned int exp) {
+long long unsigned pow_sqrt (unsigned long long base, unsigned int exp) {
 	long long unsigned temp = 1;
 	while (exp) { // if exp is not 0
 		if (exp & 0x1) { //exp is odd
 			// cached value to temp variable
 			exp ^= 0x1; // exp = exp - 1
-			temp = multiply(base, temp);
+			temp = multiply <unsigned long long>(base, temp);
 		} else { // exp is even
-			base = multiply(base, base);
+			base = multiply <unsigned long long>(base, base);
 			exp >>= 1; // exp = exp / 2
 		}
 	}
