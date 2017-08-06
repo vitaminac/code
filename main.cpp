@@ -46,6 +46,24 @@ BOOST_AUTO_TEST_CASE(Multiply) {
 	BOOST_TEST(multiply(static_cast < long long unsigned>(815730721), static_cast < long long unsigned>(28561)) == 23298085122481);
 }
 
+BOOST_AUTO_TEST_CASE(Divide) {
+	BOOST_TEST(divide(10086, 23) == 10086 / 23);
+	BOOST_TEST(divide(-10086, 23) == -10086 / 23);
+	BOOST_TEST(divide(-1, -1) == 1);
+	BOOST_TEST(divide(-1, 1) == -1);
+	BOOST_TEST(divide(1, -1) == -1);
+	BOOST_TEST(divide(0, -1) == 0);
+	BOOST_TEST(divide(0, 1) == 0);
+}
+
+BOOST_AUTO_TEST_CASE(Mod) {
+	BOOST_TEST(mod(10086, 23) == 10086 % 23);
+	BOOST_TEST(mod(-10086, 23) == -10086 % 23);
+	BOOST_TEST(mod(-1, -1) == 0);
+	BOOST_TEST(mod(-1, 1) == 0);
+	BOOST_TEST(mod(1, -1) == 0);
+}
+
 BOOST_AUTO_TEST_CASE(Karatsuba) {
 	BOOST_TEST(karatsuba(10086, 43378) == 10086 * 43378);
 	BOOST_TEST(karatsuba(1, 43378) == 1 * 43378);
@@ -54,6 +72,11 @@ BOOST_AUTO_TEST_CASE(Karatsuba) {
 	BOOST_TEST(karatsuba(0, 0) == 0);
 	BOOST_TEST(karatsuba(1, 1) == 1 * 1);
 	BOOST_TEST(karatsuba(2, 10) == 2 * 10);
+}
+
+BOOST_AUTO_TEST_CASE(Mod3) {
+	BOOST_TEST(bitcount(17895) == 9);
+	BOOST_TEST(mod3(17895) == 17895 % 3);
 }
 
 BOOST_AUTO_TEST_CASE(Pow_Sqrt) {
@@ -73,9 +96,9 @@ BOOST_AUTO_TEST_CASE(Pow_Sqrt) {
 BOOST_AUTO_TEST_CASE(Modular_exponentiation) {
 	BOOST_TEST(exp_mod(1, 10, 1) == 0);
 	BOOST_TEST(exp_mod(2, 9999, 2) == 0);
-	BOOST_TEST(exp_mod(2, 20, 3) == (static_cast <long long unsigned>(pow(2, 20)) % 3));
-	BOOST_TEST(exp_mod(7, 17, 73) == (static_cast<long long unsigned>(pow(7, 17)) % 73));
-	BOOST_TEST(exp_mod(13, 9, 71) == (static_cast<long long unsigned>(pow(13, 9)) % 71));
+	BOOST_TEST(exp_mod(2, 20, 3) == pow_sqrt(2, 20) % 3);
+	BOOST_TEST(exp_mod(7, 17, 73) == pow_sqrt(7, 17) % 73);
+	BOOST_TEST(exp_mod(13, 9, 71) == pow_sqrt(13, 9) % 71);
 	BOOST_TEST(exp_mod(15, 14, 2) == pow_sqrt(15, 14) % 2);
 }
 
@@ -90,15 +113,17 @@ BOOST_AUTO_TEST_CASE(randomnessTest) {
 		BOOST_TEST(a - b == subtract(a, b));
 		BOOST_TEST(a * b == multiply(a, b));
 		BOOST_TEST(a * b == karatsuba(a, b));
+		BOOST_TEST(a / b == divide(a, b));
+		BOOST_TEST(a % b == mod(a, b));
+		BOOST_TEST(a % 3 == mod3(a));
 		auto base = *smaller_itr;
 		auto exp = *(++smaller_itr);
 		auto modulo = *(++smaller_itr);
-		long double p = powl(base, exp);
+		auto p = pow(base, exp);
 		auto pi = static_cast <unsigned long long>(p);
 		if (pi == p) {
-			auto abc = pow_sqrt(base, exp);
-			auto a = abc >> 1 != pi >> 1;
-			BOOST_TEST(pow_sqrt(base, exp) >> 1 == pi >> 1, "falied in base " << base <<" exponent " << exp);
+			auto drop_bits_size = (sizeof(long long) * 8 - ieee754_double_precision_bits + 1);
+			BOOST_TEST(dropNoSignificantBit(drop_bits_size, pow_sqrt(base, exp)) == dropNoSignificantBit(drop_bits_size, pi), "falied in base " << base <<" exponent " << exp);
 			BOOST_TEST(exp_mod(base, exp, modulo) == pow_sqrt(base, exp) % modulo, "falied in base " << base << " exponent " << exp << " modulo " << modulo);
 		}
 	}
