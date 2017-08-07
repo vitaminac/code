@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{C252AD4F-4882-48E7-8023-68CEE82A7099}</ProjectGuid>
-    <RootNamespace>CRC</RootNamespace>
+    <RootNamespace>aritmetic</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
     <ProjectName>aritmetic</ProjectName>
   </PropertyGroup>

@@ -30,7 +30,7 @@ T sum (T a, T b) {
 template <typename T>
 T subtract (T minuend, T subtrahend) {
 	// subtract is same as add two's complement of subtrahend discarding the overflow
-	return sum <T>(minuend, sum(~subtrahend, 1));
+	return sum <T>(minuend, sum <T>(~subtrahend, 1));
 }
 
 template <typename T>
