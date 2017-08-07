@@ -1,8 +1,8 @@
-#include "aritmetic.hpp"
+ï»¿#include "aritmetic.hpp"
 #include <boost/math/tools/config.hpp>
 
 int divide (int dividend, int divisor, int & remainder) {
-	//¶Ô±»³ýÊýºÍ³ýÊýÈ¡¾ø¶ÔÖµ
+	// find the sign of dividend, divisor, and future quotient
 	bool willBeNegative = false;
 	bool remainder_sign = false;
 	if (isNegative(dividend)) {
@@ -30,7 +30,7 @@ int divide (int dividend, int divisor, int & remainder) {
 	int quotient = 0;
 	remainder = 0;
 	// invert = 2 set highest bit as a delimiter
-	while (invert > 1)//ÅÅ³ý×î¸ßÎ»µÄ1
+	while (invert > 1)// until delimiter, the highest bit
 	{
 		remainder = remainder << 1;
 		remainder |= invert & 0x1;
@@ -43,7 +43,7 @@ int divide (int dividend, int divisor, int & remainder) {
 		}
 	}
 
-	//ÇóÉÌµÄ·ûºÅ
+	// add sign of quotient
 	if (willBeNegative) {
 		quotient = sum(~quotient, 1);
 	}
@@ -62,7 +62,7 @@ int divide (int dividend, int divisor) {
 	return divide(dividend, divisor, nouse);
 }
 
-//ÇóÓà
+// find remainder
 int mod (int dividend, int divisor) {
 	int remainder;
 	divide(dividend, divisor, remainder);
@@ -76,18 +76,18 @@ int mod (int dividend, int divisor) {
 int exp_mod (int base, int exp, int m) {
 	int result = 1;
 	// exponent e be converted to binary notation
-	// e = ¡Æ n-1, i=0 , ai*2^i; a¡Ê{0,1}
-	// b^e = b ^ ¡Æn-1,i=0 = ¡Ç n-1, i=0, (b^2^i)^ai
-	// result = ¡Ç n-1, i=0 (b^2^i)^ai (mod m)
+	// e = âˆ‘ n-1, i=0 , ai*2^i; aâˆˆ{0,1}
+	// b^e = b ^ âˆ‘n-1,i=0 = âˆ n-1, i=0, (b^2^i)^ai
+	// result = âˆ n-1, i=0 (b^2^i)^ai (mod m)
 	while (exp > 0) {
 		// if ai = 0; pass; because n^0 = 1
-		// if ai = 1; (b^2^i * (¡Ç i-1, j=0, (b^2^j)^aj mod m)) mod m
+		// if ai = 1; (b^2^i * (âˆ i-1, j=0, (b^2^j)^aj mod m)) mod m
 		if (exp & 0x1) {
-			// ab mod m ¡Ô (a * (b mod m)) mod m
+			// ab mod m â‰¡ (a * (b mod m)) mod m
 			result = mod(multiply(result, base), m);
 		}
-		// a ¡Ô b mod m => a^2 ¡Ô b^2 mod m
-		// b^2^(i+1) ¡Ô (b^2^(i) * b^2^(i)) mod m
+		// a â‰¡ b mod m => a^2 â‰¡ b^2 mod m
+		// b^2^(i+1) â‰¡ (b^2^(i) * b^2^(i)) mod m
 		base = mod(base * base, m);
 		exp >>= 1;
 	}
@@ -153,11 +153,11 @@ uint64_t bitcount (uint64_t a) {
 // http://homepage.divms.uiowa.edu/~jones/bcd/mod.shtml
 //Computing modulus for poweres of two is trivial on a binary computer,
 // the term(b mod m) is zero, so we just take the modulus by examining the least significant bits of the binary representation :
-// a mod 2i = a & (2i¨C1)
+// a mod 2i = a & (2iâ€“1)
 // Recall that the & operator means logical and. When applied to integers, 
 // this computes each bit of the result as the and of the corresponding bits of the operands.
-// For all nonzero positive integers i, the binary representation of 2i¨C1 consists of i consecutive one bits,
-// so anding with 2i¨C1 preserves the least significant i bits of the operand while forcing all more significant bits to zero.
+// For all nonzero positive integers i, the binary representation of 2iâ€“1 consists of i consecutive one bits,
+// so anding with 2iâ€“1 preserves the least significant i bits of the operand while forcing all more significant bits to zero.
 // for example number 3 is a Mersenne number that is, one less than a power of two.
 // we can compute a mod 3 as "a mod 3 = ( (a/4) + (a mod 4) ) mod 3" 
 uint32_t mod3 (uint32_t a) {
@@ -223,4 +223,54 @@ uint32_t mod3 (uint32_t a) {
 	if (a > 2)
 		a = a - 3;
 	return a;
+}
+
+
+// Booth's multiplication algorithm
+// furtuner information can be found here: https://www.quora.com/How-does-Booths-algorithm-work
+// comment 
+int64_t booth_mul (int32_t multiplicand, int32_t multiplier) {
+	// Booth's algorithm can be implemented by repeatedly adding 
+	// (with ordinary unsigned binary addition) one of two predetermined values
+	// A and S to a product P, then performing a rightward arithmetic shift on P
+	// Determine the values of A and S, and the initial value of P.
+	// All of these numbers should have a length equal to(x + y + 1).
+	// let multiplicand be 32 bit
+	// A: Fill the most significant (leftmost) bits with the value of m. Fill the remaining (y + 1) bits with zeros.
+	int64_t Added = static_cast <int64_t>(static_cast <uint32_t>(multiplicand)) << 32;
+	// S: Fill the most significant bits with the value of (âˆ’m) in two's complement notation. Fill the remaining (y + 1) bits with zeros
+	int64_t Subtracted = static_cast <int64_t>(static_cast <uint32_t>(sum(~multiplicand, 1))) << 32;
+	// let multiplier be 31 bit
+	// To the right of this, append the value of r.
+	int64_t product = static_cast <int64_t>(static_cast <uint32_t>(multiplier));
+	// std::memcpy((&product), &multiplier, sizeof(int32_t));
+	product = product << 1;
+	// P: Fill the most significant x bits with zeros.
+	// std::memset(reinterpret_cast <int *>(&product) + 1, 0, sizeof(int32_t));
+	product &= 0xffffffff;
+	// Fill the least significant (rightmost) bit with a zero.
+	for (auto i = 0; i < 31; i++) {
+		// Determine the two least significant(rightmost) bits of P
+		switch (product & 0x3) {
+			case 0x1:
+				// If they are 01, find the value of P + A. Ignore any overflow.
+				product += Added;
+				break;
+			case 0x2:
+				// If they are 10, find the value of P + S. Ignore any overflow.
+				product += Subtracted;
+				break;
+			default:
+				// If they are 00, do nothing. Use P directly in the next step.
+				// If they are 11, do nothing. Use P directly in the next step.
+				NOP; // no operation
+		}
+		// Arithmetically shift the value obtained in the 2nd step by a single place to the right. 
+		// Let P now equal this new value.
+		product >>= 1;
+	}
+	// Drop the least significant(rightmost) bit from P.
+	product >>= 1;
+	// This is the product of m and r.
+	return product;
 }

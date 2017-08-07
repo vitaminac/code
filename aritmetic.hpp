@@ -3,10 +3,12 @@
 #include <cstdint>
 #define isNegative(value) (((0x1 << ((sizeof(value) << 3) - 1))) & (value))
 #define dropNoSignificantBit(bitsLen, value) (((value) & (~(~(0x0) << (bitsLen))) ^ (value)))
+#define NOP
 const int byte_size = 8;
 const int ieee754_double_precision_bits = 52;
 int divide (int a, int b);
 int mod (int a, int b);
+int64_t booth_mul (int32_t multiplicand, int32_t multiplier);
 uint32_t mod3 (uint32_t a);
 uint64_t bitcount (uint64_t a);
 int karatsuba (int a, int b);

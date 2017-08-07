@@ -46,6 +46,20 @@ BOOST_AUTO_TEST_CASE(Multiply) {
 	BOOST_TEST(multiply(static_cast < long long unsigned>(815730721), static_cast < long long unsigned>(28561)) == 23298085122481);
 }
 
+BOOST_AUTO_TEST_CASE(Booth_Multiplication) {
+	BOOST_TEST(booth_mul(3, -4) == -12);
+	BOOST_TEST(booth_mul(10086, 43378) == 10086 * 43378);
+	BOOST_TEST(booth_mul(1, 43378) == 1 * 43378);
+	BOOST_TEST(booth_mul(43378, 1) == 1 * 43378);
+	BOOST_TEST(booth_mul(43378, 0) == 0);
+	BOOST_TEST(booth_mul(0, 0) == 0);
+	BOOST_TEST(booth_mul(1, 1) == 1 * 1);
+	BOOST_TEST(booth_mul(2, 10) == 2 * 10);
+	BOOST_TEST(booth_mul(-1, -1) == 1);
+	BOOST_TEST(booth_mul(-1, 1) == -1);
+	BOOST_TEST(booth_mul(1, -1) == -1);
+}
+
 BOOST_AUTO_TEST_CASE(Divide) {
 	BOOST_TEST(divide(10086, 23) == 10086 / 23);
 	BOOST_TEST(divide(-10086, 23) == -10086 / 23);
@@ -112,6 +126,7 @@ BOOST_AUTO_TEST_CASE(randomnessTest) {
 		BOOST_TEST(a + b == sum(a, b));
 		BOOST_TEST(a - b == subtract(a, b));
 		BOOST_TEST(a * b == multiply(a, b));
+		BOOST_TEST(a * b == booth_mul(a, b));
 		BOOST_TEST(a * b == karatsuba(a, b));
 		BOOST_TEST(a / b == divide(a, b));
 		BOOST_TEST(a % b == mod(a, b));
