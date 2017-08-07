@@ -221,14 +221,14 @@ uint32_t mod3 (uint32_t a) {
 	a = (a >> 2) + (a & 0x3); /* sum base 2**2 digits
 								 a <= 0x4 */
 	if (a > 2)
-		a = a - 3;
+		a = subtract <uint32_t>(a, 3);
 	return a;
 }
 
 
 // Booth's multiplication algorithm
 // furtuner information can be found here: https://www.quora.com/How-does-Booths-algorithm-work
-// comment 
+// comment was copy from wikipedia https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm
 int64_t booth_mul (int32_t multiplicand, int32_t multiplier) {
 	// Booth's algorithm can be implemented by repeatedly adding 
 	// (with ordinary unsigned binary addition) one of two predetermined values
@@ -254,11 +254,11 @@ int64_t booth_mul (int32_t multiplicand, int32_t multiplier) {
 		switch (product & 0x3) {
 			case 0x1:
 				// If they are 01, find the value of P + A. Ignore any overflow.
-				product += Added;
+				product = sum(product, Added);
 				break;
 			case 0x2:
 				// If they are 10, find the value of P + S. Ignore any overflow.
-				product += Subtracted;
+				product = sum(product, Subtracted);
 				break;
 			default:
 				// If they are 00, do nothing. Use P directly in the next step.

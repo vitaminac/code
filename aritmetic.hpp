@@ -35,16 +35,16 @@ T subtract (T minuend, T subtrahend) {
 
 template <typename T>
 T multiply (T multiplicand, T multiplier) {
-	bool isNegative = false;
+	bool willBeNegative = false;
 	T product = 0;
 	if (std::is_signed <T>::value) {
 		if (isNegative(multiplicand)) {
 			multiplicand = sum <T>(~multiplicand, 1);
-			isNegative ^= true;
+			willBeNegative ^= true;
 		}
 		if (isNegative(multiplier)) {
 			multiplier = sum <T>(~multiplier, 1);
-			isNegative ^= true;
+			willBeNegative ^= true;
 		}
 	}
 	while (multiplier) {
@@ -54,7 +54,7 @@ T multiply (T multiplicand, T multiplier) {
 		multiplicand <<= 1;
 		multiplier >>= 1;
 	}
-	if (isNegative) {
+	if (willBeNegative) {
 		product = sum <T>(~product, 1);
 	}
 	return product;
