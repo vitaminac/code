@@ -1,13 +1,15 @@
-package com.session.session1;
+package com.oop.session;
 
-public class Session1 {
+public class SessionOne {
     private static final String HELLO_WORLD = "Hello, World!";
 
     public static void main(String[] args) {
         helloWorld();
         parOrimpar();
-        System.out.println("La longitud de circunferencia de" + "12.8" + " es " + calculateCir(12.8));
+        Circle circulo = new Circle(12);
+        System.out.println("La circunferencia de un circulo de 12 radio es " + circulo.circumference());
         System.out.println("factorial de 5 es " + factorial(3));
+        System.out.println("factorial de 5 es " + factorialRecur(3));
     }
 
     public static void helloWorld() {
@@ -35,5 +37,13 @@ public class Session1 {
             number -= 1;
         }
         return result;
+    }
+
+    public static int factorialRecur(int number) {
+        if (number == 0) {
+            return 1;
+        } else {
+            return number * factorialRecur(number - 1);
+        }
     }
 }
