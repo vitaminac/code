@@ -26,10 +26,6 @@ public class SessionOne {
         }
     }
 
-    public static double calculateCir(double ratio) {
-        return ratio * Math.PI * 2;
-    }
-
     public static int factorial(int number) {
         int result = 1;
         while (number > 0) {

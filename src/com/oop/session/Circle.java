@@ -1,13 +1,13 @@
 package com.oop.session;
 
 public class Circle {
-    private final double radius;
+    private final double m_radius;
 
     public Circle(double radius) {
-        this.radius = radius;
+        this.m_radius = radius;
     }
 
     public double circumference() {
-        return Math.PI * radius;
+        return 2.0 * Math.PI * this.m_radius;
     }
 }
