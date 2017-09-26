@@ -12,11 +12,11 @@ public class SessionOne {
         System.out.println("factorial de 5 es " + factorialRecur(3));
     }
 
-    public static void helloWorld() {
+    private static void helloWorld() {
         System.out.println(HELLO_WORLD);
     }
 
-    public static void parOrimpar() {
+    private static void parOrimpar() {
         for (int i = 0; i < 10; i++) {
             if (i % 2 == 0) {
                 System.out.println(i + " es par");
@@ -26,7 +26,7 @@ public class SessionOne {
         }
     }
 
-    public static int factorial(int number) {
+    private static int factorial(int number) {
         int result = 1;
         while (number > 0) {
             result *= number;
@@ -35,7 +35,7 @@ public class SessionOne {
         return result;
     }
 
-    public static int factorialRecur(int number) {
+    private static int factorialRecur(int number) {
         if (number == 0) {
             return 1;
         } else {
