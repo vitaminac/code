@@ -1,5 +1,7 @@
 package com.oop.session;
 
+import com.oop.session.figure.Circle;
+
 public class SessionOne {
     private static final String HELLO_WORLD = "Hello, World!";
 

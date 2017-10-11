@@ -1,6 +1,6 @@
-package com.oop.session;
+package com.oop.session.figure;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CircleTest {
     @org.junit.jupiter.api.Test

@@ -1,12 +1,26 @@
 package com.oop.session;
 
-import jdk.nashorn.internal.runtime.regexp.joni.exception.ValueException;
-
 public class Fraccion {
     //region member
     private int numerator;
     private int denominator;
     //endregion
+
+    //region Constructor
+    public Fraccion() {
+        this(1);
+    }
+
+    public Fraccion(int numerator) {
+        this(numerator, 1);
+    }
+
+    public Fraccion(int numerator, int denominator) {
+        this.setNumerator(numerator);
+        this.setDenominator(denominator);
+    }
+    //endregion
+
 
     //region getter && setter
     public int getNumerator() {
@@ -21,32 +35,16 @@ public class Fraccion {
         return denominator;
     }
 
-    public void setDenominator(int denominator) throws ValueException {
+    public void setDenominator(int denominator) throws IllegalArgumentException {
         if (denominator == 0) {
-            throw new ValueException("el denominator no puede ser cero");
+            throw new IllegalArgumentException("el denominator no puede ser cero");
         }
         this.denominator = denominator;
     }
     //endregion
 
-    //region Constructor
 
-    public Fraccion() {
-        this(1, 1);
-    }
-
-    public Fraccion(int numerator) {
-        this(numerator, 1);
-    }
-
-    public Fraccion(int numerator, int denominator) throws ValueException {
-        super();
-        this.setNumerator(numerator);
-        this.setDenominator(denominator);
-    }
-    //endregion
-
-    //region method
+    //region method arithmetic operation
     public Fraccion negative() {
         return new Fraccion(-this.getNumerator(), this.getDenominator());
     }
@@ -64,17 +62,15 @@ public class Fraccion {
     }
 
     public void imrime() {
-        System.out.println(this.getNumerator()
-                + "/"
-                + this.getDenominator());
+        System.out.println(this.getNumerator() + "/" + this.getDenominator());
     }
 
-    public double calculateReal() {
+    public double decimal() {
         return (double) this.getNumerator() / (double) this.getDenominator();
     }
 
-    public int calculateInteger() {
-        return (int) this.calculateReal();
+    public int divide() {
+        return (int) this.decimal();
     }
     //endregion
 }

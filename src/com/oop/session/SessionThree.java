@@ -14,7 +14,7 @@ public class SessionThree {
         f5.imrime();
 
         f1.imrime();
-        System.out.println(f1.calculateReal());
-        System.out.println(f1.calculateInteger());
+        System.out.println(f1.decimal());
+        System.out.println(f1.divide());
     }
 }

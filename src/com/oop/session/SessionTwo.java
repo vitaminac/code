@@ -1,5 +1,8 @@
 package com.oop.session;
 
+import com.oop.session.coordinates.Point;
+import com.oop.session.coordinates.Vector;
+
 public class SessionTwo {
     public static void main(String[] args) {
         // write your code here
@@ -11,27 +14,27 @@ public class SessionTwo {
         System.out.print("Cuenta atras...: \n");
         CuentaAtras();
 
-        Point pointUno = new Point();
-        Point pointDos = new Point(2, 4);
+        Point pointOne = new Point();
+        Point pointTwo = new Point(2, 4);
 
-        pointUno.imprimePunto();
-        pointDos.imprimePunto();
+        pointOne.print();
+        pointTwo.print();
+        pointOne = pointOne.move(new Vector(5, 6));
+        pointOne.print();
 
-        pointUno.transladar(5, 1);
-        pointUno.imprimePunto();
+        pointTwo = pointTwo.move(new Vector(5, 2, 3));
+        pointTwo.print();
 
-        pointDos.transladar(5, 1);
-        pointDos.imprimePunto();
+        pointOne = pointOne.move(new Vector(6));
+        pointOne.print();
 
-        pointUno.transladar(6);
-        pointUno.imprimePunto();
 
-        System.out.println("La x de punto 1: " + pointUno.getCoordenadaX());
+        System.out.println("La x de punto 1: " + pointOne.getCoordinateX());
         // System.out.println("La x de punto 1: " + pointUno.coordenadaX);
 
-        Point pointTres = pointDos.DameCopia();
+        Point pointTres = pointTwo.copy();
         System.out.println("Copia de Point 2: ");
-        pointTres.imprimePunto();
+        pointTres.print();
     }
 
     private static void Piramide() {
