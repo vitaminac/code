@@ -1,4 +1,4 @@
-package com.oop.session.coordinates;
+package oop.session.coordinates;
 
 import java.util.Arrays;
 import java.util.function.DoubleBinaryOperator;

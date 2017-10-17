@@ -1,8 +1,8 @@
-package com.oop.session.figure;
+package oop.session.figure;
 
-import com.oop.session.coordinates.DimensionNotCoincide;
-import com.oop.session.coordinates.Point;
-import com.oop.session.coordinates.Vector;
+import oop.session.coordinates.DimensionNotCoincide;
+import oop.session.coordinates.Point;
+import oop.session.coordinates.Vector;
 
 public class Triangle extends Parallelogram {
 

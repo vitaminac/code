@@ -1,4 +1,4 @@
-package com.oop.session;
+package oop.session;
 
 public class SessionThree {
     public static void main(String[] args) {

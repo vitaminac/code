@@ -1,7 +1,7 @@
-package com.oop.session;
+package oop.session;
 
-import com.oop.session.coordinates.Point;
-import com.oop.session.coordinates.Vector;
+import oop.session.coordinates.Point;
+import oop.session.coordinates.Vector;
 
 public class SessionTwo {
     public static void main(String[] args) {

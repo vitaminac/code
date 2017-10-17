@@ -1,4 +1,4 @@
-package com.oop.session.figure;
+package oop.session.figure;
 
 import java.util.ArrayList;
 import java.util.Arrays;

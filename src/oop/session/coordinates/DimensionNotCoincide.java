@@ -1,4 +1,4 @@
-package com.oop.session.coordinates;
+package oop.session.coordinates;
 
 public class DimensionNotCoincide extends Exception {
     public DimensionNotCoincide(Coordinates c1, Coordinates c2) {

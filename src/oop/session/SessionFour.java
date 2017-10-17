@@ -1,9 +1,9 @@
-package com.oop.session;
+package oop.session;
 
-import com.oop.session.figure.ComplexFigure;
-import com.oop.session.figure.Rectangle;
-import com.oop.session.figure.Semicircle;
-import com.oop.session.figure.Triangle;
+import oop.session.figure.ComplexFigure;
+import oop.session.figure.Rectangle;
+import oop.session.figure.Semicircle;
+import oop.session.figure.Triangle;
 
 public class SessionFour {
     public static void main(String[] args) {

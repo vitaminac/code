@@ -1,4 +1,4 @@
-package com.oop.session;
+package oop.session;
 
 import java.util.Arrays;
 import java.util.function.DoubleBinaryOperator;

@@ -1,4 +1,4 @@
-package com.oop.session.figure;
+package oop.session.figure;
 
 public class Semicircle extends Circle {
     public Semicircle(double radius) {

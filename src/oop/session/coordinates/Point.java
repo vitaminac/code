@@ -1,4 +1,4 @@
-package com.oop.session.coordinates;
+package oop.session.coordinates;
 
 public class Point extends Coordinates implements Movable {
 

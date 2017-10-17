@@ -1,4 +1,4 @@
-package com.oop.session;
+package oop.session;
 
 public class Observator {
     double radioSemicirculoIzquierdo = 30;

@@ -1,4 +1,4 @@
-package com.oop.session.figure;
+package oop.session.figure;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

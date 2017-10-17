@@ -1,8 +1,8 @@
-package com.oop.session.figure;
+package oop.session.figure;
 
-import com.oop.session.coordinates.Movable;
-import com.oop.session.coordinates.Point;
-import com.oop.session.coordinates.Vector;
+import oop.session.coordinates.Movable;
+import oop.session.coordinates.Point;
+import oop.session.coordinates.Vector;
 
 public class Circle extends Figure implements Movable {
     public static final int RATIO_DIAMETER = 2;
