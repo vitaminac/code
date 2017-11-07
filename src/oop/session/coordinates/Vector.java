@@ -30,7 +30,7 @@ public class Vector extends Coordinates {
             }
             return product;
         }
-        throw new DimensionNotCoincide(this, other);
+        throw new DimensionNotCoincide(this.getDimension(), other.getDimension());
     }
 
     public boolean orthogonal(Vector other) throws DimensionNotCoincide {
@@ -47,7 +47,10 @@ public class Vector extends Coordinates {
         }
         DoubleUnaryOperator square = (x) -> Math.pow(Math.abs(x), p);
         DoubleBinaryOperator ac = (x, y) -> x + y;
-        return Math.pow(Arrays.stream(this.getCoordinates()).map(square).reduce(ac).getAsDouble(), 1 / p);
+        return Math.pow(Arrays.stream(this.getCoordinates())
+                              .map(square)
+                              .reduce(ac)
+                              .getAsDouble(), 1 / p);
     }
 
     public double euclideanNorm() {
@@ -70,11 +73,9 @@ public class Vector extends Coordinates {
         // cp0 = a1 * b2 - a2 * b1
         // cp1 = a2 * b0 - a0 * b2
         // cp2 = a0 * b1 - a1 * b0
-        return new Vector(
-                v1.getCoordinateY() * v2.getCoordinateZ() - v1.getCoordinateZ() * v2.getCoordinateY(),
-                v1.getCoordinateZ() * v2.getCoordinateX() - v1.getCoordinateX() * v2.getCoordinateZ(),
-                v1.getCoordinateX() * v2.getCoordinateY() - v1.getCoordinateY() * v2.getCoordinateX()
-        );
+        return new Vector(v1.getCoordinateY() * v2.getCoordinateZ() - v1.getCoordinateZ() * v2.getCoordinateY(),
+                          v1.getCoordinateZ() * v2.getCoordinateX() - v1.getCoordinateX() * v2.getCoordinateZ(),
+                          v1.getCoordinateX() * v2.getCoordinateY() - v1.getCoordinateY() * v2.getCoordinateX());
     }
 
     public double angle(Vector other) throws DimensionNotCoincide {

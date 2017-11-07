@@ -106,11 +106,14 @@ public class Coordinates {
 
     public boolean isOrigin() {
         DoublePredicate p = (coordinate) -> coordinate == 0;
-        return Arrays.stream(this.getCoordinates()).allMatch(p);
+        return Arrays.stream(this.getCoordinates())
+                     .allMatch(p);
     }
 
     public Coordinates getOpposite() {
-        return new Coordinates(Arrays.stream(this.getCoordinates()).map(this.NEGATIVE).toArray());
+        return new Coordinates(Arrays.stream(this.getCoordinates())
+                                     .map(this.NEGATIVE)
+                                     .toArray());
     }
 
     public static Coordinates mean(Coordinates... cs) throws DimensionNotCoincide {
@@ -119,14 +122,13 @@ public class Coordinates {
         int dimension = cs[0].getDimension();
         for (Coordinates c : cs) {
             if (c.getDimension() != dimension) {
-                throw new DimensionNotCoincide(cs[0], c);
+                throw new DimensionNotCoincide(cs[0].getDimension(), c.getDimension());
             }
         }
         return new Coordinates(IntStream.range(0, dimension)
-                .mapToDouble(i -> stream
-                        .mapToDouble(e -> e.getCoordinates()[i])
-                        .reduce((x, y) -> x + y).getAsDouble() / length
-                ).toArray()
-        );
+                                        .mapToDouble(i -> stream.mapToDouble(e -> e.getCoordinates()[i])
+                                                                .reduce((x, y) -> x + y)
+                                                                .getAsDouble() / length)
+                                        .toArray());
     }
 }
