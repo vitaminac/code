@@ -92,8 +92,13 @@ public class Coordinates {
         this.setCoordinate(2, coordinateY);
     }
 
+    @Override
+    public String toString() {
+        return Arrays.toString(this.getCoordinates());
+    }
+
     public void print() {
-        System.out.println(Arrays.toString(this.getCoordinates()));
+        System.out.println(this.toString());
     }
 
     public int getDimension() {

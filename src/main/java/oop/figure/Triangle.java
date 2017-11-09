@@ -21,13 +21,17 @@ public class Triangle extends Parallelogram {
 
 
     public double getBase() {
-        return this.getVectorA().module();
+        return this.getVectorA()
+                   .module();
     }
 
 
     public double getHeight() {
         try {
-            return this.getVectorB().module() * this.getVectorA().angle(this.getVectorB());
+            return this.getVectorB()
+                       .module() *
+                   this.getVectorA()
+                       .angle(this.getVectorB());
         } catch (DimensionNotCoincide e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -41,6 +45,9 @@ public class Triangle extends Parallelogram {
 
     @Override
     public double perimeter() {
-        return super.perimeter() + this.getVectorB().difference(this.getVectorA()).module();
+        return super.perimeter() +
+               this.getVectorB()
+                   .difference(this.getVectorA())
+                   .module();
     }
 }

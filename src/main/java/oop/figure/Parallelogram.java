@@ -38,12 +38,17 @@ public class Parallelogram extends Figure {
 
     @Override
     public double area() {
-        return this.getVectorA().cross(this.getVectorB()).module();
+        return this.getVectorA()
+                   .cross(this.getVectorB())
+                   .module();
     }
 
     @Override
     public double perimeter() {
-        return (this.getVectorA().module() + this.getVectorB().module()) * 2;
+        return (this.getVectorA()
+                    .module() +
+                this.getVectorB()
+                    .module()) * 2;
     }
 
 }

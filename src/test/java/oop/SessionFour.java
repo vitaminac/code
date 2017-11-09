@@ -4,9 +4,13 @@ import oop.figure.ComplexFigure;
 import oop.figure.Rectangle;
 import oop.figure.Semicircle;
 import oop.figure.Triangle;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class SessionFour {
-    public static void main(String[] args) {
+    @Test
+    public void testFigure() {
         double radioSemicirculoIzquierdo = 60;
         double radioSemicirculoDerecho = 60;
         double alturaTriangulo = 120;
@@ -20,6 +24,6 @@ public class SessionFour {
         complexFigure.addSection(new Triangle(baseTriangulo, alturaTriangulo));
         complexFigure.addSection(new Rectangle(lado1Rectangulo, lado2Rectangulo));
 
-        System.out.println(complexFigure.area());
+        assertEquals(25859.733552923255, complexFigure.area(), 0);
     }
 }

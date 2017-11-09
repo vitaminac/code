@@ -5,11 +5,15 @@ import oop.converter.exception.ParseError;
 import oop.converter.exception.SuperTypeValueError;
 import oop.converter.parser.Parser;
 import oop.converter.type.SuperType;
+import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.assertEquals;
+
 public class SessionEight {
-    public static void main(String[] args) {
+    @Test
+    public void testConverter() {
         String[] cadenas = new String[11];
         cadenas[0] = "23|entero";
         cadenas[1] = "45|entero";
@@ -42,7 +46,7 @@ public class SessionEight {
                 continue;
             }
         }
-        System.out.println(resultInt);
-        System.out.println(resultString);
+        assertEquals(164, resultInt);
+        assertEquals("23459996", resultString);
     }
 }

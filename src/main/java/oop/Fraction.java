@@ -1,21 +1,21 @@
 package oop;
 
-public class Fraccion {
+public class Fraction {
     //region member
     private int numerator;
     private int denominator;
     //endregion
 
     //region Constructor
-    public Fraccion() {
+    public Fraction() {
         this(1);
     }
 
-    public Fraccion(int numerator) {
+    public Fraction(int numerator) {
         this(numerator, 1);
     }
 
-    public Fraccion(int numerator, int denominator) {
+    public Fraction(int numerator, int denominator) {
         this.setNumerator(numerator);
         this.setDenominator(denominator);
     }
@@ -45,31 +45,36 @@ public class Fraccion {
 
 
     //region method arithmetic operation
-    public Fraccion negative() {
-        return new Fraccion(-this.getNumerator(), this.getDenominator());
+    public Fraction negative() {
+        return new Fraction(-this.getNumerator(), this.getDenominator());
     }
 
-    public Fraccion multiplicate(Fraccion multiplier) {
-        return new Fraccion(this.getNumerator() * multiplier.getNumerator(), this.getDenominator() * multiplier.getDenominator());
+    public Fraction multiplicate(Fraction multiplier) {
+        return new Fraction(this.getNumerator() * multiplier.getNumerator(), this.getDenominator() * multiplier.getDenominator());
     }
 
-    public Fraccion sum(Fraccion terms) {
-        return new Fraccion(this.getNumerator() * terms.getDenominator() + terms.getNumerator() * this.getDenominator(), this.getDenominator() * terms.getDenominator());
+    public Fraction sum(Fraction terms) {
+        return new Fraction(this.getNumerator() * terms.getDenominator() + terms.getNumerator() * this.getDenominator(), this.getDenominator() * terms.getDenominator());
     }
 
-    public Fraccion sub(Fraccion sub) {
+    public Fraction sub(Fraction sub) {
         return this.sum(sub.negative());
     }
 
+    @Override
+    public String toString() {
+        return this.getNumerator() + "/" + this.getDenominator();
+    }
+
     public void imrime() {
-        System.out.println(this.getNumerator() + "/" + this.getDenominator());
+        System.out.println(this.toString());
     }
 
     public double decimal() {
         return (double) this.getNumerator() / (double) this.getDenominator();
     }
 
-    public int divide() {
+    public int roundToInteger() {
         return (int) this.decimal();
     }
     //endregion
