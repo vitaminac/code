@@ -8,56 +8,77 @@
 #include "boost/random.hpp"
 #include "boost/generator_iterator.hpp"
 #include "randomGen.hpp"
-
+#include "overflow.hpp"
+#include <limits>
+using std::numeric_limits;
 namespace bdata = boost::unit_test::data;
 
+BOOST_AUTO_TEST_CASE(Convert2c) {
+	BOOST_CHECK_THROW(to2c<int>(numeric_limits<int>().min()), Overflow<int>);
+}
+
+BOOST_AUTO_TEST_CASE(Zero) {
+	BOOST_TEST(zero<int>(0));
+	BOOST_TEST(!zero<int>(0-1));
+	BOOST_TEST(!zero<int>(1));
+	BOOST_TEST(!zero<int>(32768));
+}
+
 BOOST_AUTO_TEST_CASE(Sum) {
-	BOOST_TEST(sum(-1, 1) == 0);
-	BOOST_TEST(sum(1, 1) == 2);
-	BOOST_TEST(sum(-1, -1) == -2);
-	BOOST_TEST(sum(0, 0) == 0);
-	BOOST_TEST(sum(0, 1) == 1);
-	BOOST_TEST(sum(1, 0) == 1);
-	BOOST_TEST(sum(-5, -3) == -8);
+	BOOST_TEST(add(-1, 1) == 0);
+	BOOST_TEST(add(1, 1) == 2);
+	BOOST_TEST(add(-1, -1) == -2);
+	BOOST_TEST(add(0, 0) == 0);
+	BOOST_TEST(add(0, 1) == 1);
+	BOOST_TEST(add(1, 0) == 1);
+	BOOST_TEST(add(-5, -3) == -8);
+	BOOST_CHECK_THROW(add(numeric_limits<int>().max(),static_cast<int>(1)), Overflow<int>);
+	BOOST_CHECK_THROW(add(numeric_limits<int>().min(), static_cast<int>(-1)), Overflow<int>);
 }
 
 BOOST_AUTO_TEST_CASE(Subtract) {
-	BOOST_TEST(subtract(0, 0) == 0);
-	BOOST_TEST(subtract(-1, 0) == -1);
-	BOOST_TEST(subtract(0, -1) == 1);
-	BOOST_TEST(subtract(-1, -1) == 0);
-	BOOST_TEST(subtract(-1, 1) == -2);
-	BOOST_TEST(subtract(1, 1) == 0);
-	BOOST_TEST(subtract(2, 1) == 1);
-	BOOST_TEST(subtract(1, 2) == -1);
+	BOOST_TEST(sub(0, 0) == 0);
+	BOOST_TEST(sub(-1, 0) == -1);
+	BOOST_TEST(sub(0, -1) == 1);
+	BOOST_TEST(sub(-1, -1) == 0);
+	BOOST_TEST(sub(-1, 1) == -2);
+	BOOST_TEST(sub(1, 1) == 0);
+	BOOST_TEST(sub(2, 1) == 1);
+	BOOST_TEST(sub(1, 2) == -1);
+	BOOST_CHECK_NO_THROW(sub(-1, numeric_limits<int>().max()));
+	BOOST_CHECK_THROW(sub(-2,numeric_limits<int>().max()), Overflow<int>);
+	BOOST_CHECK_THROW(sub(1,numeric_limits<int>().min()), Overflow<int>);
 }
 
 BOOST_AUTO_TEST_CASE(Multiply) {
-	BOOST_TEST(multiply(10086, 43378) == 10086 * 43378);
-	BOOST_TEST(multiply(1, 43378) == 1 * 43378);
-	BOOST_TEST(multiply(43378, 1) == 1 * 43378);
-	BOOST_TEST(multiply(43378, 0) == 0);
-	BOOST_TEST(multiply(0, 0) == 0);
-	BOOST_TEST(multiply(1, 1) == 1 * 1);
-	BOOST_TEST(multiply(2, 10) == 2 * 10);
-	BOOST_TEST(multiply(-1, -1) == 1);
-	BOOST_TEST(multiply(-1, 1) == -1);
-	BOOST_TEST(multiply(1, -1) == -1);
-	BOOST_TEST(multiply(static_cast < long long unsigned>(815730721), static_cast < long long unsigned>(28561)) == 23298085122481);
+	BOOST_TEST(mul(10086, 43378) == 10086 * 43378);
+	BOOST_TEST(mul(1, 43378) == 1 * 43378);
+	BOOST_TEST(mul(43378, 1) == 1 * 43378);
+	BOOST_TEST(mul(43378, 0) == 0);
+	BOOST_TEST(mul(0, 0) == 0);
+	BOOST_TEST(mul(1, 1) == 1 * 1);
+	BOOST_TEST(mul(2, 10) == 2 * 10);
+	BOOST_TEST(mul(-1, -1) == 1);
+	BOOST_TEST(mul(-1, 1) == -1);
+	BOOST_TEST(mul(1, -1) == -1);
+	BOOST_TEST(mul(static_cast < long long unsigned>(815730721), static_cast < long long unsigned>(28561)) ==
+		23298085122481);
 }
 
 BOOST_AUTO_TEST_CASE(Booth_Multiplication) {
-	BOOST_TEST(booth_mul(3, -4) == -12);
-	BOOST_TEST(booth_mul(10086, 43378) == 10086 * 43378);
-	BOOST_TEST(booth_mul(1, 43378) == 1 * 43378);
-	BOOST_TEST(booth_mul(43378, 1) == 1 * 43378);
-	BOOST_TEST(booth_mul(43378, 0) == 0);
-	BOOST_TEST(booth_mul(0, 0) == 0);
-	BOOST_TEST(booth_mul(1, 1) == 1 * 1);
-	BOOST_TEST(booth_mul(2, 10) == 2 * 10);
-	BOOST_TEST(booth_mul(-1, -1) == 1);
-	BOOST_TEST(booth_mul(-1, 1) == -1);
-	BOOST_TEST(booth_mul(1, -1) == -1);
+	BOOST_TEST(IMul(3, -4) == -12);
+	BOOST_TEST(IMul(1, 1) == 1);
+	BOOST_TEST(IMul(16, 1) == 16);
+	BOOST_TEST(IMul<int64_t>(10086, 43378) == 10086 * 43378);
+	BOOST_TEST(IMul<int64_t>(1, 43378) == 1 * 43378);
+	BOOST_TEST(IMul<int64_t>(43378, 1) == 1 * 43378);
+	BOOST_TEST(IMul(43378, 0) == 0);
+	BOOST_TEST(IMul(0, 0) == 0);
+	BOOST_TEST(IMul(1, 1) == 1 * 1);
+	BOOST_TEST(IMul(2, 10) == 2 * 10);
+	BOOST_TEST(IMul(-1, -1) == 1);
+	BOOST_TEST(IMul(-1, 1) == -1);
+	BOOST_TEST(IMul(1, -1) == -1);
 }
 
 BOOST_AUTO_TEST_CASE(Divide) {
@@ -120,13 +141,13 @@ BOOST_AUTO_TEST_CASE(Modular_exponentiation) {
 BOOST_AUTO_TEST_CASE(randomnessTest) {
 	auto itr = Iterator(1000);
 	auto smaller_itr = Iterator(1000, 18, 1, 20);
-	for (auto i = itr.begin(), s = smaller_itr.begin(); !(itr.end() || smaller_itr.end()); ++itr , ++smaller_itr) {
+	for (auto i = itr.begin(), s = smaller_itr.begin(); !(itr.end() || smaller_itr.end()); ++itr, ++smaller_itr) {
 		auto a = *itr;
 		auto b = *(++itr);
-		BOOST_TEST(a + b == sum(a, b));
-		BOOST_TEST(a - b == subtract(a, b));
-		BOOST_TEST(a * b == multiply(a, b));
-		BOOST_TEST(a * b == booth_mul(a, b));
+		BOOST_TEST(a + b == add(a, b));
+		BOOST_TEST(a - b == sub(a, b));
+		BOOST_TEST(a * b == mul(a, b));
+		BOOST_TEST(a * b == IMul<int64_t>(a, b));
 		BOOST_TEST(a * b == karatsuba(a, b));
 		BOOST_TEST(a / b == divide(a, b));
 		BOOST_TEST(a % b == mod(a, b));
@@ -138,8 +159,10 @@ BOOST_AUTO_TEST_CASE(randomnessTest) {
 		auto pi = static_cast <unsigned long long>(p);
 		if (pi == p) {
 			auto drop_bits_size = (sizeof(long long) * 8 - ieee754_double_precision_bits + 1);
-			BOOST_TEST(dropNoSignificantBit(drop_bits_size, pow_sqrt(base, exp)) == dropNoSignificantBit(drop_bits_size, pi), "falied in base " << base <<" exponent " << exp);
-			BOOST_TEST(exp_mod(base, exp, modulo) == pow_sqrt(base, exp) % modulo, "falied in base " << base << " exponent " << exp << " modulo " << modulo);
+			BOOST_TEST(dropNoSignificantBit(drop_bits_size, pow_sqrt(base, exp)) == dropNoSignificantBit(drop_bits_size, pi),
+				"falied in base " << base <<" exponent " << exp);
+			BOOST_TEST(exp_mod(base, exp, modulo) == pow_sqrt(base, exp) % modulo, "falied in base " << base << " exponent " <<
+				exp << " modulo " << modulo);
 		}
 	}
 }

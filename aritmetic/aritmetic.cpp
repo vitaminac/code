@@ -1,73 +1,10 @@
 ﻿#include "aritmetic.hpp"
 #include <boost/math/tools/config.hpp>
 
-int divide (int dividend, int divisor, int & remainder) {
-	// find the sign of dividend, divisor, and future quotient
-	bool willBeNegative = false;
-	bool remainder_sign = false;
-	if (isNegative(dividend)) {
-		dividend = sum(~dividend, 1);
-		willBeNegative ^= true;
-		remainder_sign = true;
-	}
-	if (isNegative(divisor)) {
-		divisor = sum(~divisor, 1);
-		willBeNegative ^= true;
-	}
-
-	// invert order and add a highest bit, 
-	// for example dividend=101011 invert=1110101, initial invert value 2 will add a highest bit 
-	// it's for knowing where the number finish
-	// if not dividend=1010, will invert to 0101, the origin zero will be ignore
-	// we cant determinate the origin number length
-	int invert = 2;
-	while (dividend) {
-		invert |= dividend & 0x1;
-		invert = invert << 1;
-		dividend = dividend >> 1;
-	}
-
-	int quotient = 0;
-	remainder = 0;
-	// invert = 2 set highest bit as a delimiter
-	while (invert > 1)// until delimiter, the highest bit
-	{
-		remainder = remainder << 1;
-		remainder |= invert & 0x1;
-		invert = invert >> 1;
-		quotient = quotient << 1;
-
-		if (remainder >= divisor) {
-			quotient |= 0x1;
-			remainder = subtract(remainder, divisor);
-		}
-	}
-
-	// add sign of quotient
-	if (willBeNegative) {
-		quotient = sum(~quotient, 1);
-	}
-
-	// remainder sign
-	if (remainder_sign) {
-		remainder = sum(~remainder, 1);
-	}
-
-	return quotient;
-}
 
 
-int divide (int dividend, int divisor) {
-	int nouse;
-	return divide(dividend, divisor, nouse);
-}
 
-// find remainder
-int mod (int dividend, int divisor) {
-	int remainder;
-	divide(dividend, divisor, remainder);
-	return remainder;
-}
+
 
 // The operation of modular exponentiation calculates the remainder 
 // when an integer b (the base) raised to the eth power (the exponent), b^e, is divided by a positive integer m 
@@ -78,13 +15,13 @@ int exp_mod (int base, int exp, int m) {
 	// exponent e be converted to binary notation
 	// e = ∑ n-1, i=0 , ai*2^i; a∈{0,1}
 	// b^e = b ^ ∑n-1,i=0 = ∏ n-1, i=0, (b^2^i)^ai
-	// result = ∏ n-1, i=0 (b^2^i)^ai (mod m)
+	// result_ = ∏ n-1, i=0 (b^2^i)^ai (mod m)
 	while (exp > 0) {
 		// if ai = 0; pass; because n^0 = 1
 		// if ai = 1; (b^2^i * (∏ i-1, j=0, (b^2^j)^aj mod m)) mod m
 		if (exp & 0x1) {
 			// ab mod m ≡ (a * (b mod m)) mod m
-			result = mod(multiply(result, base), m);
+			result = mod(mul(result, base), m);
 		}
 		// a ≡ b mod m => a^2 ≡ b^2 mod m
 		// b^2^(i+1) ≡ (b^2^(i) * b^2^(i)) mod m
@@ -105,13 +42,13 @@ int karatsuba (int a, int b) {
 	auto m = std::max(p1, p2) >> 1;
 	auto x1 = a >> m;
 	auto y1 = b >> m;
-	auto temp = subtract <int>(pow(2, m), 1);
+	auto temp = sub <int>(pow(2, m), 1);
 	auto x0 = a & temp;
 	auto y0 = b & temp;
 	auto z2 = karatsuba(x1, y1);
 	auto z0 = karatsuba(x0, y0);
-	auto z1 = subtract(subtract <int>(karatsuba(sum <int>(x1, x0), sum <int>(y1, y0)), z2), z0);
-	return sum(sum((z2 << (m << 1)), (z1 << m)), z0);
+	auto z1 = sub(sub <int>(karatsuba(add <int>(x1, x0), add <int>(y1, y0)), z2), z0);
+	return add(add((z2 << (m << 1)), (z1 << m)), z0);
 }
 
 // copy comment from wikipedia: https://en.wikipedia.org/wiki/Exponentiation_by_squaring
@@ -119,13 +56,16 @@ int karatsuba (int a, int b) {
 // of large positive integer powers of a number n and n is positive
 long long unsigned pow_sqrt (unsigned long long base, unsigned int exp) {
 	long long unsigned temp = 1;
-	while (exp) { // if exp is not 0
-		if (exp & 0x1) { //exp is odd
+	while (exp) {
+		// if exp is not 0
+		if (exp & 0x1) {
+			//exp is odd
 			// cached value to temp variable
 			exp ^= 0x1; // exp = exp - 1
-			temp = multiply <unsigned long long>(base, temp);
-		} else { // exp is even
-			base = multiply <unsigned long long>(base, base);
+			temp = mul <unsigned long long>(base, temp);
+		} else {
+			// exp is even
+			base = mul <unsigned long long>(base, base);
 			exp >>= 1; // exp = exp / 2
 		}
 	}
@@ -155,7 +95,7 @@ uint64_t bitcount (uint64_t a) {
 // the term(b mod m) is zero, so we just take the modulus by examining the least significant bits of the binary representation :
 // a mod 2i = a & (2i–1)
 // Recall that the & operator means logical and. When applied to integers, 
-// this computes each bit of the result as the and of the corresponding bits of the operands.
+// this computes each bit of the result_ as the and of the corresponding bits of the operands.
 // For all nonzero positive integers i, the binary representation of 2i–1 consists of i consecutive one bits,
 // so anding with 2i–1 preserves the least significant i bits of the operand while forcing all more significant bits to zero.
 // for example number 3 is a Mersenne number that is, one less than a power of two.
@@ -221,56 +161,6 @@ uint32_t mod3 (uint32_t a) {
 	a = (a >> 2) + (a & 0x3); /* sum base 2**2 digits
 								 a <= 0x4 */
 	if (a > 2)
-		a = subtract <uint32_t>(a, 3);
+		a = sub <uint32_t>(a, 3);
 	return a;
-}
-
-
-// Booth's multiplication algorithm
-// furtuner information can be found here: https://www.quora.com/How-does-Booths-algorithm-work
-// comment was copy from wikipedia https://en.wikipedia.org/wiki/Booth%27s_multiplication_algorithm
-int64_t booth_mul (int32_t multiplicand, int32_t multiplier) {
-	// Booth's algorithm can be implemented by repeatedly adding 
-	// (with ordinary unsigned binary addition) one of two predetermined values
-	// A and S to a product P, then performing a rightward arithmetic shift on P
-	// Determine the values of A and S, and the initial value of P.
-	// All of these numbers should have a length equal to(x + y + 1).
-	// let multiplicand be 32 bit
-	// A: Fill the most significant (leftmost) bits with the value of m. Fill the remaining (y + 1) bits with zeros.
-	int64_t Added = static_cast <int64_t>(static_cast <uint32_t>(multiplicand)) << 32;
-	// S: Fill the most significant bits with the value of (−m) in two's complement notation. Fill the remaining (y + 1) bits with zeros
-	int64_t Subtracted = static_cast <int64_t>(static_cast <uint32_t>(sum(~multiplicand, 1))) << 32;
-	// let multiplier be 31 bit
-	// To the right of this, append the value of r.
-	int64_t product = static_cast <int64_t>(static_cast <uint32_t>(multiplier));
-	// std::memcpy((&product), &multiplier, sizeof(int32_t));
-	product = product << 1;
-	// P: Fill the most significant x bits with zeros.
-	// std::memset(reinterpret_cast <int *>(&product) + 1, 0, sizeof(int32_t));
-	product &= 0xffffffff;
-	// Fill the least significant (rightmost) bit with a zero.
-	for (auto i = 0; i < 31; i++) {
-		// Determine the two least significant(rightmost) bits of P
-		switch (product & 0x3) {
-			case 0x1:
-				// If they are 01, find the value of P + A. Ignore any overflow.
-				product = sum(product, Added);
-				break;
-			case 0x2:
-				// If they are 10, find the value of P + S. Ignore any overflow.
-				product = sum(product, Subtracted);
-				break;
-			default:
-				// If they are 00, do nothing. Use P directly in the next step.
-				// If they are 11, do nothing. Use P directly in the next step.
-				NOP; // no operation
-		}
-		// Arithmetically shift the value obtained in the 2nd step by a single place to the right. 
-		// Let P now equal this new value.
-		product >>= 1;
-	}
-	// Drop the least significant(rightmost) bit from P.
-	product >>= 1;
-	// This is the product of m and r.
-	return product;
 }

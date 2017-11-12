@@ -130,7 +130,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="2c.hpp" />
     <ClInclude Include="aritmetic.hpp" />
+    <ClInclude Include="overflow.hpp" />
     <ClInclude Include="randomGen.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
