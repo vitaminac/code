@@ -5,6 +5,7 @@
 /*
  * Basic Arithmetic Operation of Two's complement Signed Number
  * Using Only Bitwise Operator
+ * Every operation assumes that their operands are signed numbers
  */
 const int leastSignificantBitMark = 0x1;
 
@@ -44,7 +45,7 @@ T dec (T value) {
 	return ~to2c <T>(value);
 }
 
-// check isNegative of a signed number
+// check the most significant bit of a signed number
 template <typename T>
 bool isNegative (T value) {
 	T size = dec <T>(sizeof(value) << 3);
@@ -53,15 +54,14 @@ bool isNegative (T value) {
 }
 
 
-// assume two value are signed value
 template <typename T>
-T add (T summand, T addend) throw(Overflow <T>) {
-	T carry = addend;
-	T result = summand;
+T add (T summand, T addend, T carry = 0x0) throw(Overflow <T>) {
+	T result = summand ^ addend;
+	carry |= (summand & addend) << 1;
 	while (carry) {
-		auto temp = result;
-		result = temp ^ carry;
-		carry = (temp & carry) << 1;
+		auto prevResult = result;
+		result = prevResult ^ carry;
+		carry = (prevResult & carry) << 1;
 	}
 
 	// check overflow
