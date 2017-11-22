@@ -56,6 +56,6 @@ public class XMLNode {
         if (this.getChildren().size() > 0) {
             children.add("");
         }
-        return MessageFormat.format("<{0}>\n{1}\n{2}</{0}>", new String[]{this.getNodeName(), this.getValue(), String.join("\n", children)});
+        return MessageFormat.format("<{0}>\n{1}\n{2}</{0}>", (Object[]) new String[]{this.getNodeName(), this.getValue(), String.join("\n", children)});
     }
 }
