@@ -74,7 +74,7 @@ fabric.properties
 hs_err_pid*
 
 /.idea/
-/src/oop.practise/
+/src/practise/
 ### Gradle template
 .gradle
 /build/

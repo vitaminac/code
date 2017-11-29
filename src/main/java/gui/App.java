@@ -11,8 +11,8 @@ public class App extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JButton click;
-    private JTextArea textArea1;
+    private JButton jButton;
+    private JTextArea jTextArea;
     private int clickCount = 0;
 
     public App() {
@@ -46,11 +46,8 @@ public class App extends JDialog {
                 onCancel();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        this.textArea1.setText("");
-        this.click.addActionListener(e -> {
-            this.textArea1.setText(this.textArea1.getText() + "\nclick count " + this.clickCount);
-            this.clickCount += 1;
-        });
+        this.jTextArea.setText("");
+        this.jButton.addActionListener(e -> this.jTextArea.setText("click count " + this.clickCount++));
     }
 
     private void onOK() {
@@ -138,9 +135,9 @@ public class App extends JDialog {
                                        null,
                                        0,
                                        false));
-        click = new JButton();
-        click.setText("Button");
-        panel1.add(click,
+        jButton = new JButton();
+        jButton.setText("Button");
+        panel1.add(jButton,
                    new GridConstraints(0,
                                        0,
                                        1,
@@ -170,9 +167,9 @@ public class App extends JDialog {
                                             null,
                                             0,
                                             false));
-        textArea1 = new JTextArea();
-        textArea1.setText("");
-        panel3.add(textArea1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
+        jTextArea = new JTextArea();
+        jTextArea.setText("");
+        panel3.add(jTextArea, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(150, 50), null, 0, false));
     }
 
     /** @noinspection ALL */
