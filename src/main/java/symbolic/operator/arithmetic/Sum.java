@@ -12,18 +12,33 @@ public class Sum extends CommutativeArithmeticOperator {
     }
 
     @Override
+    public Constant compute(Constant leftOperand, Constant rightOperand) {
+        return new Constant(leftOperand.getValue() + rightOperand.getValue());
+    }
+
+    @Override
     public Expression getIdentityElement() {
         return MagicConstant.ZERO;
     }
 
     @Override
-    public String getSymbol() {
+    protected String getSymbol() {
         return "+";
     }
 
     @Override
+    public Expression simplify() {
+        Expression factor = this.getLeftOperand().greatestCommonFactor(this.getRightOperand());
+        if (!factor.equals(MagicConstant.ONE) && !factor.equals(MagicConstant.ZERO)) {
+            return new Multiply(factor, new Sum(this.getLeftOperand().divide(factor), this.getRightOperand().divide(factor)));
+        } else {
+            return super.simplify();
+        }
+    }
+
+    @Override
     public Expression derivative(final Symbol symbol) {
-        return new Sum(this.getLeftOperand().derivative(symbol), this.getLeftOperand().derivative(symbol)).simplify();
+        return new Sum(this.getLeftOperand().derivative(symbol), this.getRightOperand().derivative(symbol)).simplify();
     }
 
     @Override
@@ -32,29 +47,8 @@ public class Sum extends CommutativeArithmeticOperator {
     }
 
     @Override
-    public Expression simplify() {
-        if ((this.canBeSimplified())) {
-            if (super.canBeSimplified()) {
-                return new Constant(((Constant) this.getLeftOperand()).getValue() + ((Constant) this.getRightOperand()).getValue());
-            } else if (this.canExtractGCF()) {
-                return new Constant(1);
-            } else {
-                return new Multiply(new Constant(2), this.getLeftOperand());
-            }
-        } else {
-            return this;
-        }
-    }
-
-    @Override
-    protected boolean canBeSimplified() {
-        return super.canBeSimplified() ||
-               ((this.getLeftOperand() instanceof Symbol) && (this.getRightOperand() instanceof Symbol) && ((Symbol) this.getLeftOperand()).equals(this.getRightOperand())) ||
-               this.canExtractGCF();
-    }
-
-    private boolean canExtractGCF() {
-        return (this.getLeftOperand() instanceof Multiply) && (this.getRightOperand() instanceof Multiply);
+    public Expression divide(Expression divisor) {
+        return new Sum(this.getLeftOperand().divide(divisor), this.getRightOperand().divide(divisor)).simplify();
     }
 
     @Override

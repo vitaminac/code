@@ -5,13 +5,17 @@ import symbolic.operator.BinaryOperator;
 import symbolic.operator.property.IdentityElement;
 
 public abstract class ArithmeticOperator extends BinaryOperator implements IdentityElement {
-    protected ArithmeticOperator(final Expression leftOperand, final Expression rightOperand) {
+    public ArithmeticOperator(final Expression leftOperand, final Expression rightOperand) {
         super(leftOperand, rightOperand);
     }
 
     @Override
-    protected boolean canBeSimplified() {
-        return super.canBeSimplified() || this.hasIdentityElement();
+    public Expression simplify() {
+        if (this.hasIdentityElement()) {
+            return this.combineWithNeutralElement();
+        } else {
+            return super.simplify();
+        }
     }
 
     @Override

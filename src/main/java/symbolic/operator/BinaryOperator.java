@@ -36,12 +36,19 @@ public abstract class BinaryOperator extends Operator {
         return this.rightOperand;
     }
 
+
+    public abstract Constant compute(Constant leftOperand, Constant rightOperand);
+
     @Override
-    protected boolean canBeSimplified() {
-        return this.canMergeConstant();
+    public Expression simplify() {
+        if (this.bothOperandAreConstant()) {
+            return this.compute((Constant) this.getLeftOperand(), (Constant) this.getRightOperand());
+        } else {
+            return super.simplify();
+        }
     }
 
-    protected boolean canMergeConstant() {
+    private boolean bothOperandAreConstant() {
         return (leftOperand instanceof Constant) && (rightOperand instanceof Constant);
     }
 }

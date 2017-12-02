@@ -10,8 +10,12 @@ public abstract class AbsorbableCommutativeArithmeticOperator extends Commutativ
     }
 
     @Override
-    protected boolean canBeSimplified() {
-        return super.canBeSimplified() || this.hasAbsorber();
+    public Expression simplify() {
+        if (this.hasAbsorber()) {
+            return this.absorb();
+        } else {
+            return super.simplify();
+        }
     }
 
     @Override
