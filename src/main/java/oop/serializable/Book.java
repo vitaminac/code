@@ -1,5 +1,7 @@
 package oop.serializable;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import oop.xml.XMLNode;
 
 import java.math.BigInteger;
@@ -31,6 +33,29 @@ public class Book implements Serializable {
         this.setEditorial(editorial);
     }
 
+    public Book() {
+
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) {
+            return true;
+        } else {
+            if (obj instanceof Book) {
+                Book other = (Book) obj;
+                return this.getAuthor().equals(other.getAuthor()) &&
+                       this.getTitle().equals(other.getTitle()) &&
+                       this.getISBN().equals(other.getISBN()) &&
+                       this.getPages() == other.getPages() &&
+                       this.getPublication() == other.getPublication() &&
+                       this.getEditorial().equals(other.getEditorial());
+            } else {
+                return false;
+            }
+        }
+    }
+
     public String getAuthor() {
         return this.author;
     }
@@ -42,12 +67,8 @@ public class Book implements Serializable {
         this.author = author;
     }
 
-    public String getEditorial() {
-        return this.editorial;
-    }
-
-    public void setEditorial(String editorial) {
-        this.editorial = editorial;
+    public String getTitle() {
+        return this.title;
     }
 
     public BigInteger getISBN() {
@@ -73,12 +94,16 @@ public class Book implements Serializable {
         return this.publication;
     }
 
-    public void setPublication(int publication) {
-        this.publication = publication;
+    public String getEditorial() {
+        return this.editorial;
     }
 
-    public String getTitle() {
-        return this.title;
+    public void setEditorial(String editorial) {
+        this.editorial = editorial;
+    }
+
+    public void setPublication(int publication) {
+        this.publication = publication;
     }
 
     public void setTitle(String title) throws ArgumentRequiredException {
@@ -90,15 +115,11 @@ public class Book implements Serializable {
 
     @Override
     public String serialize() {
-        ArrayList<String> columns = new ArrayList<String>();
-        for (Entry<String, String> entry : this.getAttributesAndValues().entrySet()) {
-            columns.add(entry.getKey() + " : " + entry.getValue());
-        }
-        return String.join(", ", columns);
+        return new GsonBuilder().create().toJson(this.getAttributesAndValues());
     }
 
     private Map<String, String> getAttributesAndValues() {
-        UnaryOperator<String> capitalize = s -> (s == s.toUpperCase()) ? s : s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+        UnaryOperator<String> capitalize = s -> (s.equals(s.toUpperCase())) ? s : s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
         Map<String, String> map = new LinkedHashMap<String, String>();
         for (String field : this.getAttributes()) {
             try {
@@ -117,6 +138,29 @@ public class Book implements Serializable {
     }
 
     @Override
+    public void deserialize(String text) {
+        Gson gson = new Gson();
+        LinkedHashMap<String, String> map = gson.fromJson(text, LinkedHashMap.class);
+        try {
+            this.setISBN(new BigInteger(map.get("ISBN")));
+            this.setAuthor(map.get("Author"));
+            this.setEditorial(map.get("Editorial"));
+            this.setPages(gson.fromJson(map.get("Pages"), int.class));
+            this.setTitle(map.get("Title"));
+            this.setPublication(gson.fromJson(map.get("Publication"), int.class));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public String serializeToText() {
+        ArrayList<String> columns = new ArrayList<String>();
+        for (Entry<String, String> entry : this.getAttributesAndValues().entrySet()) {
+            columns.add(entry.getKey() + " : " + entry.getValue());
+        }
+        return String.join(", ", columns);
+    }
+
     public String serializeToXML() {
         XMLNode xml = new XMLNode("xml");
         for (Entry<String, String> entry : this.getAttributesAndValues().entrySet()) {

@@ -14,7 +14,7 @@ public class SessionNine {
     public void testBook() {
         try {
             Book book = new Book("Ken Follet", "Los pilares de la Tierra", new BigInteger("9781234567890"), 764, 2000, "Planeta");
-            assertEquals("Author : Ken Follet, Title : Los pilares de la Tierra, ISBN : 9781234567890, Pages : 764, Publication : 2000, Editorial : Planeta", book.serialize());
+            assertEquals("Author : Ken Follet, Title : Los pilares de la Tierra, ISBN : 9781234567890, Pages : 764, Publication : 2000, Editorial : Planeta", book.serializeToText());
             assertEquals("<xml>\n\n" +
                          "<Author>\nKen Follet\n</Author>\n" +
                          "<Title>\nLos pilares de la Tierra\n</Title>\n" +
