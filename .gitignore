@@ -641,3 +641,4 @@ freeline_project_description.json
 # Cursive Clojure plugin
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
+!/lib/*.jar
