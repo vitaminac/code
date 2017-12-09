@@ -15,7 +15,7 @@ public abstract class BinaryOperator extends Operator {
 
     @Override
     public boolean equals(Object obj) {
-        if (this.getClass().equals(obj.getClass())) {
+        if (obj instanceof BinaryOperator) {
             BinaryOperator other = (BinaryOperator) obj;
             return this.getLeftOperand().equals(other.getLeftOperand()) && this.getRightOperand().equals(other.getRightOperand());
         } else {

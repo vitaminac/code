@@ -3,7 +3,7 @@ package symbolic;
 import symbolic.operand.Symbol;
 
 public interface Differentiable {
-    public abstract boolean isDifferentiable();
+    boolean isDifferentiable();
 
-    public abstract Expression derivative(final Symbol symbol);
+    Expression derivative(final Symbol symbol);
 }
