@@ -1,5 +1,6 @@
 package symbolic;
 
+import symbolic.operand.Constant;
 import symbolic.operand.Symbol;
 
 public abstract class Expression implements Divisible, Differentiable {
@@ -33,7 +34,7 @@ public abstract class Expression implements Divisible, Differentiable {
         if (this.equals(other)) {
             return this;
         } else {
-            return MagicConstant.ONE;
+            return Constant.ONE;
         }
     }
 }

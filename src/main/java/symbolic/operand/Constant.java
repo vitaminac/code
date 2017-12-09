@@ -4,6 +4,8 @@ import symbolic.Expression;
 
 public class Constant extends SimpleOperand {
     private final double value;
+    public static final Constant ZERO = new Constant(0);
+    public static final Constant ONE = new Constant(1);
 
     public Constant(final double value) {
         this.value = value;

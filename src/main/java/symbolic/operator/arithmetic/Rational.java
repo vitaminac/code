@@ -1,14 +1,13 @@
 package symbolic.operator.arithmetic;
 
 import symbolic.Expression;
-import symbolic.MagicConstant;
 import symbolic.operand.Constant;
 import symbolic.operand.Symbol;
 
 public class Rational extends ArithmeticOperator {
     public Rational(Expression leftOperand, Expression rightOperand) {
         super(leftOperand, rightOperand);
-        if (this.getRightOperand().equals(MagicConstant.ZERO)) {
+        if (this.getRightOperand().equals(Constant.ZERO)) {
             throw new ArithmeticException("denominator is zero");
         }
     }
@@ -36,7 +35,7 @@ public class Rational extends ArithmeticOperator {
 
     @Override
     public Expression getIdentityElement() {
-        return MagicConstant.ONE;
+        return Constant.ONE;
     }
 
     @Override

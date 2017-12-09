@@ -2,7 +2,6 @@ package symbolic.operator.arithmetic;
 
 import symbolic.Divisible;
 import symbolic.Expression;
-import symbolic.MagicConstant;
 import symbolic.operand.Constant;
 import symbolic.operand.Symbol;
 
@@ -13,7 +12,7 @@ public class Multiply extends AbsorbableCommutativeArithmeticOperator {
 
     @Override
     public Expression getIdentityElement() {
-        return MagicConstant.ONE;
+        return Constant.ONE;
     }
 
     @Override
@@ -23,7 +22,7 @@ public class Multiply extends AbsorbableCommutativeArithmeticOperator {
 
     @Override
     public Expression getZeroElement() {
-        return MagicConstant.ZERO;
+        return Constant.ZERO;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class Multiply extends AbsorbableCommutativeArithmeticOperator {
                 // return other
                 return other.greatestCommonFactor(other);
             }
-            return MagicConstant.ONE;
+            return Constant.ONE;
         }
     }
 

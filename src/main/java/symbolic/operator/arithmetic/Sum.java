@@ -1,7 +1,6 @@
 package symbolic.operator.arithmetic;
 
 import symbolic.Expression;
-import symbolic.MagicConstant;
 import symbolic.operand.Constant;
 import symbolic.operand.Symbol;
 import symbolic.operator.property.CommutativeProperty;
@@ -18,7 +17,7 @@ public class Sum extends CommutativeArithmeticOperator {
 
     @Override
     public Expression getIdentityElement() {
-        return MagicConstant.ZERO;
+        return Constant.ZERO;
     }
 
     @Override
@@ -29,7 +28,7 @@ public class Sum extends CommutativeArithmeticOperator {
     @Override
     public Expression simplify() {
         Expression factor = this.getLeftOperand().greatestCommonFactor(this.getRightOperand());
-        if (!factor.equals(MagicConstant.ONE) && !factor.equals(MagicConstant.ZERO)) {
+        if (!factor.equals(Constant.ONE) && !factor.equals(Constant.ZERO)) {
             return new Multiply(factor, new Sum(this.getLeftOperand().divide(factor), this.getRightOperand().divide(factor)));
         } else {
             return super.simplify();

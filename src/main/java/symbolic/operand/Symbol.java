@@ -1,7 +1,6 @@
 package symbolic.operand;
 
 import symbolic.Expression;
-import symbolic.MagicConstant;
 
 import java.util.Objects;
 
@@ -17,9 +16,9 @@ public class Symbol extends SimpleOperand {
     @Override
     public Expression derivative(final Symbol symbol) {
         if (this.equals(symbol)) {
-            return MagicConstant.ONE;
+            return Constant.ONE;
         } else {
-            return MagicConstant.ZERO;
+            return Constant.ZERO;
         }
     }
 
