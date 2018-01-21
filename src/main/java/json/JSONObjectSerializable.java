@@ -9,18 +9,15 @@ public interface JSONObjectSerializable extends JSONSerializable {
         for (Field field : this.getClass().getDeclaredFields()) {
             try {
                 field.setAccessible(true);
-                Object o = field.get(this);
-                if (JSONSerializable.isJSONSerializable(o)) {
+                Object value = field.get(this);
+                if (JSONSerializable.isJSONSerializable(value)) {
                     String key = field.getName();
-                    Object value = field.get(this);
-                    if (o instanceof JSONSerializable) {
-                        jsonWriter.writePair(key, (JSONSerializable) value);
-                    } else {
-                        jsonWriter.writePair(key, value);
-                    }
+                    jsonWriter.writePair(key, JSONValue.build(value));
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
+            } catch (ClassIsNotJSONSerializableException e) {
+                continue;
             }
         }
         jsonWriter.writeOutput("}");

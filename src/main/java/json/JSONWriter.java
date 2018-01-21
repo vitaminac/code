@@ -4,15 +4,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.StringJoiner;
 
-public class JSONWriter extends Writer {
+public class JSONWriter {
     private final Writer outputWriter;
-    private final HashMap<JSONSerializable, String> set = new HashMap<>();
+    private final HashMap<JSONValue, String> set = new HashMap<>();
     private MembersCounts membersCounts = new MembersCounts();
     private JSONReferenceKey referenceKey = new JSONReferenceKey();
 
@@ -20,116 +19,86 @@ public class JSONWriter extends Writer {
         this.outputWriter = writer;
     }
 
-    @Override
     public void write(int c) throws IOException {
-        this.writePrimitiveAndClose(c);
+        this.write(new JSONValue(c));
     }
 
-    @Override
     public void write(@NotNull char[] cbuf) throws IOException {
-        this.writePrimitiveAndClose(String.valueOf(cbuf));
+        this.write(String.valueOf(cbuf));
     }
 
-    @Override
-    public void write(@NotNull char[] cbuf, int off, int len) throws IOException {
-        this.write(Arrays.copyOfRange(cbuf, off, off + len));
-    }
-
-    @Override
     public void write(@NotNull String str) throws IOException {
-        this.writePrimitiveAndClose(str);
+        this.write(new JSONValue(str));
     }
 
-    @Override
-    public void write(@NotNull String str, int off, int len) throws IOException {
-        this.write(str.substring(off, off + len));
-    }
-
-    @Override
-    public Writer append(@NotNull CharSequence csq) throws IOException {
-        this.write(csq.toString());
-        return this;
-    }
-
-    @Override
-    public Writer append(@NotNull CharSequence csq, int start, int end) throws IOException {
-        this.write(csq.subSequence(start, end).toString());
-        return this;
-    }
-
-    @Override
-    public Writer append(char c) throws IOException {
-        this.writePrimitiveAndClose(c);
-        return this;
-    }
-
-    @Override
-    public void flush() throws IOException {
-        this.outputWriter.flush();
-    }
-
-    @Override
-    public void close() throws IOException {
-        this.flush();
-        this.outputWriter.close();
+    public void write(char c) throws IOException {
+        this.write(new JSONValue(c));
     }
 
     public void write(double d) throws IOException {
-        this.writePrimitiveAndClose(d);
+        this.write(new JSONValue(d));
     }
 
     public void write(boolean b) throws IOException {
-        this.writePrimitiveAndClose(b);
+        this.write(new JSONValue(b));
     }
 
-    public void write(JSONSerializable jsonSerializable) throws IOException {
-        if (jsonSerializable == null) {
-            this.writePrimitiveAndClose(null);
-        } else {
-            this.membersCounts.push(0);
-            this.writeJSONSerializable(jsonSerializable);
-            this.close();
+    public void write(JSONObjectSerializable jsonObjectSerializable) throws IOException {
+        this.write(new JSONValue(jsonObjectSerializable));
+    }
+
+    public void write(JSONValue jsonValue) throws IOException {
+        this.membersCounts.push(0);
+        this.writeJSONValue(jsonValue);
+        this.membersCounts.pop();
+        this.close();
+    }
+
+    public void writePair(String key, JSONObjectSerializable jsonObjectSerializable) throws IOException {
+        this.writePair(key, new JSONValue(jsonObjectSerializable));
+    }
+
+    public void writePair(String key, JSONValue jsonValue) throws IOException {
+        if (this.membersCounts.peek() > 0) {
+            this.writeSeparator();
         }
-    }
-
-    public void writePair(String key, JSONSerializable jsonSerializable) throws IOException {
         this.writeKeyPart(key);
-        if (jsonSerializable == null) {
-            this.writePrimitive(null);
-        } else {
-            this.referenceKey.push(key);
-            this.writeJSONSerializable(jsonSerializable);
-            this.referenceKey.pop();
-            this.membersCounts.increment();
-        }
+        this.referenceKey.push(key);
+        this.writeJSONValue(jsonValue);
+        this.referenceKey.pop();
+        this.membersCounts.increment();
+    }
+
+    public void writePair(String key, String string) throws IOException {
+        this.writePair(key, new JSONValue(string));
     }
 
     void writeOutput(String s) throws IOException {
         this.outputWriter.write(s);
     }
 
-    void writeJSONSerializable(JSONSerializable jsonSerializable) throws IOException {
-        if (this.set.containsKey(jsonSerializable)) {
-            this.writeOutput(this.set.get(jsonSerializable));
+    void writeJSONValue(@NotNull JSONValue jsonValue) throws IOException {
+        if (this.set.containsKey(jsonValue)) {
+            this.writeOutput(this.set.get(jsonValue));
         } else {
-            this.set.put(jsonSerializable, this.referenceKey.toString());
+            this.set.put(jsonValue, this.referenceKey.toString());
             this.membersCounts.push(0);
-            jsonSerializable.writeJSON(this);
+            jsonValue.writeJSON(this);
             this.membersCounts.pop();
         }
     }
 
-    void writePair(String key, Object primitive) throws IOException {
-        if (this.membersCounts.peek() > 0) {
-            this.writeSeparator();
-        }
-        this.writeKeyPart(key);
-        this.writePrimitive(primitive);
-        this.membersCounts.increment();
+    private void flush() throws IOException {
+        this.outputWriter.flush();
+    }
+
+    private void close() throws IOException {
+        this.flush();
+        this.outputWriter.close();
     }
 
     private void writeKeyPart(String key) throws IOException {
-        this.writePrimitive(key);
+        this.writeJSONValue(new JSONValue(key));
         this.writeOutput(":");
     }
 

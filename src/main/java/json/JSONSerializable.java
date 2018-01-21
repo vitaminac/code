@@ -7,13 +7,7 @@ import java.io.IOException;
 
 public interface JSONSerializable {
     static String stringify(Object value) {
-        if (value == null) {
-            return "null";
-        } else if ((value instanceof String) || (value instanceof Character)) {
-            return "\"" + value + "\"";
-        } else {
-            return String.valueOf(value);
-        }
+        return null;
     }
 
     static boolean isJSONSerializable(Object o) {

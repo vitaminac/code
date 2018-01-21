@@ -69,6 +69,22 @@ public class JSONWriterTest {
     }
 
     @Test
+    public void writeChar() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write('c');
+        assertEquals("\"c\"", stringWriter.toString());
+    }
+
+    @Test
+    public void writeCharArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write(new char[]{'c', 'h', 'a', 'r', 'A', 'r', 'r', 'a', 'y'});
+        assertEquals("\"charArray\"", stringWriter.toString());
+    }
+
+    @Test
     public void writeString() throws Exception {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
@@ -89,7 +105,7 @@ public class JSONWriterTest {
     public void writeNullJSONObject() throws Exception {
         StringWriter stringWriter = new StringWriter();
         JSONWriter jsonWriter = new JSONWriter(stringWriter);
-        jsonWriter.write((JSONSerializable) null);
+        jsonWriter.write((JSONObjectSerializable) null);
         assertEquals("null", stringWriter.toString());
     }
 
