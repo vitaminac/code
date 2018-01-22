@@ -7,26 +7,35 @@ public class JSONValue implements JSONSerializable {
     private final Type type;
     private final Object value;
 
-    public JSONValue(String value) {
+    JSONValue(String value) {
         if (value == null) {
             this.type = Type.null_;
         } else {
             this.type = Type.string;
+            value = value
+                    .replaceAll("\\\\", "\\\\\\\\")
+                    .replaceAll("\"", "\\\\\"")
+                    .replaceAll("/", "\\\\/")
+                    .replaceAll("\b", "\\\\b")
+                    .replaceAll("\f", "\\\\f")
+                    .replaceAll("\n", "\\\\n")
+                    .replaceAll("\r", "\\\\r")
+                    .replaceAll("\t", "\\\\t")
+            ;
         }
         this.value = value;
     }
 
-    public JSONValue(char value) {
-        this.type = Type.string;
-        this.value = String.valueOf(value);
+    JSONValue(char value) {
+        this(String.valueOf(value));
     }
 
-    public JSONValue() {
+    JSONValue() {
         this.type = Type.null_;
         this.value = null;
     }
 
-    public JSONValue(JSONObjectSerializable value) {
+    JSONValue(JSONObjectSerializable value) {
         if (value == null) {
             this.type = Type.null_;
         } else {
@@ -35,17 +44,22 @@ public class JSONValue implements JSONSerializable {
         this.value = value;
     }
 
-    public JSONValue(boolean value) {
+    JSONValue(boolean value) {
         this.type = Type.bool;
         this.value = value;
     }
 
-    public JSONValue(int value) {
+    JSONValue(int value) {
         this.type = Type.number;
         this.value = value;
     }
 
-    public JSONValue(double value) {
+    JSONValue(double value) {
+        this.type = Type.number;
+        this.value = value;
+    }
+
+    JSONValue(float value) {
         this.type = Type.number;
         this.value = value;
     }
@@ -65,6 +79,8 @@ public class JSONValue implements JSONSerializable {
             return new JSONValue((Integer) o);
         } else if (o instanceof Double) {
             return new JSONValue((Double) o);
+        } else if (o instanceof Float) {
+            return new JSONValue((Float) o);
         }
         throw new ClassIsNotJSONSerializableException();
     }

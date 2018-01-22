@@ -27,6 +27,15 @@ public class JSONWriterTest {
     }
 
     @Test
+    public void writeByte() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        byte b = 0xf;
+        jsonWriter.write(b);
+        assertEquals("15", stringWriter.toString());
+    }
+
+    @Test
     public void writeBoolean() throws Exception {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
@@ -98,6 +107,14 @@ public class JSONWriterTest {
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
         jsonWriter.write("string");
         assertEquals("\"string\"", stringWriter.toString());
+    }
+
+    @Test
+    public void writeStringWithSpecialSymbol() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write("\"\\/\b\f\n\r\t");
+        assertEquals("\"\\\"\\\\\\/\\b\\f\\n\\r\\t\"", stringWriter.toString());
     }
 
     @Test(expected = IOException.class)

@@ -41,6 +41,10 @@ public class JSONWriter {
         this.write(new JSONValue(d));
     }
 
+    public void write(float f) throws IOException {
+        this.write(new JSONValue(f));
+    }
+
     public void write(boolean b) throws IOException {
         this.write(new JSONValue(b));
     }
