@@ -3,7 +3,7 @@ package json;
 import java.io.IOException;
 import java.lang.reflect.Field;
 
-public interface JSONObjectSerializable extends JSONSerializable {
+public interface JSONObject extends JSONSerializable {
     default void writeJSONObject(JSONObjectWriter jsonObjectWriter) throws IOException {
         for (Field field : this.getClass().getDeclaredFields()) {
             try {

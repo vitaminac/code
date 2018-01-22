@@ -3,8 +3,6 @@ package json;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.assertEquals;
 
 public class JSONObjectTest {
@@ -93,92 +91,6 @@ public class JSONObjectTest {
         otherJsonObject.deserializeFromJSON(json);
         assertEquals(jsonObject.toString(), otherJsonObject.toString());
         assertEquals(jsonObject, otherJsonObject);
-    }
-
-    @Test
-    public void putArrayInteger() {
-        JSONObject11 jsonObject = new JSONObject11();
-        int[] array = new int[]{1, 2, 3, 4};
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":[1,2,3,4]" + "}", jsonObject.toString());
-        array[3] = 5;
-        assertEquals("{" + "\"key\":[1,2,3,5]" + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayLong() {
-        JSONObject11 jsonObject = new JSONObject11();
-        long[] array = new long[]{1, 2, 3, 4};
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":[1,2,3,4]" + "}", jsonObject.toString());
-        array[3] = 5;
-        assertEquals("{" + "\"key\":[1,2,3,5]" + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayShort() {
-        JSONObject11 jsonObject = new JSONObject11();
-        short[] array = new short[]{1, 2, 3, 4};
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":[1,2,3,4]" + "}", jsonObject.toString());
-        array[3] = 5;
-        assertEquals("{" + "\"key\":[1,2,3,5]" + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayFloat() {
-        JSONObject11 jsonObject = new JSONObject11();
-        float[] array = new float[]{1.1f, 2.1f, 3.1f, 4.1f};
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":[1.1,2.1,3.1,4.1]" + "}", jsonObject.toString());
-        array[3] = 5.1f;
-        assertEquals("{" + "\"key\":[1.1,2.1,3.1,5.1]" + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayDouble() {
-        JSONObject11 jsonObject = new JSONObject11();
-        double[] array = new double[]{1.1, 2.1, 3.1, 4.1};
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":[1.1,2.1,3.1,4.1]" + "}", jsonObject.toString());
-        array[3] = 5.1;
-        assertEquals("{" + "\"key\":[1.1,2.1,3.1,5.1]" + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayByte() {
-        String string = "balabala";
-        byte[] array = string.getBytes();
-        JSONObject11 jsonObject = new JSONObject11();
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{" + "\"key\":" + String.join(",", Arrays.toString(array).split(", ")) + "}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayBoolean() {
-        boolean[] array = new boolean[]{true, false, true, true, false};
-        JSONObject11 jsonObject = new JSONObject11();
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{\"key\":[true,false,true,true,false]}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArrayChar() {
-        String string = "balabala";
-        char[] array = string.toCharArray();
-        JSONObject11 jsonObject = new JSONObject11();
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{\"key\":[\"b\",\"a\",\"l\",\"a\",\"b\",\"a\",\"l\",\"a\"]}", jsonObject.toString());
-        array[3] = 'b';
-        assertEquals("{\"key\":[\"b\",\"a\",\"l\",\"b\",\"b\",\"a\",\"l\",\"a\"]}", jsonObject.toString());
-    }
-
-    @Test
-    public void putArraString() {
-        String[] array = new String[]{"123", "456", "789"};
-        JSONObject11 jsonObject = new JSONObject11();
-        jsonObject.putArray("key", new JSONArray1(array));
-        assertEquals("{\"key\":[\"123\",\"456\",\"789\"]}", jsonObject.toString());
     }
 
     @Test

@@ -49,8 +49,12 @@ public class JSONWriter {
         this.write(new JSONValue(b));
     }
 
-    public void write(JSONObjectSerializable jsonObjectSerializable) throws IOException {
-        this.write(new JSONValue(jsonObjectSerializable));
+    public void write(JSONObject jsonObject) throws IOException {
+        this.write(new JSONValue(jsonObject));
+    }
+
+    public void write(JSONArray jsonArray) throws IOException {
+        this.write(new JSONValue(jsonArray));
     }
 
     public void write(JSONValue jsonValue) throws IOException {

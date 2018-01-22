@@ -12,16 +12,7 @@ public class JSONValue implements JSONSerializable {
             this.type = Type.null_;
         } else {
             this.type = Type.string;
-            value = value
-                    .replaceAll("\\\\", "\\\\\\\\")
-                    .replaceAll("\"", "\\\\\"")
-                    .replaceAll("/", "\\\\/")
-                    .replaceAll("\b", "\\\\b")
-                    .replaceAll("\f", "\\\\f")
-                    .replaceAll("\n", "\\\\n")
-                    .replaceAll("\r", "\\\\r")
-                    .replaceAll("\t", "\\\\t")
-            ;
+            value = value.replaceAll("\\\\", "\\\\\\\\").replaceAll("\"", "\\\\\"").replaceAll("/", "\\\\/").replaceAll("\b", "\\\\b").replaceAll("\f", "\\\\f").replaceAll("\n", "\\\\n").replaceAll("\r", "\\\\r").replaceAll("\t", "\\\\t");
         }
         this.value = value;
     }
@@ -35,11 +26,20 @@ public class JSONValue implements JSONSerializable {
         this.value = null;
     }
 
-    JSONValue(JSONObjectSerializable value) {
+    JSONValue(JSONObject value) {
         if (value == null) {
             this.type = Type.null_;
         } else {
             this.type = Type.object;
+        }
+        this.value = value;
+    }
+
+    JSONValue(JSONArray value) {
+        if (value == null) {
+            this.type = Type.null_;
+        } else {
+            this.type = Type.array;
         }
         this.value = value;
     }
@@ -50,6 +50,11 @@ public class JSONValue implements JSONSerializable {
     }
 
     JSONValue(int value) {
+        this.type = Type.number;
+        this.value = value;
+    }
+
+    JSONValue(long value) {
         this.type = Type.number;
         this.value = value;
     }
@@ -71,8 +76,10 @@ public class JSONValue implements JSONSerializable {
             return new JSONValue((String) o);
         } else if (o instanceof Character) {
             return new JSONValue((Character) o);
-        } else if (o instanceof JSONObjectSerializable) {
-            return new JSONValue((JSONObjectSerializable) o);
+        } else if (o instanceof JSONObject) {
+            return new JSONValue((JSONObject) o);
+        } else if (o instanceof JSONArray) {
+            return new JSONValue((JSONArray) o);
         } else if (o instanceof Boolean) {
             return new JSONValue((Boolean) o);
         } else if (o instanceof Integer) {
@@ -81,6 +88,8 @@ public class JSONValue implements JSONSerializable {
             return new JSONValue((Double) o);
         } else if (o instanceof Float) {
             return new JSONValue((Float) o);
+        } else if (o instanceof Long) {
+            return new JSONValue((Long) o);
         }
         throw new ClassIsNotJSONSerializableException();
     }
@@ -110,7 +119,10 @@ public class JSONValue implements JSONSerializable {
                 jsonWriter.writeOutput("\"" + this.value + "\"");
                 return;
             case object:
-                ((JSONObjectSerializable) this.value).writeJSON(jsonWriter);
+                ((JSONObject) this.value).writeJSON(jsonWriter);
+                return;
+            case array:
+                ((JSONArray) this.value).writeJSON(jsonWriter);
                 return;
             case bool:
                 jsonWriter.writeOutput(String.valueOf(this.value));

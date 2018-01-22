@@ -7,42 +7,6 @@ import java.lang.reflect.Array;
 public class JSONArray1 implements JSONSerializable1 {
     private final Object array;
 
-    public JSONArray1(boolean[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(byte[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(char[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(short[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(int[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(long[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(float[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(double[] array) {
-        this.array = array;
-    }
-
-    public JSONArray1(String[] array) {
-        this.array = array;
-    }
-
     public JSONArray1(JSONSerializable1[] array) {
         this.array = array;
     }

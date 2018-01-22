@@ -10,8 +10,8 @@ public class JSONObjectWriter {
         this.jsonWriter = jsonWriter;
     }
 
-    public void writePair(String key, JSONObjectSerializable jsonObjectSerializable) throws IOException {
-        this.writePair(key, new JSONValue(jsonObjectSerializable));
+    public void writePair(String key, JSONObject jsonObject) throws IOException {
+        this.writePair(key, new JSONValue(jsonObject));
     }
 
     public void writePair(String key, int i) throws IOException {

@@ -86,7 +86,7 @@ public class JSONWriterTest {
     }
 
     @Test
-    public void writeCharArray() throws Exception {
+    public void writeCharArrayAsSingleValue() throws Exception {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
         jsonWriter.write(new char[]{'c', 'h', 'a', 'r', 'A', 'r', 'r', 'a', 'y'});
@@ -138,7 +138,7 @@ public class JSONWriterTest {
     public void writeNullJSONObject() throws Exception {
         StringWriter stringWriter = new StringWriter();
         JSONWriter jsonWriter = new JSONWriter(stringWriter);
-        jsonWriter.write((JSONObjectSerializable) null);
+        jsonWriter.write((JSONObject) null);
         assertEquals("null", stringWriter.toString());
     }
 
@@ -164,7 +164,7 @@ public class JSONWriterTest {
     public void writeCustomJSONObject() throws Exception {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
-        jsonWriter.write(new JSONObjectSerializable() {
+        jsonWriter.write(new JSONObject() {
             private int a = 1;
             private int b = 2;
 
@@ -174,6 +174,78 @@ public class JSONWriterTest {
             }
         });
         assertEquals("{\"c\":1}", stringWriter.toString());
+    }
+
+    @Test
+    public void writeShortArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new short[]{1, 2, 3, 4});
+        jsonWriter.write(jsonArray);
+        assertEquals("[1,2,3,4]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeIntegerArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new int[]{1, 2, 3, 4});
+        jsonWriter.write(jsonArray);
+        assertEquals("[1,2,3,4]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeLongArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new long[]{1, 2, 3, 4});
+        jsonWriter.write(jsonArray);
+        assertEquals("[1,2,3,4]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeBooleanArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new boolean[]{true, false, true, true, false});
+        jsonWriter.write(jsonArray);
+        assertEquals("[true,false,true,true,false]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeCharArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new char[]{'a', 'r', 'r', 'a', 'y'});
+        jsonWriter.write(jsonArray);
+        assertEquals("[\"a\",\"r\",\"r\",\"a\",\"y\"]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeDoubleArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new double[]{1.1, 2.1, 3.1, 4.1});
+        jsonWriter.write(jsonArray);
+        assertEquals("[1.1,2.1,3.1,4.1]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeFloutArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new float[]{1.1f, 2.1f, 3.1f, 4.1f});
+        jsonWriter.write(jsonArray);
+        assertEquals("[1.1,2.1,3.1,4.1]", stringWriter.toString());
+    }
+
+    @Test
+    public void writeStringArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final JSONArray jsonArray = new JSONArray(new String[]{"123", "456", "789"});
+        jsonWriter.write(jsonArray);
+        assertEquals("[\"123\",\"456\",\"789\"]", stringWriter.toString());
     }
 
     private class StringWriter extends Writer {

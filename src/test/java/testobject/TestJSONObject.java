@@ -1,8 +1,8 @@
 package testobject;
 
-import json.JSONObjectSerializable;
+import json.JSONObject;
 
-public class TestJSONObject implements JSONObjectSerializable {
+public class TestJSONObject implements JSONObject {
     private int i = 1;
     private double d = 1.23;
     private char c = 'c';
