@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringJoiner;
 
@@ -114,7 +115,11 @@ public class JSONWriter {
         @Override
         public String toString() {
             StringJoiner stringJoiner = new StringJoiner("#");
-            return String.join("#", this.keys.toArray(new String[this.keys.size()]));
+            final Iterator<String> it = this.keys.descendingIterator();
+            while (it.hasNext()) {
+                stringJoiner.add(it.next());
+            }
+            return stringJoiner.toString();
         }
     }
 }
