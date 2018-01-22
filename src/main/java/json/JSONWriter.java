@@ -58,7 +58,7 @@ public class JSONWriter {
         this.write(new JSONValue(jsonArray));
     }
 
-    public void write(JSONValue jsonValue) throws IOException {
+    private void write(JSONValue jsonValue) throws IOException {
         this.writeJSONValue(jsonValue);
         this.close();
     }

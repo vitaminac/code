@@ -3,7 +3,7 @@ package json;
 import java.io.IOException;
 import java.util.Objects;
 
-public class JSONValue implements JSONSerializable {
+class JSONValue implements JSONSerializable {
     private final Type type;
     private final Object value;
 
