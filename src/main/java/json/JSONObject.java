@@ -27,7 +27,9 @@ public interface JSONObject extends JSONSerializable {
     @Override
     default void writeJSON(JSONWriter jsonWriter) throws IOException {
         jsonWriter.writeOutput("{");
-        this.writeJSONObject(new JSONObjectWriter(jsonWriter));
+        final JSONObjectWriter jsonObjectWriter = new JSONObjectWriter(jsonWriter);
+        this.writeJSONObject(jsonObjectWriter);
+        jsonObjectWriter.close();
         jsonWriter.writeOutput("}");
     }
 }
