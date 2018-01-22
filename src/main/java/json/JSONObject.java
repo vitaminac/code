@@ -2,10 +2,15 @@ package json;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public interface JSONObject extends JSONSerializable {
     default void writeJSONObject(JSONObjectWriter jsonObjectWriter) throws IOException {
-        for (Field field : this.getClass().getDeclaredFields()) {
+        final List<Field> fields = Arrays.asList(this.getClass().getDeclaredFields());
+        fields.sort(Comparator.comparing(Field::getName));
+        for (Field field : fields) {
             try {
                 field.setAccessible(true);
                 Object value = field.get(this);

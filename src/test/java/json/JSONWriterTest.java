@@ -147,7 +147,7 @@ public class JSONWriterTest {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
         jsonWriter.write(new TestJSONObject());
-        assertEquals("{\"i\":1,\"d\":1.23,\"c\":\"c\",\"s\":\"string\",\"object\":null}", stringWriter.toString());
+        assertEquals("{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":null,\"s\":\"string\"}", stringWriter.toString());
     }
 
     @Test
@@ -157,7 +157,7 @@ public class JSONWriterTest {
         final TestJSONObject testJSONObject = new TestJSONObject();
         testJSONObject.setObject(testJSONObject);
         jsonWriter.write(testJSONObject);
-        assertEquals("{\"i\":1,\"d\":1.23,\"c\":\"c\",\"s\":\"string\",\"object\":$}", stringWriter.toString());
+        assertEquals("{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":$,\"s\":\"string\"}", stringWriter.toString());
     }
 
     @Test
