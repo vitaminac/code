@@ -68,7 +68,7 @@ public class JSONArray1 implements JSONSerializable1 {
             int length = Array.getLength(array);
             for (int i = 0; i < length; i++) {
                 Object value = Array.get(array, i);
-                sb.append(JSONSerializable.stringify(value));
+                //sb.append(JSONSerializable.stringify(value));
                 sb.append(',');
             }
             if (length > 0) {

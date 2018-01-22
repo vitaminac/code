@@ -81,7 +81,7 @@ public class JSONValue implements JSONSerializable {
         if (!(o instanceof JSONValue))
             return false;
         JSONValue jsonValue = (JSONValue) o;
-        return type == jsonValue.type && Objects.equals(value, jsonValue.value);
+        return (((this.type == Type.object) || (this.type == Type.array)) && (type == jsonValue.type)) && Objects.equals(value, jsonValue.value);
     }
 
     @Override

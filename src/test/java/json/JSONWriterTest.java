@@ -85,6 +85,14 @@ public class JSONWriterTest {
     }
 
     @Test
+    public void writeNullCharArray() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write((char[]) null);
+        assertEquals("null", stringWriter.toString());
+    }
+
+    @Test
     public void writeString() throws Exception {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
@@ -99,6 +107,14 @@ public class JSONWriterTest {
         jsonWriter.write("string");
         assertEquals("\"string\"", stringWriter.toString());
         jsonWriter.write("string2");
+    }
+
+    @Test
+    public void writeNullString() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write((String) null);
+        assertEquals("null", stringWriter.toString());
     }
 
     @Test

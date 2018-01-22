@@ -228,7 +228,7 @@ public class JSONObject11 implements JSONObjectSerializable11 {
                 return referenceKey;
             }
         } else {
-            return JSONSerializable.stringify(value);
+            return null;
         }
     }
 

@@ -23,11 +23,15 @@ public class JSONWriter {
         this.write(new JSONValue(c));
     }
 
-    public void write(@NotNull char[] cbuf) throws IOException {
-        this.write(String.valueOf(cbuf));
+    public void write(char[] cbuf) throws IOException {
+        if (cbuf == null) {
+            this.write(new JSONValue());
+        } else {
+            this.write(String.valueOf(cbuf));
+        }
     }
 
-    public void write(@NotNull String str) throws IOException {
+    public void write(String str) throws IOException {
         this.write(new JSONValue(str));
     }
 
@@ -105,15 +109,6 @@ public class JSONWriter {
     private void writeSeparator() throws IOException {
         this.writeOutput(",");
 
-    }
-
-    private void writePrimitive(Object o) throws IOException {
-        this.writeOutput(JSONSerializable.stringify(o));
-    }
-
-    private void writePrimitiveAndClose(Object o) throws IOException {
-        this.writePrimitive(o);
-        this.close();
     }
 
     private class JSONReferenceKey {
