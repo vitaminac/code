@@ -130,7 +130,33 @@ public class JSONWriterTest {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
         jsonWriter.write(new TestJSONObject());
-        assertEquals("{\"i\":1,\"d\":1.23,\"c\":\"c\",\"s\":\"string\"}", stringWriter.toString());
+        assertEquals("{\"i\":1,\"d\":1.23,\"c\":\"c\",\"s\":\"string\",\"object\":null}", stringWriter.toString());
+    }
+
+    @Test
+    public void writeJSONObjectWithCircularReference() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final TestJSONObject testJSONObject = new TestJSONObject();
+        testJSONObject.setObject(testJSONObject);
+        jsonWriter.write(testJSONObject);
+        assertEquals("{\"i\":1,\"d\":1.23,\"c\":\"c\",\"s\":\"string\",\"object\":$}", stringWriter.toString());
+    }
+
+    @Test
+    public void writeCustomJSONObject() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        jsonWriter.write(new JSONObjectSerializable() {
+            private int a = 1;
+            private int b = 2;
+
+            @Override
+            public void writeJSONObject(JSONObjectWriter jsonObjectWriter) throws IOException {
+                jsonObjectWriter.writePair("c", a);
+            }
+        });
+        assertEquals("{\"c\":1}", stringWriter.toString());
     }
 
     private class StringWriter extends Writer {

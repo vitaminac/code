@@ -4,7 +4,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.StringJoiner;
@@ -12,7 +11,6 @@ import java.util.StringJoiner;
 public class JSONWriter {
     private final Writer outputWriter;
     private final HashMap<JSONValue, String> set = new HashMap<>();
-    private MembersCounts membersCounts = new MembersCounts();
     private JSONReferenceKey referenceKey = new JSONReferenceKey();
 
     public JSONWriter(Writer writer) {
@@ -52,29 +50,16 @@ public class JSONWriter {
     }
 
     public void write(JSONValue jsonValue) throws IOException {
-        this.membersCounts.push(0);
         this.writeJSONValue(jsonValue);
-        this.membersCounts.pop();
         this.close();
     }
 
-    public void writePair(String key, JSONObjectSerializable jsonObjectSerializable) throws IOException {
-        this.writePair(key, new JSONValue(jsonObjectSerializable));
+    void pushLocation(String location) {
+        this.referenceKey.push(location);
     }
 
-    public void writePair(String key, JSONValue jsonValue) throws IOException {
-        if (this.membersCounts.peek() > 0) {
-            this.writeSeparator();
-        }
-        this.writeKeyPart(key);
-        this.referenceKey.push(key);
-        this.writeJSONValue(jsonValue);
+    void popLocation() {
         this.referenceKey.pop();
-        this.membersCounts.increment();
-    }
-
-    public void writePair(String key, String string) throws IOException {
-        this.writePair(key, new JSONValue(string));
     }
 
     void writeOutput(String s) throws IOException {
@@ -85,11 +70,13 @@ public class JSONWriter {
         if (this.set.containsKey(jsonValue)) {
             this.writeOutput(this.set.get(jsonValue));
         } else {
-            this.set.put(jsonValue, this.referenceKey.toString());
-            this.membersCounts.push(0);
+            this.set.put(jsonValue, this.getLocation());
             jsonValue.writeJSON(this);
-            this.membersCounts.pop();
         }
+    }
+
+    private String getLocation() {
+        return this.referenceKey.toString();
     }
 
     private void flush() throws IOException {
@@ -99,16 +86,6 @@ public class JSONWriter {
     private void close() throws IOException {
         this.flush();
         this.outputWriter.close();
-    }
-
-    private void writeKeyPart(String key) throws IOException {
-        this.writeJSONValue(new JSONValue(key));
-        this.writeOutput(":");
-    }
-
-    private void writeSeparator() throws IOException {
-        this.writeOutput(",");
-
     }
 
     private class JSONReferenceKey {
@@ -130,26 +107,6 @@ public class JSONWriter {
         public String toString() {
             StringJoiner stringJoiner = new StringJoiner("#");
             return String.join("#", this.keys.toArray(new String[this.keys.size()]));
-        }
-    }
-
-    private class MembersCounts {
-        private Deque<Integer> counts = new LinkedList<>();
-
-        private Integer peek() {
-            return counts.peek();
-        }
-
-        private void push(Integer integer) {
-            counts.push(integer);
-        }
-
-        private Integer pop() {
-            return counts.pop();
-        }
-
-        private void increment() {
-            this.push(this.pop() + 1);
         }
     }
 }
