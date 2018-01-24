@@ -6,26 +6,25 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class TestJSONObject implements JSONObject {
-    private char c = 'c';
-    private double d = 1.23;
-    private int i = 1;
+    private final char c;
+    private final double d;
+    private final int i;
     private TestJSONObject object = null;
-    private String s = "string";
+    private final String s;
     private ArrayList<TestJSONObject> subObjects = new ArrayList<>();
 
-    public void setI(int i) {
-        this.i = i;
+    public TestJSONObject() {
+        this.c = 'c';
+        this.d = 1.23;
+        this.i = 1;
+        this.s = "string";
     }
 
-    public void setD(double d) {
-        this.d = d;
-    }
-
-    public void setC(char c) {
+    public TestJSONObject(char c, double d, int i, TestJSONObject object, String s) {
         this.c = c;
-    }
-
-    public void setS(String s) {
+        this.d = d;
+        this.i = i;
+        this.object = object;
         this.s = s;
     }
 
@@ -35,5 +34,21 @@ public class TestJSONObject implements JSONObject {
 
     public void setObject(TestJSONObject object) {
         this.object = object;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(c, d, i, s);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof TestJSONObject))
+            return false;
+        TestJSONObject that = (TestJSONObject) o;
+        return c == that.c && Double.compare(that.d, d) == 0 && i == that.i && Objects.equals(s, that.s);
     }
 }

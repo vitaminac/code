@@ -181,11 +181,23 @@ public class JSONWriterTest {
         StringWriter stringWriter = new StringWriter();
         final JSONWriter jsonWriter = new JSONWriter(stringWriter);
         final TestJSONObject testJSONObject = new TestJSONObject();
+        final TestJSONObject testJSONObject2 = new TestJSONObject('d', 5.5, 55, null, "sadf");
+        testJSONObject2.setObject(testJSONObject2);
+        testJSONObject.setObject(testJSONObject2);
+        jsonWriter.write(testJSONObject);
+        assertEquals("{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":{\"c\":\"d\",\"d\":5.5,\"i\":55,\"object\":$#object,\"s\":\"sadf\"},\"s\":\"string\"}", stringWriter.toString());
+    }
+
+    @Test
+    public void writeJSONObjectWithCircularReferenceSameValueOfObject() throws Exception {
+        StringWriter stringWriter = new StringWriter();
+        final JSONWriter jsonWriter = new JSONWriter(stringWriter);
+        final TestJSONObject testJSONObject = new TestJSONObject();
         final TestJSONObject testJSONObject2 = new TestJSONObject();
         testJSONObject2.setObject(testJSONObject2);
         testJSONObject.setObject(testJSONObject2);
         jsonWriter.write(testJSONObject);
-        assertEquals("{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":$#object,\"s\":\"string\"},\"s\":\"string\"}", stringWriter.toString());
+        assertEquals("{\"c\":\"c\",\"d\":1.23,\"i\":1,\"object\":$,\"s\":\"string\"}", stringWriter.toString());
     }
 
     @Test
