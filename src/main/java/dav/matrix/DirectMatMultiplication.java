@@ -1,7 +1,4 @@
-package divideconquer.matrix;
-
-import divideconquer.matrix.Matrix;
-import divideconquer.matrix.MatrixMultiplication;
+package dav.matrix;
 
 public class DirectMatMultiplication<E extends Number> extends MatrixMultiplication<E> {
 

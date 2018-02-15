@@ -1,4 +1,4 @@
-package divideconquer.matrix;
+package dav.matrix;
 
 public class MatrixMultiplicationInt {
 	static int LEAF_SIZE;

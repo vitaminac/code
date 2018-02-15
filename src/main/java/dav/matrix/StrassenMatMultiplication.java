@@ -1,4 +1,4 @@
-package divideconquer.matrix;
+package dav.matrix;
 
 public class StrassenMatMultiplication<E extends Number> extends MatrixMultiplication<E>{
 

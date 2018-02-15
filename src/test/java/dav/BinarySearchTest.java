@@ -1,4 +1,4 @@
-package divideconquer;
+package dav;
 
 import org.junit.Test;
 

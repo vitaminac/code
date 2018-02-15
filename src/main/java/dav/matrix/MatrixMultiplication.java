@@ -1,4 +1,4 @@
-package divideconquer.matrix;
+package dav.matrix;
 
 public abstract class MatrixMultiplication<E extends Number> {
 	protected int LEAF_SIZE = 64;

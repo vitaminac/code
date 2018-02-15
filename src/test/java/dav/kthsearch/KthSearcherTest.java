@@ -1,4 +1,4 @@
-package divideconquer.kthsearch;
+package dav.kthsearch;
 
 import org.junit.Test;
 

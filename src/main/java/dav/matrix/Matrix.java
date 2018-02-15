@@ -1,6 +1,4 @@
-package divideconquer.matrix;
-
-import java.lang.reflect.Array;
+package dav.matrix;
 
 import utils.NumberUtilities;
 
