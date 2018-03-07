@@ -1,6 +1,6 @@
-package greedy.mochila;
+package greedy.knapsack;
 
-import greedy.mochila.GreedyKnapsack.Pair;
+import greedy.knapsack.GreedyKnapsack.Pair;
 import org.junit.Test;
 
 import java.lang.reflect.Field;

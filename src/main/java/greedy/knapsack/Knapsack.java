@@ -1,4 +1,4 @@
-package greedy.mochila;
+package greedy.knapsack;
 
 public class Knapsack {
 
