@@ -3,6 +3,7 @@ package greedy.graph;
 public class DisjointSet {
     private final int number;
     private final int parent[];
+    private final int rank[];
 
     public DisjointSet(int n) {
         this.number = n;
@@ -10,22 +11,37 @@ public class DisjointSet {
         for (int i = 0; i < this.number; i++) {
             this.parent[i] = -1;
         }
+        this.rank = new int[this.number];
     }
 
-    private int findParent(int i) {
-        while (parent[i] != -1) {
-            i = parent[i];
+    private int findSubgraph(int i) {
+        int parent = i;
+        if (this.parent[i] == -1) {
+            return i;
+        } else {
+            do {
+                parent = this.parent[parent];
+            } while (this.parent[parent] != -1);
+            // path compression
+            this.parent[i] = parent;
+            return parent;
         }
-        return i;
     }
 
     public void union(int u, int v) {
-        int uParent = this.findParent(u);
-        int vParent = this.findParent(v);
+        int uParent = this.findSubgraph(u);
+        int vParent = this.findSubgraph(v);
+        if (rank[uParent] < rank[vParent]) {
+            this.parent[vParent] = uParent;
+            rank[uParent] += rank[vParent];
+        } else {
+            this.parent[uParent] = vParent;
+            rank[vParent] += rank[uParent];
+        }
         parent[uParent] = vParent;
     }
 
     public boolean isCycle(int u, int v) {
-        return this.findParent(u) == this.findParent(v);
+        return this.findSubgraph(u) == this.findSubgraph(v);
     }
 }
