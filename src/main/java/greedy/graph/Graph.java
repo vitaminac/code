@@ -45,34 +45,17 @@ public class Graph {
     public Set<Edge> getMinSpanningTree() {
         TreeSet<Edge> candidates = new TreeSet<>(this.getAllEdges());
         Set<Edge> minSpanningTree = new HashSet<>();
-        int subGraphs[] = new int[this.getNumberOfVertices() + 1];
+        DisjointSet subGraphs = new DisjointSet(this.n);
         while (minSpanningTree.size() < this.getNumberOfVertices() - 1 && !candidates.isEmpty()) {
             // select
             Edge candidate = candidates.pollFirst();
             int source = candidate.getSource();
             int destination = candidate.getDestination();
             // if is feasible
-            if (subGraphs[source] != subGraphs[destination]) {
+            if (!subGraphs.isCycle(source, destination)) {
                 // fusion two connected subGraphs
-                if (subGraphs[source] == 0) {
-                    subGraphs[source] = subGraphs[destination];
-                } else if (subGraphs[destination] == 0) {
-                    subGraphs[destination] = subGraphs[source];
-                } else {
-                    int flag = subGraphs[destination];
-                    for (int i = 1; i <= this.getNumberOfVertices(); i++) {
-                        if (subGraphs[i] == flag) {
-                            subGraphs[i] = subGraphs[source];
-                        }
-                    }
-                }
+                subGraphs.union(source, destination);
                 minSpanningTree.add(candidate);
-            } else {
-                if (subGraphs[source] == 0) {
-                    subGraphs[source] = source;
-                    subGraphs[destination] = source;
-                    minSpanningTree.add(candidate);
-                }
             }
         }
         return minSpanningTree;
