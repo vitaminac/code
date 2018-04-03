@@ -1,13 +1,14 @@
 package greedy.huffman;
 
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.PriorityQueue;
-import java.util.Stack;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.*;
 
 public class GreedyHuffman {
+    /*
+     * arbol de frecuencia
+     * */
     private static class Tree implements Comparable<Tree> {
         private Tree left = null;
         private Tree right = null;
@@ -52,6 +53,16 @@ public class GreedyHuffman {
         this.codingMap = createCodingMap(str);
     }
 
+    public GreedyHuffman(File text) throws FileNotFoundException {
+        this.codingMap = createCodingMap(readContent(text));
+    }
+
+    /**
+     * devuelva la correspondiente codificación Huffman
+     *
+     * @param string
+     * @return
+     */
     public HashMap<Character, String> createCodingMap(String string) {
         PriorityQueue<Tree> frequencies = countsCharacters(string);
         Tree huffmanTree = buildHuffmanTree(frequencies);
@@ -82,6 +93,16 @@ public class GreedyHuffman {
         return mapping;
     }
 
+    /**
+     * construya el árbol de codificación para el vocabulario correspondiente al fichero de texto de entrada
+     *
+     * @param file
+     * @return
+     */
+    private static Tree buildHuffmanTree(File file) throws FileNotFoundException {
+        return buildHuffmanTree(countsCharacters(file));
+    }
+
     private static Tree buildHuffmanTree(PriorityQueue<Tree> charsFrequencies) {
         while (charsFrequencies.size() > 1) {
             Tree left = charsFrequencies.poll();
@@ -89,6 +110,18 @@ public class GreedyHuffman {
             charsFrequencies.add(new Tree(left, right));
         }
         return charsFrequencies.poll();
+    }
+
+
+    /**
+     * calcule las frecuencias de ocurrencias de cada carácter en un fichero dado
+     *
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static PriorityQueue<Tree> countsCharacters(File file) throws FileNotFoundException {
+        return countsCharacters(readContent(file));
     }
 
     private static PriorityQueue<Tree> countsCharacters(String string) {
@@ -105,5 +138,27 @@ public class GreedyHuffman {
             huffmanTree.add(new Tree(node.getKey(), node.getValue()));
         }
         return huffmanTree;
+    }
+
+    /**
+     * carga los contenidos de un texto a un string
+     *
+     * @param file
+     * @return
+     * @throws FileNotFoundException
+     */
+    private static String readContent(File file) throws FileNotFoundException {
+        StringBuilder fileContents = new StringBuilder((int) file.length());
+        Scanner scanner = new Scanner(file);
+        String lineSeparator = System.lineSeparator();
+
+        try {
+            while (scanner.hasNextLine()) {
+                fileContents.append(scanner.nextLine() + lineSeparator);
+            }
+        } finally {
+            scanner.close();
+        }
+        return fileContents.toString();
     }
 }
