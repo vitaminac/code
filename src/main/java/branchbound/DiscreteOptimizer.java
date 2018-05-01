@@ -14,8 +14,8 @@ public class DiscreteOptimizer<P extends Problem> {
     private Solution<P> solution;
     private PriorityQueue<Solution<P>> partialSolutions = new PriorityQueue<>();
 
-    public DiscreteOptimizer(Solution<P> up, Solution<P> initialPartialSolution) {
-        this.solution = up;
+    public DiscreteOptimizer(Solution<P> bound, Solution<P> initialPartialSolution) {
+        this.solution = bound;
         this.partialSolutions.add(initialPartialSolution);
     }
 
