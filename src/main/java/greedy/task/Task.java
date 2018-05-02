@@ -1,6 +1,6 @@
 package greedy.task;
 
-public class Task {
+public class Task implements Comparable<Task> {
     private double time;
 
     public Task(double time) {
@@ -9,5 +9,10 @@ public class Task {
 
     public double getTaskTime() {
         return this.time;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        return this.time - o.time < 0 ? -1 : 1;
     }
 }
