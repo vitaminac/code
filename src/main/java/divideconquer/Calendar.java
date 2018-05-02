@@ -1,14 +1,14 @@
 package divideconquer;
 
 public class Calendar {
-    // matrix de n equipos por n - 1 semanas
+    // matrix de calendario
     private final int[][] calendar;
     private final int n;
     private final int round;
 
     private Calendar(int n) {
         this.n = n;
-        // determina cuantas semanas necesitan los subproblemas
+        // determina cuantas semanas necesita
         if (n % 2 == 0) {
             this.round = n - 1;
         } else {
