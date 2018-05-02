@@ -1,4 +1,4 @@
-package dav.matrix;
+package divideconquer.matrix;
 
 import utils.NumberUtilities;
 

@@ -1,4 +1,4 @@
-package dav.torneo;
+package divideconquer.torneo;
 
 public class Calendar {
     // matrix de n equipos por n - 1 semanas

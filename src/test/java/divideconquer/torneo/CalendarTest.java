@@ -1,9 +1,9 @@
-package dav.torneo;
+package divideconquer.torneo;
 
 import org.junit.Test;
 
-import static dav.torneo.Calendar.createCalendar;
-import static dav.torneo.Calendar.createCalendarBruteForce;
+import static divideconquer.torneo.Calendar.createCalendar;
+import static divideconquer.torneo.Calendar.createCalendarBruteForce;
 
 public class CalendarTest {
 

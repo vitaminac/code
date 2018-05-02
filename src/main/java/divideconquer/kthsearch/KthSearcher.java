@@ -1,4 +1,4 @@
-package dav.kthsearch;
+package divideconquer.kthsearch;
 
 import java.util.List;
 
