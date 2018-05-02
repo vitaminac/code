@@ -14,7 +14,7 @@ public class GreedyWaitTime {
         }
     }
 
-    public void greedy() {
+    public void arrange() {
         this.sol = new int[this.candidates.size()];
         int i = 0;
         while (!this.candidates.isEmpty()) {
@@ -38,7 +38,7 @@ public class GreedyWaitTime {
 
     public static void main(String[] args) {
         final GreedyWaitTime greedyWaitTime = new GreedyWaitTime(new Task[]{new Task(5), new Task(10), new Task(3)});
-        greedyWaitTime.greedy();
+        greedyWaitTime.arrange();
         System.out.println(greedyWaitTime.getTotalWaitTime());
     }
 
