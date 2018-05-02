@@ -1,49 +1,13 @@
 package greedy.knapsack;
 
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Objects;
+import java.util.Map;
 
 public class GreedyKnapsack {
-    public static class Pair<K, V> {
-        private final K key;
-        private final V value;
-
-        Pair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return this.key;
-        }
-
-        public V getValue() {
-            return this.value;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (!(o instanceof Pair))
-                return false;
-            Pair<?, ?> pair = (Pair<?, ?>) o;
-            return Objects.equals(getKey(), pair.getKey()) && Objects.equals(value, pair.value);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(getKey(), value);
-        }
-
-        @Override
-        public String toString() {
-            return "object{" + "key=" + key + ", value=" + value + '}';
-        }
-    }
 
     private Knapsack knapsack;
-    private HashSet<Pair<Integer, Double>> solution = new HashSet<>();
+    private HashMap<Integer, Double> solution = new HashMap<>();
     private HashSet<Integer> candidate = new HashSet<>();
     private double weight = 0;
     private double totalValue = 0;
@@ -59,26 +23,30 @@ public class GreedyKnapsack {
         return this.weight <= this.knapsack.getMaxWeight();
     }
 
-    public void greedyAlgorithmKS() {
-        while (this.isFeasible() && !this.candidate.isEmpty()) {
+    public void greedy() {
+        while (!this.candidate.isEmpty() && !this.isSolution()) {
             int best = this.select();
             this.weight += this.knapsack.getWeight(best);
             if (this.isFeasible()) {
                 this.totalValue += this.knapsack.getProfit(best);
-                this.solution.add(new Pair<>(best, 1.0));
+                this.solution.put(best, 1.0);
             } else {
                 this.weight -= this.knapsack.getWeight(best);
                 double frac = (this.knapsack.getMaxWeight() - this.weight) / this.knapsack.getWeight(best);
                 this.totalValue += frac * this.knapsack.getProfit(best);
-                this.solution.add(new Pair<>(best, frac));
+                this.solution.put(best, frac);
                 return;
             }
             this.candidate.remove(best);
         }
     }
 
+    private boolean isSolution() {
+        return this.weight == knapsack.getMaxWeight();
+    }
+
     private int select() {
-        double bestValueRatio = Double.MIN_VALUE;
+        double bestValueRatio = 0;
         int best = 0;
         for (int cand : this.candidate) {
             if ((this.knapsack.getProfit(cand) / this.knapsack.getWeight(cand) > bestValueRatio)) {
@@ -90,8 +58,9 @@ public class GreedyKnapsack {
     }
 
     public void print() {
-        for (Pair<Integer, Double> s : this.solution) {
-            System.out.println(s.toString() + " weight: " + this.knapsack.getWeight(s.getKey()) + " value: " + this.knapsack.getProfit(s.getKey()));
+        for (Map.Entry<Integer, Double> entry : this.solution.entrySet()) {
+            System.out.println(entry.getKey() + ":" + entry.getValue() + " weight: " + this.knapsack.getWeight(entry.getKey()) + " value: " + this.knapsack.getProfit(entry.getKey()));
         }
+        System.out.println("total value: " + this.totalValue);
     }
 }
