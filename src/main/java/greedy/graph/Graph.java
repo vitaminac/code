@@ -10,8 +10,8 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Graph {
-    private int n;
-    private HashMap<Integer, TreeSet<Edge>> edges = new HashMap<>();
+    protected HashMap<Integer, TreeSet<Edge>> edges = new HashMap<>();
+    protected int n;
 
     public Graph(int n) {
         this.n = n;
@@ -30,7 +30,7 @@ public class Graph {
         return this.n;
     }
 
-    public Set<Edge> getEdges(int v) {
+    public Set<Edge> getAdjacentVertices(int v) {
         return this.edges.get(v);
     }
 
@@ -65,16 +65,16 @@ public class Graph {
         Set<Integer> candidates = new HashSet<>(this.edges.keySet());
         candidates.remove(0);
         Set<Edge> minSpanningTree = new HashSet<>();
-        PriorityQueue<Edge> paths = new PriorityQueue<>(this.getEdges(0));
+        PriorityQueue<Edge> paths = new PriorityQueue<>(this.getAdjacentVertices(0));
         while (minSpanningTree.size() < this.getNumberOfVertices() - 1) {
             final Edge edge = paths.remove();
             if (candidates.contains(edge.getSource())) {
                 candidates.remove(edge.getSource());
-                paths.addAll(this.getEdges(edge.getSource()));
+                paths.addAll(this.getAdjacentVertices(edge.getSource()));
                 minSpanningTree.add(edge);
             } else if (candidates.contains(edge.getDestination())) {
                 candidates.remove(edge.getDestination());
-                paths.addAll(this.getEdges(edge.getDestination()));
+                paths.addAll(this.getAdjacentVertices(edge.getDestination()));
                 minSpanningTree.add(edge);
             }
         }
