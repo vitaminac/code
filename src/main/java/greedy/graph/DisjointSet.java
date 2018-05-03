@@ -14,7 +14,7 @@ public class DisjointSet {
         this.rank = new int[this.number];
     }
 
-    private int findSubgraph(int i) {
+    private int findSubGraph(int i) {
         int parent = i;
         if (this.parent[i] == -1) {
             return i;
@@ -29,8 +29,8 @@ public class DisjointSet {
     }
 
     public void union(int u, int v) {
-        int uParent = this.findSubgraph(u);
-        int vParent = this.findSubgraph(v);
+        int uParent = this.findSubGraph(u);
+        int vParent = this.findSubGraph(v);
         if (rank[uParent] < rank[vParent]) {
             this.parent[vParent] = uParent;
             rank[uParent] += rank[vParent];
@@ -42,6 +42,6 @@ public class DisjointSet {
     }
 
     public boolean isCycle(int u, int v) {
-        return this.findSubgraph(u) == this.findSubgraph(v);
+        return this.findSubGraph(u) == this.findSubGraph(v);
     }
 }
