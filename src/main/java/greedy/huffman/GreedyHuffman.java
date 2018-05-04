@@ -3,7 +3,11 @@ package greedy.huffman;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Scanner;
+import java.util.Stack;
 
 public class GreedyHuffman {
     /*
@@ -30,43 +34,19 @@ public class GreedyHuffman {
         public int compareTo(Tree o) {
             return this.frequency - o.frequency;
         }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (!(o instanceof Tree))
-                return false;
-            Tree tree = (Tree) o;
-            return character == tree.character && frequency == tree.frequency && Objects.equals(left, tree.left) && Objects.equals(right, tree.right);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(left, right, character, frequency);
-        }
-    }
-
-    private HashMap<Character, String> codingMap;
-
-    GreedyHuffman(String str) {
-        this.codingMap = createCodingMap(str);
-    }
-
-    public GreedyHuffman(File text) throws FileNotFoundException {
-        this.codingMap = createCodingMap(readContent(text));
     }
 
     /**
      * devuelva la correspondiente codificación Huffman
-     *
-     * @param string
-     * @return
      */
-    public HashMap<Character, String> createCodingMap(String string) {
+    public static GreedyHuffman createCodingMap(String string) {
         PriorityQueue<Tree> frequencies = countsCharacters(string);
         Tree huffmanTree = buildHuffmanTree(frequencies);
-        return createCodingMap(huffmanTree);
+        return new GreedyHuffman(createCodingMap(huffmanTree));
+    }
+
+    public static GreedyHuffman createCodingMap(File text) throws FileNotFoundException {
+        return createCodingMap(readContent(text));
     }
 
     private static HashMap<Character, String> createCodingMap(Tree currentTree) {
@@ -94,15 +74,8 @@ public class GreedyHuffman {
     }
 
     /**
-     * construya el árbol de codificación para el vocabulario correspondiente al fichero de texto de entrada
-     *
-     * @param file
-     * @return
+     * construya el árbol de codificación para el vocabulario correspondiente
      */
-    private static Tree buildHuffmanTree(File file) throws FileNotFoundException {
-        return buildHuffmanTree(countsCharacters(file));
-    }
-
     private static Tree buildHuffmanTree(PriorityQueue<Tree> charsFrequencies) {
         while (charsFrequencies.size() > 1) {
             Tree left = charsFrequencies.poll();
@@ -112,18 +85,9 @@ public class GreedyHuffman {
         return charsFrequencies.poll();
     }
 
-
     /**
-     * calcule las frecuencias de ocurrencias de cada carácter en un fichero dado
-     *
-     * @param file
-     * @return
-     * @throws FileNotFoundException
+     * calcule las frecuencias de ocurrencias de cada carácter de un string
      */
-    public static PriorityQueue<Tree> countsCharacters(File file) throws FileNotFoundException {
-        return countsCharacters(readContent(file));
-    }
-
     private static PriorityQueue<Tree> countsCharacters(String string) {
         HashMap<Character, Integer> characters = new HashMap<>();
         for (char c : string.toCharArray()) {
@@ -142,23 +106,49 @@ public class GreedyHuffman {
 
     /**
      * carga los contenidos de un texto a un string
-     *
-     * @param file
-     * @return
-     * @throws FileNotFoundException
      */
     private static String readContent(File file) throws FileNotFoundException {
-        StringBuilder fileContents = new StringBuilder((int) file.length());
-        Scanner scanner = new Scanner(file);
+        StringBuilder fileContents = new StringBuilder();
         String lineSeparator = System.lineSeparator();
 
-        try {
-            while (scanner.hasNextLine()) {
-                fileContents.append(scanner.nextLine() + lineSeparator);
+        try (Scanner scanner = new Scanner(file)) {
+            if (scanner.hasNextLine()) {
+                fileContents.append(scanner.nextLine());
             }
-        } finally {
-            scanner.close();
+            while (scanner.hasNextLine()) {
+                fileContents.append(lineSeparator);
+                fileContents.append(scanner.nextLine());
+            }
         }
         return fileContents.toString();
+    }
+
+    public static void main(String[] args) {
+        try {
+            final GreedyHuffman codingMap = createCodingMap(new File("texto.txt"));
+            System.out.println(codingMap.toString());
+            System.out.println("codificacion Huffman de la palabra 'de':" + codingMap.mapWord("de"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private final HashMap<Character, String> codingMap;
+
+    private GreedyHuffman(HashMap<Character, String> codingMap) {
+        this.codingMap = codingMap;
+    }
+
+    public String mapWord(String word) {
+        StringBuilder sb = new StringBuilder();
+        for (char c : word.toCharArray()) {
+            sb.append(this.codingMap.get(c));
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public String toString() {
+        return "GreedyHuffman{" + "codingMap=" + codingMap + '}';
     }
 }
