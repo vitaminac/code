@@ -1,11 +1,9 @@
 package greedy.graph;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-import java.util.Set;
 
 public class Tree<E> {
     private final List<Tree<E>> children = new ArrayList<>();
@@ -15,8 +13,12 @@ public class Tree<E> {
         this.e = e;
     }
 
-    public E getE() {
+    public E getElement() {
         return e;
+    }
+
+    public List<Tree<E>> getChildren() {
+        return this.children;
     }
 
     public void addChild(Tree<E> child) {
