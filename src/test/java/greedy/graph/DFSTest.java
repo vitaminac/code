@@ -3,10 +3,7 @@ package greedy.graph;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class DFSTest {
     private DirectedGraph g3 = new DirectedGraph(4);
@@ -30,6 +27,6 @@ public class DFSTest {
         dfs.depthFirstSearch(2);
         dfs.printDFSTraversal();
 
-        assertEquals(IntStream.of(new int[]{2, 0, 1, 3}).boxed().collect(Collectors.toList()), dfs.getDFSTraversal());
+        assertArrayEquals(new int[]{2, 0, 1, 3}, dfs.getDFSTraversal().stream().mapToInt(i -> i).toArray());
     }
 }

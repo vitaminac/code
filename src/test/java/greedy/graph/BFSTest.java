@@ -2,10 +2,7 @@ package greedy.graph;
 
 import org.junit.Test;
 
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 
 public class BFSTest {
 
@@ -23,7 +20,8 @@ public class BFSTest {
 
         System.out.println("Following is Breadth First Traversal " + "(starting from vertex 2)");
         bfs.breathFirstSearch(2);
-        bfs.printBFStraversal();
-        assertEquals(IntStream.of(new int[]{2, 0, 3, 1}).boxed().collect(Collectors.toList()), bfs.getBFStraversal());
+        bfs.printBFSTraversal();
+
+        assertArrayEquals(new int[]{2, 0, 3, 1}, bfs.getBFSTraversal().stream().mapToInt(i -> i).toArray());
     }
 }

@@ -1,12 +1,11 @@
 package greedy.graph;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DFS {
     private Graph g;
     private boolean visited[];
-    private List<Integer> list = new ArrayList<>();
+    private Tree<Integer> root;
 
     public DFS(Graph g) {
         this.g = g;
@@ -14,17 +13,20 @@ public class DFS {
     }
 
     public void depthFirstSearch(int v) {
-        if (!visited[v]) {
-            recursiveDFS(v);
+        for (int i = 0; i < g.getNumberOfVertices(); i++) {
+            this.visited[i] = false;
         }
+        this.root = new Tree<Integer>(v);
+        recursiveDFS(v, this.root);
     }
 
-    private void recursiveDFS(int v) {
+    private void recursiveDFS(int v, Tree<Integer> root) {
         this.visited[v] = true;
-        this.list.add(v);
         for (int j : this.g.getAdjVertices(v)) {
             if (!this.visited[j]) {
-                recursiveDFS(j);
+                final Tree<Integer> child = new Tree<>(j);
+                recursiveDFS(j, child);
+                root.addChild(child);
             }
         }
     }
@@ -35,9 +37,15 @@ public class DFS {
         for (int i : this.getDFSTraversal()) {
             System.out.print(i + " ");
         }
+        System.out.println();
+    }
+
+    public Tree<Integer> getDFSSpanningTree() {
+        return this.root;
     }
 
     public List<Integer> getDFSTraversal() {
-        return this.list;
+        return this.getDFSSpanningTree().preOrderTraversal();
     }
+
 }
