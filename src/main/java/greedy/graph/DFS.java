@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DFS {
-    private DirectedGraph g;
+    private Graph g;
     private boolean visited[];
     private List<Integer> list = new ArrayList<>();
 
-    public DFS(DirectedGraph g) {
+    public DFS(Graph g) {
         this.g = g;
-        this.visited = new boolean[g.getNumVertices()];
+        this.visited = new boolean[g.getNumberOfVertices()];
     }
 
     public void depthFirstSearch(int v) {
@@ -22,22 +22,22 @@ public class DFS {
     private void recursiveDFS(int v) {
         this.visited[v] = true;
         this.list.add(v);
-        for (int j : this.g.getAdjacents(v)) {
+        for (int j : this.g.getAdjVertices(v)) {
             if (!this.visited[j]) {
                 recursiveDFS(j);
             }
         }
     }
 
-    public void printDFStraversal() {
+    public void printDFSTraversal() {
         // Print contents of list
         System.out.println("");
-        for (int i : this.getDFStraversal()) {
+        for (int i : this.getDFSTraversal()) {
             System.out.print(i + " ");
         }
     }
 
-    public List<Integer> getDFStraversal() {
+    public List<Integer> getDFSTraversal() {
         return this.list;
     }
 }

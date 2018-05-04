@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Queue;
 
 public class BFS {
-    private final DirectedGraph g;
+    private final Graph g;
     private final boolean visited[];
     private List<Integer> list = new ArrayList<>();
 
-    public BFS(DirectedGraph g) {
+    public BFS(Graph g) {
         this.g = g;
-        this.visited = new boolean[this.g.getNumVertices()];
+        this.visited = new boolean[this.g.getNumberOfVertices()];
     }
 
     public void breathFirstSearch(int v) {
@@ -20,9 +20,9 @@ public class BFS {
         this.visited[v] = true;
         q.add(v);
         while (!q.isEmpty()) {
-            v = q.poll();
+            v = q.remove();
             this.list.add(v);
-            for (int j : this.g.getAdjacents(v)) {
+            for (int j : this.g.getAdjVertices(v)) {
                 if (!this.visited[j]) {
                     this.visited[j] = true;
                     q.add(j);

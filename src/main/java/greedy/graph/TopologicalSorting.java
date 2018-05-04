@@ -10,12 +10,12 @@ public class TopologicalSorting {
 
     public TopologicalSorting(DirectedGraph g) {
         this.g = g;
-        this.visited = new boolean[g.getNumVertices()];
+        this.visited = new boolean[g.getNumberOfVertices()];
     }
 
     private void topologicalVisit(int v) {
         visited[v] = true;
-        for (int j : this.g.getAdjacents(v)) {
+        for (int j : this.g.getAdjVertices(v)) {
             if (!visited[j]) {
                 this.topologicalVisit(j);
             }
@@ -24,7 +24,7 @@ public class TopologicalSorting {
     }
 
     public void sort() {
-        for (int j = 0; j < g.getNumVertices(); j++) {
+        for (int j = 0; j < g.getNumberOfVertices(); j++) {
             if (!this.visited[j]) {
                 this.topologicalVisit(j);
             }

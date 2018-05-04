@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,8 +29,20 @@ public class Graph {
         return this.n;
     }
 
-    public Set<Edge> getAdjacentVertices(int v) {
+    public Set<Edge> getEdge(int v) {
         return this.edges.get(v);
+    }
+
+    public Set<Integer> getAdjVertices(int v) {
+        Set<Integer> vertices = new HashSet<>();
+        for (Edge edge : this.getEdge(v)) {
+            if (edge.getSource() == v) {
+                vertices.add(edge.getDestination());
+            } else {
+                vertices.add(edge.getSource());
+            }
+        }
+        return vertices;
     }
 
     // Kruskal Algorithm
@@ -65,16 +76,16 @@ public class Graph {
         Set<Integer> candidates = new HashSet<>(this.edges.keySet());
         candidates.remove(0);
         Set<Edge> minSpanningTree = new HashSet<>();
-        PriorityQueue<Edge> paths = new PriorityQueue<>(this.getAdjacentVertices(0));
+        TreeSet<Edge> paths = new TreeSet<>(this.getEdge(0));
         while (minSpanningTree.size() < this.getNumberOfVertices() - 1) {
-            final Edge edge = paths.remove();
+            final Edge edge = paths.pollFirst();
             if (candidates.contains(edge.getSource())) {
                 candidates.remove(edge.getSource());
-                paths.addAll(this.getAdjacentVertices(edge.getSource()));
+                paths.addAll(this.getEdge(edge.getSource()));
                 minSpanningTree.add(edge);
             } else if (candidates.contains(edge.getDestination())) {
                 candidates.remove(edge.getDestination());
-                paths.addAll(this.getAdjacentVertices(edge.getDestination()));
+                paths.addAll(this.getEdge(edge.getDestination()));
                 minSpanningTree.add(edge);
             }
         }

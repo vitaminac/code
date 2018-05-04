@@ -7,10 +7,10 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-public class DirectedGraphhTest {
+public class DirectedGraphTest {
     @Test
     public void getShortestPath() {
-        DirectedGraphh graph = new DirectedGraphh(5);
+        DirectedGraph graph = new DirectedGraph(5);
         graph.add(0, 1, 10);
         graph.add(0, 4, 5);
         graph.add(1, 2, 1);
