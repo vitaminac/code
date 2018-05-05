@@ -25,6 +25,10 @@ public class Graph {
         this.edges.get(v).add(edge);
     }
 
+    public void add(int u, int v) {
+        this.add(u, v, 0);
+    }
+
     public int getNumberOfVertices() {
         return this.n;
     }
