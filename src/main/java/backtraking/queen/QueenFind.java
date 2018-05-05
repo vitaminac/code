@@ -41,7 +41,7 @@ public class QueenFind {
     }
 
     public void addQueen(int j) {
-        //TODO: Poner la siguiente reina en la columna j (fila k)
+        // Poner la siguiente reina en la columna j (fila k)
         this.solution[i] = j;
         this.cols[j] = true;
         this.diagonal[this.getDiagonal(j)] = true;
@@ -64,12 +64,11 @@ public class QueenFind {
     }
 
     public boolean isSolution() {//es solucion factible
-        //TODO:
         return i + 1 == n;
     }
 
     private boolean isCandidate(int j) {//EsPrometedor
-        //TODO: Comprobar si se puede poner la siguiente reina en la columna j (fila k)
+        // Comprobar si se puede poner la siguiente reina en la columna j (fila k)
         return !this.cols[j] && !this.diagonal[this.getDiagonal(j)] && !this.diagonalInv[this.getDiagonalInv(j)];
     }
 
