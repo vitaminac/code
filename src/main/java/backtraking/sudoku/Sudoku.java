@@ -1,15 +1,43 @@
 package backtraking.sudoku;
 
-import java.util.HashSet;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Sudoku {
+    public static void main(String[] args) {
+        try {
+            final Sudoku sudoku = new Sudoku("entrada.txt");
+            System.out.println(sudoku);
+            sudoku.solve();
+            System.out.println(sudoku);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private int table[][] = new int[9][9];
 
-    public void setValue(int i, int j, int value) {
-        if (value < 1 || value > 9) {
-            throw new IllegalArgumentException();
+    public Sudoku(String input) throws IOException {
+        try (Scanner scanner = new Scanner(new FileReader(input))) {
+            int i = 0;
+            while (scanner.hasNext()) {
+                if (scanner.hasNextInt()) {
+                    this.setValue(i / 9, i % 9, scanner.nextInt());
+                    ++i;
+                } else {
+                    scanner.next();
+                }
+            }
         }
-        this.table[i][j] = value;
+    }
+
+    private void setValue(int row, int col, int value) {
+        this.table[row][col] = value;
+    }
+
+    private int getValue(int row, int col) {
+        return this.table[row][col];
     }
 
     @Override
@@ -41,50 +69,53 @@ public class Sudoku {
         return sb.toString();
     }
 
-    public void print() {
-        System.out.println(this.toString());
-    }
-
-    public HashSet<Integer> getChoices(int x, int y) {
-        HashSet<Integer> candidate = new HashSet<>();
-        for (int i = 1; i < 10; i++) {
-            candidate.add(i);
-        }
+    private boolean isPromising(int row, int col, int value) {
         for (int i = 0; i < 9; i++) {
-            candidate.remove(this.table[i][y]);
-        }
-        for (int j = 0; j < 9; j++) {
-            candidate.remove(this.table[x][j]);
-        }
-        for (int i = (x / 3) * 3; i < (x / 3 + 1) * 3; i++) {
-            for (int j = (y / 3) * 3; j < (y / 3 + 1) * 3; j++) {
-                candidate.remove(this.table[i][j]);
+            if (this.getValue(i, col) == value) {
+                return false;
             }
         }
-        return candidate;
-    }
-
-    public boolean findSolution(int i, int j) {
-        for (; i < 9; i++) {
-            for (; j < 9; j++) {
-                if (this.table[i][j] < 1 || this.table[i][j] > 9) {
-                    final HashSet<Integer> choices = this.getChoices(i, j);
-                    for (int c : choices) {
-                        this.setValue(i, j, c);
-                        if (this.findSolution(i, j)) {
-                            return true;
-                        }
-                    }
-                    this.table[i][j] = 0;
+        for (int j = 0; j < 9; j++) {
+            if (this.getValue(row, j) == value) {
+                return false;
+            }
+        }
+        for (int i = (row / 3) * 3; i < (row / 3 + 1) * 3; i++) {
+            for (int j = (col / 3) * 3; j < (col / 3 + 1) * 3; j++) {
+                if (this.getValue(i, j) == value) {
                     return false;
                 }
             }
-            j = 0;
         }
         return true;
     }
 
-    public boolean findSolution() {
-        return this.findSolution(0, 0);
+    private boolean solve(int k) {
+        // si es solucion
+        if (k >= 9 * 9) {
+            return true;
+        } else {
+            int row = k / 9;
+            int col = k % 9;
+            if (this.getValue(row, col) > 0 && this.getValue(row, col) < 10) {
+                return this.solve(k + 1);
+            } else {
+                for (int i = 1; i < 10; i++) {
+                    // si es prometedor
+                    if (this.isPromising(row, col, i)) {
+                        this.setValue(row, col, i);
+                        if (this.solve(k + 1)) {
+                            return true;
+                        }
+                    }
+                }
+                this.setValue(row, col, 0);
+                return false;
+            }
+        }
+    }
+
+    public void solve() {
+        this.solve(0);
     }
 }
