@@ -3,47 +3,48 @@ package divideconquer;
 import java.util.Comparator;
 
 public class MergeSort<E> {
+    public static <T extends Comparable<? super T>> MergeSort<T> create() {
+        return new MergeSort<>(T::compareTo);
+    }
+
     private final Comparator<? super E> comparator;
 
     public MergeSort(Comparator<? super E> comparator) {
         this.comparator = comparator;
     }
 
-    public static <T extends Comparable<? super T>> MergeSort<T> create() {
-        return new MergeSort<>(T::compareTo);
-    }
-
-    private void merge(E arr[], int head, int mid, int tail, E[] ordered) {
-        int i = head;
+    private void merge(E arr[], int left, int mid, int right, E[] tmp) {
+        int i = left;
         int j = mid;
-        int k = head;
-        while (k < tail) {
+        int k = left;
+        while (k < right) {
             if (i >= mid) {
-                arr[k++] = ordered[j++];
-            } else if (j >= tail) {
-                arr[k++] = ordered[i++];
-            } else if (comparator.compare(ordered[i], ordered[j]) < 0) {
-                arr[k++] = ordered[i++];
+                tmp[k++] = arr[j++];
+            } else if (j >= right) {
+                tmp[k++] = arr[i++];
+            } else if (comparator.compare(arr[i], arr[j]) < 0) {
+                tmp[k++] = arr[i++];
             } else {
-                arr[k++] = ordered[j++];
+                tmp[k++] = arr[j++];
             }
         }
+        // copy back to the array
+        for (int idx = left; idx < right; idx++) {
+            arr[idx] = tmp[idx];
+        }
     }
 
-    private void mergeSort(E arr[], int head, int tail, E[] ordered) {
-        int mid = (head + tail) / 2;
-        if (mid <= head) {
+    private void sort(E arr[], int left, int right, E[] tmp) {
+        int mid = (left + right) / 2;
+        if (mid <= left) {
             return;
         }
-        mergeSort(arr, head, mid, ordered);
-        mergeSort(arr, mid, tail, ordered);
-        merge(ordered, head, mid, tail, arr);
-        for (int i = head; i < tail; i++) {
-            arr[i] = ordered[i];
-        }
+        sort(arr, left, mid, tmp);
+        sort(arr, mid, right, tmp);
+        merge(arr, left, mid, right, tmp);
     }
 
-    public void mergeSort(E arr[]) {
-        mergeSort(arr, 0, arr.length, (E[]) new Object[arr.length]);
+    public void sort(E arr[]) {
+        sort(arr, 0, arr.length, (E[]) new Object[arr.length]);
     }
 }
