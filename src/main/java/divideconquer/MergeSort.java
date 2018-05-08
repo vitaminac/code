@@ -14,34 +14,30 @@ public class MergeSort<E> {
     }
 
     private void merge(E arr[], int left, int mid, int right, E[] tmp) {
-        int i = left;
-        int j = mid;
-        int k = left;
-        while (k < right) {
-            if (i >= mid) {
-                tmp[k++] = arr[j++];
-            } else if (j >= right) {
-                tmp[k++] = arr[i++];
-            } else if (comparator.compare(arr[i], arr[j]) < 0) {
-                tmp[k++] = arr[i++];
-            } else {
-                tmp[k++] = arr[j++];
-            }
-        }
-        // copy back to the array
+        // copy to the tmp array
         for (int idx = left; idx < right; idx++) {
-            arr[idx] = tmp[idx];
+            tmp[idx] = arr[idx];
+        }
+        for (int idx = left, i = left, j = mid; idx < right; idx++) {
+            if (i >= mid) {
+                arr[idx] = tmp[j++];
+            } else if (j >= right) {
+                arr[idx] = tmp[i++];
+            } else if (comparator.compare(tmp[i], tmp[j]) < 0) {
+                arr[idx] = tmp[i++];
+            } else {
+                arr[idx] = tmp[j++];
+            }
         }
     }
 
     private void sort(E arr[], int left, int right, E[] tmp) {
         int mid = (left + right) / 2;
-        if (mid <= left) {
-            return;
+        if (mid > left) {
+            sort(arr, left, mid, tmp);
+            sort(arr, mid, right, tmp);
+            merge(arr, left, mid, right, tmp);
         }
-        sort(arr, left, mid, tmp);
-        sort(arr, mid, right, tmp);
-        merge(arr, left, mid, right, tmp);
     }
 
     public void sort(E arr[]) {
