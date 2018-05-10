@@ -95,4 +95,8 @@ public class Graph {
         }
         return minSpanningTree;
     }
+
+    public boolean isConnectedWith(int u, Set<Integer> nodes) {
+        return nodes.contains(u) || this.getAdjVertices(u).stream().anyMatch(nodes::contains);
+    }
 }

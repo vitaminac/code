@@ -1,6 +1,7 @@
 package greedy.graph;
 
 import java.util.HashSet;
+import java.util.List;
 
 public class ArticulationPoints {
     private final Tree<Integer> dfsTree;
@@ -13,13 +14,18 @@ public class ArticulationPoints {
         this.dfsTree = dfs.getDFSSpanningTree();
     }
 
+    private boolean hasBackEdge(Tree<Integer> tree, HashSet<Integer> parents) {
+        return this.graph.isConnectedWith(tree.getElement(), parents) || tree.getChildren().stream()
+                .anyMatch(child -> this.hasBackEdge(child, parents));
+    }
+
     private void findArticulationPoint(Tree<Integer> noRootNode, boolean vertices[], HashSet<Integer> parents) {
         int parent = noRootNode.getElement();
-        vertices[parent] = noRootNode.getChildren().stream()
-                .anyMatch(child -> this.graph.getAdjVertices(child.getElement()).stream()
-                        .allMatch((e) -> !parents.contains(e)));
+        final List<Tree<Integer>> children = noRootNode.getChildren();
+        vertices[parent] = !children.isEmpty() && !children.stream()
+                .allMatch(child -> this.hasBackEdge(child, parents));
         parents.add(parent);
-        for (Tree<Integer> child : noRootNode.getChildren()) {
+        for (Tree<Integer> child : children) {
             this.findArticulationPoint(child, vertices, parents);
         }
         parents.remove(parent);
