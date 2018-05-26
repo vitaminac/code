@@ -1,4 +1,6 @@
-package json;
+package json.writer;
+
+import json.JSON;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -11,9 +13,9 @@ class JSONRawWriter implements IJSONWriter {
         this.underlyingWriter = underlyingWriter;
     }
 
-    @Override
-    public JSONObjectWriter getJSONObjectWriter() throws IOException {
-        return new JSONObjectWriter(this);
+    public void close() throws IOException {
+        this.underlyingWriter.flush();
+        this.underlyingWriter.close();
     }
 
     @Override
@@ -21,9 +23,9 @@ class JSONRawWriter implements IJSONWriter {
         return new JSONArrayWriter(this);
     }
 
-    public void close() throws IOException {
-        this.underlyingWriter.flush();
-        this.underlyingWriter.close();
+    @Override
+    public JSONObjectWriter getJSONObjectWriter() throws IOException {
+        return new JSONObjectWriter(this);
     }
 
     public void write(char c) throws IOException {

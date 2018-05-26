@@ -1,5 +1,7 @@
 package json;
 
+import json.reader.JSONRawReader;
+import json.reader.JSONReader;
 import org.junit.Test;
 
 import java.io.Reader;

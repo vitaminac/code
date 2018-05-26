@@ -1,4 +1,4 @@
-package json;
+package json.reader;
 
 import java.io.IOException;
 

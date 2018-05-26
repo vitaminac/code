@@ -1,4 +1,7 @@
-package json;
+package json.reader;
+
+import json.MalformedJSONInput;
+import json.reader.JSONRawReader;
 
 import java.io.IOException;
 import java.io.Reader;

@@ -1,5 +1,6 @@
-package json;
+package json.writer;
 
+import json.JSON;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -15,8 +16,8 @@ public class JSONArrayWriter implements IJSONWriter {
     }
 
     @Override
-    public JSONObjectWriter getJSONObjectWriter() throws IOException {
-        return new JSONObjectWriter(this.writer);
+    public void close() throws IOException {
+        this.writer.writeSymbol(']');
     }
 
     @Override
@@ -25,8 +26,8 @@ public class JSONArrayWriter implements IJSONWriter {
     }
 
     @Override
-    public void close() throws IOException {
-        this.writer.writeSymbol(']');
+    public JSONObjectWriter getJSONObjectWriter() throws IOException {
+        return new JSONObjectWriter(this.writer);
     }
 
     public void write(@NotNull Collection<JSON> arr) throws IOException {

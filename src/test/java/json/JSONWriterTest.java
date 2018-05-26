@@ -1,5 +1,7 @@
 package json;
 
+import json.writer.JSONObjectWriter;
+import json.writer.JSONWriter;
 import org.junit.Test;
 
 import java.io.IOException;

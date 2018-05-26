@@ -1,4 +1,6 @@
-package json;
+package json.writer;
+
+import json.JSON;
 
 import java.io.IOException;
 import java.util.Collection;
