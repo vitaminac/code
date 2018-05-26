@@ -4,8 +4,8 @@ version '0.1'
 apply plugin: 'java'
 apply plugin: 'idea'
 
-sourceCompatibility = 9
-targetCompatibility = 9
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ dependencies {
 
     // checker framework
     ext.checkerFrameworkVersion = '2.3.0'
-    ext.jdkVersion = 'jdk9'
+    ext.jdkVersion = 'jdk8'
     // checkerFrameworkAnnotatedJDK "org.checkerframework:${jdkVersion}:${checkerFrameworkVersion}"
 
     compileOnly "org.checkerframework:checker:${checkerFrameworkVersion}"

@@ -1,18 +1,22 @@
 package json;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.io.Reader;
 
-public class JSONReader extends Reader {
-    @Override
-    public int read(@NotNull char[] cbuf, int off, int len) throws IOException {
-        return 0;
+public class JSONReader {
+    private JSONRawReader rawReader;
+
+    public JSONReader(Reader underlyingReader) {
+        this.rawReader = new JSONRawReader(underlyingReader);
     }
 
-    @Override
-    public void close() throws IOException {
+    public boolean readBoolean() throws IOException, MalformedJSONInput {
+        return this.rawReader.readBoolean();
+    }
 
+    public double readNumber() throws IOException, MalformedJSONInput {return rawReader.readNumber();}
+
+    public String readString() throws IOException, MalformedJSONInput {
+        return rawReader.readString();
     }
 }

@@ -1,64 +1,79 @@
 package json;
 
 import java.io.IOException;
-import java.util.Map.Entry;
-import java.util.TreeMap;
+import java.util.Collection;
 
-public class JSONObjectWriter {
-    private final JSONWriter jsonWriter;
-    private final TreeMap<String, JSONValue> members = new TreeMap<>();
-    private static final String DELIMITER = ",";
+public class JSONObjectWriter implements IJSONWriter {
+    private final JSONRawWriter writer;
+    private boolean separator = false;
 
-    public JSONObjectWriter(JSONWriter jsonWriter) {
-        this.jsonWriter = jsonWriter;
+    JSONObjectWriter(JSONRawWriter writer) throws IOException {
+        this.writer = writer;
+        this.writer.writeSymbol('{');
     }
 
-    public void writePair(String key, JSONObject jsonObject) throws IOException {
-        this.writePair(key, new JSONValue(jsonObject));
+    @Override
+    public JSONObjectWriter getJSONObjectWriter() throws IOException {
+        return new JSONObjectWriter(this.writer);
     }
 
-    public void writePair(String key, int i) throws IOException {
-        this.writePair(key, new JSONValue(i));
+    @Override
+    public JSONArrayWriter getJSONArrayWriter() throws IOException {
+        return new JSONArrayWriter(this.writer);
     }
 
-    public void writePair(String key, JSONValue jsonValue) throws IOException {
-        this.members.put(key, jsonValue);
-    }
-
-    public void writePair(String key, String string) throws IOException {
-        this.writePair(key, new JSONValue(string));
-    }
-
+    @Override
     public void close() throws IOException {
-        Entry<String, JSONValue> firstEntry = this.members.firstEntry();
-        String key;
-        JSONValue value;
-        if (firstEntry != null) {
-            key = firstEntry.getKey();
-            value = firstEntry.getValue();
-            this.writeKeyPart(key);
-            this.jsonWriter.pushLocation(key);
-            this.jsonWriter.writeJSONValue(value);
-            this.jsonWriter.popLocation();
-            this.members.remove(key);
-        }
-        for (Entry<String, JSONValue> entry : this.members.entrySet()) {
-            this.jsonWriter.writeOutput(DELIMITER);
-            key = entry.getKey();
-            value = entry.getValue();
-            this.writeKeyPart(key);
-            this.jsonWriter.pushLocation(key);
-            this.jsonWriter.writeJSONValue(value);
-            this.jsonWriter.popLocation();
-        }
+        this.writer.writeSymbol('}');
     }
 
-    private void writeSeparator() throws IOException {
-        this.jsonWriter.writeOutput(",");
+    public void write(String key, JSON value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
     }
 
-    private void writeKeyPart(String key) throws IOException {
-        this.jsonWriter.writeJSONValue(new JSONValue(key));
-        this.jsonWriter.writeOutput(":");
+    public void write(String key, Number value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
+    }
+
+    public void write(String key, boolean value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
+    }
+
+    public void write(String key, char value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
+    }
+
+    public void write(String key, String value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
+    }
+
+    public void write(String key, Collection<JSON> value) throws IOException {
+        this.writeSeparatorIfNecessary();
+        this.writer.write(key);
+        this.writer.writeSymbol(':');
+        this.writer.write(value);
+    }
+
+    private void writeSeparatorIfNecessary() throws IOException {
+        if (this.separator) {
+            this.writer.writeSymbol(',');
+        } else {
+            this.separator = true;
+        }
     }
 }

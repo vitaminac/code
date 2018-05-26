@@ -170,7 +170,7 @@ artifacts/
 *_i.h
 *.ilk
 *.meta
-*.obj
+*.json.obj
 *.pch
 *.pdb
 *.pgc
@@ -493,3 +493,4 @@ cwallet.sso.lck
 # *.logs
 !/gradle/wrapper/*.jar
 /src/test/java/json/TestCode.java
+!/src/test/java/json/obj/
