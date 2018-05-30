@@ -243,7 +243,6 @@ public class JSONValue {
         throw new MalformedJSONInput(chr, this.pos - 1);
     }
 
-    // TODO: exception was wrong
     public String getString() throws MalformedJSONInput {
         char c = this.next();
         if (c == '"') {
