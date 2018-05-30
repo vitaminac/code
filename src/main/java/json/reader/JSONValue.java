@@ -4,8 +4,10 @@ import json.JSON;
 import json.JSONRestoreFactory;
 import json.MalformedJSONInput;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Stack;
 
 public class JSONValue {
@@ -74,6 +76,51 @@ public class JSONValue {
             }
         }
         throw new MalformedJSONInput(this.value.charAt(this.pos - 1), this.pos - 1);
+    }
+
+    public List<JSONValue> getList() throws MalformedJSONInput {
+        List<JSONValue> list = new ArrayList<>();
+        char chr = this.next();
+        if (chr == '[') {
+            Stack<Character> stack = new Stack<>();
+            StringBuilder sb = new StringBuilder();
+            chr = this.next();
+            while (!stack.isEmpty() || chr != ']') {
+                do {
+                    if (!stack.isEmpty() && stack.peek() == '"') {
+                        sb.append(chr);
+                        if (chr == '"') {
+                            stack.pop();
+                        } else if (chr == '\\') {
+                            sb.append(this.next());
+                        }
+                    } else {
+                        sb.append(chr);
+                        if (chr == '{' || chr == '"' || chr == '[') {
+                            stack.add(chr);
+                        } else if (chr == '}') {
+                            if (stack.peek().equals('{')) {
+                                stack.pop();
+                            } else {
+                                throw new MalformedJSONInput(chr, this.pos - 1);
+                            }
+                        } else if (chr == ']') {
+                            if (stack.peek().equals('[')) {
+                                stack.pop();
+                            } else {
+                                throw new MalformedJSONInput(chr, this.pos - 1);
+                            }
+                        }
+                    }
+                    chr = this.next();
+                } while (!stack.isEmpty() || (chr != ',' && chr != ']'));
+                list.add(new JSONValue(sb.toString()));
+                sb = new StringBuilder();
+            }
+            return list;
+        } else {
+            throw new MalformedJSONInput(chr, this.pos - 1);
+        }
     }
 
     public double getNumber() throws MalformedJSONInput {

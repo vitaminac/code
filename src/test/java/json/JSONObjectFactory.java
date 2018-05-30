@@ -4,6 +4,7 @@ import json.reader.JSONValue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class JSONObjectFactory implements JSONRestoreFactory<JSONObject> {
     @Override
@@ -17,7 +18,10 @@ public class JSONObjectFactory implements JSONRestoreFactory<JSONObject> {
         long l = (long) members.get("l").getNumber();
         JSONObject o = members.get("o").getObject(this);
         short s = (short) members.get("s").getNumber();
-        // TODO: read list
-        return new JSONObject(b, str, c, d, f, i, l, o, s, new ArrayList<>());
+        List<JSONObject> list = new ArrayList<>();
+        for (JSONValue value : members.get("os").getList()) {
+            list.add(value.getObject(this));
+        }
+        return new JSONObject(b, str, c, d, f, i, l, o, s, list);
     }
 }

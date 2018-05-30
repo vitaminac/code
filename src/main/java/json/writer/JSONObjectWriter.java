@@ -64,7 +64,7 @@ public class JSONObjectWriter implements IJSONWriter {
         this.writer.write(value);
     }
 
-    public void write(String key, Collection<JSON> value) throws IOException {
+    public void write(String key, Collection<? extends JSON> value) throws IOException {
         this.writeSeparatorIfNecessary();
         this.writer.write(key);
         this.writer.writeSymbol(':');

@@ -30,7 +30,7 @@ public class JSONArrayWriter implements IJSONWriter {
         return new JSONObjectWriter(this.writer);
     }
 
-    public void write(@NotNull Collection<JSON> arr) throws IOException {
+    public void write(@NotNull  Collection<? extends JSON> arr) throws IOException {
         for (JSON o : arr) {
             this.writeSeparatorIfNecessary();
             this.writer.write(o);

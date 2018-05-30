@@ -32,7 +32,7 @@ class JSONRawWriter implements IJSONWriter {
         this.write(String.valueOf(c));
     }
 
-    public void write(Collection<JSON> value) throws IOException {
+    public void write( Collection<? extends JSON> value) throws IOException {
         try (JSONArrayWriter writer = this.getJSONArrayWriter()) {
             writer.write(value);
         }

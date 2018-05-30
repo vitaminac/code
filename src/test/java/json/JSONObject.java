@@ -15,7 +15,7 @@ public class JSONObject implements JSON {
     private final int i;
     private final long l;
     private final JSON o;
-    private final List<JSON> os;
+    private final List<JSONObject> os;
     private final short s;
     private final String str;
 
@@ -23,7 +23,7 @@ public class JSONObject implements JSON {
         this((byte) 'I', "love", 'u', 6.15, 8.6f, 520, 1314, null, (short) 5, new ArrayList<>());
     }
 
-    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSON o, short s, List<JSON> os) {
+    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSON o, short s, List<JSONObject> os) {
         this.b = b;
         this.c = c;
         this.d = d;

@@ -66,11 +66,10 @@ public class JSONWriterTest {
     public void writeComplexJSONObject() throws Exception {
         Writer writer = this.getUnderlyingWriter();
         final JSONWriter jsonWriter = new JSONWriter(writer);
-        List<JSON> list = new ArrayList<>();
+        List<JSONObject> list = new ArrayList<>();
         list.add(new JSONObject());
         jsonWriter
                 .write(new JSONObject((byte) 30, "hola", 'I', 3.1415, 3.14f, 3, 30, new JSONObject(), (short) -1, list));
-        System.out.println(writer.toString());
         assertEquals("{\"b\":30,\"str\":\"hola\",\"c\":\"I\",\"d\":3.1415,\"f\":3.14,\"i\":3,\"l\":30,\"o\":{\"b\":73,\"str\":\"love\",\"c\":\"u\",\"d\":6.15,\"f\":8.6,\"i\":520,\"l\":1314,\"o\":null,\"s\":5,\"os\":[]},\"s\":-1,\"os\":[{\"b\":73,\"str\":\"love\",\"c\":\"u\",\"d\":6.15,\"f\":8.6,\"i\":520,\"l\":1314,\"o\":null,\"s\":5,\"os\":[]}]}", writer
                 .toString());
     }
