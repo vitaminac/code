@@ -4,6 +4,7 @@ import json.writer.JSONObjectWriter;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class JSONObject implements JSON {
@@ -14,15 +15,15 @@ public class JSONObject implements JSON {
     private final int i;
     private final long l;
     private final JSON o;
-    private final ArrayList<JSON> os = new ArrayList<>();
+    private final List<JSON> os;
     private final short s;
     private final String str;
 
     public JSONObject() {
-        this((byte) 'I', "love", 'u', 6.15, 8.6f, 520, 1314, null, (short) 5);
+        this((byte) 'I', "love", 'u', 6.15, 8.6f, 520, 1314, null, (short) 5, new ArrayList<>());
     }
 
-    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSON o, short s) {
+    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSON o, short s, List<JSON> os) {
         this.b = b;
         this.c = c;
         this.d = d;
@@ -32,6 +33,7 @@ public class JSONObject implements JSON {
         this.o = o;
         this.s = s;
         this.str = str;
+        this.os = os;
     }
 
     @Override

@@ -2,6 +2,7 @@ package json;
 
 import json.reader.JSONValue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class JSONObjectFactory implements JSONRestoreFactory<JSONObject> {
@@ -16,6 +17,7 @@ public class JSONObjectFactory implements JSONRestoreFactory<JSONObject> {
         long l = (long) members.get("l").getNumber();
         JSONObject o = members.get("o").getObject(this);
         short s = (short) members.get("s").getNumber();
-        return new JSONObject(b, str, c, d, f, i, l, o, s);
+        // TODO: read list
+        return new JSONObject(b, str, c, d, f, i, l, o, s, new ArrayList<>());
     }
 }
