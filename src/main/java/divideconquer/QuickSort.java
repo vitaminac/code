@@ -3,14 +3,18 @@ package divideconquer;
 import java.util.Comparator;
 
 public class QuickSort<E> {
+    public static <T extends Comparable<? super T>> QuickSort<T> create() {
+        return new QuickSort<>(T::compareTo);
+    }
+
     private final Comparator<? super E> comparator;
 
     public QuickSort(Comparator<? super E> comparator) {
         this.comparator = comparator;
     }
 
-    public static <T extends Comparable<? super T>> QuickSort<T> create() {
-        return new QuickSort<>(T::compareTo);
+    public void sort(E[] array) {
+        this.sort(array, 0, array.length - 1);
     }
 
     private void sort(E[] array, int head, int pivot) {
@@ -18,27 +22,20 @@ public class QuickSort<E> {
             int left = head;
             int right = pivot - 1;
             E tmp;
-            while (right > left) {
+            while (right >= left) {
                 if (this.comparator.compare(array[left], array[pivot]) > 0) {
                     tmp = array[right];
                     array[right--] = array[left];
                     array[left] = tmp;
                 } else {
-                    left++;
+                    left += 1;
                 }
             }
-            if (this.comparator.compare(array[left], array[pivot]) > 0) {
-                left = left - 1;
-            }
-            tmp = array[left + 1];
-            array[left + 1] = array[pivot];
+            tmp = array[left];
+            array[left] = array[pivot];
             array[pivot] = tmp;
-            sort(array, head, left);
-            sort(array, left + 2, pivot);
+            sort(array, head, right);
+            sort(array, left + 1, pivot);
         }
-    }
-
-    public void sort(E[] array) {
-        this.sort(array, 0, array.length - 1);
     }
 }
