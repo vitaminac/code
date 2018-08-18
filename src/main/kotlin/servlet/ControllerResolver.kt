@@ -1,5 +1,5 @@
 package servlet
 
-interface ViewResolver {
+interface ControllerResolver {
     fun resolve(request: HttpRequest): HttpHandler;
 }

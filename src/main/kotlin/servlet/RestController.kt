@@ -1,11 +1,11 @@
 package servlet
 
 abstract class RestController<DTO> : HttpHandler {
-    val dtoManager: DTOManager<DTO> = DTOManager();
+    val converter: DTOConverter<DTO> = DTOConverter();
     override fun handle(request: HttpRequest): HttpResponse {
         when (request.method) {
             HttpMethod.GET -> this.doGet(request);
-            HttpMethod.POST -> this.doPost(this.dtoManager.transform(request))
+            HttpMethod.POST -> this.doPost(this.converter.transform(request))
         }
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

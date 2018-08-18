@@ -1,6 +1,6 @@
 package servlet
 
-class DTOManager<DTO> {
+class DTOConverter<DTO> {
     fun transform(request: HttpRequest): DTO {
         TODO("Implementation");
     }

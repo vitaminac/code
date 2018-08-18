@@ -1,6 +1,6 @@
 package servlet
 
-class HttpDispatcher constructor(val resolver: ViewResolver) : Dispatcher<HttpRequest, HttpResponse> {
+class HttpDispatcher constructor(val resolver: ControllerResolver) : Dispatcher<HttpRequest, HttpResponse> {
     val middlewares: MutableList<Middleware> = mutableListOf();
 
     override fun serve(request: HttpRequest): HttpResponse {
