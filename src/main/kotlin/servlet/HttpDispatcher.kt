@@ -1,7 +1,11 @@
 package servlet
 
-class HttpDispatcher constructor(val resolver: ControllerResolver) : Dispatcher<HttpRequest, HttpResponse> {
+class HttpDispatcher constructor(val resolver: ControllerResolver, errorHandler: ExceptionMiddleware) : Dispatcher<HttpRequest, HttpResponse> {
     val middlewares: MutableList<Middleware> = mutableListOf();
+
+    init {
+        this.register(errorHandler);
+    }
 
     override fun serve(request: HttpRequest): HttpResponse {
         // TODO: parse http request
