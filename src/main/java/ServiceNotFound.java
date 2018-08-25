@@ -1,5 +1,5 @@
 public class ServiceNotFound extends Exception {
-    public ServiceNotFound(Class<?> clazz) {
-        super(clazz.getName() + " not found in the application context");
+    public ServiceNotFound(Class<?> type) {
+        super(type.getName() + " not found in the application context");
     }
 }

@@ -15,7 +15,11 @@ public class ApplicationContext {
     private final Map<Class<?>, Provider<?>> providerMap = new HashMap<>();
 
     public ApplicationContext() {
-        this.addProvider(ApplicationContext.class, new SingletonProvider<>(this));
+        try {
+            this.addProvider(ApplicationContext.class, new SingletonProvider<>(this));
+        } catch (DuplicateDefinitionException e) {
+            // never
+        }
     }
 
     <T> T get(Class<T> type) throws ServiceNotFound {
@@ -27,9 +31,11 @@ public class ApplicationContext {
         }
     }
 
-    <T> void addProvider(Class<T> type, Provider<T> provider) {
+    <T> void addProvider(Class<T> type, Provider<T> provider) throws DuplicateDefinitionException {
         if (!this.providerMap.containsKey(type)) {
             this.providerMap.put(type, provider);
+        } else {
+            throw new DuplicateDefinitionException(type);
         }
     }
 }
