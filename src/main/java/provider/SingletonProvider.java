@@ -4,8 +4,8 @@ package provider;
 public class SingletonProvider<T> implements Provider<T> {
     private final T instance;
 
-    public SingletonProvider(T instance) {
-        this.instance = instance;
+    public SingletonProvider(TypeFactory<T> factory) {
+        this.instance = factory.build();
     }
 
     @Override

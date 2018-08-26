@@ -1,5 +1,3 @@
-import provider.Prototype;
-
 import java.util.Objects;
 
 public class TestPrototype implements Prototype {

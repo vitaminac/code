@@ -5,6 +5,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationContext {
+    private static ApplicationContext context = new ApplicationContext();
+
+    public static <T> void register(Class<T> type, Provider<T> provider) throws DuplicateDefinitionException {
+        context.addProvider(type, provider);
+    }
+
     // TODO: Lazy load
     // TODO: ApplicationEventPublisher
     // TODO: ResourcePatternResolver
@@ -16,7 +22,7 @@ public class ApplicationContext {
 
     public ApplicationContext() {
         try {
-            this.addProvider(ApplicationContext.class, new SingletonProvider<>(this));
+            this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
         } catch (DuplicateDefinitionException e) {
             // never
         }

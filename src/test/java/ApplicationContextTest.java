@@ -1,19 +1,18 @@
 import org.junit.Before;
 import org.junit.Test;
-import provider.FactoryProvider;
 import provider.PrototypeProvider;
 import provider.SingletonProvider;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ApplicationContextTest {
     private ApplicationContext context = new ApplicationContext();
 
     @Before
     public void setUp() throws Exception {
-        context.addProvider(TestSingleton.class, new SingletonProvider<>(new TestSingleton()));
-        context.addProvider(TestPrototype.class, new PrototypeProvider<>(new TestPrototype()));
-        context.addProvider(TestFactory.class, (FactoryProvider<TestFactory>) () -> new TestFactory(5));
+        context.addProvider(TestSingleton.class, new SingletonProvider<>(TestSingleton::new));
+        context.addProvider(TestPrototype.class, new PrototypeProvider<>(TestPrototype::new));
     }
 
     @Test
@@ -32,17 +31,6 @@ public class ApplicationContextTest {
     public void testPrototype() throws Exception {
         final TestPrototype instance1 = this.context.get(TestPrototype.class);
         final TestPrototype instance2 = this.context.get(TestPrototype.class);
-        assertEquals(instance1, instance2);
-
-        instance1.setNumber(1);
-        instance2.setNumber(2);
-        assertNotEquals(instance1, instance2);
-    }
-
-    @Test
-    public void testFactory() throws Exception {
-        final TestFactory instance1 = this.context.get(TestFactory.class);
-        final TestFactory instance2 = this.context.get(TestFactory.class);
         assertEquals(instance1, instance2);
 
         instance1.setNumber(1);
