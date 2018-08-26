@@ -90,11 +90,21 @@ public class ApplicationContext {
         // TODO: dependencies graph
         Arrays.stream(type.getConstructors())
                 .filter((constructor) -> Arrays.stream(constructor.getParameterTypes())
-                        .allMatch((arg) -> this.get(arg) != null))
+                        .allMatch((argType) -> {
+                            try {
+                                this.get(argType);
+                                return true;
+                            } catch (DefinitionNotFound e) {
+                                return false;
+                            }
+                        }))
                 .findFirst()
                 .map((constructor -> (TypeFactory<T>) () -> {
                     try {
-                        return (T) constructor.newInstance(Arrays.stream(constructor.getParameterTypes()).map(ApplicationContext.this::get).toArray());
+                        return (T) constructor.newInstance(Arrays
+                                .stream(constructor.getParameterTypes())
+                                .map(ApplicationContext.this::get)
+                                .toArray());
                     } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
                         throw new LoadDefinitionException(e);
                     }

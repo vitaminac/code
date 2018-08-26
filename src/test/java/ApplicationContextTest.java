@@ -12,7 +12,7 @@ public class ApplicationContextTest {
 
     @Before
     public void setUp() throws Exception {
-        this.context = new ApplicationContext(TestAnnotation.class, TestAnnotationMore.class, TestClassLevelAnnotation.class);
+        this.context = new ApplicationContext(TestAnnotation.class, TestAnnotationMore.class, TestClassLevelAnnotation.class, TestConstructorInject.class);
     }
 
     @Test
