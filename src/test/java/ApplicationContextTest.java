@@ -11,7 +11,7 @@ public class ApplicationContextTest {
 
     @Before
     public void setUp() throws Exception {
-        this.context = new ApplicationContext(TestAnnotation.class);
+        this.context = new ApplicationContext(TestAnnotation.class, TestAnnotationMore.class);
     }
 
     @Test
@@ -50,6 +50,24 @@ public class ApplicationContextTest {
     public void testAnnotatedPrototype() throws Exception {
         final TestAnnotatedPrototype instance1 = this.context.get(TestAnnotatedPrototype.class);
         final TestAnnotatedPrototype instance2 = this.context.get(TestAnnotatedPrototype.class);
+        assertEquals(instance1, instance2);
+
+        instance1.setNumber(1);
+        instance2.setNumber(2);
+        assertNotEquals(instance1, instance2);
+    }
+
+    @Test
+    public void testAnnotatedSingletonMore() throws Exception {
+        final TestAnnotatedSingletonMore instance1 = this.context.get(TestAnnotatedSingletonMore.class);
+        final TestAnnotatedSingletonMore instance2 = this.context.get(TestAnnotatedSingletonMore.class);
+        assertEquals(instance1, instance2);
+    }
+
+    @Test
+    public void testAnnotatedPrototypeMore() throws Exception {
+        final TestAnnotatedPrototypeMore instance1 = this.context.get(TestAnnotatedPrototypeMore.class);
+        final TestAnnotatedPrototypeMore instance2 = this.context.get(TestAnnotatedPrototypeMore.class);
         assertEquals(instance1, instance2);
 
         instance1.setNumber(1);

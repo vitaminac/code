@@ -21,27 +21,30 @@ public class ApplicationContext {
     // TODO: allow interface Map<Interface<?>, Provider<?>>
     private final Map<Class<?>, Provider<?>> providerMap = new HashMap<>();
 
-    public ApplicationContext(Class config) {
+    public ApplicationContext(Class... configs) {
         try {
             this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
-            final Object instance = config.newInstance();
-            for (Method method : config.getDeclaredMethods()) {
-                final Injectable injectable = method.getAnnotation(Injectable.class);
-                if (injectable != null) {
-                    method.setAccessible(true);
-                    this.addProviderByReflection(method.getReturnType(), method, injectable.scope(), instance);
-                }
+            for (Class config : configs) {
+                final Object instance = config.newInstance();
+                for (Method method : config.getDeclaredMethods()) {
+                    final Injectable injectable = method.getAnnotation(Injectable.class);
+                    if (injectable != null) {
+                        method.setAccessible(true);
+                        this.addProviderByReflection(method.getReturnType(), method, injectable.scope(), instance);
+                    }
 
+                }
             }
         } catch (DuplicateDefinitionException | IllegalAccessException | InstantiationException e) {
             throw new LoadDefinitionException(e);
         }
     }
 
-    public <T> T get(Class<T> type) throws ServiceNotFound {
+    @SuppressWarnings("unchecked")
+    public <T> T get(Class<T> type) throws DefinitionNotFound {
         final Provider<?> provider = this.providerMap.get(type);
         if (provider == null) {
-            throw new ServiceNotFound(type);
+            throw new DefinitionNotFound(type);
         } else {
             return (T) provider.provide();
         }
