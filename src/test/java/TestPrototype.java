@@ -1,13 +1,7 @@
-import provider.Prototype;
-
 import java.util.Objects;
 
-public class TestPrototype implements Prototype {
+public class TestPrototype {
     private int number;
-
-    public TestPrototype() {
-        this((int) (Math.random() * Integer.MAX_VALUE));
-    }
 
     public TestPrototype(int number) {
         this.number = number;
@@ -24,11 +18,6 @@ public class TestPrototype implements Prototype {
     @Override
     public int hashCode() {
         return Objects.hash(number);
-    }
-
-    @Override
-    public Object clone() {
-        return new TestPrototype(this.number);
     }
 
     public int getNumber() {
