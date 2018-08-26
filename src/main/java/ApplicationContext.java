@@ -8,6 +8,7 @@ import provider.TypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -21,16 +22,23 @@ public class ApplicationContext {
     // TODO: allow interface Map<Interface<?>, Provider<?>>
     private final Map<Class<?>, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
-    public ApplicationContext(Class... configs) {
+    public ApplicationContext(Class... types) {
         try {
             this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
-            for (Class config : configs) {
-                final Object instance = config.newInstance();
-                for (Method method : config.getDeclaredMethods()) {
-                    final Injectable injectable = method.getAnnotation(Injectable.class);
+            for (Class type : types) {
+                Injectable injectable = (Injectable) type.getAnnotation(Injectable.class);
+                Object instance;
+                if (injectable != null) {
+                    this.addProviderByConstructor(type, injectable.scope());
+                    instance = this.get(type);
+                } else {
+                    instance = type.newInstance();
+                }
+                for (Method method : type.getDeclaredMethods()) {
+                    injectable = method.getAnnotation(Injectable.class);
                     if (injectable != null) {
                         method.setAccessible(true);
-                        this.addProviderByReflection(method.getReturnType(), method, injectable.scope(), instance);
+                        this.addProviderByFactoryMethod(method.getReturnType(), method, injectable.scope(), instance);
                     }
 
                 }
@@ -41,7 +49,7 @@ public class ApplicationContext {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T get(Class<T> type) throws DefinitionNotFound {
+    public <T> T get(Class<T> type) {
         final Provider<?> provider = this.providerMap.get(type);
         if (provider == null) {
             throw new DefinitionNotFound(type);
@@ -62,7 +70,7 @@ public class ApplicationContext {
         this.addProvider(type, new SingletonProvider<>(new DefaultTypeFactory<>(type)));
     }
 
-    private <T> void addProviderByReflection(Class<T> returnType, Method method, Scope scope, Object instance) {
+    private <T> void addProviderByFactoryMethod(Class<T> returnType, Method method, Scope scope, Object instance) {
         TypeFactory<T> factory = new TypeFactory<T>() {
             @Override
             @SuppressWarnings("unchecked")
@@ -74,12 +82,32 @@ public class ApplicationContext {
                 }
             }
         };
+        this.addProviderByFactory(returnType, factory, scope);
+    }
+
+    private <T> void addProviderByConstructor(Class<T> type, Scope scope) {
+        // TODO: dependencies graph
+        Arrays.stream(type.getConstructors())
+                .filter((constructor) -> Arrays.stream(constructor.getParameterTypes())
+                        .allMatch((arg) -> this.get(arg) != null))
+                .findFirst()
+                .map((constructor -> (TypeFactory<T>) () -> {
+                    try {
+                        return (T) constructor.newInstance(Arrays.stream(constructor.getParameterTypes()).map(ApplicationContext.this::get).toArray());
+                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                        throw new LoadDefinitionException(e);
+                    }
+                }))
+                .ifPresent((factory -> this.addProviderByFactory(type, factory, scope)));
+    }
+
+    private <T> void addProviderByFactory(Class<T> type, TypeFactory<T> factory, Scope scope) {
         switch (scope) {
             case Singleton:
-                this.addProvider(returnType, new SingletonProvider<T>(factory));
+                this.addProvider(type, new SingletonProvider<T>(factory));
                 break;
             case Prototype:
-                this.addProvider(returnType, new PrototypeProvider<>(factory));
+                this.addProvider(type, new PrototypeProvider<>(factory));
                 break;
         }
     }

@@ -5,13 +5,14 @@ import provider.SingletonProvider;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class ApplicationContextTest {
     private ApplicationContext context;
 
     @Before
     public void setUp() throws Exception {
-        this.context = new ApplicationContext(TestAnnotation.class, TestAnnotationMore.class);
+        this.context = new ApplicationContext(TestAnnotation.class, TestAnnotationMore.class, TestClassLevelAnnotation.class);
     }
 
     @Test
@@ -73,5 +74,14 @@ public class ApplicationContextTest {
         instance1.setNumber(1);
         instance2.setNumber(2);
         assertNotEquals(instance1, instance2);
+    }
+
+    @Test
+    public void testClassLevelAnnotation() throws Exception {
+        final TestClassLevelAnnotation instance1 = this.context.get(TestClassLevelAnnotation.class);
+        final TestClassLevelAnnotation instance2 = this.context.get(TestClassLevelAnnotation.class);
+        assertNotNull(instance1);
+        assertNotNull(instance2);
+        assertEquals(instance1, instance2);
     }
 }
