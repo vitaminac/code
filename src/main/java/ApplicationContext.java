@@ -8,6 +8,7 @@ public class ApplicationContext {
     private static ApplicationContext context = new ApplicationContext();
 
     public static <T> void register(Class<T> type, Provider<T> provider) throws DuplicateDefinitionException {
+        // TODO: depending on thread or request return one context or the other
         context.addProvider(type, provider);
     }
 
