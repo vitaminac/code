@@ -8,8 +8,8 @@ import provider.TypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class ApplicationContext {
     // TODO: Lazy load
@@ -19,7 +19,7 @@ public class ApplicationContext {
     // TODO: scope: per request, per session, per application
     // TODO: inheritance, class A extends B, get(B.clcass) should also be prosible to return instance A
     // TODO: allow interface Map<Interface<?>, Provider<?>>
-    private final Map<Class<?>, Provider<?>> providerMap = new HashMap<>();
+    private final Map<Class<?>, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
     public ApplicationContext(Class... configs) {
         try {
