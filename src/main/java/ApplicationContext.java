@@ -71,6 +71,7 @@ public class ApplicationContext {
     }
 
     private <T> void addProviderByFactoryMethod(Class<T> returnType, Method method, Scope scope, Object instance) {
+        // TODO: satisfy method dependencies
         TypeFactory<T> factory = new TypeFactory<T>() {
             @Override
             @SuppressWarnings("unchecked")
