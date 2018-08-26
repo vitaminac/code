@@ -1,26 +1,17 @@
+import injection.Injectable;
+import injection.Scope;
 import provider.DefaultTypeFactory;
+import provider.PrototypeProvider;
 import provider.Provider;
 import provider.SingletonProvider;
+import provider.TypeFactory;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ApplicationContext {
-    private static ApplicationContext context = new ApplicationContext();
-
-    public static <T> void register(Class<T> type, Provider<T> provider) {
-        // TODO: depending on thread or request return one context or the other
-        context.addProvider(type, provider);
-    }
-
-    public static <T> void register(Class<T> type) {
-        context.addProvider(type, new SingletonProvider<>(new DefaultTypeFactory<>(type)));
-    }
-
-    public static <T> T resolve(Class<T> type) throws ServiceNotFound {
-        return context.get(type);
-    }
-
     // TODO: Lazy load
     // TODO: ApplicationEventPublisher
     // TODO: ResourcePatternResolver
@@ -30,15 +21,24 @@ public class ApplicationContext {
     // TODO: allow interface Map<Interface<?>, Provider<?>>
     private final Map<Class<?>, Provider<?>> providerMap = new HashMap<>();
 
-    public ApplicationContext() {
+    public ApplicationContext(Class config) {
         try {
             this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
-        } catch (DuplicateDefinitionException e) {
-            // never
+            final Object instance = config.newInstance();
+            for (Method method : config.getDeclaredMethods()) {
+                final Injectable injectable = method.getAnnotation(Injectable.class);
+                if (injectable != null) {
+                    method.setAccessible(true);
+                    this.addProviderByReflection(method.getReturnType(), method, injectable.scope(), instance);
+                }
+
+            }
+        } catch (DuplicateDefinitionException | IllegalAccessException | InstantiationException e) {
+            throw new LoadDefinitionException(e);
         }
     }
 
-    <T> T get(Class<T> type) throws ServiceNotFound {
+    public <T> T get(Class<T> type) throws ServiceNotFound {
         final Provider<?> provider = this.providerMap.get(type);
         if (provider == null) {
             throw new ServiceNotFound(type);
@@ -47,11 +47,37 @@ public class ApplicationContext {
         }
     }
 
-    <T> void addProvider(Class<T> type, Provider<T> provider) {
+    public <T> void addProvider(Class<T> type, Provider<T> provider) {
         if (!this.providerMap.containsKey(type)) {
             this.providerMap.put(type, provider);
         } else {
             throw new DuplicateDefinitionException(type);
+        }
+    }
+
+    public <T> void addType(Class<T> type) {
+        this.addProvider(type, new SingletonProvider<>(new DefaultTypeFactory<>(type)));
+    }
+
+    private <T> void addProviderByReflection(Class<T> returnType, Method method, Scope scope, Object instance) {
+        TypeFactory<T> factory = new TypeFactory<T>() {
+            @Override
+            @SuppressWarnings("unchecked")
+            public T build() {
+                try {
+                    return (T) method.invoke(instance);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    return null;
+                }
+            }
+        };
+        switch (scope) {
+            case Singleton:
+                this.addProvider(returnType, new SingletonProvider<T>(factory));
+                break;
+            case Prototype:
+                this.addProvider(returnType, new PrototypeProvider<>(factory));
+                break;
         }
     }
 }
