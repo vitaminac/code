@@ -1,3 +1,4 @@
+import provider.DefaultTypeFactory;
 import provider.Provider;
 import provider.SingletonProvider;
 
@@ -7,9 +8,17 @@ import java.util.Map;
 public class ApplicationContext {
     private static ApplicationContext context = new ApplicationContext();
 
-    public static <T> void register(Class<T> type, Provider<T> provider) throws DuplicateDefinitionException {
+    public static <T> void register(Class<T> type, Provider<T> provider) {
         // TODO: depending on thread or request return one context or the other
         context.addProvider(type, provider);
+    }
+
+    public static <T> void register(Class<T> type) {
+        context.addProvider(type, new SingletonProvider<>(new DefaultTypeFactory<>(type)));
+    }
+
+    public static <T> T resolve(Class<T> type) throws ServiceNotFound {
+        return context.get(type);
     }
 
     // TODO: Lazy load
@@ -38,7 +47,7 @@ public class ApplicationContext {
         }
     }
 
-    <T> void addProvider(Class<T> type, Provider<T> provider) throws DuplicateDefinitionException {
+    <T> void addProvider(Class<T> type, Provider<T> provider) {
         if (!this.providerMap.containsKey(type)) {
             this.providerMap.put(type, provider);
         } else {
