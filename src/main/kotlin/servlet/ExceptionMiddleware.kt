@@ -1,9 +1,9 @@
 package servlet
 
 class ExceptionMiddleware : Middleware {
-    override fun intercept(request: HttpRequest, next: HttpHandler): HttpResponse {
+    override fun intercept(request: HttpRequest, it: Iterator<Middleware>): HttpResponse {
         try {
-            return next.handle(request);
+            return it.next().intercept(request, it);
         } catch (e: Exception) {
             TODO("return error body");
         }
