@@ -1,5 +1,7 @@
+import injection.ContextConfig;
 import injection.Injectable;
 import injection.Scope;
+import org.reflections.Reflections;
 import provider.DefaultTypeFactory;
 import provider.PrototypeProvider;
 import provider.Provider;
@@ -10,6 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class ApplicationContext {
@@ -22,39 +25,44 @@ public class ApplicationContext {
     // TODO: allow interface Map<Interface<?>, Provider<?>>
     private final Map<Class<?>, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
-    public ApplicationContext(Class... types) {
-        try {
-            this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
-            for (Class type : types) {
-                Injectable injectable = (Injectable) type.getAnnotation(Injectable.class);
-                Object instance;
-                if (injectable != null) {
-                    this.addProviderByConstructor(type, injectable.scope());
-                    instance = this.get(type);
-                } else {
-                    instance = type.newInstance();
-                }
-                for (Method method : type.getDeclaredMethods()) {
-                    injectable = method.getAnnotation(Injectable.class);
-                    if (injectable != null) {
-                        method.setAccessible(true);
-                        this.addProviderByFactoryMethod(method.getReturnType(), method, injectable.scope(), instance);
-                    }
+    private ApplicationContext() {
+        this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
+    }
 
+    public <T extends ContextConfig> void registerConfig(Class<T> config) {
+        try {
+            final T instance = config.newInstance();
+            for (Method method : config.getDeclaredMethods()) {
+                Injectable injectable = method.getAnnotation(Injectable.class);
+                if (injectable != null) {
+                    method.setAccessible(true);
+                    this.addProviderByFactoryMethod(method.getReturnType(), method, injectable.scope(), instance);
                 }
             }
-        } catch (DuplicateDefinitionException | IllegalAccessException | InstantiationException e) {
+        } catch (InstantiationException | IllegalAccessException e) {
             throw new LoadDefinitionException(e);
         }
     }
 
-    @SuppressWarnings("unchecked")
+    public void registerInjectable(Class... types) {
+        try {
+            for (Class type : types) {
+                Injectable injectable = (Injectable) type.getAnnotation(Injectable.class);
+                if (injectable != null) {
+                    this.addProviderByConstructor(type, injectable.scope());
+                }
+            }
+        } catch (DuplicateDefinitionException e) {
+            throw new LoadDefinitionException(e);
+        }
+    }
+
     public <T> T get(Class<T> type) {
-        final Provider<?> provider = this.providerMap.get(type);
+        final Provider<? extends T> provider = (Provider<? extends T>) this.providerMap.get(type);
         if (provider == null) {
             throw new DefinitionNotFound(type);
         } else {
-            return (T) provider.provide();
+            return provider.provide();
         }
     }
 
@@ -121,5 +129,21 @@ public class ApplicationContext {
                 this.addProvider(type, new PrototypeProvider<>(factory));
                 break;
         }
+    }
+
+    private static ApplicationContext APPLICATION_CONTEXT = null;
+
+    public static ApplicationContext load() {
+        if (APPLICATION_CONTEXT == null) {
+            Reflections reflections = new Reflections("");
+            Set<Class<? extends ContextConfig>> configs = reflections.getSubTypesOf(ContextConfig.class);
+            APPLICATION_CONTEXT = new ApplicationContext();
+            for (Class<? extends ContextConfig> config : configs) {
+                APPLICATION_CONTEXT.registerConfig(config);
+            }
+            Set<Class<?>> injectables = reflections.getTypesAnnotatedWith(Injectable.class);
+            APPLICATION_CONTEXT.registerInjectable(injectables.toArray(new Class[0]));
+        }
+        return APPLICATION_CONTEXT;
     }
 }

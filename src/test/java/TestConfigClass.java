@@ -1,7 +1,8 @@
+import injection.ContextConfig;
 import injection.Injectable;
 import injection.Scope;
 
-public class TestAnnotation {
+public class TestConfigClass implements ContextConfig {
     @Injectable
     private TestAnnotatedSingleton buildServiceSingleton() {
         return new TestAnnotatedSingleton();
