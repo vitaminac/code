@@ -9,6 +9,7 @@ import provider.DefaultTypeFactory;
 import provider.PrototypeProvider;
 import provider.Provider;
 import provider.SingletonProvider;
+import provider.ThreadLocalProvider;
 import provider.TypeFactory;
 
 import java.lang.reflect.InvocationTargetException;
@@ -26,6 +27,8 @@ public class ApplicationContext {
     // TODO: scope: per request, per session, per application
     // TODO: inheritance, class A extends B, get(B.clcass) should also be prosible to return instance A
     // TODO: allow interface Map<Interface<?>, Provider<?>>
+    // TODO: bean with name
+    // TODO: change type of map key to Object
     private final Map<Class<?>, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
     private ApplicationContext() {
@@ -131,6 +134,8 @@ public class ApplicationContext {
             case Prototype:
                 this.addProvider(type, new PrototypeProvider<>(factory));
                 break;
+            case Thread:
+                this.addProvider(type, new ThreadLocalProvider<T>(factory));
         }
     }
 

@@ -1,7 +1,17 @@
+package provider;
+
+import injection.Injectable;
+import injection.Scope;
+
 import java.util.Objects;
 
+@Injectable(scope = Scope.Prototype)
 public class TestPrototype {
     private int number;
+
+    public TestPrototype() {
+        this(0);
+    }
 
     public TestPrototype(int number) {
         this.number = number;

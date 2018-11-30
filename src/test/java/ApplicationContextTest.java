@@ -1,7 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
-import provider.PrototypeProvider;
-import provider.SingletonProvider;
+import provider.TestPrototype;
+import provider.TestSingleton;
+import provider.TestThreadLocal;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -22,17 +23,23 @@ public class ApplicationContextTest {
 
     @Test
     public void testSingleton() {
-        this.context.addProvider(TestSingleton.class, new SingletonProvider<>(TestSingleton::new));
         final TestSingleton instance1 = this.context.get(TestSingleton.class);
         final TestSingleton instance2 = this.context.get(TestSingleton.class);
+
+        assertNotNull(instance1);
+        assertNotNull(instance2);
+
         assertEquals(instance1, instance2);
     }
 
     @Test
     public void testPrototype() {
-        this.context.addProvider(TestPrototype.class, new PrototypeProvider<>(() -> new TestPrototype(55)));
         final TestPrototype instance1 = this.context.get(TestPrototype.class);
         final TestPrototype instance2 = this.context.get(TestPrototype.class);
+
+        assertNotNull(instance1);
+        assertNotNull(instance2);
+
         assertEquals(instance1, instance2);
 
         instance1.setNumber(1);
@@ -41,21 +48,39 @@ public class ApplicationContextTest {
     }
 
     @Test
-    public void testAnnotatedSingleton() {
-        final TestAnnotatedSingleton instance1 = this.context.get(TestAnnotatedSingleton.class);
-        final TestAnnotatedSingleton instance2 = this.context.get(TestAnnotatedSingleton.class);
-        assertEquals(instance1, instance2);
+    public void testCustomProvider() {
+        // this.context.addProvider();
+        // TODO:
     }
 
     @Test
-    public void testAnnotatedPrototype() {
-        final TestAnnotatedPrototype instance1 = this.context.get(TestAnnotatedPrototype.class);
-        final TestAnnotatedPrototype instance2 = this.context.get(TestAnnotatedPrototype.class);
-        assertEquals(instance1, instance2);
+    public void testThreadLocal() {
+        Runnable testThread = () -> {
+            final TestThreadLocal testThreadLocal = this.context.get(TestThreadLocal.class);
+            assertEquals(testThreadLocal.getId(), Thread.currentThread().getId());
+        };
+        new Thread(testThread).start();
+        new Thread(testThread).start();
+    }
 
-        instance1.setNumber(1);
-        instance2.setNumber(2);
-        assertNotEquals(instance1, instance2);
+    @Test
+    public void testConfig() {
+        // singleton
+        final TestAnnotatedSingleton singleton1 = this.context.get(TestAnnotatedSingleton.class);
+        final TestAnnotatedSingleton singleton2 = this.context.get(TestAnnotatedSingleton.class);
+        assertNotNull(singleton1);
+        assertNotNull(singleton2);
+        assertEquals(singleton1, singleton2);
+
+        // prototype
+        final TestAnnotatedPrototype prototype1 = this.context.get(TestAnnotatedPrototype.class);
+        final TestAnnotatedPrototype prototype2 = this.context.get(TestAnnotatedPrototype.class);
+        assertNotNull(prototype1);
+        assertNotNull(prototype2);
+        assertEquals(prototype1, prototype2);
+        prototype1.setNumber(1);
+        prototype2.setNumber(2);
+        assertNotEquals(prototype1, prototype2);
     }
 
     @Test
