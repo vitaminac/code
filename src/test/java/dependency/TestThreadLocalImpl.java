@@ -1,4 +1,4 @@
-package provider;
+package dependency;
 
 import injection.Dependency;
 import injection.Scope;

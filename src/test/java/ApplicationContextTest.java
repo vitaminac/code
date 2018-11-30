@@ -1,9 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 import provider.Provider;
-import provider.TestPrototype;
-import provider.TestSingleton;
-import provider.TestThreadLocal;
+import dependency.TestPrototype;
+import dependency.TestSingleton;
+import dependency.TestThreadLocal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -55,7 +55,7 @@ public class ApplicationContextTest {
 
     @Test
     public void testGetDependencyByName() {
-        // TODO
+        assertNotNull(this.context.getDependencyByName("myName"));
     }
 
     @Test
