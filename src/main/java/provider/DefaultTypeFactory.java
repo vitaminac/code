@@ -1,5 +1,7 @@
 package provider;
 
+import error.LoadDefinitionException;
+
 public class DefaultTypeFactory<T> implements TypeFactory<T> {
     private final Class<T> type;
 
@@ -12,7 +14,7 @@ public class DefaultTypeFactory<T> implements TypeFactory<T> {
         try {
             return this.type.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new LoadDefinitionException(e);
         }
     }
 }

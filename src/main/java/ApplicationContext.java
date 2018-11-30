@@ -1,3 +1,6 @@
+import error.DefinitionNotFound;
+import error.DuplicateDefinitionException;
+import error.LoadDefinitionException;
 import injection.ContextConfig;
 import injection.Injectable;
 import injection.Scope;
@@ -87,7 +90,7 @@ public class ApplicationContext {
                 try {
                     return (T) method.invoke(instance);
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    return null;
+                    throw new LoadDefinitionException(e);
                 }
             }
         };
