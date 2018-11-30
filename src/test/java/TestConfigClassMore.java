@@ -1,14 +1,14 @@
 import injection.ContextConfig;
-import injection.Injectable;
+import injection.Dependency;
 import injection.Scope;
 
 public class TestConfigClassMore implements ContextConfig {
-    @Injectable
+    @Dependency
     private TestAnnotatedSingletonMore buildServiceSingleton() {
         return new TestAnnotatedSingletonMore();
     }
 
-    @Injectable(scope = Scope.Prototype)
+    @Dependency(scope = Scope.Prototype)
     private TestAnnotatedPrototypeMore buildServicePrototype() {
         return new TestAnnotatedPrototypeMore(99);
     }

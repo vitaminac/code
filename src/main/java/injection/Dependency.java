@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface Injectable {
+public @interface Dependency {
     Scope scope() default Scope.Singleton;
 
     String name() default "";

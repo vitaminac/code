@@ -1,7 +1,7 @@
 package provider;
 
-import injection.Injectable;
+import injection.Dependency;
 
-@Injectable
+@Dependency
 public class TestSingletonImpl implements TestSingleton {
 }

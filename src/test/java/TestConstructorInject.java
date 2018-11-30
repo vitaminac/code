@@ -1,6 +1,6 @@
-import injection.Injectable;
+import injection.Dependency;
 
-@Injectable
+@Dependency
 public class TestConstructorInject {
     public TestConstructorInject(TestAnnotatedPrototype prototype, TestAnnotatedSingleton singleton) {
 

@@ -1,5 +1,5 @@
 package provider;
 
-public interface TypeFactory<T> {
+public interface Factory<T> {
     T build();
 }

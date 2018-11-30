@@ -1,9 +1,9 @@
 package provider;
 
 public class PrototypeProvider<T> implements Provider<T> {
-    private final TypeFactory<T> prototypeFactory;
+    private final Factory<T> prototypeFactory;
 
-    public PrototypeProvider(TypeFactory<T> factory) {
+    public PrototypeProvider(Factory<T> factory) {
         this.prototypeFactory = factory;
     }
 

@@ -2,10 +2,10 @@ package provider;
 
 import error.LoadDefinitionException;
 
-public class DefaultTypeFactory<T> implements TypeFactory<T> {
+public class DefaultFactory<T> implements Factory<T> {
     private final Class<T> type;
 
-    public DefaultTypeFactory(Class<T> type) {
+    public DefaultFactory(Class<T> type) {
         this.type = type;
     }
 

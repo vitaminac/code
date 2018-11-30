@@ -1,9 +1,9 @@
 package provider;
 
-import injection.Injectable;
+import injection.Dependency;
 import injection.Scope;
 
-@Injectable(scope = Scope.Thread)
+@Dependency(scope = Scope.Thread)
 public class TestThreadLocalImpl implements TestThreadLocal {
     private final long id;
 

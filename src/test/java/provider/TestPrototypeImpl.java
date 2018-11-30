@@ -1,11 +1,11 @@
 package provider;
 
-import injection.Injectable;
+import injection.Dependency;
 import injection.Scope;
 
 import java.util.Objects;
 
-@Injectable(scope = Scope.Prototype)
+@Dependency(scope = Scope.Prototype)
 public class TestPrototypeImpl implements TestPrototype {
     private int state;
 

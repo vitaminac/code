@@ -4,7 +4,7 @@ package provider;
 public class SingletonProvider<T> implements Provider<T> {
     private final T instance;
 
-    public SingletonProvider(TypeFactory<T> factory) {
+    public SingletonProvider(Factory<T> factory) {
         this.instance = factory.build();
     }
 

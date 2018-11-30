@@ -4,7 +4,7 @@ package provider;
 public class ThreadLocalProvider<T> implements Provider<T> {
     private final ThreadLocal<T> local;
 
-    public ThreadLocalProvider(TypeFactory<T> factory) {
+    public ThreadLocalProvider(Factory<T> factory) {
         this.local = ThreadLocal.withInitial(factory::build);
     }
 
