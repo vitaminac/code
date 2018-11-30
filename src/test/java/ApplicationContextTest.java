@@ -1,8 +1,16 @@
 import org.junit.Before;
 import org.junit.Test;
 import provider.TestPrototype;
+import provider.TestPrototypeImpl;
 import provider.TestSingleton;
+import provider.TestSingletonImpl;
 import provider.TestThreadLocal;
+import provider.TestThreadLocalImpl;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -42,8 +50,8 @@ public class ApplicationContextTest {
 
         assertEquals(instance1, instance2);
 
-        instance1.setNumber(1);
-        instance2.setNumber(2);
+        instance1.changeState(1);
+        instance2.changeState(2);
         assertNotEquals(instance1, instance2);
     }
 
@@ -54,13 +62,19 @@ public class ApplicationContextTest {
     }
 
     @Test
-    public void testThreadLocal() {
+    public void testThreadLocal() throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         Runnable testThread = () -> {
             final TestThreadLocal testThreadLocal = this.context.get(TestThreadLocal.class);
-            assertEquals(testThreadLocal.getId(), Thread.currentThread().getId());
+            assertEquals(testThreadLocal.getState(), Thread.currentThread().getId());
         };
-        new Thread(testThread).start();
-        new Thread(testThread).start();
+        final Future<?> future1 = executor.submit(testThread);
+        final Future<?> future2 = executor.submit(testThread);
+
+        executor.shutdown();
+        executor.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
+        future1.get();
+        future2.get();
     }
 
     @Test

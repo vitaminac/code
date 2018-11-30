@@ -28,8 +28,7 @@ public class ApplicationContext {
     // TODO: inheritance, class A extends B, get(B.clcass) should also be prosible to return instance A
     // TODO: allow interface Map<Interface<?>, Provider<?>>
     // TODO: bean with name
-    // TODO: change type of map key to Object
-    private final Map<Class<?>, Provider<?>> providerMap = new ConcurrentHashMap<>();
+    private final Map<Object, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
     private ApplicationContext() {
         this.addProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
@@ -63,20 +62,34 @@ public class ApplicationContext {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T get(Class<T> type) {
-        final Provider<? extends T> provider = (Provider<? extends T>) this.providerMap.get(type);
+        return (T) this.getByKey(type);
+    }
+
+    public Object getByKey(Object key) {
+        final Provider<?> provider = this.providerMap.get(key);
         if (provider == null) {
-            throw new DefinitionNotFound(type);
+            throw new DefinitionNotFound(key);
         } else {
             return provider.provide();
         }
     }
 
-    public <T> void addProvider(Class<T> type, Provider<T> provider) {
-        if (!this.providerMap.containsKey(type)) {
-            this.providerMap.put(type, provider);
+    public <T> void addProvider(Object key, Provider<T> provider) {
+        if (!this.providerMap.containsKey(key)) {
+            this.providerMap.put(key, provider);
         } else {
-            throw new DuplicateDefinitionException(type);
+            throw new DuplicateDefinitionException(key);
+        }
+    }
+
+    public <T> void addProvider(Class<T> type, Provider<T> provider) {
+        if (type.isInterface()) {
+            this.addProvider(type, provider);
+        }
+        for (Class<?> i : type.getInterfaces()) {
+            this.addProvider(i, provider);
         }
     }
 

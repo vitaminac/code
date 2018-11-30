@@ -1,7 +1,7 @@
 package error;
 
 public class DuplicateDefinitionException extends RuntimeException {
-    public DuplicateDefinitionException(Class<?> type) {
-        super("Duplicate definition for type " + type.getName());
+    public DuplicateDefinitionException(Object id) {
+        super("Duplicate definition for type " + id);
     }
 }

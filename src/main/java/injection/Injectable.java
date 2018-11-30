@@ -13,4 +13,6 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Injectable {
     Scope scope() default Scope.Singleton;
+
+    String name() default "";
 }

@@ -1,7 +1,7 @@
 package error;
 
 public class DefinitionNotFound extends RuntimeException {
-    public DefinitionNotFound(Class<?> type) {
-        super(type.getName() + " not found in the application context");
+    public DefinitionNotFound(Object key) {
+        super(key + " not found in the application context");
     }
 }
