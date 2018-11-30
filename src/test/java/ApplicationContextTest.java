@@ -1,5 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
+import provider.Provider;
 import provider.TestPrototype;
 import provider.TestSingleton;
 import provider.TestThreadLocal;
@@ -53,9 +54,28 @@ public class ApplicationContextTest {
     }
 
     @Test
+    public void testGetDependencyByName() {
+        // TODO
+    }
+
+    @Test
     public void testCustomProvider() {
-        // this.context.registerProvider();
-        // TODO:
+        Provider<Integer> provider = new Provider<Integer>() {
+            private int seed = 0;
+
+            @Override
+            public Integer provide() {
+                return seed++;
+            }
+        };
+        String name = "myCustomDependecy";
+        this.context.registerProvider(name, provider);
+        assertEquals(Integer.valueOf(0), this.context.getDependencyByName(name));
+        assertEquals(Integer.valueOf(1), this.context.getDependencyByName(name));
+        assertEquals(Integer.valueOf(2), this.context.getDependencyByName(name));
+        assertEquals(Integer.valueOf(3), this.context.getDependencyByName(name));
+        assertEquals(Integer.valueOf(4), this.context.getDependencyByName(name));
+        assertEquals(Integer.valueOf(5), this.context.getDependencyByName(name));
     }
 
     @Test
