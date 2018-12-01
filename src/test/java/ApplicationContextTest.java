@@ -135,4 +135,9 @@ public class ApplicationContextTest {
         // named provider
         assertNotNull(this.context.getDependencyByName("myConfiguredName"));
     }
+
+    @Test
+    public void testConstructorInject() {
+        assertNotNull(this.context.getDependency(TestConstructorInject.class));
+    }
 }

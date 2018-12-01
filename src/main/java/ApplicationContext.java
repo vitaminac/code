@@ -142,26 +142,33 @@ public class ApplicationContext implements Context {
 
     private <T> void addProviderByConstructor(Class<T> type, Dependency annotation) {
         // TODO: dependencies graph
-        Arrays.stream(type.getConstructors())
-                .filter((constructor) -> Arrays.stream(constructor.getParameterTypes())
-                        .allMatch((argType) -> {
+        this.addProviderFromAnnotation(type, new Factory<T>() {
+            @SuppressWarnings("unchecked")
+            @Override
+            public T build() {
+                return Arrays.stream(type.getConstructors())
+                        .filter((constructor) -> Arrays.stream(constructor.getParameterTypes())
+                                .allMatch((argType) -> {
+                                    try {
+                                        return ApplicationContext.this.getDependency(argType) != null;
+                                    } catch (DefinitionNotFound e) {
+                                        return false;
+                                    }
+                                }))
+                        .findFirst()
+                        .map((constructor -> {
                             try {
-                                return this.getDependency(argType) != null;
-                            } catch (DefinitionNotFound e) {
-                                return false;
+                                return (T) constructor.newInstance(Arrays
+                                        .stream(constructor.getParameterTypes())
+                                        .map(ApplicationContext.this::getDependency)
+                                        .toArray());
+                            } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+                                throw new LoadDefinitionException(e);
                             }
                         }))
-                .findFirst()
-                .map((constructor -> (Factory<T>) () -> {
-                    try {
-                        return (T) constructor.newInstance(Arrays
-                                .stream(constructor.getParameterTypes())
-                                .map(ApplicationContext.this::getDependency)
-                                .toArray());
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-                        throw new LoadDefinitionException(e);
-                    }
-                }))
-                .ifPresent((factory -> this.addProviderFromAnnotation(type, factory, annotation)));
+                        .orElseThrow(() -> new LoadDefinitionException("Can not satisfy all the required dependencies"));
+            }
+        }, annotation);
+
     }
 }
