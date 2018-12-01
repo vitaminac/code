@@ -5,7 +5,6 @@ import injection.ContextConfig;
 import injection.Dependency;
 import org.reflections.Reflections;
 import provider.Factory;
-import provider.MethodFactory;
 import provider.PrototypeProvider;
 import provider.Provider;
 import provider.SingletonProvider;
@@ -40,9 +39,6 @@ public class ApplicationContext implements Context {
     // TODO: ResourcePatternResolver
     // TODO: Injector parent - Injector Hierarchy
     // TODO: scope: per request, per session, per application
-    // TODO: inheritance, class A extends B, getDependency(B.clcass) should also be prosible to return instance A
-    // TODO: allow interface Map<Interface<?>, Provider<?>>
-    // TODO: bean with name
     // TODO: run with init method of config file
     private final Map<Object, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
@@ -136,8 +132,20 @@ public class ApplicationContext implements Context {
     }
 
     private <T> void addProviderByFactoryMethod(Class<T> returnType, Method method, Object instance, Dependency annotation) {
-        // TODO: satisfy method dependencies
-        this.addProviderFromAnnotation(returnType, new MethodFactory<>(method, instance), annotation);
+        this.addProviderFromAnnotation(returnType, new Factory<T>() {
+            @SuppressWarnings("unchecked")
+            @Override
+            public T build() {
+                try {
+                    return (T) method.invoke(instance, Arrays
+                            .stream(method.getParameterTypes())
+                            .map(ApplicationContext.this::getDependency)
+                            .toArray());
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new LoadDefinitionException(e);
+                }
+            }
+        }, annotation);
     }
 
     private <T> void addProviderByConstructor(Class<T> type, Dependency annotation) {
@@ -169,6 +177,5 @@ public class ApplicationContext implements Context {
                         .orElseThrow(() -> new LoadDefinitionException("Can not satisfy all the required dependencies"));
             }
         }, annotation);
-
     }
 }

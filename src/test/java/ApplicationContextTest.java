@@ -1,3 +1,5 @@
+import ioc.TestConstructorInject;
+import ioc.TestFactoryMethodInject;
 import org.junit.Before;
 import org.junit.Test;
 import provider.Provider;
@@ -139,5 +141,10 @@ public class ApplicationContextTest {
     @Test
     public void testConstructorInject() {
         assertNotNull(this.context.getDependency(TestConstructorInject.class));
+    }
+
+    @Test
+    public void testFactoryMethodInject() {
+        assertNotNull(this.context.getDependency(TestFactoryMethodInject.class));
     }
 }
