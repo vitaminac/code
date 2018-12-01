@@ -24,7 +24,7 @@ public class ApplicationContextTest {
 
     @Test
     public void getService() {
-        assertEquals(this.context, this.context.getDependency(ApplicationContext.class));
+        assertEquals(this.context, this.context.getDependency(Context.class));
     }
 
     @Test
@@ -95,49 +95,44 @@ public class ApplicationContextTest {
     }
 
     @Test
-    public void testConfig() {
+    public void testConfig() throws Exception {
         // singleton
-        final TestAnnotatedSingleton singleton1 = this.context.getDependency(TestAnnotatedSingleton.class);
-        final TestAnnotatedSingleton singleton2 = this.context.getDependency(TestAnnotatedSingleton.class);
+        final config.TestSingleton singleton1 = this.context.getDependency(config.TestSingleton.class);
+        final config.TestSingleton singleton2 = this.context.getDependency(config.TestSingleton.class);
+
         assertNotNull(singleton1);
         assertNotNull(singleton2);
+
         assertEquals(singleton1, singleton2);
 
         // prototype
-        final TestAnnotatedPrototype prototype1 = this.context.getDependency(TestAnnotatedPrototype.class);
-        final TestAnnotatedPrototype prototype2 = this.context.getDependency(TestAnnotatedPrototype.class);
+        final config.TestPrototype prototype1 = this.context.getDependency(config.TestPrototype.class);
+        final config.TestPrototype prototype2 = this.context.getDependency(config.TestPrototype.class);
+
         assertNotNull(prototype1);
         assertNotNull(prototype2);
+
         assertEquals(prototype1, prototype2);
-        prototype1.setNumber(1);
-        prototype2.setNumber(2);
+
+        prototype1.changeState(1);
+        prototype2.changeState(2);
         assertNotEquals(prototype1, prototype2);
-    }
 
-    @Test
-    public void testAnnotatedSingletonMore() {
-        final TestAnnotatedSingletonMore instance1 = this.context.getDependency(TestAnnotatedSingletonMore.class);
-        final TestAnnotatedSingletonMore instance2 = this.context.getDependency(TestAnnotatedSingletonMore.class);
-        assertEquals(instance1, instance2);
-    }
+        // thread
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        Runnable testThread = () -> {
+            final config.TestThreadLocal testThreadLocal = this.context.getDependency(config.TestThreadLocal.class);
+            assertEquals(testThreadLocal.getState(), Thread.currentThread().getId());
+        };
+        final Future<?> future1 = executor.submit(testThread);
+        final Future<?> future2 = executor.submit(testThread);
 
-    @Test
-    public void testAnnotatedPrototypeMore() {
-        final TestAnnotatedPrototypeMore instance1 = this.context.getDependency(TestAnnotatedPrototypeMore.class);
-        final TestAnnotatedPrototypeMore instance2 = this.context.getDependency(TestAnnotatedPrototypeMore.class);
-        assertEquals(instance1, instance2);
+        executor.shutdown();
+        executor.awaitTermination(Long.MAX_VALUE, TimeUnit.DAYS);
+        future1.get();
+        future2.get();
 
-        instance1.setNumber(1);
-        instance2.setNumber(2);
-        assertNotEquals(instance1, instance2);
-    }
-
-    @Test
-    public void testClassLevelAnnotation() {
-        final TestClassLevelAnnotation instance1 = this.context.getDependency(TestClassLevelAnnotation.class);
-        final TestClassLevelAnnotation instance2 = this.context.getDependency(TestClassLevelAnnotation.class);
-        assertNotNull(instance1);
-        assertNotNull(instance2);
-        assertEquals(instance1, instance2);
+        // named provider
+        assertNotNull(this.context.getDependencyByName("myConfiguredName"));
     }
 }
