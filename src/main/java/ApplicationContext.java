@@ -68,8 +68,8 @@ public class ApplicationContext implements Context {
 
     @Override
     public void registerDependencies(Class... types) {
-        for (Class type : types) {
-            Dependency annotation = (Dependency) type.getAnnotation(Dependency.class);
+        for (Class<?> type : types) {
+            Dependency annotation = type.getAnnotation(Dependency.class);
             if (annotation != null) {
                 this.addProviderByConstructor(type, annotation);
             }
