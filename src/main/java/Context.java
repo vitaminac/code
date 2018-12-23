@@ -6,7 +6,6 @@ public interface Context {
 
     void registerDependencies(Class... types);
 
-
     <T> T getDependency(Class<T> type);
 
     <T> T getDependencyByName(String name);

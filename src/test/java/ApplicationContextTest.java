@@ -21,7 +21,7 @@ public class ApplicationContextTest {
 
     @Before
     public void setUp() {
-        this.context = ApplicationContext.load();
+        this.context = ApplicationContext.CONTEXT;
     }
 
     @Test

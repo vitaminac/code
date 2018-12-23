@@ -17,22 +17,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class ApplicationContext implements Context {
-    private static ApplicationContext APPLICATION_CONTEXT = null;
-
-    public static ApplicationContext load() {
-        if (APPLICATION_CONTEXT == null) {
-            Reflections reflections = new Reflections("");
-            Set<Class<? extends ContextConfig>> configs = reflections.getSubTypesOf(ContextConfig.class);
-            APPLICATION_CONTEXT = new ApplicationContext();
-            Set<Class<?>> dependencies = reflections.getTypesAnnotatedWith(Dependency.class);
-            APPLICATION_CONTEXT.registerDependencies(dependencies.toArray(new Class[0]));
-            for (Class<? extends ContextConfig> config : configs) {
-                APPLICATION_CONTEXT.registerConfig(config);
-            }
-        }
-        return APPLICATION_CONTEXT;
-    }
+public enum ApplicationContext implements Context {
+    CONTEXT;
 
     // TODO: Lazy load
     // TODO: ApplicationEventPublisher
@@ -42,7 +28,14 @@ public class ApplicationContext implements Context {
     // TODO: run with init method of config file
     private final Map<Object, Provider<?>> providerMap = new ConcurrentHashMap<>();
 
-    private ApplicationContext() {
+    ApplicationContext() {
+        Reflections reflections = new Reflections("");
+        Set<Class<? extends ContextConfig>> configs = reflections.getSubTypesOf(ContextConfig.class);
+        Set<Class<?>> dependencies = reflections.getTypesAnnotatedWith(Dependency.class);
+        this.registerDependencies(dependencies.toArray(new Class[0]));
+        for (Class<? extends ContextConfig> config : configs) {
+            this.registerConfig(config);
+        }
         this.registerProvider(ApplicationContext.class, new SingletonProvider<>(() -> this));
     }
 
