@@ -1,10 +1,9 @@
 package ioc;
 
-import config.TestPrototype;
-import config.TestSingleton;
-import config.TestThreadLocal;
-import injection.Dependency;
-import ioc.TestConstructorInject;
+import ioc.config.TestPrototype;
+import ioc.config.TestSingleton;
+import ioc.config.TestThreadLocal;
+import ioc.injection.Dependency;
 
 @Dependency
 public class TestConstructorInjectImpl implements TestConstructorInject {

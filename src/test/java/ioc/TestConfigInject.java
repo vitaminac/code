@@ -1,10 +1,10 @@
 package ioc;
 
-import config.TestPrototype;
-import config.TestSingleton;
-import config.TestThreadLocal;
-import injection.ContextConfig;
-import injection.Dependency;
+import ioc.config.TestPrototype;
+import ioc.config.TestSingleton;
+import ioc.config.TestThreadLocal;
+import ioc.injection.ContextConfig;
+import ioc.injection.Dependency;
 
 public class TestConfigInject implements ContextConfig {
     @Dependency
