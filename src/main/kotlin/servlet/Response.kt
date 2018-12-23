@@ -1,0 +1,5 @@
+package servlet
+
+interface Response {
+
+}
