@@ -1,4 +1,4 @@
-package error;
+package ioc.error;
 
 public class LoadDefinitionException extends RuntimeException {
     public LoadDefinitionException(Exception e) {

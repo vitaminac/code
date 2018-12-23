@@ -5,7 +5,7 @@ class ExceptionMiddleware : Middleware {
         try {
             return it.next().intercept(request, it);
         } catch (e: Exception) {
-            TODO("return error body");
+            TODO("return ioc.error body");
         }
     }
 }

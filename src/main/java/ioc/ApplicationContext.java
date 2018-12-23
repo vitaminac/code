@@ -1,8 +1,8 @@
 package ioc;
 
-import error.DefinitionNotFound;
-import error.DuplicateDefinitionException;
-import error.LoadDefinitionException;
+import ioc.error.DefinitionNotFound;
+import ioc.error.DuplicateDefinitionException;
+import ioc.error.LoadDefinitionException;
 import ioc.injection.ContextConfig;
 import ioc.injection.Dependency;
 import org.reflections.Reflections;

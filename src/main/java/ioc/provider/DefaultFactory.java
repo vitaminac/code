@@ -1,6 +1,6 @@
 package ioc.provider;
 
-import error.LoadDefinitionException;
+import ioc.error.LoadDefinitionException;
 
 public class DefaultFactory<T> implements Factory<T> {
     private final Class<T> type;

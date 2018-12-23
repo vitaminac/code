@@ -1,4 +1,4 @@
-package error;
+package ioc.error;
 
 public class DefinitionNotFound extends RuntimeException {
     public DefinitionNotFound(Object key) {

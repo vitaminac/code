@@ -1,4 +1,4 @@
-package error;
+package ioc.error;
 
 public class DuplicateDefinitionException extends RuntimeException {
     public DuplicateDefinitionException(Object id) {
