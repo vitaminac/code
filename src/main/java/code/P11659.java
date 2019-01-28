@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+// https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2706
 class P11659 {
     public static void main(String[] args) throws Exception {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
