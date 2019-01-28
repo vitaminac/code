@@ -1,3 +1,5 @@
+package main.java.code;
+
 import java.util.Scanner;
 
 
