@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
@@ -40,7 +42,10 @@ public class Judge {
         System.setOut(printStream);
 
         // call main
+        long startTime = System.currentTimeMillis();
         method.invoke(null, (Object) params);
+        long endTime = System.currentTimeMillis();
+        long elapsedTime = endTime - startTime;
 
         // refresh buffer
         printStream.flush();
@@ -52,6 +57,9 @@ public class Judge {
         final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
         final byte[] output = stdout.toByteArray();
         assertEquals(new String(expected, StandardCharsets.UTF_8), new String(output, StandardCharsets.UTF_8));
+
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime + " ms");
     }
 
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
