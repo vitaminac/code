@@ -1,5 +1,5 @@
-group 'code'
-version '1.0-SNAPSHOT'
+group 'roadmap'
+version 'studying'
 
 apply plugin: 'java'
 
