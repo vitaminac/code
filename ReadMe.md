@@ -2,3 +2,5 @@
 
 solving algorithms for classical problems
 backtracking, divide and conquer, greedy algorithm, Branch And Bound 
+
+TODO: change Tree Interface to implement Collection
