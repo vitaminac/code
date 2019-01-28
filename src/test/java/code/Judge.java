@@ -102,7 +102,11 @@ public class Judge {
     public void judgeAll() throws Exception {
         for (Class<?> clazz : getClasses(this.getClass().getPackage().getName())) {
             if (!clazz.equals(this.getClass())) {
-                judge(clazz, null);
+                try {
+                    judge(clazz, null);
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
