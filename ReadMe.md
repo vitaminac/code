@@ -1,1 +1,1 @@
-1. ![The C Programming Language](./The C Programming Language.pdf)
+1. [The C Programming Language](./The-C-Programming-Language.pdf)
