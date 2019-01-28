@@ -42,9 +42,9 @@ public class Judge {
         System.setOut(printStream);
 
         // call main
-        long startTime = System.currentTimeMillis();
+        long startTime = System.nanoTime();
         method.invoke(null, (Object) params);
-        long endTime = System.currentTimeMillis();
+        long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
 
         // refresh buffer
@@ -59,7 +59,7 @@ public class Judge {
         assertEquals(new String(expected, StandardCharsets.UTF_8), new String(output, StandardCharsets.UTF_8));
 
         System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-        System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime + " ms");
+        System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
     }
 
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
