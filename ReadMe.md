@@ -10,6 +10,7 @@
 
 1. [Algorithms](https://algs4.cs.princeton.edu/home/)
 1. [Introduction to Algorithms](Introduction-to-Algorithms.pdf)
+1. [Operating System Concepts](Operating-System-Concepts.pdf)
 
 # Practice
 
