@@ -14,5 +14,7 @@
 # Practice
 
 1. [W3Schools Online Web Tutorials](https://www.w3schools.com/)
-1. [Leet Code](https://leetcode.com/)
 1. [Stack Overflow](https://stackoverflow.com/)
+1. [Leet Code](https://leetcode.com/)
+1. [Kaggle](https://www.kaggle.com/)
+1. [GitHub](https://github.com/)
