@@ -1,29 +1,26 @@
 package code;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Scanner;
 
-// TODO: not solved
+// https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1048
 class P10107 {
     public static void main(String[] args) throws Exception {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
-            try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(System.out))) {
-                String line;
-                int[] numbers = new int[10000];
-                int n = 0, idx;
-                while ((line = br.readLine()) != null) {
-                    //Todo: trim -> The numbers may have leading or trailing spaces
-                    numbers[n++] = Integer.parseInt(line.trim());
-                    Arrays.sort(numbers, 0, n);
-                    idx = n / 2;
-                    if (n % 2 == 0) {
-                        writer.write((numbers[idx] + numbers[idx - 1]) / 2 + "\n");
-                    } else {
-                        writer.write(numbers[idx] + "\n");
-                    }
+        try (Scanner scanner = new Scanner(System.in)
+             ; PrintWriter writer = new PrintWriter(System.out)
+        ) {
+            int[] numbers = new int[10000];
+            int n = 0;
+            // TODO: bajar la complejidad
+            while (scanner.hasNext()) {
+                numbers[n++] = scanner.nextInt();
+                Arrays.sort(numbers, 0, n);
+                int idx = n / 2;
+                if (n % 2 == 0) {
+                    writer.write((numbers[idx] + numbers[idx - 1]) / 2 + "\n");
+                } else {
+                    writer.write(numbers[idx] + "\n");
                 }
             }
         }
