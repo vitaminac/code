@@ -12,6 +12,7 @@
 1. [Introduction to Algorithms](Introduction-to-Algorithms.pdf)
 1. [Operating System Concepts](Operating-System-Concepts.pdf)
 1. [Fundamentals of Database System](Fundamentals-of-Database-System.pdf)
+1. [Introduction to Automata Theory, Languages, and Computation](Fundamentals-of-Database-System.pdf)
 
 # Practice
 
