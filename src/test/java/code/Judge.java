@@ -113,6 +113,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(P10107.class, null);
+        judge(AbdicacionRey.class, null);
     }
 }
