@@ -3,6 +3,8 @@ package code.so;
 // https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/
 // https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-2-cpu-cycles-and-memory-fence/
 
+import java.util.Scanner;
+
 /**
  * Problem: Given 2 process i and j, you need to write a program
  * that can guarantee mutual exclusion between the two without any additional hardware support.
@@ -40,7 +42,7 @@ package code.so;
  * but can cause unpredictable behaviour in concurrent programs.
  */
 public class PetersonMutualExclusion implements Runnable {
-    private static final int MAX = 100 * 100 * 100;
+    private static int MAX;
 
     // https://stackoverflow.com/a/38636062/9980245
     private static volatile boolean[] flag = new boolean[2];
@@ -99,6 +101,7 @@ public class PetersonMutualExclusion implements Runnable {
 
 
     public static void main(String[] args) throws Exception {
+        MAX = new Scanner(System.in).nextInt();
         final Thread thread1 = new Thread(new PetersonMutualExclusion(0));
         final Thread thread2 = new Thread(new PetersonMutualExclusion(1));
 
