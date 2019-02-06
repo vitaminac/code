@@ -17,7 +17,9 @@
 
 # Practice
 
-1. [W3Schools Online Web Tutorials](https://www.w3schools.com/)
-1. [Stack Overflow](https://stackoverflow.com/)
-1. [Leet Code](https://leetcode.com/)
 1. [GitHub](https://github.com/)
+1. [Leet Code](https://leetcode.com/)
+1. [Stack Overflow](https://stackoverflow.com/)
+1. [W3Schools Online Web Tutorials](https://www.w3schools.com/)
+1. [GeeksforGeeks](https://www.geeksforgeeks.org/)
+1. [Tutorials Point](http://www.tutorialspoint.com/)
