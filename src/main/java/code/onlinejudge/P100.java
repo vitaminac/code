@@ -1,4 +1,4 @@
-package code;
+package code.onlinejudge;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

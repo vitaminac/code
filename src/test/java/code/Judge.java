@@ -43,6 +43,7 @@ public class Judge {
 
         // call main
         long startTime = System.nanoTime();
+        method.setAccessible(true);
         method.invoke(null, (Object) params);
         long endTime = System.nanoTime();
         long elapsedTime = endTime - startTime;
