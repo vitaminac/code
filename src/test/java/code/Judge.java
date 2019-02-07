@@ -73,7 +73,7 @@ public class Judge {
                 if (file.isDirectory()) {
                     assert !file.getName().contains(".");
                     classes.addAll(findClasses(file, packageName + "." + file.getName()));
-                } else if (file.getName().endsWith(".class")) {
+                } else if (file.getName().endsWith(".class") && !file.getName().contains("$")) {
                     classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
                 }
             }
