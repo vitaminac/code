@@ -3,7 +3,7 @@ package code.onlinejudge;
 import java.util.Scanner;
 
 //https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=979
-class P10038 {
+public class P10038 {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
             while (scanner.hasNextInt()) {

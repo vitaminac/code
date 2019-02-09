@@ -9,7 +9,7 @@ import java.util.Scanner;
  * todo lo demás de forma que, todos aquellos números que no contengan la respuesta se deben
  * reescribir por pantalla, la respuesta a la vida, el universo y todo lo dem´as es 42.
  */
-class VidaUniverso {
+public class VidaUniverso {
     public static void main(String[] args) throws Exception {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             Scanner in = new Scanner(br);

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 // https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1048
-class P10107 {
+public class P10107 {
     public static void main(String[] args) throws Exception {
         try (Scanner scanner = new Scanner(System.in)
              ; PrintWriter writer = new PrintWriter(System.out)

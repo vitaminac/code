@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.util.StringTokenizer;
 
 // https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=&problem=36
-class P100 {
+public class P100 {
     private static int solve(int n) {
         int cycle = 1;
         while (n > 1) {
