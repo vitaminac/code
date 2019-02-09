@@ -16,7 +16,7 @@ import java.util.Scanner;
  * una se corresponden con las dos primeras de otra en la lista. Ten en cuenta que una palabra
  * puede formar pareja con varias palabras de la lista.
  */
-class Encadenadas {
+public class Encadenadas {
     public static void main(String[] args) throws Exception {
         HashMap<String, Integer> beginning = new HashMap<>();
         List<String> words = new ArrayList<>();

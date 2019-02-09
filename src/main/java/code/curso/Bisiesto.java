@@ -10,7 +10,7 @@ import java.util.Scanner;
  * bisiesto a menos que el a˜no sea divisible entre 100 y no entre 400. Para no entrar en pol´emica
  * con calendarios anteriores, asumiremos que el a˜no dado ser´a mayor o igual a 1900.
  */
-class Bisiesto {
+public class Bisiesto {
     public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         int num = in.nextInt();

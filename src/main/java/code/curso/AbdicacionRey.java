@@ -39,7 +39,7 @@ import java.util.Scanner;
  * por simplicidad se indicará el número en la notación arábiga tradicional.
  * Después de cada caso de prueba se escribirá una línea en blanco.
  */
-class AbdicacionRey {
+public class AbdicacionRey {
     public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         int numKing;
