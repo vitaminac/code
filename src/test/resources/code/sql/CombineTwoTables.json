@@ -1,0 +1,32 @@
+{
+  "headers": {
+    "Person": [
+      "PersonId",
+      "LastName",
+      "FirstName"
+    ],
+    "Address": [
+      "AddressId",
+      "PersonId",
+      "City",
+      "State"
+    ]
+  },
+  "rows": {
+    "Person": [
+      [
+        1,
+        "Wang",
+        "Allen"
+      ]
+    ],
+    "Address": [
+      [
+        1,
+        2,
+        "New York City",
+        "New York"
+      ]
+    ]
+  }
+}

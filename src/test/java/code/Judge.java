@@ -2,7 +2,6 @@ package code;
 
 
 import code.so.DekkerAlgorithm;
-import code.sql.JudgeSQL;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -29,6 +28,8 @@ public class Judge {
     static {
         classes.add(Judge.class);
         classes.add(JudgeSQL.class);
+        classes.add(SQLResult.class);
+        classes.add(SQLSchema.class);
     }
 
     private static <T> void judge(Class<T> clazz, String[] params) throws Exception {
