@@ -1,14 +1,13 @@
-package backtraking.sudoku;
+package code.algorithm.backtracking;
 
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Sudoku {
     public static void main(String[] args) {
         try {
-            final Sudoku sudoku = new Sudoku("entrada.txt");
-            System.out.println(sudoku);
+            final Sudoku sudoku = new Sudoku();
             sudoku.solve();
             System.out.println(sudoku);
         } catch (IOException e) {
@@ -18,8 +17,8 @@ public class Sudoku {
 
     private int table[][] = new int[9][9];
 
-    public Sudoku(String input) throws IOException {
-        try (Scanner scanner = new Scanner(new FileReader(input))) {
+    public Sudoku() throws IOException {
+        try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
             int i = 0;
             while (scanner.hasNext()) {
                 if (scanner.hasNextInt()) {
@@ -60,7 +59,7 @@ public class Sudoku {
                     sb.append("|");
                 }
             }
-            sb.append(System.lineSeparator());
+            sb.append('\n');
         }
         for (int j = 0; j < 9; j++) {
             sb.append(" ");

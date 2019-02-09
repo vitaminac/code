@@ -1,6 +1,7 @@
 package code;
 
 
+import code.algorithm.backtracking.Sudoku;
 import code.so.DekkerAlgorithm;
 import org.junit.Test;
 
@@ -91,6 +92,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(DekkerAlgorithm.class, null);
+        judge(Sudoku.class, null);
     }
 }
