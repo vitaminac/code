@@ -43,31 +43,21 @@ import java.util.Scanner;
  */
 public class PetersonMutualExclusion implements Runnable {
     private static int MAX;
-
-    // https://stackoverflow.com/a/38636062/9980245
-    private static volatile boolean[] flag = new boolean[2];
-    private static volatile int turn;
+    private static Turn turn;
 
     private static int answer = 0;
-
-    // Initialize lock by reseting the desire of
-    // both the threads to acquire the locks.
-    // And, giving turn to one of them.
-    private static void lock_init() {
-        flag[0] = flag[1] = true;
-        turn = 0;
-    }
 
     // Executed before entering critical section
     private static void lock(int id) {
         // saying you want to acquire lock
-        flag[id] = true;
+        turn.setIntent(id, true);
 
         // But, first give the other thread the chance to
         // acquire lock
-        turn = 1 - id;
+        turn.setTurn(1 - id);
 
-        while (flag[1 - id] && turn == (1 - id)) {
+        // If you want to enter and it's your turn I'll wait
+        while (turn.getIntent(1 - id) && turn.getTurn() == (1 - id)) {
             Thread.yield();
         }
     }
@@ -76,7 +66,7 @@ public class PetersonMutualExclusion implements Runnable {
         // You do not desire to acquire lock in future.
         // This will allow the other thread to acquire
         // the lock.
-        flag[id] = false;
+        turn.setIntent(id, false);
     }
 
     private final int id;
@@ -102,14 +92,15 @@ public class PetersonMutualExclusion implements Runnable {
 
     public static void main(String[] args) throws Exception {
         MAX = new Scanner(System.in).nextInt();
-        final Thread thread1 = new Thread(new PetersonMutualExclusion(0));
-        final Thread thread2 = new Thread(new PetersonMutualExclusion(1));
+        turn = new Turn();
+        final Thread left = new Thread(new PetersonMutualExclusion(Turn.LEFT));
+        final Thread right = new Thread(new PetersonMutualExclusion(Turn.RIGHT));
 
-        thread1.start();
-        thread2.start();
+        left.start();
+        right.start();
 
-        thread1.join();
-        thread2.join();
+        left.join();
+        right.join();
 
         System.out.println(answer);
     }
