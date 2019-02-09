@@ -1,6 +1,7 @@
 package code;
 
 
+import code.so.DekkerAlgorithm;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -24,43 +26,47 @@ import static org.junit.Assert.assertNotNull;
 
 public class Judge {
     private static <T> void judge(Class<T> clazz, String[] params) throws Exception {
-        final Method method = clazz.getMethod("main", String[].class);
-        final URL inputResource = clazz.getResource(clazz.getSimpleName() + "Input.txt");
-        assertNotNull(clazz.getSimpleName() + "'s input is empty", inputResource);
-        final byte[] input = Files.readAllBytes(Paths.get(inputResource.toURI()));
+        if (clazz.equals(Judge.class) || !Modifier.isPublic(clazz.getModifiers())) {
+            System.out.println("\u001B[33m" + "Skipped " + clazz.getName() + "\033[0;30m");
+        } else {
+            final Method method = clazz.getMethod("main", String[].class);
+            final URL inputResource = clazz.getResource(clazz.getSimpleName() + "Input.txt");
+            assertNotNull(clazz.getSimpleName() + "'s input is empty", inputResource);
+            final byte[] input = Files.readAllBytes(Paths.get(inputResource.toURI()));
 
-        // get rid of platform depend new line
-        System.setProperty("line.separator", "\n");
+            // get rid of platform depend new line
+            System.setProperty("line.separator", "\n");
 
-        // redirect stdin
-        InputStream stdin = new ByteArrayInputStream(input);
-        System.setIn(stdin);
+            // redirect stdin
+            InputStream stdin = new ByteArrayInputStream(input);
+            System.setIn(stdin);
 
-        // redirect stdout
-        ByteArrayOutputStream stdout = new ByteArrayOutputStream();
-        final PrintStream printStream = new PrintStream(stdout);
-        System.setOut(printStream);
+            // redirect stdout
+            ByteArrayOutputStream stdout = new ByteArrayOutputStream();
+            final PrintStream printStream = new PrintStream(stdout);
+            System.setOut(printStream);
 
-        // call main
-        long startTime = System.nanoTime();
-        method.setAccessible(true);
-        method.invoke(null, (Object) params);
-        long endTime = System.nanoTime();
-        long elapsedTime = endTime - startTime;
+            // call main
+            long startTime = System.nanoTime();
+            method.setAccessible(true);
+            method.invoke(null, (Object) params);
+            long endTime = System.nanoTime();
+            long elapsedTime = endTime - startTime;
 
-        // refresh buffer
-        printStream.flush();
-        printStream.close();
+            // refresh buffer
+            printStream.flush();
+            printStream.close();
 
-        // compare result
-        final URL outputResource = clazz.getResource(clazz.getSimpleName() + "Output.txt");
-        assertNotNull(clazz.getSimpleName() + "'s output is empty", outputResource);
-        final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
-        final byte[] output = stdout.toByteArray();
-        assertEquals(new String(expected, StandardCharsets.UTF_8), new String(output, StandardCharsets.UTF_8));
+            // compare result
+            final URL outputResource = clazz.getResource(clazz.getSimpleName() + "Output.txt");
+            assertNotNull(clazz.getSimpleName() + "'s output is empty", outputResource);
+            final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
+            final byte[] output = stdout.toByteArray();
+            assertEquals(new String(expected, StandardCharsets.UTF_8), new String(output, StandardCharsets.UTF_8));
 
-        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
-        System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
+            System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+            System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
+        }
     }
 
     private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
@@ -74,7 +80,7 @@ public class Judge {
                 if (file.isDirectory()) {
                     assert !file.getName().contains(".");
                     classes.addAll(findClasses(file, packageName + "." + file.getName()));
-                } else if (file.getName().endsWith(".class") && !file.getName().contains("$")) {
+                } else if (file.getName().endsWith(".class")) {
                     classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
                 }
             }
@@ -102,18 +108,16 @@ public class Judge {
     @Test
     public void judgeAll() throws Exception {
         for (Class<?> clazz : getClasses(this.getClass().getPackage().getName())) {
-            if (!clazz.equals(this.getClass())) {
-                try {
-                    judge(clazz, null);
-                } catch (Throwable e) {
-                    e.printStackTrace();
-                }
+            try {
+                judge(clazz, null);
+            } catch (Throwable e) {
+                e.printStackTrace();
             }
         }
     }
 
     @Test
     public void judgeOne() throws Exception {
-        //judge(AbdicacionRey.class, null);
+        judge(DekkerAlgorithm.class, null);
     }
 }
