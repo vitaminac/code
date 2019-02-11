@@ -1,0 +1,41 @@
+5
+verde
+azul
+azul
+azul
+rojo
+3
+duende rojo
+glifo azul
+duende verde
+3
+agua
+fuego
+planta
+1
+jefe electrico
+3
+agua
+fuego
+planta
+3
+duende agua
+duende agua
+jefe electrico
+3
+agua
+fuego
+planta
+3
+jefe agua
+duende agua
+jefe electrico
+3
+agua
+fuego
+planta
+3
+jefe fuego
+duende agua
+jefe electrico
+0
