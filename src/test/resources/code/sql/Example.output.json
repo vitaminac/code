@@ -1,0 +1,421 @@
+[
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": [
+      [
+        "I21",
+        "1",
+        "M"
+      ],
+      [
+        "I22",
+        "2",
+        "M"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": [
+      [
+        "I21",
+        "1",
+        "M"
+      ],
+      [
+        "I22",
+        "2",
+        "M"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "TURNO",
+      "CODIGO"
+    ],
+    "values": [
+      [
+        "M",
+        "I21"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": [
+      [
+        "I22",
+        "2",
+        "M"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "PRECIO * 0.10"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": [
+      [
+        "9",
+        "Eva",
+        "Fuenlabrada",
+        null,
+        "60000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "COUNT(*)"
+    ],
+    "values": [
+      [
+        "0"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COUNT(DISTINCT COD_GRUPO)"
+    ],
+    "values": [
+      [
+        "0"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "MAX(PRECIO)"
+    ],
+    "values": [
+      [
+        "60000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "MIN(PRECIO)"
+    ],
+    "values": [
+      [
+        "60000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "AVG(PRECIO) * 0.1"
+    ],
+    "values": [
+      [
+        "6000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "SUM(PRECIO)"
+    ],
+    "values": [
+      [
+        "60000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "CIUDAD",
+      "AVG(PRECIO)"
+    ],
+    "values": [
+      [
+        "Fuenlabrada",
+        "60000"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "CIUDAD",
+      "AVG(PRECIO)"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CIUDAD",
+      "AVG(PRECIO)"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "DNI",
+      "NEMP",
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD"
+    ],
+    "values": [
+      [
+        "Eva",
+        "Fuenlabrada"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD"
+    ],
+    "values": [
+      [
+        "Eva",
+        "Fuenlabrada"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO",
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD",
+      "CURSO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO",
+      "CURSO",
+      "TURNO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "CIUDAD",
+      "CURSO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CURSO",
+      "COD_GRUPO",
+      "NOMBRE"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CURSO",
+      "COD_GRUPO",
+      "NOMBRE"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "COD_GRUPO"
+    ],
+    "values": [
+      [
+        "Eva",
+        null
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_GRUPO",
+      "CURSO",
+      "TURNO",
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": [
+      [
+        "9",
+        "Eva",
+        "Fuenlabrada",
+        null,
+        "60000",
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NUM_MAT",
+      "NOMBRE",
+      "CIUDAD",
+      "COD_GRUPO",
+      "PRECIO"
+    ],
+    "values": []
+  }
+]
