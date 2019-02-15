@@ -1,16 +1,18 @@
-{
-  "headers": [
-    "FirstName",
-    "LastName",
-    "City",
-    "State"
-  ],
-  "values": [
-    [
-      "Allen",
-      "Wang",
-      null,
-      null
+[
+  {
+    "headers": [
+      "FIRSTNAME",
+      "LASTNAME",
+      "CITY",
+      "STATE"
+    ],
+    "values": [
+      [
+        "Allen",
+        "Wang",
+        null,
+        null
+      ]
     ]
-  ]
-}
+  }
+]

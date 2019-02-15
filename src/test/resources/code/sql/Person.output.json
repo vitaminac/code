@@ -1,0 +1,2223 @@
+[
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1500",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1800",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1200",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1600",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "55555555",
+        "Antonio",
+        "Barcelona",
+        "1000",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1200",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Antonio",
+        "Barcelona",
+        "1000",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1575.00",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1680.00",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1200",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Antonio",
+        "Barcelona",
+        "1000",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ],
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1200",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1000",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1300",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1100",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1300",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1100",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1300",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1100",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1300",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1100",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "CIUDAD",
+      "SALARIO",
+      "PROFESION",
+      "FECHA_NAC",
+      "JUBILADO"
+    ],
+    "values": [
+      [
+        "22222222",
+        "Maria",
+        "Barcelona",
+        "1890.00",
+        "Informatico",
+        "1979-12-30",
+        "NO"
+      ],
+      [
+        "11111111",
+        "Juan",
+        "Madrid",
+        "1543.5000",
+        "Informatico",
+        "1971-12-26",
+        "NO"
+      ],
+      [
+        "44444444",
+        "Isabel",
+        "Madrid",
+        "1646.4000",
+        "Informatico",
+        "1973-12-30",
+        "NO"
+      ],
+      [
+        "33333333",
+        "Pedro",
+        "Valencia",
+        "1300",
+        "administrativo",
+        "1939-12-31",
+        "SI"
+      ],
+      [
+        "55555555",
+        "Juan Antonio",
+        "Barcelona",
+        "1100",
+        "administrativo",
+        "1934-12-30",
+        "SI"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        null,
+        "2800"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        null,
+        "850"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        null,
+        "1500"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        null,
+        "700"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        null,
+        "3050"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        null,
+        "3100"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        null,
+        "2500"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        null,
+        "3100"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        null,
+        "3100"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NUMERO_D",
+      "NOMBRE_D",
+      "NSS_GERENTE"
+    ],
+    "values": [
+      [
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "5",
+        "Investigación",
+        "28/123456"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NUMERO_D",
+      "NOMBRE_D",
+      "NSS_GERENTE"
+    ],
+    "values": [
+      [
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "5",
+        "Investigación",
+        "28/123456"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        "1",
+        "2800"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_P",
+      "NOMBRE_P",
+      "LUGAR_P",
+      "NUM_DEP"
+    ],
+    "values": [
+      [
+        "123456789",
+        "WEB\nAyuntamiento",
+        "MADRID",
+        "5"
+      ],
+      [
+        "123000000",
+        "WEB\nMinisterio",
+        "MADRID",
+        "5"
+      ],
+      [
+        "999999999",
+        "ERP\nVIPS",
+        "MADRID",
+        "2"
+      ],
+      [
+        "777777777",
+        "PRESUPUESTO HOTEL SANS",
+        "BARCELONA",
+        "1"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSSE",
+      "NOMBRE",
+      "SEXO",
+      "PARENTESCO"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "JUAN",
+        "H",
+        "HIJO"
+      ],
+      [
+        "28/123456",
+        "JUANITA",
+        "M",
+        "HIJA"
+      ],
+      [
+        "28/123456",
+        "JUANA",
+        "M",
+        "MUJER"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS_E",
+      "COD_PROY",
+      "HORAS"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "123456789",
+        "100"
+      ],
+      [
+        "28/342139",
+        "123456789",
+        "100"
+      ],
+      [
+        "28/342139",
+        "123000000",
+        "100"
+      ],
+      [
+        "28/342139",
+        "999999999",
+        "150"
+      ],
+      [
+        "28/999999",
+        "123456789",
+        "300"
+      ],
+      [
+        "28/999999",
+        "999999999",
+        "350"
+      ],
+      [
+        "28/000001",
+        "777777777",
+        "200"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO",
+      "NUMERO_D",
+      "NOMBRE_D",
+      "NSS_GERENTE"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        "1",
+        "2800",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        "1",
+        "2800",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        "1",
+        "2800",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100",
+        "5",
+        "Investigación",
+        "28/123456"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE_D"
+    ],
+    "values": [
+      [
+        "28/000001",
+        "Dirección"
+      ],
+      [
+        "28/000001",
+        "Análisis"
+      ],
+      [
+        "28/000001",
+        "Investigación"
+      ],
+      [
+        "28/000010",
+        "Dirección"
+      ],
+      [
+        "28/000010",
+        "Análisis"
+      ],
+      [
+        "28/000010",
+        "Investigación"
+      ],
+      [
+        "28/000020",
+        "Dirección"
+      ],
+      [
+        "28/000020",
+        "Análisis"
+      ],
+      [
+        "28/000020",
+        "Investigación"
+      ],
+      [
+        "28/000030",
+        "Dirección"
+      ],
+      [
+        "28/000030",
+        "Análisis"
+      ],
+      [
+        "28/000030",
+        "Investigación"
+      ],
+      [
+        "28/000040",
+        "Dirección"
+      ],
+      [
+        "28/000040",
+        "Análisis"
+      ],
+      [
+        "28/000040",
+        "Investigación"
+      ],
+      [
+        "28/000050",
+        "Dirección"
+      ],
+      [
+        "28/000050",
+        "Análisis"
+      ],
+      [
+        "28/000050",
+        "Investigación"
+      ],
+      [
+        "28/123456",
+        "Dirección"
+      ],
+      [
+        "28/123456",
+        "Análisis"
+      ],
+      [
+        "28/123456",
+        "Investigación"
+      ],
+      [
+        "28/342139",
+        "Dirección"
+      ],
+      [
+        "28/342139",
+        "Análisis"
+      ],
+      [
+        "28/342139",
+        "Investigación"
+      ],
+      [
+        "28/999999",
+        "Dirección"
+      ],
+      [
+        "28/999999",
+        "Análisis"
+      ],
+      [
+        "28/999999",
+        "Investigación"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "SALARIO"
+    ],
+    "values": [
+      [
+        "2800"
+      ],
+      [
+        "850"
+      ],
+      [
+        "1500"
+      ],
+      [
+        "700"
+      ],
+      [
+        "3050"
+      ],
+      [
+        "3100"
+      ],
+      [
+        "2500"
+      ],
+      [
+        "3100"
+      ],
+      [
+        "3100"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "SALARIO"
+    ],
+    "values": [
+      [
+        "850"
+      ],
+      [
+        "2500"
+      ],
+      [
+        "3050"
+      ],
+      [
+        "1500"
+      ],
+      [
+        "700"
+      ],
+      [
+        "3100"
+      ],
+      [
+        "2800"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO"
+    ],
+    "values": [
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO",
+      "NUMERO_D",
+      "NOMBRE_D",
+      "NSS_GERENTE"
+    ],
+    "values": [
+      [
+        "28/123456",
+        "JUAN",
+        "JIMENEZ JUAREZ",
+        null,
+        "1944-12-31",
+        "RUE del Percebe",
+        "Madrid",
+        "H",
+        "1",
+        "2800",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500",
+        "5",
+        "Investigación",
+        "28/123456"
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700",
+        "2",
+        "Análisis",
+        "28/123456"
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100",
+        "1",
+        "Dirección",
+        "28/342139"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "MARÍA",
+        "Silvano"
+      ],
+      [
+        "RAÚL",
+        "RUEDA ROMERO"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "MARÍA",
+        "Silvano"
+      ],
+      [
+        "RAÚL",
+        "RUEDA ROMERO"
+      ],
+      [
+        "VERÓNICA",
+        "VIERA VÁZQUEZ"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE_D",
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "Investigación",
+        "RAÚL",
+        "RUEDA ROMERO"
+      ],
+      [
+        "Investigación",
+        "MARÍA",
+        "Silvano"
+      ],
+      [
+        "Dirección",
+        "JUAN",
+        "JIMENEZ JUAREZ"
+      ],
+      [
+        "Dirección",
+        "ANA",
+        "VIERA GARCÍA"
+      ],
+      [
+        "Dirección",
+        "MARIA",
+        "VIERA JIMÉNEZ"
+      ],
+      [
+        "Dirección",
+        "JESÚS",
+        "VIERA LÓPEZ"
+      ],
+      [
+        "Dirección",
+        "LUIS",
+        "VIERA VIERA"
+      ],
+      [
+        "Dirección",
+        "ANTONIO",
+        "VÁZQUEZ VIERA"
+      ],
+      [
+        "Análisis",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS"
+    ],
+    "values": [
+      [
+        "28/123456"
+      ],
+      [
+        "28/000010"
+      ],
+      [
+        "28/000020"
+      ],
+      [
+        "28/000030"
+      ],
+      [
+        "28/000040"
+      ],
+      [
+        "28/000050"
+      ],
+      [
+        "28/000001"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS",
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "MARÍA",
+        "Silvano",
+        "JUAN",
+        "JIMENEZ JUAREZ"
+      ],
+      [
+        "RAÚL",
+        "RUEDA ROMERO",
+        "JUAN",
+        "JIMENEZ JUAREZ"
+      ],
+      [
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "MARÍA",
+        "Silvano"
+      ],
+      [
+        "LUIS",
+        "VIERA VIERA",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ"
+      ],
+      [
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "LUIS",
+        "VIERA VIERA"
+      ],
+      [
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "LUIS",
+        "VIERA VIERA"
+      ],
+      [
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "LUIS",
+        "VIERA VIERA"
+      ],
+      [
+        "ANA",
+        "VIERA GARCÍA",
+        "LUIS",
+        "VIERA VIERA"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "SUM(SALARIO)",
+      "MAX(SALARIO)",
+      "MIN(SALARIO)",
+      "AVG(SALARIO)"
+    ],
+    "values": [
+      [
+        "20700",
+        "3100",
+        "700",
+        "2300"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "SUM(SALARIO)",
+      "MAX(SALARIO)",
+      "MIN(SALARIO)",
+      "AVG(SALARIO)"
+    ],
+    "values": [
+      [
+        "2350",
+        "1500",
+        "850",
+        "1175"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COUNT(*)"
+    ],
+    "values": [
+      [
+        "2"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COUNT(DISTINCT SALARIO)"
+    ],
+    "values": [
+      [
+        "7"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS_E"
+    ],
+    "values": [
+      [
+        "28/123456"
+      ],
+      [
+        "28/342139"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS",
+      "NOMBRE",
+      "APELLIDOS",
+      "NSS_SUPERVISOR",
+      "FECHA_NAC",
+      "DIRECCION",
+      "CIUDAD",
+      "SEXO",
+      "NUM_DEP",
+      "SALARIO",
+      "NSSE",
+      "NOMBRE",
+      "SEXO",
+      "PARENTESCO"
+    ],
+    "values": [
+      [
+        "28/342139",
+        "MARÍA",
+        "Silvano",
+        "28/123456",
+        "1974-12-29",
+        "Calle del Pez",
+        "Móstoles",
+        "M",
+        "5",
+        "850",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/999999",
+        "RAÚL",
+        "RUEDA ROMERO",
+        "28/123456",
+        "1967-12-31",
+        "Calle Echegaray",
+        "Móstoles",
+        "H",
+        "5",
+        "1500",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000001",
+        "VERÓNICA",
+        "VIERA VÁZQUEZ",
+        "28/342139",
+        "1979-12-30",
+        "Plaza de Espańa",
+        "Moriles",
+        "M",
+        "2",
+        "700",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000010",
+        "LUIS",
+        "VIERA VIERA",
+        "28/000001",
+        "1969-12-28",
+        "Plaza del Rey",
+        "Madrid",
+        "H",
+        "1",
+        "3050",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000020",
+        "ANTONIO",
+        "VÁZQUEZ VIERA",
+        "28/000010",
+        "1967-01-01",
+        "Calle Europa",
+        "Barcelona",
+        "H",
+        "1",
+        "3100",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000030",
+        "JESÚS",
+        "VIERA LÓPEZ",
+        "28/000010",
+        "1956-01-01",
+        "Avenida Espańa",
+        "Valencia",
+        "H",
+        "1",
+        "2500",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000040",
+        "MARIA",
+        "VIERA JIMÉNEZ",
+        "28/000010",
+        "1980-12-28",
+        "Plaza de la Constitución",
+        "Sevilla",
+        "M",
+        "1",
+        "3100",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "28/000050",
+        "ANA",
+        "VIERA GARCÍA",
+        "28/000010",
+        "1989-01-01",
+        "Calle Mayor",
+        "Bilbao",
+        "M",
+        "1",
+        "3100",
+        null,
+        null,
+        null,
+        null
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NSS"
+    ],
+    "values": [
+      [
+        "28/123456"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NUM_DEP",
+      "NUMERO"
+    ],
+    "values": [
+      [
+        "1",
+        "4"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "JUAN",
+        "JIMENEZ JUAREZ"
+      ],
+      [
+        "LUIS",
+        "VIERA VIERA"
+      ],
+      [
+        "ANTONIO",
+        "VÁZQUEZ VIERA"
+      ],
+      [
+        "JESÚS",
+        "VIERA LÓPEZ"
+      ],
+      [
+        "MARIA",
+        "VIERA JIMÉNEZ"
+      ],
+      [
+        "ANA",
+        "VIERA GARCÍA"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "JUAN",
+        "JIMENEZ JUAREZ"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "APELLIDOS"
+    ],
+    "values": [
+      [
+        "MARÍA",
+        "Silvano"
+      ]
+    ]
+  },
+  {
+    "headers": [
+      "COD_P"
+    ],
+    "values": [
+      [
+        "999999999"
+      ],
+      [
+        "123000000"
+      ],
+      [
+        "123456789"
+      ],
+      [
+        "777777777"
+      ]
+    ]
+  }
+]
