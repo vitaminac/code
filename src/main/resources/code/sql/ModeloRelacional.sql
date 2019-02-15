@@ -76,3 +76,45 @@ CREATE TABLE arresto (
 
 SELECT *
 FROM arresto;
+
+CREATE TABLE plan (
+  cod_paln             CHAR(20) PRIMARY KEY,
+  nombre               CHAR(10),
+  entidad_financiadora CHAR(20)
+);
+
+SELECT *
+FROM plan;
+
+CREATE TABLE proyecto (
+  cod_proyecto CHAR(20) PRIMARY KEY,
+  cod_plan     CHAR(20) REFERENCES plan,
+  nombre       CHAR(50),
+  fecha_inicio DATE,
+  feche_fin    DATE,
+  presupuesto  INTEGER
+);
+
+SELECT *
+FROM proyecto;
+
+CREATE TABLE investigador (
+  dni_investigador CHAR(9) PRIMARY KEY,
+  nombre           CHAR(50),
+  ciudad           CHAR(15),
+  telefono         CHAR(12)
+);
+
+SELECT *
+FROM investigador;
+
+CREATE TABLE asignado_a (
+  cod_proyecto       CHAR(20) REFERENCES proyecto,
+  dni_investigador   CHAR(9) REFERENCES investigador,
+  fecha_inicio       DATE,
+  fecha_fin          DATE,
+  tipo_participacion CHAR(20)
+);
+
+SELECT *
+FROM asignado_a;

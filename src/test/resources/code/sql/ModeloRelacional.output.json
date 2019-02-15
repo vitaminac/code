@@ -66,5 +66,43 @@
       "CASO"
     ],
     "values": []
+  },
+  {
+    "headers": [
+      "COD_PALN",
+      "NOMBRE",
+      "ENTIDAD_FINANCIADORA"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "COD_PROYECTO",
+      "COD_PLAN",
+      "NOMBRE",
+      "FECHA_INICIO",
+      "FECHE_FIN",
+      "PRESUPUESTO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "DNI_INVESTIGADOR",
+      "NOMBRE",
+      "CIUDAD",
+      "TELEFONO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "COD_PROYECTO",
+      "DNI_INVESTIGADOR",
+      "FECHA_INICIO",
+      "FECHA_FIN",
+      "TIPO_PARTICIPACION"
+    ],
+    "values": []
   }
 ]
