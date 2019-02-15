@@ -4,67 +4,50 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Matrix {
-    private final double[][] matrix;
-    private final int rows;
-    private final int cols;
+    private final double[][] elements;
 
-    public Matrix(double[][] matrix) {
-        matrix = checkNull(matrix);
-        this.rows = matrix.length;
-        this.cols = matrix[0].length;
-        this.matrix = matrix.clone();
-    }
-
-    public double[][] checkNull(double[][] matrix) {
-        if (matrix == null) {
-            matrix = new double[0][0];
+    public Matrix(double[][] elements) {
+        if (elements == null) {
+            elements = new double[0][0];
         }
-        return matrix;
+        this.elements = elements;
     }
 
     public int getCols() {
-        return this.cols;
+        if (this.elements.length > 0) {
+            return this.elements[0].length;
+        } else {
+            return 0;
+        }
     }
 
-    public double[][] getMatrix() {
-        return this.matrix;
+    public double[][] getElements() {
+        return this.elements;
     }
 
     public int getRows() {
-        return this.rows;
-    }
-
-    public void print() {
-        String content = "[\n" +
-                         Arrays.stream(this.matrix)
-                               .map(row -> '[' +
-                                           Arrays.stream(row)
-                                                 .mapToObj(element -> String.valueOf(element))
-                                                 .collect(Collectors.joining(", ")) +
-                                           ']')
-                               .collect(Collectors.joining(",\n")) +
-                         "\n]";
-        System.out.println(content);
+        return this.elements.length;
     }
 
     public Matrix transpose() {
         double[][] matrix = new double[this.getCols()][this.getRows()];
         for (int i = 0; i < this.getRows(); i++) {
             for (int j = 0; j < this.getCols(); j++) {
-                matrix[j][i] = this.getMatrix()[i][j];
+                matrix[j][i] = this.getElements()[i][j];
             }
         }
         return new Matrix(matrix);
     }
 
-    public Matrix multiply(Matrix other) throws DimensionNotCoincide {
-        this.checkMulplicable(other);
+    public Matrix multiply(Matrix other) {
+        if (this.getCols() != other.getRows())
+            throw new IllegalArgumentException("you are trying to multiply (" + this.getRows() + "," + this.getCols() + ") with " + "(" + this.getRows() + "," + this.getCols() + ")");
         double[][] matrix = new double[this.getRows()][other.getCols()];
         double rowPerCol = 0;
         for (int i = 0; i < this.getRows(); i++) {
             for (int k = 0; k < other.getCols(); k++) {
                 for (int j = 0; j < this.getCols(); j++) {
-                    rowPerCol += this.getMatrix()[i][j] * other.getMatrix()[j][k];
+                    rowPerCol += this.getElements()[i][j] * other.getElements()[j][k];
                 }
                 matrix[i][k] = rowPerCol;
                 rowPerCol = 0;
@@ -73,20 +56,35 @@ public class Matrix {
         return new Matrix(matrix);
     }
 
-    public boolean checkMulplicable(Matrix other) throws DimensionNotCoincide {
-        if (this.getCols() != other.getRows()) {
-            throw new DimensionNotCoincide(this.getCols(), this.getRows());
-        }
-        return true;
+    public double get(int i, int j) {
+        return this.elements[i][j];
     }
 
-    public void printSymmetric() throws DimensionNotCoincide {
-        System.out.println("A*A^T");
-        this.multiply(this.transpose())
-            .print();
-        System.out.println("A^T*A");
-        this.transpose()
-            .multiply(this)
-            .print();
+    public void set(int i, int j, double e) {
+        this.elements[i][j] = e;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix matrix = (Matrix) o;
+        return Arrays.deepEquals(getElements(), matrix.getElements());
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(getElements());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append('\n');
+        sb.append(Arrays.stream(this.elements)
+                .map(Arrays::toString)
+                .collect(Collectors.joining(",\n")));
+        sb.append('\n');
+        return sb.toString();
     }
 }
