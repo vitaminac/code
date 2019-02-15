@@ -1,0 +1,70 @@
+[
+  {
+    "headers": [
+      "CODIGO",
+      "NOMBRE",
+      "CATEGORIA",
+      "FUNCION",
+      "JEFE"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "NOMBRE",
+      "PESO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CODIGO",
+      "ANTIGUEDAD",
+      "CLASE",
+      "POLICIA"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "DNI",
+      "NOMBRE",
+      "APODO",
+      "DESCRIPCION",
+      "TELEFONO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CODIGO",
+      "DESCRIPCION",
+      "JUZGADO",
+      "ESTADP"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CASO",
+      "DELICUENTE",
+      "CARGO"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "CASO",
+      "POLICIA"
+    ],
+    "values": []
+  },
+  {
+    "headers": [
+      "POLICIA",
+      "DELICUENTE",
+      "CASO"
+    ],
+    "values": []
+  }
+]

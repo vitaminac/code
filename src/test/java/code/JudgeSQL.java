@@ -199,6 +199,6 @@ public class JudgeSQL {
 
     @Test
     public void testOne() throws Exception {
-        testSQL(sql.get("Example"));
+        testSQL(sql.get("ModeloRelacional"));
     }
 }
