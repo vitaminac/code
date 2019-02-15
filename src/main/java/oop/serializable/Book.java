@@ -1,18 +1,13 @@
 package oop.serializable;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import oop.xml.XMLNode;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.UnaryOperator;
 
-public class Book implements Serializable {
+public class Book implements Serializable<Book> {
     private String author;
     private String title;
     private BigInteger ISBN;
@@ -20,21 +15,16 @@ public class Book implements Serializable {
     private int publication;
     private String editorial;
 
-    public Book(String author, String title, BigInteger ISBN) throws ArgumentRequiredException {
-        this(author, title, ISBN, 0, 0, "");
+    public Book() {
     }
 
-    public Book(String author, String title, BigInteger ISBN, int pages, int publication, String editorial) throws ArgumentRequiredException {
+    public Book(String author, String title, BigInteger ISBN, int pages, int publication, String editorial) {
         this.setAuthor(author);
         this.setTitle(title);
         this.setISBN(ISBN);
         this.setPages(pages);
         this.setPublication(publication);
         this.setEditorial(editorial);
-    }
-
-    public Book() {
-
     }
 
     @Override
@@ -45,11 +35,11 @@ public class Book implements Serializable {
             if (obj instanceof Book) {
                 Book other = (Book) obj;
                 return this.getAuthor().equals(other.getAuthor()) &&
-                       this.getTitle().equals(other.getTitle()) &&
-                       this.getISBN().equals(other.getISBN()) &&
-                       this.getPages() == other.getPages() &&
-                       this.getPublication() == other.getPublication() &&
-                       this.getEditorial().equals(other.getEditorial());
+                        this.getTitle().equals(other.getTitle()) &&
+                        this.getISBN().equals(other.getISBN()) &&
+                        this.getPages() == other.getPages() &&
+                        this.getPublication() == other.getPublication() &&
+                        this.getEditorial().equals(other.getEditorial());
             } else {
                 return false;
             }
@@ -60,9 +50,9 @@ public class Book implements Serializable {
         return this.author;
     }
 
-    public void setAuthor(String author) throws ArgumentRequiredException {
+    public void setAuthor(String author) {
         if ((author == null) || (author.isEmpty())) {
-            throw new ArgumentRequiredException("author");
+            throw new IllegalArgumentException("author");
         }
         this.author = author;
     }
@@ -75,9 +65,9 @@ public class Book implements Serializable {
         return this.ISBN;
     }
 
-    public void setISBN(BigInteger ISBN) throws ArgumentRequiredException {
+    public void setISBN(BigInteger ISBN) {
         if (ISBN.toString().length() != 13 || ISBN.signum() < 0) {
-            throw new ArgumentRequiredException("ISBN");
+            throw new IllegalArgumentException("ISBN");
         }
         this.ISBN = ISBN;
     }
@@ -106,66 +96,60 @@ public class Book implements Serializable {
         this.publication = publication;
     }
 
-    public void setTitle(String title) throws ArgumentRequiredException {
-        if (title == null || title == "") {
-            throw new ArgumentRequiredException("title");
+    public void setTitle(String title) {
+        if (title == null || title.equals("")) {
+            throw new IllegalArgumentException("title");
         }
         this.title = title;
     }
 
     @Override
-    public String serialize() {
-        return new GsonBuilder().create().toJson(this.getAttributesAndValues());
-    }
-
-    private Map<String, String> getAttributesAndValues() {
-        UnaryOperator<String> capitalize = s -> (s.equals(s.toUpperCase())) ? s : s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
-        Map<String, String> map = new LinkedHashMap<String, String>();
-        for (String field : this.getAttributes()) {
-            try {
-                map.put(capitalize.apply(field), this.getClass().getDeclaredField(field).get(this).toString());
-            } catch (NoSuchFieldException e) {
-                continue;
-            } catch (IllegalAccessException e) {
-                continue;
-            }
-        }
-        return map;
-    }
-
-    public String[] getAttributes() {
-        return Arrays.stream(this.getClass().getDeclaredFields()).map(f -> f.getName()).toArray(String[]::new);
+    public void write(Writer writer) {
+        final PrintWriter printWriter = new PrintWriter(writer);
+        printWriter.println("<book>");
+        printWriter.println("<author>");
+        printWriter.println(this.getAuthor());
+        printWriter.println("</author>");
+        printWriter.println("<title>");
+        printWriter.println(this.getTitle());
+        printWriter.println("</title>");
+        printWriter.println("<ISBN>");
+        printWriter.println(this.getISBN());
+        printWriter.println("</ISBN>");
+        printWriter.println("<pages>");
+        printWriter.println(this.getPages());
+        printWriter.println("</pages>");
+        printWriter.println("<publication>");
+        printWriter.println(this.getPublication());
+        printWriter.println("</publication>");
+        printWriter.println("<editorial>");
+        printWriter.println(this.getEditorial());
+        printWriter.println("</editorial>");
+        printWriter.println("</book>");
     }
 
     @Override
-    public void deserialize(String text) {
-        Gson gson = new Gson();
-        LinkedHashMap<String, String> map = gson.fromJson(text, LinkedHashMap.class);
-        try {
-            this.setISBN(new BigInteger(map.get("ISBN")));
-            this.setAuthor(map.get("Author"));
-            this.setEditorial(map.get("Editorial"));
-            this.setPages(gson.fromJson(map.get("Pages"), int.class));
-            this.setTitle(map.get("Title"));
-            this.setPublication(gson.fromJson(map.get("Publication"), int.class));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String serializeToText() {
-        ArrayList<String> columns = new ArrayList<String>();
-        for (Entry<String, String> entry : this.getAttributesAndValues().entrySet()) {
-            columns.add(entry.getKey() + " : " + entry.getValue());
-        }
-        return String.join(", ", columns);
-    }
-
-    public String serializeToXML() {
-        XMLNode xml = new XMLNode("xml");
-        for (Entry<String, String> entry : this.getAttributesAndValues().entrySet()) {
-            xml.appendChild(new XMLNode(entry.getKey(), entry.getValue()));
-        }
-        return xml.toString();
+    public void read(Reader reader) throws IOException {
+        final BufferedReader br = new BufferedReader(reader);
+        assert "<book>".equals(br.readLine());
+        assert "<author>".equals(br.readLine());
+        this.setAuthor(br.readLine());
+        assert "</author>".equals(br.readLine());
+        assert "<title>".equals(br.readLine());
+        this.setTitle(br.readLine());
+        assert "</title>".equals(br.readLine());
+        assert "<ISBN>".equals(br.readLine());
+        this.setISBN(new BigInteger(br.readLine()));
+        assert "</ISBN>".equals(br.readLine());
+        assert "<pages>".equals(br.readLine());
+        this.setPages(Integer.parseInt(br.readLine()));
+        assert "</pages>".equals(br.readLine());
+        assert "<publication>".equals(br.readLine());
+        this.setPublication(Integer.parseInt(br.readLine()));
+        assert "</publication>".equals(br.readLine());
+        assert "<editorial>".equals(br.readLine());
+        this.setEditorial(br.readLine());
+        assert "</editorial>".equals(br.readLine());
+        assert "</book>".equals(br.readLine());
     }
 }

@@ -1,27 +1,29 @@
 package oop.serializable;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 
-public interface Serializable extends java.io.Serializable {
-    default void writeTo(String path) {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))) {
-            bw.write(this.serialize());
+public interface Serializable<T extends Serializable<T>> {
+    void write(Writer writer) throws IOException;
+
+    default String serialize() {
+        try (StringWriter writer = new StringWriter()) {
+            this.write(writer);
+            return writer.toString();
         } catch (IOException e) {
-            e.printStackTrace();
+            return null;
         }
     }
 
-    String serialize();
+    void read(Reader reader) throws IOException;
 
-    default void readFrom(String path) {
-        StringBuilder bd = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            br.lines().forEach(bd::append);
-            this.deserialize(bd.toString());
+    default void deserialize(String text) {
+        try {
+            this.read(new StringReader(text));
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
-
-    void deserialize(String text);
 }

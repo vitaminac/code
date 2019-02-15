@@ -1,4 +1,4 @@
-package exam.sixteen.january;
+package oop.exam;
 
 import java.io.*;
 import java.util.function.IntBinaryOperator;

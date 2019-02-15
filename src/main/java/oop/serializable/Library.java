@@ -1,42 +1,26 @@
 package oop.serializable;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Library implements Serializable {
-    private final HashSet<Book> books;
+    private final List<Book> books;
 
     public Library() {
-        this.books = new HashSet<>();
+        this.books = new ArrayList<>();
     }
 
-    @Override
-    public String serialize() {
-        ArrayList<String> strings = new ArrayList<>();
-        for (Book book : this.getBooks()) {
-            strings.add(book.serialize());
-        }
-        return new Gson().toJson(strings, new TypeToken<ArrayList<String>>() {
-        }.getType());
-    }
 
-    public HashSet<Book> getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    @Override
-    public void deserialize(String text) {
-        ArrayList<String> strings = new Gson().fromJson(text, new TypeToken<ArrayList<String>>() {
-        }.getType());
-        for (String string : strings) {
-            Book book = new Book();
-            book.deserialize(string);
-            this.getBooks().add(book);
-        }
-    }
 
     public void addBook(Book book) {
         this.books.add(book);
@@ -49,6 +33,29 @@ public class Library implements Serializable {
             return this.getBooks().equals(other.getBooks());
         } else {
             return false;
+        }
+    }
+
+    @Override
+    public void write(Writer writer) throws IOException {
+        final PrintWriter printWriter = new PrintWriter(writer);
+        printWriter.println("<library>");
+        for (Book book : this.books) {
+            printWriter.print(book.serialize());
+        }
+        printWriter.println("</library>");
+    }
+
+    @Override
+    public void read(Reader reader) throws IOException {
+        final BufferedReader br = new BufferedReader(reader);
+        assert "<library>".equals(br.readLine());
+        br.mark(100);
+        while (!"</library>".equals(br.readLine())) {
+            br.reset();
+            final Book book = new Book();
+            book.read(br);
+            this.addBook(book);
         }
     }
 }
