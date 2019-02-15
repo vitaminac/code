@@ -125,6 +125,8 @@ public class JudgeSQL {
              Reader outputReader = new FileReader(sqlTest.output)) {
             Statement statement = this.connection.createStatement();
 
+            statement.execute("DROP ALL OBJECTS");
+
             String testcaseConfig = IOUtils.toString(testCaseReader);
             final SQLSchema sqlTestCase = gson.fromJson(testcaseConfig, SQLSchema.class);
             statement.execute(sqlTestCase.toString());
