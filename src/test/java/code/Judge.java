@@ -1,8 +1,7 @@
 package code;
 
 
-import code.algorithm.backtracking.Sudoku;
-import code.so.DekkerAlgorithm;
+import code.algorithm.divideandconquer.BinarySearch;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -92,6 +91,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(Sudoku.class, null);
+        judge(BinarySearch.class, null);
     }
 }
