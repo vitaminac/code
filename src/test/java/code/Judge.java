@@ -23,22 +23,18 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class Judge {
-    private static final Set<Class> classes = new HashSet<>();
     private static final String WARNING = "\u001B[33m";
     private static final String NORMAL = "\033[0;30m";
 
-    static {
-        classes.add(Judge.class);
-        classes.add(JudgeSQL.class);
-        classes.add(SQLResult.class);
-        classes.add(SQLSchema.class);
-    }
-
     private static <T> void judge(Class<T> clazz, String[] params) throws Exception {
-        if (classes.contains(clazz) || !Modifier.isPublic(clazz.getModifiers())) {
+        Method method = null;
+        try {
+            method = clazz.getMethod("main", String[].class);
+        } catch (NoSuchMethodException e) {
+        }
+        if (method == null || !Modifier.isPublic(clazz.getModifiers())) {
             System.out.println(WARNING + "Skipped " + clazz.getName() + NORMAL);
         } else {
-            final Method method = clazz.getMethod("main", String[].class);
             final URL inputResource = clazz.getResource(clazz.getSimpleName() + "Input.txt");
             assertNotNull(clazz.getSimpleName() + "'s input is empty", inputResource);
             final byte[] input = Files.readAllBytes(Paths.get(inputResource.toURI()));
