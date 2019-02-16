@@ -1,7 +1,7 @@
 package code;
 
 
-import code.adt.stack.ArithmeticExpressionEvaluation;
+import code.adt.queue.Tail;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -89,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(ArithmeticExpressionEvaluation.class, null);
+        judge(Tail.class, null);
     }
 }
