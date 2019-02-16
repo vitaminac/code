@@ -1,7 +1,7 @@
 package code;
 
 
-import code.algorithm.divideandconquer.BinarySearch;
+import code.algorithm.Binomial;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -91,6 +91,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(BinarySearch.class, null);
+        judge(Binomial.class, null);
     }
 }
