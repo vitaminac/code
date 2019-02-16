@@ -1,7 +1,7 @@
 package code;
 
 
-import code.algorithm.Binomial;
+import code.algorithm.Sattolo;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -24,6 +24,8 @@ import static org.junit.Assert.assertNotNull;
 
 public class Judge {
     private static final Set<Class> classes = new HashSet<>();
+    private static final String WARNING = "\u001B[33m";
+    private static final String NORMAL = "\033[0;30m";
 
     static {
         classes.add(Judge.class);
@@ -34,7 +36,7 @@ public class Judge {
 
     private static <T> void judge(Class<T> clazz, String[] params) throws Exception {
         if (classes.contains(clazz) || !Modifier.isPublic(clazz.getModifiers())) {
-            System.out.println("\u001B[33m" + "Skipped " + clazz.getName() + "\033[0;30m");
+            System.out.println(WARNING + "Skipped " + clazz.getName() + NORMAL);
         } else {
             final Method method = clazz.getMethod("main", String[].class);
             final URL inputResource = clazz.getResource(clazz.getSimpleName() + "Input.txt");
@@ -66,12 +68,14 @@ public class Judge {
 
             // compare result
             final URL outputResource = clazz.getResource(clazz.getSimpleName() + "Output.txt");
-            assertNotNull(clazz.getSimpleName() + "'s output is empty", outputResource);
-            final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
-            final byte[] output = stdout.toByteArray();
-            assertEquals(new String(expected, StandardCharsets.UTF_8), new String(output, StandardCharsets.UTF_8));
-
             System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+            final String output = new String(stdout.toByteArray(), StandardCharsets.UTF_8);
+            if (outputResource != null) {
+                final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
+                assertEquals(new String(expected, StandardCharsets.UTF_8), output);
+            } else {
+                System.out.println(WARNING + "Skipping " + clazz.getName() + output + NORMAL);
+            }
             System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
         }
     }
@@ -91,6 +95,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(Binomial.class, null);
+        judge(Sattolo.class, null);
     }
 }
