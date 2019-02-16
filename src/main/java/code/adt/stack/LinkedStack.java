@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class LinkedStack<E> implements Stack<E> {
 
-    private LinkedNode<E> head = null;
+    private LinkedNode<E> top = null;
     private int size = 0;
 
     @Override
@@ -17,28 +17,28 @@ public class LinkedStack<E> implements Stack<E> {
 
     @Override
     public boolean isEmpty() {
-        return this.head == null;
+        return this.top == null;
     }
 
     @Override
     public E peek() {
         if (this.isEmpty()) throw new RuntimeException("The Queue is empty");
-        return this.head.element;
+        return this.top.element;
     }
 
     @Override
     public void push(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
-        node.next = this.head;
-        this.head = node;
+        node.next = this.top;
+        this.top = node;
         this.size++;
     }
 
     @Override
     public E pop() {
         if (this.isEmpty()) throw new RuntimeException("The Queue is empty");
-        E item = this.head.element;
-        this.head = this.head.next;
+        E item = this.top.element;
+        this.top = this.top.next;
         this.size--;
         return item;
     }
@@ -46,7 +46,7 @@ public class LinkedStack<E> implements Stack<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> current = LinkedStack.this.head;
+            private LinkedNode<E> current = LinkedStack.this.top;
 
             @Override
             public boolean hasNext() {
@@ -63,13 +63,15 @@ public class LinkedStack<E> implements Stack<E> {
     }
 
     public static void main(String[] args) {
-        Stack<Integer> stack = new LinkedStack<>();
+        Stack<String> stack = new LinkedStack<>();
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextInt()) {
-            stack.push(scanner.nextInt());
+        while (scanner.hasNext()) {
+            String item = scanner.next();
+            if (!item.equals("-"))
+                stack.push(item);
+            else if (!stack.isEmpty())
+                System.out.print(stack.pop() + " ");
         }
-        for (int i : stack) {
-            System.out.println(i);
-        }
+        System.out.println("(" + stack.size() + " left on stack)");
     }
 }
