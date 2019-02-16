@@ -1,7 +1,7 @@
 package code;
 
 
-import code.algorithm.Sattolo;
+import code.adt.stack.ArithmeticExpressionEvaluation;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -16,8 +16,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -91,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(Sattolo.class, null);
+        judge(ArithmeticExpressionEvaluation.class, null);
     }
 }
