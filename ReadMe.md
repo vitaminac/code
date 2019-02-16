@@ -11,6 +11,7 @@
 
 1. [Algorithms](https://algs4.cs.princeton.edu/home/)
 1. [Introduction to Algorithms](Introduction-to-Algorithms.pdf)
+1. [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 1. [Operating System Concepts](Operating-System-Concepts.pdf)
 1. [Fundamentals of Database System](Fundamentals-of-Database-System.pdf)
 1. [Introduction to Automata Theory, Languages, and Computation](Fundamentals-of-Database-System.pdf)
