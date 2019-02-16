@@ -3,6 +3,8 @@ package code.adt.queue;
 import code.adt.LinkedNode;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class LinkedQueue<E> implements Queue<E> {
 
@@ -37,7 +39,7 @@ public class LinkedQueue<E> implements Queue<E> {
 
     @Override
     public E dequeue() {
-        if (this.isEmpty()) throw new RuntimeException("The Queue is empty");
+        if (this.isEmpty()) throw new NoSuchElementException("Queue underflow");
         E item = this.head.element;
         this.head = this.head.next;
         this.size--;
@@ -61,5 +63,18 @@ public class LinkedQueue<E> implements Queue<E> {
                 return item;
             }
         };
+    }
+
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedQueue<>();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String item = scanner.next();
+            if (!item.equals("-"))
+                queue.enqueue(item);
+            else if (!queue.isEmpty())
+                System.out.print(queue.dequeue() + " ");
+        }
+        System.out.println("(" + queue.size() + " left on queue)");
     }
 }
