@@ -7,8 +7,26 @@ import java.util.Scanner;
 
 public class LinkedStack<E> implements Stack<E> {
 
-    private LinkedNode<E> top = null;
-    private int size = 0;
+    private LinkedNode<E> top;
+    private int size;
+
+    public LinkedStack() {
+        this.top = null;
+        this.size = 0;
+    }
+
+    public LinkedStack(Stack<E> stack) {
+        this.size = stack.size();
+        if (!stack.isEmpty()) {
+            this.top = new LinkedNode<>(stack.pop());
+            LinkedNode<E> current = this.top;
+            while (!stack.isEmpty()) {
+                current.next = new LinkedNode<>(stack.pop());
+                current = current.next;
+            }
+        }
+    }
+
 
     @Override
     public int size() {
