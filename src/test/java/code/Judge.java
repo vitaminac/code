@@ -1,7 +1,7 @@
 package code;
 
 
-import code.adt.queue.Tail;
+import code.adt.stack.BoundedStack;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -89,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(Tail.class, null);
+        judge(BoundedStack.class, null);
     }
 }

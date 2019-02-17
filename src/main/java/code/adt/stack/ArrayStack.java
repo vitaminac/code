@@ -28,9 +28,8 @@ public class ArrayStack<E> implements Stack<E> {
 
     @Override
     public E peek() {
-        if (!this.isEmpty())
-            return this.stack[this.size];
-        else throw new RuntimeException("The stack is empty");
+        if (!this.isEmpty()) throw new RuntimeException("The stack is empty");
+        return this.stack[this.size - 1];
     }
 
     @Override
@@ -46,7 +45,7 @@ public class ArrayStack<E> implements Stack<E> {
         if (this.isEmpty())
             throw new RuntimeException("The stack is empty");
         else {
-            return this.stack[this.size--];
+            return this.stack[--this.size];
         }
     }
 
