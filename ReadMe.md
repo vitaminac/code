@@ -16,6 +16,9 @@
 1. [Fundamentals of Database System](Fundamentals-of-Database-System.pdf)
 1. [Introduction to Automata Theory, Languages, and Computation](Fundamentals-of-Database-System.pdf)
 
+## Hardware
+1. [Computer Organization and Design: The Hardware/software Interface](Computer-Organization-and-Design.pdf)
+
 # Practice
 
 1. [GitHub](https://github.com/)
