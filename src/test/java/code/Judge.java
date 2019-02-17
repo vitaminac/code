@@ -1,7 +1,7 @@
 package code;
 
 
-import code.adt.stack.BoundedStack;
+import code.leetcode.MergeTwoSortedLists;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -89,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(BoundedStack.class, null);
+        judge(MergeTwoSortedLists.class, null);
     }
 }
