@@ -1,0 +1,54 @@
+write 1
+moveLeft
+write 2
+moveLeft
+write 3
+moveRight
+look
+write 4
+moveLeft
+look
+write 9
+moveLeft
+write 8
+moveLeft
+write 7
+moveLeft
+write 6
+moveLeft
+write 5
+moveLeft
+write 4
+moveLeft
+write 3
+moveLeft
+write 2
+moveLeft
+write 1
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look
+moveRight
+look

@@ -1,7 +1,7 @@
 package code;
 
 
-import code.adt.stack.StackMax;
+import code.adt.stack.TuringTape;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -68,7 +68,9 @@ public class Judge {
                 final byte[] expected = Files.readAllBytes(Paths.get(outputResource.toURI()));
                 assertEquals(new String(expected, StandardCharsets.UTF_8), output);
             } else {
-                System.out.println(WARNING + "Skipping " + clazz.getName() + output + NORMAL);
+                System.out.println(WARNING + "Skipping " + clazz.getName());
+                System.out.println(output);
+                System.out.println(NORMAL);
             }
             System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
         }
@@ -89,6 +91,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(StackMax.class, null);
+        judge(TuringTape.class, null);
     }
 }
