@@ -1,7 +1,7 @@
 package code;
 
 
-import code.leetcode.MergeTwoSortedLists;
+import code.leetcode.RotateImage;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -89,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(MergeTwoSortedLists.class, null);
+        judge(RotateImage.class, null);
     }
 }

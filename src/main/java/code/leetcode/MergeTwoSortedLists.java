@@ -3,6 +3,9 @@ package code.leetcode;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * https://leetcode.com/problems/merge-two-sorted-lists/
+ */
 public class MergeTwoSortedLists {
     public static class ListNode {
         int val;
