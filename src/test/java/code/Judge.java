@@ -1,7 +1,7 @@
 package code;
 
 
-import code.leetcode.RotateImage;
+import code.adt.stack.StackMax;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -89,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(RotateImage.class, null);
+        judge(StackMax.class, null);
     }
 }

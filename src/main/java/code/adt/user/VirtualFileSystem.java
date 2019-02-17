@@ -1,9 +1,9 @@
-package datastructure.user;
+package code.adt.user;
 
 
-import datastructure.Position;
-import datastructure.tree.narytree.LCRSTree;
-import datastructure.tree.narytree.NAryTree;
+import code.adt.Position;
+import code.adt.tree.narytree.LCRSTree;
+import code.adt.tree.narytree.NAryTree;
 
 import java.io.File;
 import java.util.Iterator;
