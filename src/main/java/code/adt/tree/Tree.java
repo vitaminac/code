@@ -1,6 +1,6 @@
-package datastructure.tree;
+package code.adt.tree;
 
-import datastructure.Position;
+import code.adt.Position;
 
 
 public interface Tree<E> extends Iterable<Position<E>> {

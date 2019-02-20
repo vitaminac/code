@@ -1,7 +1,7 @@
-package datastructure.tree.narytree;
+package code.adt.tree.narytree;
 
-import datastructure.Position;
-import datastructure.tree.iterators.BFSIterator;
+import code.adt.Position;
+import code.adt.tree.iterators.BFSIterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;

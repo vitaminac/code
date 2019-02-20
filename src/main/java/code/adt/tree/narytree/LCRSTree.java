@@ -1,6 +1,6 @@
-package datastructure.tree.narytree;
+package code.adt.tree.narytree;
 
-import datastructure.Position;
+import code.adt.Position;
 
 import java.util.Iterator;
 

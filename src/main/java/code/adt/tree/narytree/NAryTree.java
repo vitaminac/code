@@ -1,7 +1,7 @@
-package datastructure.tree.narytree;
+package code.adt.tree.narytree;
 
-import datastructure.Position;
-import datastructure.tree.Tree;
+import code.adt.Position;
+import code.adt.tree.Tree;
 
 public interface NAryTree<E> extends Tree<E> {
 

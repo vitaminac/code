@@ -1,4 +1,4 @@
-package datastructure.user;
+package code.adt.user;
 
 import junit.framework.AssertionFailedError;
 import org.junit.After;

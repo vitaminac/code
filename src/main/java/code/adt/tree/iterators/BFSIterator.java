@@ -1,7 +1,7 @@
-package datastructure.tree.iterators;
+package code.adt.tree.iterators;
 
-import datastructure.Position;
-import datastructure.tree.Tree;
+import code.adt.Position;
+import code.adt.tree.Tree;
 
 import java.util.ArrayDeque;
 import java.util.Iterator;
