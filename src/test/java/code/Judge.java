@@ -1,7 +1,6 @@
 package code;
 
-
-import code.adt.PrintLastFifth;
+import code.adt.TagSystem;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -91,6 +90,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(PrintLastFifth.class, null);
+        judge(TagSystem.class, null);
     }
 }
