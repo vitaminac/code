@@ -1,9 +1,5 @@
 package code.adt;
 
-import com.sun.prism.shader.AlphaOne_LinearGradient_AlphaTest_Loader;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class StreamingAlgorithmTest {
