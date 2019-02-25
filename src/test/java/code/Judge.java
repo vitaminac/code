@@ -1,6 +1,6 @@
 package code;
 
-import code.adt.TagSystem;
+import code.adt.StreamingAlgorithmTest;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -90,6 +90,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(TagSystem.class, null);
+        judge(StreamingAlgorithmTest.class, null);
     }
 }
