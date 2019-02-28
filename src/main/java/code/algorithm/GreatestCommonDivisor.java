@@ -1,5 +1,8 @@
 package code.algorithm;
 
+/**
+ * The Euclidean Algorithm
+ **/
 public class GreatestCommonDivisor {
     public static int gcd(int a, int b) {
         if (a == 0) {
