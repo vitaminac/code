@@ -1,6 +1,5 @@
 package code.adt;
 
-import code.adt.queue.Queue;
 import code.adt.queue.ResizingArrayQueue;
 
 import java.util.Scanner;

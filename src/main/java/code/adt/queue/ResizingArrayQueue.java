@@ -1,5 +1,7 @@
 package code.adt.queue;
 
+import code.adt.Queue;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Scanner;

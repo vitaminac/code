@@ -1,5 +1,7 @@
 package code.adt.queue;
 
+import code.adt.Queue;
+
 import java.util.Scanner;
 
 public class Tail {

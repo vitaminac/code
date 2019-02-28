@@ -1,6 +1,6 @@
 package code;
 
-import code.adt.StreamingAlgorithmTest;
+import code.adt.queue.LinkedQueueTest;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(StreamingAlgorithmTest.class, null);
+        judge(LinkedQueueTest.class, null);
     }
 }

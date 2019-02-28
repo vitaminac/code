@@ -1,4 +1,4 @@
-package code.adt.queue;
+package code.adt;
 
 public interface Queue<E> extends Iterable<E> {
     int size();
