@@ -1,6 +1,6 @@
 package code;
 
-import code.adt.stack.Reverse;
+import code.adt.VectorTest;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(Reverse.class, null);
+        judge(VectorTest.class, null);
     }
 }
