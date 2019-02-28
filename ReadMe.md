@@ -6,6 +6,7 @@
 1. [Thinking in Java](Thinking-in-Java.pdf)
 1. [Effective Java](Effective-Java.pdf)
 1. [Design Patterns](Design-Patterns.chm)
+1. [Clean Code](Clean-Code.pdf)
 
 ## Developer
 
