@@ -1,7 +1,5 @@
 package code.algorithm;
 
-import java.util.Scanner;
-
 public class Binomial {
     // slow
     public static double binomialRecursive(int N, int k, double p) {
@@ -26,16 +24,5 @@ public class Binomial {
             }
         }
         return b[N][k];
-    }
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNextInt()) {
-            int N = scanner.nextInt();
-            int k = scanner.nextInt();
-            double p = scanner.nextDouble();
-            System.out.println(binomialRecursive(N, k, p));
-            System.out.println(binomialIterative(N, k, p));
-        }
     }
 }

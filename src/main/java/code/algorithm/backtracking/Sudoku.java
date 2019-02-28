@@ -5,16 +5,6 @@ import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class Sudoku {
-    public static void main(String[] args) {
-        try {
-            final Sudoku sudoku = new Sudoku();
-            sudoku.solve();
-            System.out.println(sudoku);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private int table[][] = new int[9][9];
 
     public Sudoku() throws IOException {
