@@ -1,5 +1,6 @@
 package code.adt.stack;
 
+import code.adt.Stack;
 import code.adt.list.ArrayList;
 
 import java.util.Iterator;

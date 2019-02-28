@@ -1,5 +1,7 @@
 package code.adt.stack;
 
+import code.adt.Stack;
+
 import java.util.Scanner;
 
 public class TuringTape {

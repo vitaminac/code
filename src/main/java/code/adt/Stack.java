@@ -1,4 +1,4 @@
-package code.adt.stack;
+package code.adt;
 
 public interface Stack<E> extends Iterable<E> {
     int size();

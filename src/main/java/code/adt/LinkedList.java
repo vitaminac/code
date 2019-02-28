@@ -3,12 +3,20 @@ package code.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> implements Bag<E>, Queue<E> {
+public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E> {
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
     private int size = 0;
 
     public LinkedList() {
+    }
+
+    public LinkedList(Stack<E> stack) {
+        while (!stack.isEmpty()) this.push(stack.pop());
+    }
+
+    public LinkedList(Queue<E> queue) {
+        while (!queue.isEmpty()) this.enqueue(queue.dequeue());
     }
 
     @Override
@@ -25,6 +33,24 @@ public class LinkedList<E> implements Bag<E>, Queue<E> {
     public E peek() {
         if (this.isEmpty()) throw new NoSuchElementException();
         return this.head.element;
+    }
+
+    @Override
+    public void push(E element) {
+        LinkedNode<E> node = new LinkedNode<E>(element);
+        if (this.head == null) {
+            this.head = node;
+            this.tail = node;
+        } else {
+            node.next = this.head;
+            this.head = node;
+        }
+        ++this.size;
+    }
+
+    @Override
+    public E pop() {
+        return this.dequeue();
     }
 
     @Override
