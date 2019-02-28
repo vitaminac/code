@@ -1,11 +1,14 @@
 package code.adt.list;
 
+import code.adt.Stack;
+
 import java.util.Iterator;
 
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> implements List<E>, Stack<E> {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;
+    private int first;
     private int size = 0;
 
     public ArrayList() {
@@ -30,62 +33,69 @@ public class ArrayList<E> implements List<E> {
     @Override
     public E get(int index) {
         this.checkIndex(index);
-        return this.elements[index];
+        return this.elements[(this.first + index) % this.elements.length];
     }
 
     @Override
     public void set(int index, E element) {
         this.checkIndex(index);
-        this.elements[index] = element;
+        this.elements[(this.first + index) % this.elements.length] = element;
     }
 
     @Override
     public void add(int index, E element) {
         this.checkIndexForAdd(index);
         // double size of array if necessary
-        if (index == this.elements.length) {
+        if (this.size == this.elements.length) {
             this.resize(this.elements.length * 2);
         }
         for (int i = this.size++; i > index; i--) {
-            this.elements[i] = this.elements[i - 1];
+            this.set(i, this.get(i - 1));
         }
-        this.elements[index] = element;
-    }
-
-    public void add(E element) {
-        this.add(this.size, element);
+        this.set(index, element);
     }
 
     @Override
     public E remove(int index) {
         this.checkIndex(index);
-        E returnVal = this.elements[index];
+        E returnVal = this.get(index);
         --this.size;
         for (; index < size; index++) {
-            this.elements[index] = this.elements[index + 1];
+            this.set(index, this.get(index + 1));
         }
         // shrink size of array if necessary
         if (this.size > 0 && this.size == this.elements.length / 4) resize(this.elements.length / 2);
         return returnVal;
     }
 
-    public E remove() {
+    @Override
+    public E peek() {
+        return this.get(this.size() - 1);
+    }
+
+    @Override
+    public void push(E element) {
+        this.add(this.size, element);
+    }
+
+    @Override
+    public E pop() {
         return this.remove(this.size - 1);
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private int index = 0;
+            private int remain = ArrayList.this.size;
 
             @Override
             public boolean hasNext() {
-                return this.index < ArrayList.this.size;
+                return this.remain >= 0;
             }
 
             @Override
             public E next() {
-                return ArrayList.this.get(this.index);
+                return ArrayList.this.get(--this.remain);
             }
         };
     }
@@ -105,10 +115,11 @@ public class ArrayList<E> implements List<E> {
 
     @SuppressWarnings("unchecked")
     private void resize(int capacity) {
-        E[] old = this.elements;
-        this.elements = (E[]) new Object[capacity];
+        E[] spaces = (E[]) new Object[capacity];
         for (int i = 0; i < this.size; i++) {
-            this.elements[i] = old[i];
+            spaces[i] = this.get(i);
         }
+        this.elements = spaces;
+        this.first = 0;
     }
 }

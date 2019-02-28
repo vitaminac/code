@@ -1,13 +1,14 @@
 package code.adt.stack;
 
 import code.adt.Stack;
+import code.adt.list.ArrayList;
 
 import java.util.Scanner;
 
 public class TuringTape {
     public static void main(String[] args) {
-        Stack<Integer> left = new ResizingArrayStack<>();
-        Stack<Integer> right = new ResizingArrayStack<>();
+        Stack<Integer> left = new ArrayList<>();
+        Stack<Integer> right = new ArrayList<>();
         int active = 0;
 
         Scanner scanner = new Scanner(System.in);

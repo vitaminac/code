@@ -1,6 +1,7 @@
 package code.adt.stack;
 
 import code.adt.Stack;
+import code.adt.list.ArrayList;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -26,8 +27,8 @@ public class ArithmeticExpressionEvaluation {
     }
 
     public static void main(String[] args) {
-        Stack<String> ops = new ResizingArrayStack<>();
-        Stack<Double> values = new ResizingArrayStack<>();
+        Stack<String> ops = new ArrayList<>();
+        Stack<Double> values = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

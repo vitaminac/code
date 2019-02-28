@@ -1,13 +1,14 @@
 package code.adt.stack;
 
 import code.adt.Stack;
+import code.adt.list.ArrayList;
 
 import java.util.Scanner;
 
 public class StackMax {
     public static void main(String[] args) {
-        Stack<Integer> maximums = new ResizingArrayStack<>();
-        Stack<Integer> temp = new ResizingArrayStack<>();
+        Stack<Integer> maximums = new ArrayList<>();
+        Stack<Integer> temp = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
