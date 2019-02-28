@@ -47,7 +47,7 @@ public class Rational {
     public Rational sum(Rational term) {
         int numerator = this.getNumerator() * term.getDenominator() + term.getNumerator() * this.getDenominator();
         int denominator = this.getDenominator() * term.getDenominator();
-        int gcd = GreatestCommonDivisor.gcd(numerator, denominator);
+        int gcd = GreatestCommonDivisor.gcd(Math.abs(numerator), Math.abs(denominator));
         return new Rational(numerator / gcd, denominator / gcd);
     }
 

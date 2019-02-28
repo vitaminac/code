@@ -14,9 +14,9 @@ public class RationalTest {
         Rational f3 = f1.multiply(f2);
         assertEquals("8/30", f3.toString());
         Rational f4 = f2.sum(f3);
-        assertEquals("168/180", f4.toString());
+        assertEquals("14/15", f4.toString());
         Rational f5 = f3.minus(f4);
-        assertEquals("-3600/5400", f5.toString());
+        assertEquals("-2/3", f5.toString());
         assertEquals(0.4, f1.real(), 0);
     }
 }
