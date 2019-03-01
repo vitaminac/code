@@ -6,7 +6,7 @@ package code.leetcode;
 public class PermutationSequence {
     public String getPermutation(int n, int k) {
         int[] factorials = new int[n];
-        boolean[] used = new boolean[n];
+        char[] digits = new char[]{'1', '2', '3', '4', '5', '6', '7', '8', '9'};
         factorials[0] = 1;
         for (int i = 1; i < n; i++) {
             factorials[i] = factorials[i - 1] * i;
@@ -17,13 +17,13 @@ public class PermutationSequence {
             int nth = k / factorials[i];
             k = k % factorials[i];
             int digit = 0;
-            while (used[digit]) ++digit;
+            while (digits[digit] == 0) ++digit;
             for (int j = 0; j < nth; j++) {
                 ++digit;
-                while (used[digit]) ++digit;
+                while (digits[digit] == 0) ++digit;
             }
-            used[digit] = true;
-            sb.append(digit + 1);
+            sb.append(digits[digit]);
+            digits[digit] = 0;
         }
         return sb.toString();
     }
