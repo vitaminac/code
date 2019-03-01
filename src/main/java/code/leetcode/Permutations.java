@@ -1,52 +1,34 @@
 package code.leetcode;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * https://leetcode.com/problems/permutations/
  */
 public class Permutations {
-    private static int factorial(int n) {
-        int res = 1, i;
-        for (i = 2; i <= n; i++)
-            res *= i;
-        return res;
+    private void permuteRecursive(List<Integer> numbers, int begin, List<List<Integer>> result) {
+        if (begin >= numbers.size()) {
+            // one permutation instance
+            result.add(new ArrayList<>(numbers));
+            return;
+        }
+        for (int i = begin; i < numbers.size(); i++) {
+            int temp = numbers.get(begin);
+            numbers.set(begin, numbers.get(i));
+            numbers.set(i, temp);
+            this.permuteRecursive(numbers, begin + 1, result);
+            temp = numbers.get(begin);
+            numbers.set(begin, numbers.get(i));
+            numbers.set(i, temp);
+        }
     }
 
     public List<List<Integer>> permute(int[] nums) {
-        List<Map.Entry<List<Integer>, Set<Integer>>> result = new LinkedList<>();
-        Set<Integer> set = new TreeSet<>();
-        Arrays.stream(nums).forEach(set::add);
-        result.add(new AbstractMap.SimpleImmutableEntry<>(new ArrayList<>(), set));
-
-        int n_permutation = factorial(nums.length);
-        while (result.size() < n_permutation) {
-            List<Map.Entry<List<Integer>, Set<Integer>>> newResult = new LinkedList<>();
-            for (Map.Entry<List<Integer>, Set<Integer>> entry : result) {
-                final Set<Integer> value = entry.getValue();
-                for (int number : value) {
-                    final ArrayList<Integer> integers = new ArrayList<>(entry.getKey());
-                    integers.add(number);
-                    final Set<Integer> unused = new TreeSet<>(value);
-                    unused.remove(number);
-                    newResult.add(new AbstractMap.SimpleImmutableEntry<>(integers, unused));
-                }
-            }
-            result = newResult;
-        }
-        List<List<Integer>> returnVal = new ArrayList<>();
-        for (Map.Entry<List<Integer>, Set<Integer>> entry : result) {
-            final List<Integer> list = entry.getKey();
-            list.addAll(entry.getValue());
-            returnVal.add(list);
-        }
-        return returnVal;
+        List<List<Integer>> result = new ArrayList<>();
+        this.permuteRecursive(Arrays.stream(nums).boxed().collect(Collectors.toList()), 0, result);
+        return result;
     }
 }
