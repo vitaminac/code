@@ -4,6 +4,15 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E> {
+    private static class LinkedNode<E> {
+        public E element;
+        public LinkedNode<E> next;
+
+        public LinkedNode(E element) {
+            this.element = element;
+        }
+    }
+
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
     private int size = 0;

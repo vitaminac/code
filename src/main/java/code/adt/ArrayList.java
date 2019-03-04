@@ -3,7 +3,7 @@ package code.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<E> implements List<E>, Stack<E>, Queue<E> {
+public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;
@@ -22,6 +22,11 @@ public class ArrayList<E> implements List<E>, Stack<E>, Queue<E> {
     @Override
     public int size() {
         return this.size;
+    }
+
+    @Override
+    public void add(E item) {
+        this.push(item);
     }
 
     @Override
