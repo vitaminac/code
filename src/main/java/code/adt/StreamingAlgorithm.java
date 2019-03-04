@@ -1,13 +1,11 @@
 package code.adt;
 
-import code.adt.queue.ResizingArrayQueue;
-
 public class StreamingAlgorithm<E> {
     private Queue<E> queue;
     private int k;
 
     public StreamingAlgorithm(int k) {
-        this.queue = new ResizingArrayQueue<>();
+        this.queue = new ArrayList<>();
         this.k = k;
     }
 

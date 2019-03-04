@@ -1,12 +1,10 @@
 package code.adt;
 
-import code.adt.queue.ResizingArrayQueue;
-
 import java.util.Scanner;
 
 public class TagSystem {
     public static void main(String[] args) {
-        Queue<Integer> queue = new ResizingArrayQueue<>();
+        Queue<Integer> queue = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine().chars().forEach(queue::enqueue);
 

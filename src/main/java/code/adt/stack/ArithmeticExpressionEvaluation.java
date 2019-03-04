@@ -1,7 +1,7 @@
 package code.adt.stack;
 
 import code.adt.Stack;
-import code.adt.list.ArrayList;
+import code.adt.ArrayList;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;

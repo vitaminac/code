@@ -1,14 +1,13 @@
-package code.adt.list;
-
-import code.adt.Stack;
+package code.adt;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public class ArrayList<E> implements List<E>, Stack<E> {
+public class ArrayList<E> implements List<E>, Stack<E>, Queue<E> {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;
-    private int first;
+    private int first = 0;
     private int size = 0;
 
     public ArrayList() {
@@ -33,7 +32,7 @@ public class ArrayList<E> implements List<E>, Stack<E> {
     @Override
     public E get(int index) {
         this.checkIndex(index);
-        return this.elements[(this.first + index) % this.elements.length];
+        return this.elements[(this.first + this.elements.length + index) % this.elements.length];
     }
 
     @Override
@@ -70,7 +69,20 @@ public class ArrayList<E> implements List<E>, Stack<E> {
 
     @Override
     public E peek() {
+        if (this.isEmpty()) throw new NoSuchElementException();
         return this.get(this.size() - 1);
+    }
+
+    @Override
+    public void enqueue(E element) {
+        if (this.size++ >= this.elements.length) this.resize(2 * this.elements.length);
+        this.first = (this.first - 1 + this.elements.length) % this.elements.length;
+        this.set(0, element);
+    }
+
+    @Override
+    public E dequeue() {
+        return this.remove(this.size - 1);
     }
 
     @Override
@@ -90,7 +102,7 @@ public class ArrayList<E> implements List<E>, Stack<E> {
 
             @Override
             public boolean hasNext() {
-                return this.remain >= 0;
+                return this.remain > 0;
             }
 
             @Override

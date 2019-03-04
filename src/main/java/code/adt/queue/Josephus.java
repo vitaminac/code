@@ -1,6 +1,7 @@
 package code.adt.queue;
 
 import code.adt.Queue;
+import code.adt.ArrayList;
 
 import java.util.Scanner;
 
@@ -23,7 +24,7 @@ public class Josephus {
         int n = scanner.nextInt();
 
         // initialize the queue
-        Queue<Integer> queue = new ResizingArrayQueue<>();
+        Queue<Integer> queue = new ArrayList<>();
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
 

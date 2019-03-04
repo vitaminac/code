@@ -1,12 +1,13 @@
 package code.adt.queue;
 
 import code.adt.Queue;
+import code.adt.ArrayList;
 
 import java.util.Scanner;
 
 public class Tail {
     public static void main(String[] args) {
-        Queue<String> queue = new ResizingArrayQueue<>();
+        Queue<String> queue = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         int k = scanner.nextInt();
         while (scanner.hasNextLine()) {

@@ -1,4 +1,4 @@
-package code.adt.list;
+package code.adt;
 
 public interface List<E> extends Iterable<E> {
     int size();
