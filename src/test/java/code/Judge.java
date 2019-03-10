@@ -1,6 +1,7 @@
 package code;
 
 import code.adt.VectorTest;
+import code.algorithm.backtracking.BacktrackingSudokuTest;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +89,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(VectorTest.class, null);
+        judge(BacktrackingSudokuTest.class, null);
     }
 }

@@ -1,32 +1,20 @@
 package code.algorithm.backtracking;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-
 public class Sudoku {
-    private int table[][] = new int[9][9];
+    private int table[][];
+    private int k;
 
-    public Sudoku() throws IOException {
-        try (Scanner scanner = new Scanner(new InputStreamReader(System.in))) {
-            int i = 0;
-            while (scanner.hasNext()) {
-                if (scanner.hasNextInt()) {
-                    this.setValue(i / 9, i % 9, scanner.nextInt());
-                    ++i;
-                } else {
-                    scanner.next();
-                }
-            }
-        }
+    public Sudoku(int[][] table, int k) {
+        this.table = table;
+        this.k = k;
     }
 
-    private void setValue(int row, int col, int value) {
-        this.table[row][col] = value;
+    public void setValue(int k, int value) {
+        this.table[k / 9][k % 9] = value;
     }
 
-    private int getValue(int row, int col) {
-        return this.table[row][col];
+    public int getValue(int k) {
+        return this.table[k / 9][k % 9];
     }
 
     @Override
@@ -58,53 +46,11 @@ public class Sudoku {
         return sb.toString();
     }
 
-    private boolean isPromising(int row, int col, int value) {
-        for (int i = 0; i < 9; i++) {
-            if (this.getValue(i, col) == value) {
-                return false;
-            }
-        }
-        for (int j = 0; j < 9; j++) {
-            if (this.getValue(row, j) == value) {
-                return false;
-            }
-        }
-        for (int i = (row / 3) * 3; i < (row / 3 + 1) * 3; i++) {
-            for (int j = (col / 3) * 3; j < (col / 3 + 1) * 3; j++) {
-                if (this.getValue(i, j) == value) {
-                    return false;
-                }
-            }
-        }
-        return true;
+    public int getK() {
+        return k;
     }
 
-    private boolean solve(int k) {
-        // si es solucion
-        if (k >= 9 * 9) {
-            return true;
-        } else {
-            int row = k / 9;
-            int col = k % 9;
-            if (this.getValue(row, col) > 0 && this.getValue(row, col) < 10) {
-                return this.solve(k + 1);
-            } else {
-                for (int i = 1; i < 10; i++) {
-                    // si es prometedor
-                    if (this.isPromising(row, col, i)) {
-                        this.setValue(row, col, i);
-                        if (this.solve(k + 1)) {
-                            return true;
-                        }
-                    }
-                }
-                this.setValue(row, col, 0);
-                return false;
-            }
-        }
-    }
-
-    public void solve() {
-        this.solve(0);
+    public void setK(int k) {
+        this.k = k;
     }
 }
