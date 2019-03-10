@@ -3,7 +3,7 @@ package code.algorithm.greedy;
 import java.util.Collection;
 import java.util.PriorityQueue;
 
-public class GreedyKnapsack extends GreedyAlgorithm<KnapsackItem, Double, Knapsack> {
+public class GreedyKnapsack extends GreedyAlgorithm<KnapsackItem, Knapsack> {
     private final double maxWeight;
     private final PriorityQueue<KnapsackItem> candidates;
 
@@ -23,10 +23,6 @@ public class GreedyKnapsack extends GreedyAlgorithm<KnapsackItem, Double, Knapsa
         return solution.getWeight() >= this.maxWeight;
     }
 
-    @Override
-    public boolean hasMoreCandidate() {
-        return !this.candidates.isEmpty();
-    }
 
     @Override
     public KnapsackItem select(Knapsack solution) {
@@ -37,5 +33,11 @@ public class GreedyKnapsack extends GreedyAlgorithm<KnapsackItem, Double, Knapsa
         } else {
             return best;
         }
+    }
+
+    @Override
+    public Knapsack addCandidate(Knapsack knapsack, KnapsackItem knapsackItem) {
+        knapsack.addCandidate(knapsackItem);
+        return knapsack;
     }
 }

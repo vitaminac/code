@@ -1,7 +1,7 @@
 package code.algorithm.greedy;
 
-public abstract class GreedyAlgorithm<Candidate, Objective extends Comparable<Objective>, Solution extends GreedySolution<Candidate, Objective>> {
-    private final Solution solution;
+public abstract class GreedyAlgorithm<Candidate, Solution> {
+    private Solution solution;
 
     public GreedyAlgorithm(Solution solution) {
         this.solution = solution;
@@ -9,10 +9,10 @@ public abstract class GreedyAlgorithm<Candidate, Objective extends Comparable<Ob
 
     public Solution solve() {
         Candidate best;
-        while (this.hasMoreCandidate() && !this.isSolution(this.solution)) {
+        while (!this.isSolution(this.solution)) {
             best = this.select(this.solution);
             if (this.isFeasible(this.solution, best)) {
-                this.solution.addCandidate(best);
+                this.solution = this.addCandidate(solution, best);
             }
         }
         return this.solution;
@@ -23,7 +23,7 @@ public abstract class GreedyAlgorithm<Candidate, Objective extends Comparable<Ob
 
     public abstract boolean isSolution(Solution solution);
 
-    public abstract boolean hasMoreCandidate();
-
     public abstract Candidate select(Solution solution);
+
+    public abstract Solution addCandidate(Solution solution, Candidate candidate);
 }
