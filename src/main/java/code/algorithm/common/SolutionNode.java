@@ -7,7 +7,7 @@ public interface SolutionNode<Solution extends SolutionNode<Solution>> {
 
     boolean isFeasible();
 
-    Queue<Solution> expand();
+    Queue<Solution> branch();
 
     void backtrack();
 }

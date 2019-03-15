@@ -8,7 +8,7 @@ public class Backtracking<Solution extends SolutionNode<Solution>> {
             if (partialSolution.isSolution()) {
                 return partialSolution;
             } else {
-                for (Solution sol : partialSolution.expand()) {
+                for (Solution sol : partialSolution.branch()) {
                     final Solution solution = this.solve(sol);
                     if (solution != null) {
                         return solution;

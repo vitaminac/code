@@ -33,7 +33,7 @@ public class Labyrinth implements SolutionNode<Labyrinth> {
     }
 
     @Override
-    public Queue<Labyrinth> expand() {
+    public Queue<Labyrinth> branch() {
         this.labyrinth[this.x][this.y] = this.step;
         Queue<Labyrinth> queue = new LinkedList<>();
         if (x - 1 >= 0 && this.labyrinth[x - 1][this.y] == 0) {

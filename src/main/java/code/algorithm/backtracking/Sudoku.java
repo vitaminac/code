@@ -86,7 +86,7 @@ public class Sudoku implements SolutionNode<Sudoku> {
     }
 
     @Override
-    public Queue<Sudoku> expand() {
+    public Queue<Sudoku> branch() {
         Queue<Sudoku> queue = new LinkedList<>();
         this.setValue(this.k, this.value);
         for (int i = 1; i <= 9; i++) {
