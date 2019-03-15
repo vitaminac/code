@@ -1,0 +1,11 @@
+	1		2		X		 		 		 		 		X		 		 	
+	X		3		X		 		 		X		X		 		X		 	
+	5		4		 		 		 		 		X		 		X		 	
+	6		X		 		 		X		X		X		 		 		 	
+	7		-2		X		X		15		16		17		X		 		 	
+	8		9		12		13		14		X		18		X		 		 	
+	X		10		11		X		X		 		19		X		 		X	
+	 		X		X		 		 		 		20		 		X		X	
+	X		 		 		 		 		X		21		X		X		 	
+	 		 		X		 		X		X		22		23		24		 	
+

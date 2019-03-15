@@ -1,4 +1,4 @@
-package code.algorithm.greedy;
+package code.algorithm.common;
 
 public class KnapsackItem implements Comparable<KnapsackItem> {
     private final int id;

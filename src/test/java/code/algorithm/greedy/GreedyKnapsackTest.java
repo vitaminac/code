@@ -1,5 +1,7 @@
 package code.algorithm.greedy;
 
+import code.algorithm.common.Knapsack;
+import code.algorithm.common.KnapsackItem;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -20,6 +22,5 @@ public class GreedyKnapsackTest {
         final Knapsack solution = knapsack.solve();
         assertEquals(100, solution.getWeight(), 0.0001);
         assertEquals(115, solution.getProfit(), 0.0001);
-        System.out.println(knapsack.solve());
     }
 }

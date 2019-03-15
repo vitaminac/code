@@ -13,8 +13,8 @@ public class BacktrackingSudokuTest {
                 ++i;
             }
         }
-        final Sudoku sudoku = new Sudoku(table, -1);
-        final BacktrackingSudoku backtrackingSudoku = new BacktrackingSudoku();
-        System.out.println(backtrackingSudoku.solve(sudoku));
+        final Sudoku sudoku = new Sudoku(table, 0, table[0][0]);
+        final Backtracking<Sudoku> backtracking = new Backtracking<>();
+        System.out.println(backtracking.solve(sudoku));
     }
 }
