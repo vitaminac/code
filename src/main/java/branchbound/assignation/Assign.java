@@ -1,17 +1,24 @@
 package branchbound.assignation;
 
+import code.adt.LinkedList;
+import code.adt.Queue;
+import code.algorithm.common.SolutionNode;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.PriorityQueue;
-import java.util.Set;
 
 public class Assign {
-    private final double[][] cost;
+/*    private final double[][] cost;
     private final double[] minCost;
 
     public Assign(double[][] cost) {
+        this(cost, Arrays.stream(cost).mapToDouble(task -> Arrays.stream(task).min().getAsDouble()).toArray());
+    }
+
+    public Assign(double[][] cost, double[] minCost) {
         this.cost = cost;
-        this.minCost = Arrays.stream(cost).mapToDouble(task -> Arrays.stream(task).min().getAsDouble()).toArray();
+        this.minCost = minCost;
     }
 
     public int[] minimize() {
@@ -26,14 +33,14 @@ public class Assign {
                 }
             } else {
                 if (sol.compareTo(upperBound) < 0) {
-                    q.addAll(sol.getChildren());
+                    q.addAll(sol.branch());
                 }
             }
         }
         return upperBound.toArray();
     }
 
-    private class Node implements Comparable<Node> {
+    private class Node implements Comparable<Node>, SolutionNode<Node> {
         private final Node parent;
         private final int job;
         private final int agent;
@@ -59,19 +66,25 @@ public class Assign {
             this.candidates.remove(job);
         }
 
-        public Set<Node> getChildren() {
-            Set<Node> children = new HashSet<>();
+        public boolean isFeasible() {
+            return true;
+        }
+
+        @Override
+        public Queue<Node> branch() {
+            Queue<Node> children = new LinkedList<>();
             for (int job : this.candidates) {
                 final Node child = new Node(this, job, this.agent + 1);
                 if (child.isFeasible()) {
-                    children.add(child);
+                    children.enqueue(child);
                 }
             }
             return children;
         }
 
-        public boolean isFeasible() {
-            return true;
+        @Override
+        public void backtrack() {
+
         }
 
         public boolean isSolution() {
@@ -106,5 +119,5 @@ public class Assign {
             }
             return arr;
         }
-    }
+    }*/
 }
