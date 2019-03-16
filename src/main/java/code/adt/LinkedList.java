@@ -3,13 +3,13 @@ package code.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E>, Deque<E> {
-    private static class LinkedNode<E> implements Position<E> {
-        public E element;
-        public LinkedNode<E> next;
-        public LinkedNode<E> prev;
+public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E, LinkedList.LinkedNode<E>>, Deque<E> {
+    public static class LinkedNode<E> implements Position<E> {
+        private E element;
+        private LinkedNode<E> next;
+        private LinkedNode<E> prev;
 
-        public LinkedNode(E element) {
+        private LinkedNode(E element) {
             this.element = element;
         }
 
@@ -110,49 +110,39 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
     }
 
     @Override
-    public Position<E> firstPosition() {
+    public LinkedNode<E> firstPosition() {
         return this.first;
     }
 
     @Override
-    public Position<E> lastPosition() {
+    public LinkedNode<E> lastPosition() {
         return this.last;
     }
 
     @Override
-    public Position<E> before(Position<E> position) {
-        if (position.getClass().equals(LinkedNode.class)) {
-            return ((LinkedNode<E>) position).prev;
-        } else throw new IllegalArgumentException();
+    public LinkedNode<E> before(LinkedNode<E> position) {
+        return position.prev;
     }
 
     @Override
-    public Position<E> after(Position<E> position) {
-        if (position.getClass().equals(LinkedNode.class)) {
-            return ((LinkedNode<E>) position).next;
-        } else throw new IllegalArgumentException();
+    public LinkedNode<E> after(LinkedNode<E> position) {
+        return position.next;
     }
 
     @Override
-    public Position<E> insertBefore(Position<E> position, E element) {
-        if (position.getClass().equals(LinkedNode.class)) {
-            LinkedNode<E> node = new LinkedNode<E>(element);
-            LinkedNode<E> next = (LinkedNode<E>) position;
-            next.prev = node;
-            node.next = next;
-            return node;
-        } else throw new IllegalArgumentException();
+    public LinkedNode<E> insertBefore(LinkedNode<E> position, E element) {
+        LinkedNode<E> node = new LinkedNode<E>(element);
+        position.prev = node;
+        node.next = position;
+        return node;
     }
 
     @Override
-    public Position<E> insertAfter(Position<E> position, E element) {
-        if (position.getClass().equals(LinkedNode.class)) {
-            LinkedNode<E> node = new LinkedNode<E>(element);
-            LinkedNode<E> prev = (LinkedNode<E>) position;
-            prev.next = node;
-            node.prev = prev;
-            return node;
-        } else throw new IllegalArgumentException();
+    public LinkedNode<E> insertAfter(LinkedNode<E> position, E element) {
+        LinkedNode<E> node = new LinkedNode<E>(element);
+        position.next = node;
+        node.prev = position;
+        return node;
     }
 
 
