@@ -5,6 +5,7 @@ public interface Stack<E> extends Iterable<E> {
 
     boolean isEmpty();
 
+    // TODO: top
     E peek();
 
     void push(E element);

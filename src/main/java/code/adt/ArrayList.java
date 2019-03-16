@@ -1,27 +1,69 @@
 package code.adt;
 
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
+public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<E>, Cloneable {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;
-    private int first = 0;
-    private int size = 0;
+    private int first;
+    private int size;
+
+    private ArrayList(E[] elements, int first, int size) {
+        this.elements = elements;
+        this.first = first;
+        this.size = size;
+    }
+
+    public ArrayList(E[] elements) {
+        this(elements, 0, elements.length);
+    }
+
+    @SuppressWarnings("unchecked")
+    public ArrayList(int capacity) {
+        this((E[]) new Object[capacity], 0, 0);
+    }
 
     public ArrayList() {
         this(DEFAULT_CAPACITY);
     }
 
-    @SuppressWarnings("unchecked")
-    public ArrayList(int capacity) {
-        this.elements = (E[]) new Object[capacity];
+    @Override
+    public void addFirst(E element) {
+        if (this.size++ >= this.elements.length) this.resize(2 * this.elements.length);
+        this.first = (this.first - 1 + this.elements.length) % this.elements.length;
+        this.set(0, element);
     }
 
-    public ArrayList(E[] arr) {
-        this.elements = arr;
-        this.size = arr.length;
+    @Override
+    public void addLast(E element) {
+        this.add(this.size, element);
+    }
+
+    @Override
+    public E removeFirst() {
+        E retVal = this.get(0);
+        this.first = (this.first + 1) % this.elements.length;
+        --this.size;
+        return retVal;
+    }
+
+    @Override
+    public E removeLast() {
+        return this.remove(this.size - 1);
+    }
+
+    @Override
+    public E first() {
+        return this.get(0);
+    }
+
+    @Override
+    public E last() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        return this.get(this.size() - 1);
     }
 
     @Override
@@ -68,10 +110,10 @@ public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
     public E remove(int index) {
         this.checkIndex(index);
         E returnVal = this.get(index);
-        --this.size;
-        for (; index < size; index++) {
+        for (; index < size - 1; index++) {
             this.set(index, this.get(index + 1));
         }
+        --this.size;
         // shrink size of array if necessary
         if (this.size > 0 && this.size == this.elements.length / 4) resize(this.elements.length / 2);
         return returnVal;
@@ -79,30 +121,27 @@ public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
 
     @Override
     public E peek() {
-        if (this.isEmpty()) throw new NoSuchElementException();
-        return this.get(this.size() - 1);
+        return this.last();
     }
 
     @Override
     public void enqueue(E element) {
-        if (this.size++ >= this.elements.length) this.resize(2 * this.elements.length);
-        this.first = (this.first - 1 + this.elements.length) % this.elements.length;
-        this.set(0, element);
+        this.addFirst(element);
     }
 
     @Override
     public E dequeue() {
-        return this.remove(this.size - 1);
+        return this.removeLast();
     }
 
     @Override
     public void push(E element) {
-        this.add(this.size, element);
+        this.addLast(element);
     }
 
     @Override
     public E pop() {
-        return this.remove(this.size - 1);
+        return this.removeLast();
     }
 
     @Override
@@ -143,5 +182,10 @@ public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
         }
         this.elements = spaces;
         this.first = 0;
+    }
+
+    @Override
+    public ArrayList<E> clone() {
+        return new ArrayList<>(Arrays.copyOf(this.elements, this.elements.length), this.first, this.size);
     }
 }

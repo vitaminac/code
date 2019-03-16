@@ -39,7 +39,7 @@ public class SortedList<E> implements PriorityQueue<E> {
 
     @Override
     public E remove() {
-        return this.list.remove(0);
+        return this.list.removeFirst();
     }
 
     @Override
