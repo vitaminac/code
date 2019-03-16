@@ -33,17 +33,7 @@ public class BinarySearch<E> {
     }
 
     public int binarySearchIterative(E[] array, E key) {
-        int lo = 0;
-        int hi = array.length - 1;
-        while (lo <= hi) {
-            // Key is in a[lo..hi] or not present.
-            int mid = lo + (hi - lo) / 2;
-            int diff = this.comparator.compare(key, array[mid]);
-            if (diff < 0) hi = mid - 1;
-            else if (diff > 0) lo = mid + 1;
-            else return mid;
-        }
-        return -1;
+        return this.binarySearchIterative(new ArrayList<>(array), key);
     }
 
     public int binarySearchIterative(ArrayList<E> list, E key) {

@@ -1,6 +1,6 @@
 package code;
 
-import code.algorithm.backtracking.BacktrackingLabyrinthTest;
+import code.algorithm.divideandconquer.BinarySearchTest;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(BacktrackingLabyrinthTest.class, null);
+        judge(BinarySearchTest.class, null);
     }
 }

@@ -18,7 +18,7 @@ public class BinarySearchTest {
             n = scanner.nextInt();
             for (int i = 0; i < n; i++) {
                 int key = scanner.nextInt();
-                if (search.binarySearchRecursive(numbers, key) < 0 && search.binarySearchIterative(numbers, key) < 0) {
+                if (search.binarySearchRecursive(numbers, key) < 0 && (search.binarySearchIterative(numbers, key) == integers.length || integers[search.binarySearchIterative(numbers, key)] != key)) {
                     System.out.println(key);
                 }
             }
