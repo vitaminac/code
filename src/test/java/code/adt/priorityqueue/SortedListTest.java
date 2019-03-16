@@ -1,5 +1,6 @@
-package code.adt;
+package code.adt.priorityqueue;
 
+import code.adt.SortedList;
 import org.junit.Before;
 import org.junit.Test;
 

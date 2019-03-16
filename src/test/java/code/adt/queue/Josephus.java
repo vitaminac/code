@@ -1,7 +1,7 @@
 package code.adt.queue;
 
-import code.adt.Queue;
 import code.adt.ArrayList;
+import code.adt.Queue;
 
 import java.util.Scanner;
 

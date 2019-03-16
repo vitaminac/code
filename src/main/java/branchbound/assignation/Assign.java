@@ -1,13 +1,5 @@
 package branchbound.assignation;
 
-import code.adt.LinkedList;
-import code.adt.Queue;
-import code.algorithm.common.SolutionNode;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.PriorityQueue;
-
 public class Assign {
 /*    private final double[][] cost;
     private final double[] minCost;

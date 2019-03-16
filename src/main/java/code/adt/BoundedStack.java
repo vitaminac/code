@@ -1,9 +1,6 @@
-package code.adt.stack;
-
-import code.adt.Stack;
+package code.adt;
 
 import java.util.Iterator;
-import java.util.Scanner;
 
 public class BoundedStack<E> implements Stack<E> {
     private final E[] stack;
@@ -73,16 +70,5 @@ public class BoundedStack<E> implements Stack<E> {
                 return returnVal;
             }
         };
-    }
-
-    public static void main(String[] args) {
-        Stack<String> stack = new BoundedStack<>(5);
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            stack.push(scanner.next());
-        }
-        for (String str : stack) {
-            System.out.println(str);
-        }
     }
 }
