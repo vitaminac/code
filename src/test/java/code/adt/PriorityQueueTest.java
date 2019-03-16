@@ -1,8 +1,5 @@
-package code.adt.priorityqueue;
+package code.adt;
 
-import code.adt.ArrayHeap;
-import code.adt.PriorityQueue;
-import code.adt.SortedList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

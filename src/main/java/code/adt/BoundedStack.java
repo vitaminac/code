@@ -45,7 +45,7 @@ public class BoundedStack<E> implements Stack<E> {
             throw new RuntimeException("The stack is empty");
         else {
             final E returnVal = this.stack[this.top];
-            this.top = (this.top - 1 + this.stack.length) & this.stack.length;
+            this.top = (this.top - 1 + this.stack.length) % this.stack.length;
             --this.size;
             return returnVal;
         }

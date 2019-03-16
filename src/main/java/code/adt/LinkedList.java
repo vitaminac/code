@@ -3,21 +3,30 @@ package code.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E> {
-    private static class LinkedNode<E> {
+public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E>, Deque<E> {
+    private static class LinkedNode<E> implements Position<E> {
         public E element;
         public LinkedNode<E> next;
+        public LinkedNode<E> prev;
 
         public LinkedNode(E element) {
             this.element = element;
         }
+
+        @Override
+        public E getElement() {
+            return this.element;
+        }
     }
 
-    private LinkedNode<E> head;
-    private LinkedNode<E> tail;
-    private int size = 0;
+    private LinkedNode<E> first;
+    private LinkedNode<E> last;
 
     public LinkedList() {
+    }
+
+    public LinkedList(Iterable<E> iterable) {
+        for (E item : iterable) this.addLast(item);
     }
 
     public LinkedList(Stack<E> stack) {
@@ -30,68 +39,163 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E> {
 
     @Override
     public void add(E item) {
-        this.enqueue(item);
+        this.addLast(item);
     }
 
     @Override
     public boolean isEmpty() {
-        return this.head == null;
+        return this.first == null;
     }
 
     @Override
-    public E peek() {
-        if (this.isEmpty()) throw new NoSuchElementException();
-        return this.head.element;
-    }
-
-    @Override
-    public void push(E element) {
+    public void addFirst(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.head == null) {
-            this.head = node;
-            this.tail = node;
-        } else {
-            node.next = this.head;
-            this.head = node;
+        if (this.isEmpty()) this.last = node;
+        else {
+            this.first.prev = node;
+            node.next = this.first;
         }
-        ++this.size;
+        this.first = node;
     }
 
     @Override
-    public E pop() {
-        return this.dequeue();
-    }
-
-    @Override
-    public void enqueue(E element) {
+    public void addLast(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.isEmpty()) this.head = node;
-        else this.tail.next = node;
-        this.tail = node;
-        ++this.size;
+        if (this.isEmpty()) this.first = node;
+        else {
+            this.last.next = node;
+            node.prev = this.last;
+        }
+        this.last = node;
     }
 
     @Override
-    public E dequeue() {
+    public E removeFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
-        E element = this.head.element;
-        if (this.head == this.tail) {
-            this.head = null;
-            this.tail = null;
-        } else this.head = this.head.next;
-        --this.size;
+        E element = this.first.getElement();
+        if (this.first == this.last) {
+            this.first = null;
+            this.last = null;
+        } else {
+            this.first = this.first.next;
+            this.first.prev = null;
+        }
         return element;
     }
 
     @Override
+    public E removeLast() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        E element = this.last.getElement();
+        if (this.first == this.last) {
+            this.first = null;
+            this.last = null;
+        } else {
+            this.last = this.last.prev;
+            this.last.next = null;
+        }
+        return element;
+    }
+
+    @Override
+    public E first() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        return this.firstPosition().getElement();
+    }
+
+    @Override
+    public E last() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        return this.lastPosition().getElement();
+    }
+
+    @Override
+    public Position<E> firstPosition() {
+        return this.first;
+    }
+
+    @Override
+    public Position<E> lastPosition() {
+        return this.last;
+    }
+
+    @Override
+    public Position<E> before(Position<E> position) {
+        if (position.getClass().equals(LinkedNode.class)) {
+            return ((LinkedNode<E>) position).prev;
+        } else throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Position<E> after(Position<E> position) {
+        if (position.getClass().equals(LinkedNode.class)) {
+            return ((LinkedNode<E>) position).next;
+        } else throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Position<E> insertBefore(Position<E> position, E element) {
+        if (position.getClass().equals(LinkedNode.class)) {
+            LinkedNode<E> node = new LinkedNode<E>(element);
+            LinkedNode<E> next = (LinkedNode<E>) position;
+            next.prev = node;
+            node.next = next;
+            return node;
+        } else throw new IllegalArgumentException();
+    }
+
+    @Override
+    public Position<E> insertAfter(Position<E> position, E element) {
+        if (position.getClass().equals(LinkedNode.class)) {
+            LinkedNode<E> node = new LinkedNode<E>(element);
+            LinkedNode<E> prev = (LinkedNode<E>) position;
+            prev.next = node;
+            node.prev = prev;
+            return node;
+        } else throw new IllegalArgumentException();
+    }
+
+
+    @Override
+    public E peek() {
+        return this.first();
+    }
+
+    @Override
+    public void push(E element) {
+        this.addFirst(element);
+    }
+
+    @Override
+    public E pop() {
+        return this.removeFirst();
+    }
+
+    @Override
+    public void enqueue(E element) {
+        this.addLast(element);
+    }
+
+    @Override
+    public E dequeue() {
+        return this.removeFirst();
+    }
+
+    @Override
     public int size() {
-        return this.size;
+        int size = 0;
+        LinkedNode<E> node = this.first;
+        while (node != null) {
+            ++size;
+            node = node.next;
+        }
+        return size;
     }
 
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = LinkedList.this.head;
+            private LinkedNode<E> next = LinkedList.this.first;
 
             @Override
             public boolean hasNext() {
