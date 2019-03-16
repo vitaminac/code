@@ -1,5 +1,7 @@
 package code.algorithm.divideandconquer;
 
+import code.adt.ArrayList;
+
 import java.util.Comparator;
 
 public class BinarySearch<E> {
@@ -42,6 +44,20 @@ public class BinarySearch<E> {
             else return mid;
         }
         return -1;
+    }
+
+    public int binarySearchIterative(ArrayList<E> list, E key) {
+        int low = 0;
+        int high = list.size() - 1;
+
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int diff = this.comparator.compare(list.get(mid), key);
+            if (diff < 0) low = mid + 1;
+            else if (diff > 0) high = mid - 1;
+            else return mid; // key found
+        }
+        return low;  // key not found
     }
 
     public static <T extends Comparable<? super T>> BinarySearch<T> get() {

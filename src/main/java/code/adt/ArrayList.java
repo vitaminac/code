@@ -19,6 +19,11 @@ public class ArrayList<E> implements List<E>, Stack<E>, Queue<E>, Bag<E> {
         this.elements = (E[]) new Object[capacity];
     }
 
+    public ArrayList(E[] arr) {
+        this.elements = arr;
+        this.size = arr.length;
+    }
+
     @Override
     public int size() {
         return this.size;
