@@ -27,7 +27,6 @@ class Utils {
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory()) {
-                    assert !file.getName().contains(".");
                     resources.addAll(findResource(file, packageName + "." + file.getName(), type));
                 } else if (file.getName().endsWith("." + type)) {
                     resources.add(new Pair(file, packageName));

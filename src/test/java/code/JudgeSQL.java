@@ -120,6 +120,10 @@ public class JudgeSQL {
 
 
     public void testSQL(SQLTest sqlTest) throws Exception {
+        if (sqlTest == null || sqlTest.sql == null || sqlTest.testcase == null || sqlTest.output == null) {
+            System.out.println("\u001B[33m" + "Skipped " + (sqlTest == null ? "unknown source" : sqlTest.sql) + "\033[0;30m");
+            return;
+        }
         try (Reader sqlReader = new FileReader(sqlTest.sql);
              Reader testCaseReader = new FileReader(sqlTest.testcase);
              Reader outputReader = new FileReader(sqlTest.output)) {
