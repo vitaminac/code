@@ -1,6 +1,6 @@
 package code;
 
-import code.algorithm.divideandconquer.BinarySearchTest;
+import code.algorithm.recursive.Hanoi;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(BinarySearchTest.class, null);
+        judge(Hanoi.class, null);
     }
 }

@@ -3,8 +3,9 @@ package code;
 import java.util.Scanner;
 
 public class StdIn {
+    private static Scanner scanner = new Scanner(System.in);
+
     public static int[][] readIntMatrix() {
-        Scanner scanner = new Scanner(System.in);
         int rows = scanner.nextInt();
         int cols = scanner.nextInt();
         int[][] matrix = new int[rows][cols];
@@ -14,5 +15,9 @@ public class StdIn {
             }
         }
         return matrix;
+    }
+
+    public static int readInt() {
+        return scanner.nextInt();
     }
 }
