@@ -1,6 +1,6 @@
 package code;
 
-import code.curso.EnviosPrioritarios;
+import code.curso.SpeedRun;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(EnviosPrioritarios.class, null);
+        judge(SpeedRun.class, null);
     }
 }
