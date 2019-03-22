@@ -1,0 +1,9 @@
+8
+NOR
+NOR
+P2W
+NOR
+R 2
+P2W
+R 5
+NOR
