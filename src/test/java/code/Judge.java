@@ -1,6 +1,6 @@
 package code;
 
-import code.curso.SpeedRun;
+import code.algorithm.recursive.Hanoi;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -88,6 +88,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(SpeedRun.class, null);
+        judge(Hanoi.class, null);
     }
 }
