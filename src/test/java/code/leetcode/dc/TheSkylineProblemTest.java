@@ -16,6 +16,7 @@ public class TheSkylineProblemTest {
                 {15, 20, 10},
                 {19, 24, 8}
         };
+        // TODO: deep equals
         System.out.println(this.skyline.getSkyline(buildings));
     }
 }
