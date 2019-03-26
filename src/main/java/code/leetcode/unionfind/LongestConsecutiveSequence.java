@@ -1,4 +1,4 @@
-package code.leetcode;
+package code.leetcode.unionfind;
 
 import java.util.HashSet;
 import java.util.Set;
