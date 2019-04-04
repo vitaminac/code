@@ -1,1 +1,2 @@
+include 'primavera', 'json', 'async'
 rootProject.name = 'primavera'
