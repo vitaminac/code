@@ -43,10 +43,19 @@ public class JSONReaderTest {
     }
 
     @Test
-    public void readInt() throws Exception {
-        Reader reader = this.getUnderlyingReader("123");
-        final JSONReader jsonReader = new JSONReader(reader);
-        assertEquals(123, jsonReader.readNumber(), 0);
+    public void intTest() {
+        assertEquals(123d, JSON.parse("123"));
+        assertEquals(123d, JSON.parse("+123"));
+        assertEquals(-123d, JSON.parse("-123"));
+        assertEquals(123.9, JSON.parse("123.9"));
+        assertEquals(123.9, JSON.parse("+123.9"));
+        assertEquals(-123.9, JSON.parse("-123.9"));
+        assertEquals(12390000d, JSON.parse("123.9E5"));
+        assertEquals(12390000d, JSON.parse("+123.9E5"));
+        assertEquals(-12390000d, JSON.parse("-123.9E5"));
+        assertEquals(12390000d, JSON.parse("123.9e5"));
+        assertEquals(12390000d, JSON.parse("+123.9e5"));
+        assertEquals(-12390000d, JSON.parse("-123.9e5"));
     }
 
     @Test

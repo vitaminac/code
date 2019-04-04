@@ -85,4 +85,63 @@ public interface JSON {
         }
         return sb.toString();
     }
+
+    static <T> Object parse(String json) {
+        char[] chars = json.toCharArray();
+        int length = chars.length;
+        int pos = 0;
+        char token = chars[pos];
+        if (token >= '0' && token <= '9' || token == '+' || token == '-') {
+            double number = 0;
+            int sign = 1;
+            if (token == '-') {
+                sign = -1;
+            } else if (token != '+') {
+                number = token - '0';
+            }
+            pos += 1;
+            while (pos < length) {
+                token = chars[pos];
+                if (token >= '0' && token <= '9') {
+                    number = (token - '0') + 10 * number;
+                    pos += 1;
+                } else break;
+            }
+            if (token == '.') {
+                pos += 1;
+                int digit = 10;
+                while (pos < length) {
+                    token = chars[pos];
+                    if (token >= '0' && token <= '9') {
+                        number += (double) (token - '0') / digit;
+                        digit *= 10;
+                        pos += 1;
+                    } else break;
+                }
+            }
+            number *= sign;
+            if (token == 'E' || token == 'e') {
+                int power = 0;
+                sign = 1;
+                token = chars[++pos];
+                if (token == '-') {
+                    sign = -1;
+                } else if (token != '+') {
+                    power = token - '0';
+                }
+                pos += 1;
+                while (pos < length) {
+                    token = chars[pos];
+                    if (token >= '0' && token <= '9') {
+                        power = (token - '0') + 10 * power;
+                        pos += 1;
+                    } else break;
+                }
+                number = number * Math.pow(10, power);
+            }
+            return number;
+        } else {
+            throw new IllegalArgumentException("JSON Malformed");
+        }
+    }
 }
