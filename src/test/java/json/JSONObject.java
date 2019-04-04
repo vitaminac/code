@@ -1,8 +1,5 @@
 package json;
 
-import json.writer.JSONObjectWriter;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -55,19 +52,5 @@ public class JSONObject implements JSON {
     @Override
     public String toString() {
         return "JSONObject{" + "b=" + b + ", c=" + c + ", d=" + d + ", f=" + f + ", i=" + i + ", l=" + l + ", o=" + o + ", s=" + s + ", str='" + str + '\'' + ", os=" + os + '}';
-    }
-
-    @Override
-    public void writeJSON(JSONObjectWriter writer) throws IOException {
-        writer.write("b", b);
-        writer.write("str", str);
-        writer.write("c", c);
-        writer.write("d", d);
-        writer.write("f", f);
-        writer.write("i", i);
-        writer.write("l", l);
-        writer.write("o", o);
-        writer.write("s", s);
-        writer.write("os", os);
     }
 }
