@@ -148,6 +148,43 @@ public interface JSON {
             return Boolean.TRUE;
         } else if (pos + 4 < chars.length && chars[pos] == 'f' && chars[pos + 1] == 'a' && chars[pos + 2] == 'l' && chars[pos + 3] == 's' && chars[pos + 4] == 'e') {
             return Boolean.FALSE;
+        } else if (token == '"') {
+            StringBuilder sb = new StringBuilder();
+            token = chars[++pos];
+            while (token != '"') {
+                if (token == '\\') {
+                    token = chars[++pos];
+                    switch (token) {
+                        case '\\':
+                            sb.append('\\');
+                            break;
+                        case '"':
+                            sb.append('\"');
+                            break;
+                        case 'b':
+                            sb.append('\b');
+                            break;
+                        case 'f':
+                            sb.append('\f');
+                            break;
+                        case 'n':
+                            sb.append('\n');
+                            break;
+                        case 'r':
+                            sb.append('\r');
+                            break;
+                        case 't':
+                            sb.append('\t');
+                            break;
+                        default:
+                            sb.append(token);
+                    }
+                } else {
+                    sb.append(token);
+                }
+                token = chars[++pos];
+            }
+            return sb.toString();
         } else {
             throw new IllegalArgumentException("JSON Malformed");
         }

@@ -60,15 +60,8 @@ public class JSONReaderTest {
     }
 
     @Test
-    public void readString() throws Exception {
-        StringReader stringReader = new StringReader(" \"str\\\\\\\"ing\" ");
-        JSONReader jsonReader = new JSONReader(stringReader);
-        String str = jsonReader.readString();
-        assertEquals("str\\\"ing", str);
-        stringReader = new StringReader(" null ");
-        jsonReader = new JSONReader(stringReader);
-        str = jsonReader.readString();
-        assertNull(str);
+    public void stringTest() {
+        assertEquals("str\\\"ing", JSON.parse("\"str\\\\\\\"ing\""));
     }
 
     private Reader getUnderlyingReader(String str) {
