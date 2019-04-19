@@ -2,6 +2,7 @@ package json;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Iterator;
 
@@ -92,40 +93,39 @@ public interface JSON {
         int pos = 0;
         char token = chars[pos];
         if (token >= '0' && token <= '9' || token == '+' || token == '-') {
-            double number = 0;
-            int sign = 1;
+            BigDecimal number = BigDecimal.ZERO;
+            boolean negative = false;
             if (token == '-') {
-                sign = -1;
+                negative = true;
             } else if (token != '+') {
-                number = token - '0';
+                number = BigDecimal.valueOf(token - '0');
             }
             pos += 1;
             while (pos < length) {
                 token = chars[pos];
                 if (token >= '0' && token <= '9') {
-                    number = (token - '0') + 10 * number;
+                    number = number.multiply(BigDecimal.TEN).add(BigDecimal.valueOf(token - '0'));
                     pos += 1;
                 } else break;
             }
             if (token == '.') {
                 pos += 1;
-                int digit = 10;
+                int precision = 1;
                 while (pos < length) {
                     token = chars[pos];
                     if (token >= '0' && token <= '9') {
-                        number += (double) (token - '0') / digit;
-                        digit *= 10;
+                        number = number.add(BigDecimal.valueOf(token - '0').divide(BigDecimal.TEN.pow(precision++)));
                         pos += 1;
                     } else break;
                 }
             }
-            number *= sign;
+            if (negative) number = number.negate();
             if (token == 'E' || token == 'e') {
                 int power = 0;
-                sign = 1;
+                negative = false;
                 token = chars[++pos];
                 if (token == '-') {
-                    sign = -1;
+                    negative = true;
                 } else if (token != '+') {
                     power = token - '0';
                 }
@@ -137,9 +137,17 @@ public interface JSON {
                         pos += 1;
                     } else break;
                 }
-                number = number * Math.pow(10, power);
+                if (negative) {
+                    number = number.movePointLeft(power);
+                } else {
+                    number = number.movePointRight(power);
+                }
             }
             return number;
+        } else if (pos + 3 < chars.length && chars[pos] == 't' && chars[pos + 1] == 'r' && chars[pos + 2] == 'u' && chars[pos + 3] == 'e') {
+            return Boolean.TRUE;
+        } else if (pos + 4 < chars.length && chars[pos] == 'f' && chars[pos + 1] == 'a' && chars[pos + 2] == 'l' && chars[pos + 3] == 's' && chars[pos + 4] == 'e') {
+            return Boolean.FALSE;
         } else {
             throw new IllegalArgumentException("JSON Malformed");
         }

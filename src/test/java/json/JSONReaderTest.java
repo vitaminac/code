@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,13 +16,9 @@ import static org.junit.Assert.assertTrue;
 
 public class JSONReaderTest {
     @Test
-    public void readBoolean() throws Exception {
-        StringReader stringReader = new StringReader("\t true ");
-        JSONReader jsonReader = new JSONReader(stringReader);
-        assertTrue(jsonReader.readBoolean());
-        stringReader = new StringReader("\t false ");
-        jsonReader = new JSONReader(stringReader);
-        assertFalse(jsonReader.readBoolean());
+    public void booleanTest() throws Exception {
+        assertTrue((Boolean) JSON.parse("true"));
+        assertFalse((Boolean) JSON.parse("false"));
     }
 
     @Test
@@ -36,26 +33,21 @@ public class JSONReaderTest {
     }
 
     @Test
-    public void readDouble() throws Exception {
-        Reader reader = this.getUnderlyingReader("1.258644444E45");
-        final JSONReader jsonReader = new JSONReader(reader);
-        assertEquals(1.258644444E45, jsonReader.readNumber(), 0);
-    }
-
-    @Test
-    public void intTest() {
-        assertEquals(123d, JSON.parse("123"));
-        assertEquals(123d, JSON.parse("+123"));
-        assertEquals(-123d, JSON.parse("-123"));
-        assertEquals(123.9, JSON.parse("123.9"));
-        assertEquals(123.9, JSON.parse("+123.9"));
-        assertEquals(-123.9, JSON.parse("-123.9"));
-        assertEquals(12390000d, JSON.parse("123.9E5"));
-        assertEquals(12390000d, JSON.parse("+123.9E5"));
-        assertEquals(-12390000d, JSON.parse("-123.9E5"));
-        assertEquals(12390000d, JSON.parse("123.9e5"));
-        assertEquals(12390000d, JSON.parse("+123.9e5"));
-        assertEquals(-12390000d, JSON.parse("-123.9e5"));
+    public void numberTest() {
+        assertEquals(BigDecimal.valueOf(123), JSON.parse("123"));
+        assertEquals(BigDecimal.valueOf(123), JSON.parse("+123"));
+        assertEquals(BigDecimal.valueOf(-123), JSON.parse("-123"));
+        assertEquals(BigDecimal.valueOf(123.9), JSON.parse("123.9"));
+        assertEquals(BigDecimal.valueOf(123.9), JSON.parse("+123.9"));
+        assertEquals(BigDecimal.valueOf(-123.9), JSON.parse("-123.9"));
+        assertEquals(0, BigDecimal.valueOf(12390000d).compareTo((BigDecimal) JSON.parse("123.9E5")));
+        assertEquals(0, BigDecimal.valueOf(12390000d).compareTo((BigDecimal) JSON.parse("+123.9E5")));
+        assertEquals(0, BigDecimal.valueOf(-12390000d).compareTo((BigDecimal) JSON.parse("-123.9E5")));
+        assertEquals(0, BigDecimal.valueOf(12390000d).compareTo((BigDecimal) JSON.parse("123.9e5")));
+        assertEquals(0, BigDecimal.valueOf(12390000d).compareTo((BigDecimal) JSON.parse("+123.9e5")));
+        assertEquals(0, BigDecimal.valueOf(-12390000d).compareTo((BigDecimal) JSON.parse("-123.9e5")));
+        assertEquals(0, BigDecimal.valueOf(1.258644444E45).compareTo((BigDecimal) JSON.parse("1.258644444E45")));
+        assertEquals(0, BigDecimal.valueOf(0.001).compareTo((BigDecimal) JSON.parse("1e-3")));
     }
 
     @Test
