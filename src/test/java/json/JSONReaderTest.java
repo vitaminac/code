@@ -64,6 +64,11 @@ public class JSONReaderTest {
         assertEquals("str\\\"ing", JSON.parse("\"str\\\\\\\"ing\""));
     }
 
+    @Test
+    public void nullTest() {
+        assertNull(JSON.parse("null"));
+    }
+
     private Reader getUnderlyingReader(String str) {
         return new StringReader(str);
     }

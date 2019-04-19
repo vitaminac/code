@@ -18,7 +18,7 @@ public class JSONReader {
     public <T extends JSON> T getObject(JSONRestoreFactory<T> factory) throws IOException, MalformedJSONInput {
         return this.readValue().getObject(factory);
     }
-    
+
     private JSONValue readValue() throws IOException {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader buffer = new BufferedReader(this.underlyingReader)) {

@@ -92,7 +92,9 @@ public interface JSON {
         int length = chars.length;
         int pos = 0;
         char token = chars[pos];
-        if (token >= '0' && token <= '9' || token == '+' || token == '-') {
+        if (pos + 3 < chars.length && chars[pos] == 'n' && chars[pos + 1] == 'u' && chars[pos + 2] == 'l' && chars[pos + 3] == 'l') {
+            return null;
+        } else if (token >= '0' && token <= '9' || token == '+' || token == '-') {
             BigDecimal number = BigDecimal.ZERO;
             boolean negative = false;
             if (token == '-') {
