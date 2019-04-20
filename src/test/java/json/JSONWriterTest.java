@@ -109,4 +109,9 @@ public class JSONWriterTest {
     public void writeStringWithSpecialSymbol() {
         assertEquals("\"\\\"\\\\/\\b\\f\\n\\r\\t\"", JSON.stringify("\"\\/\b\f\n\r\t"));
     }
+
+    @Test
+    public void byteArrayTest() {
+        assertEquals("\"aGVsbG8=\"",JSON.stringify("hello".getBytes()));
+    }
 }

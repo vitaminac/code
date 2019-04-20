@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Iterator;
 
 public interface JSON {
@@ -45,6 +46,8 @@ public interface JSON {
                 }
             }
             sb.append('\"');
+        } else if (byte[].class.equals(thing.getClass())) {
+            return stringify(Base64.getEncoder().encodeToString((byte[]) thing));
         } else if (thing.getClass().isArray()) {
             sb.append('[');
             int length = Array.getLength(thing);
