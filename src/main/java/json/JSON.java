@@ -1,5 +1,8 @@
 package json;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.math.BigDecimal;
@@ -8,6 +11,8 @@ import java.util.Base64;
 import java.util.Iterator;
 
 public interface JSON {
+    int BUFFER_SIZE = 3 * 1024;
+
     static <T> String stringify(T thing) {
         StringBuilder sb = new StringBuilder();
         if (thing == null) {
@@ -48,6 +53,22 @@ public interface JSON {
             sb.append('\"');
         } else if (byte[].class.equals(thing.getClass())) {
             return stringify(Base64.getEncoder().encodeToString((byte[]) thing));
+        } else if (thing instanceof InputStream) {
+            try (BufferedInputStream in = new BufferedInputStream((InputStream) thing, BUFFER_SIZE);) {
+                Base64.Encoder encoder = Base64.getEncoder();
+                byte[] chunk = new byte[BUFFER_SIZE];
+                int len = 0;
+                while ((len = in.read(chunk)) == BUFFER_SIZE) {
+                    sb.append(encoder.encodeToString(chunk));
+                }
+                if (len > 0) {
+                    chunk = Arrays.copyOf(chunk, len);
+                    sb.append(encoder.encodeToString(chunk));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return stringify(sb.toString());
         } else if (thing.getClass().isArray()) {
             sb.append('[');
             int length = Array.getLength(thing);
