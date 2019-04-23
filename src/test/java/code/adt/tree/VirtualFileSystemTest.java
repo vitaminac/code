@@ -1,6 +1,5 @@
 package code.adt.tree;
 
-import code.adt.VirtualFileSystem;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,8 +31,7 @@ public class VirtualFileSystemTest {
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
                 "/b/d/f\n" +
-                "/b/d/f/e.ext" +
-                "\n";
+                "/b/d/f/e.ext";
         assertEquals(expected, this.vfs.toString());
     }
 
@@ -59,13 +57,13 @@ public class VirtualFileSystemTest {
                 "/b/c\n" +
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
-                "/b/d/f\n";
+                "/b/d/f";
         assertEquals(expected, this.vfs.toString());
     }
 
     @Test
     public void children() {
-        final Iterator<VirtualFileSystem.LCRSTree<byte[]>> it = this.vfs.children(this.vfs.get("/a"));
+        final Iterator<VirtualFileSystem.LCRSTree<byte[]>> it = this.vfs.children(this.vfs.get("/a")).iterator();
         assertTrue(it.hasNext());
         assertEquals("01234567890123456789", new String(it.next().getElement(), StandardCharsets.UTF_8));
         assertTrue(it.hasNext());
@@ -136,7 +134,7 @@ public class VirtualFileSystemTest {
                 "/b/d\n" +
                 "/b/d/f\n" +
                 "/b/d/f/e.ext\n" +
-                "/b/d/f/o.ext\n";
+                "/b/d/f/o.ext";
         assertEquals(expected, this.vfs.toString());
     }
 }
