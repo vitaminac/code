@@ -33,7 +33,7 @@ public class Judge {
                 assertNotNull(clazz.getSimpleName() + "'s input is empty", inputResource);
                 final byte[] input = Files.readAllBytes(Paths.get(inputResource.toURI()));
 
-                // get rid of platform depend new line
+                // map rid of platform depend new line
                 System.setProperty("line.separator", "\n");
 
                 // redirect stdin
