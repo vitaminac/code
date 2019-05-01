@@ -28,6 +28,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     public void link(K key, V value) {
         if (this.map.map(key) == null || this.map.map(key).isEmpty()) {
             this.map.link(key, new ArrayList<>(new Relation<>(key, value)));
+            ++this.size;
         } else {
             for (Relation<K, V> relation : this.map.map(key)) {
                 if (relation.getKey().equals(key)) {
@@ -35,6 +36,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
                 }
             }
             this.map.map(key).add(new Relation<>(key, value));
+            ++this.size;
         }
     }
 
