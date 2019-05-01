@@ -66,6 +66,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
         if (found < 0) {
             return null;
         } else {
+            --this.size;
             return this.map.map(key).remove(found).getValue();
         }
     }
