@@ -3,6 +3,7 @@ package code.adt;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<E>, Cloneable {
     private static final int DEFAULT_CAPACITY = 8;
@@ -17,7 +18,7 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
         this.size = size;
     }
 
-    public ArrayList(E[] elements) {
+    public ArrayList(E... elements) {
         this(elements, 0, elements.length);
     }
 
@@ -120,6 +121,16 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
     }
 
     @Override
+    public int find(E element) {
+        for (int i = 0; i < this.size(); i++) {
+            if (this.elements[i].equals(element)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
     public E peek() {
         return this.last();
     }
@@ -142,6 +153,13 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
     @Override
     public E pop() {
         return this.removeLast();
+    }
+
+    @Override
+    public void enumerate(Consumer<E> consumer) {
+        for (int i = 0; i < this.size(); i++) {
+            consumer.accept(this.get(i));
+        }
     }
 
     @Override

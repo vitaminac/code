@@ -1,6 +1,6 @@
 package code.adt;
 
-public interface List<E> extends Iterable<E> {
+public interface List<E> extends Enumerable<E> {
     int size();
 
     boolean isEmpty();
@@ -12,4 +12,6 @@ public interface List<E> extends Iterable<E> {
     void add(int index, E element);
 
     E remove(int index);
+
+    int find(E element);
 }
