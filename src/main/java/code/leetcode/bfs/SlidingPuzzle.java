@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/* https://leetcode.com/problems/sliding-puzzle/ */
 public class SlidingPuzzle {
     public int slidingPuzzle(int[][] board) {
         String target = "123450";
