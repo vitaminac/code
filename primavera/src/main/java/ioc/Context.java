@@ -1,18 +1,11 @@
 package ioc;
 
 import ioc.injection.ContextConfig;
-import ioc.provider.Provider;
 
 public interface Context {
-    <T extends ContextConfig> void registerConfig(Class<T> config);
+    <Config extends ContextConfig> void addConfig(Config config);
 
-    void registerDependencies(Class... types);
+    Locator getLocator();
 
-    <T> T getDependency(Class<T> type);
-
-    <T> T getDependencyByName(String name);
-
-    <T> void registerProvider(String name, Provider<T> provider);
-
-    <T> void registerProvider(Class<? super T> type, Provider<T> provider);
+    void addDependencies(Class... types);
 }

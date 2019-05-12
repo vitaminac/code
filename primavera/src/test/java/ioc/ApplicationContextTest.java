@@ -26,13 +26,13 @@ public class ApplicationContextTest {
 
     @Test
     public void getService() {
-        assertEquals(this.context, this.context.getDependency(Context.class));
+        assertEquals(this.context, this.context.getLocator().find(Context.class));
     }
 
     @Test
     public void testSingleton() {
-        final TestSingleton instance1 = this.context.getDependency(TestSingleton.class);
-        final TestSingleton instance2 = this.context.getDependency(TestSingleton.class);
+        final TestSingleton instance1 = this.context.getLocator().find(TestSingleton.class);
+        final TestSingleton instance2 = this.context.getLocator().find(TestSingleton.class);
 
         assertNotNull(instance1);
         assertNotNull(instance2);
@@ -42,8 +42,8 @@ public class ApplicationContextTest {
 
     @Test
     public void testPrototype() {
-        final TestPrototype instance1 = this.context.getDependency(TestPrototype.class);
-        final TestPrototype instance2 = this.context.getDependency(TestPrototype.class);
+        final TestPrototype instance1 = this.context.getLocator().find(TestPrototype.class);
+        final TestPrototype instance2 = this.context.getLocator().find(TestPrototype.class);
 
         assertNotNull(instance1);
         assertNotNull(instance2);
@@ -57,7 +57,7 @@ public class ApplicationContextTest {
 
     @Test
     public void testGetDependencyByName() {
-        assertNotNull(this.context.getDependencyByName("myName"));
+        assertNotNull(this.context.getLocator().find("myName"));
     }
 
     @Test
@@ -71,20 +71,20 @@ public class ApplicationContextTest {
             }
         };
         String name = "myCustomDependecy";
-        this.context.registerProvider(name, provider);
-        assertEquals(Integer.valueOf(0), this.context.getDependencyByName(name));
-        assertEquals(Integer.valueOf(1), this.context.getDependencyByName(name));
-        assertEquals(Integer.valueOf(2), this.context.getDependencyByName(name));
-        assertEquals(Integer.valueOf(3), this.context.getDependencyByName(name));
-        assertEquals(Integer.valueOf(4), this.context.getDependencyByName(name));
-        assertEquals(Integer.valueOf(5), this.context.getDependencyByName(name));
+        this.context.getLocator().register(name, provider);
+        assertEquals(Integer.valueOf(0), this.context.getLocator().find(name));
+        assertEquals(Integer.valueOf(1), this.context.getLocator().find(name));
+        assertEquals(Integer.valueOf(2), this.context.getLocator().find(name));
+        assertEquals(Integer.valueOf(3), this.context.getLocator().find(name));
+        assertEquals(Integer.valueOf(4), this.context.getLocator().find(name));
+        assertEquals(Integer.valueOf(5), this.context.getLocator().find(name));
     }
 
     @Test
     public void testThreadLocal() throws Exception {
         ExecutorService executor = Executors.newFixedThreadPool(2);
         Runnable testThread = () -> {
-            final TestThreadLocal testThreadLocal = this.context.getDependency(TestThreadLocal.class);
+            final TestThreadLocal testThreadLocal = this.context.getLocator().find(TestThreadLocal.class);
             assertEquals(testThreadLocal.getState(), Thread.currentThread().getId());
         };
         final Future<?> future1 = executor.submit(testThread);
@@ -99,8 +99,8 @@ public class ApplicationContextTest {
     @Test
     public void testConfig() throws Exception {
         // singleton
-        final ioc.config.TestSingleton singleton1 = this.context.getDependency(ioc.config.TestSingleton.class);
-        final ioc.config.TestSingleton singleton2 = this.context.getDependency(ioc.config.TestSingleton.class);
+        final ioc.config.TestSingleton singleton1 = this.context.getLocator().find(ioc.config.TestSingleton.class);
+        final ioc.config.TestSingleton singleton2 = this.context.getLocator().find(ioc.config.TestSingleton.class);
 
         assertNotNull(singleton1);
         assertNotNull(singleton2);
@@ -108,8 +108,8 @@ public class ApplicationContextTest {
         assertEquals(singleton1, singleton2);
 
         // prototype
-        final ioc.config.TestPrototype prototype1 = this.context.getDependency(ioc.config.TestPrototype.class);
-        final ioc.config.TestPrototype prototype2 = this.context.getDependency(ioc.config.TestPrototype.class);
+        final ioc.config.TestPrototype prototype1 = this.context.getLocator().find(ioc.config.TestPrototype.class);
+        final ioc.config.TestPrototype prototype2 = this.context.getLocator().find(ioc.config.TestPrototype.class);
 
         assertNotNull(prototype1);
         assertNotNull(prototype2);
@@ -123,7 +123,7 @@ public class ApplicationContextTest {
         // thread
         ExecutorService executor = Executors.newFixedThreadPool(2);
         Runnable testThread = () -> {
-            final ioc.config.TestThreadLocal testThreadLocal = this.context.getDependency(ioc.config.TestThreadLocal.class);
+            final ioc.config.TestThreadLocal testThreadLocal = this.context.getLocator().find(ioc.config.TestThreadLocal.class);
             assertEquals(testThreadLocal.getState(), Thread.currentThread().getId());
         };
         final Future<?> future1 = executor.submit(testThread);
@@ -135,16 +135,16 @@ public class ApplicationContextTest {
         future2.get();
 
         // named ioc.provider
-        assertNotNull(this.context.getDependencyByName("myConfiguredName"));
+        assertNotNull(this.context.getLocator().find("myConfiguredName"));
     }
 
     @Test
     public void testConstructorInject() {
-        assertNotNull(this.context.getDependency(TestConstructorInject.class));
+        assertNotNull(this.context.getLocator().find(TestConstructorInject.class));
     }
 
     @Test
     public void testFactoryMethodInject() {
-        assertNotNull(this.context.getDependency(TestFactoryMethodInject.class));
+        assertNotNull(this.context.getLocator().find(TestFactoryMethodInject.class));
     }
 }
