@@ -1,4 +1,4 @@
-package code.adt.map;
+package code.adt;
 
 import java.util.Objects;
 

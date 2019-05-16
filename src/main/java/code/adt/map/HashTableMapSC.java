@@ -1,6 +1,7 @@
 package code.adt.map;
 
 import code.adt.ArrayList;
+import code.adt.Relation;
 
 import java.util.function.Consumer;
 
@@ -72,7 +73,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void enumerate(Consumer<K> consumer) {
-        this.map.enumerate(k -> HashTableMapSC.this.map.map(k).enumerate(relation -> consumer.accept(relation.getKey())));
+    public void enumerate(Consumer<Relation<K, V>> consumer) {
+        this.map.enumerate(relation -> HashTableMapSC.this.map.map(relation.getKey()).enumerate(consumer));
     }
 }
