@@ -2,7 +2,6 @@
 
 ## Programmer
 
-- [ ] [The C Programming Language](doc/The-C-Programming-Language.pdf)
 - [ ] [Thinking in Java](doc/Thinking-in-Java.pdf)
 - [ ] [Effective Java](doc/Effective-Java.pdf)
 - [ ] [Design Patterns](doc/Design-Patterns.chm)
