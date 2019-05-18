@@ -123,16 +123,6 @@ public class BinaryArrayTree<E> implements BinaryTree<E, BinaryArrayTree.BTNode<
     }
 
     @Override
-    public boolean isInternal(BTNode<E> position) {
-        return this.hasLeft(position) && this.hasRight(position);
-    }
-
-    @Override
-    public boolean isLeaf(BTNode<E> position) {
-        return !this.isInternal(position);
-    }
-
-    @Override
     public void enumerate(Consumer<BTNode<E>> consumer) {
         new InOrderTraversal<>(this).enumerate(consumer);
     }

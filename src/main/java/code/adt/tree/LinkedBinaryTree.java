@@ -49,11 +49,6 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
     }
 
     @Override
-    public boolean isLeaf(BTNode<E> position) {
-        return !this.isInternal(position);
-    }
-
-    @Override
     public boolean hasLeft(BTNode<E> p) {
         return p.left != null;
     }
@@ -72,11 +67,6 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
     public void root(E element) {
         if (root == null) this.root = new BTNode<>(element, null, null, null);
         else this.root.element = element;
-    }
-
-    @Override
-    public boolean isInternal(BTNode<E> position) {
-        return position.left != null && position.right != null;
     }
 
     @Override

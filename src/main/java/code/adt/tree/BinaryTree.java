@@ -17,4 +17,14 @@ public interface BinaryTree<E, P extends Position<E>> extends Tree<E, P> {
     P left(P position, E element);
 
     P right(P position, E element);
+
+    @Override
+    default boolean isInternal(P position) {
+        return this.hasLeft(position) || this.hasRight(position);
+    }
+
+    @Override
+    default boolean isLeaf(P position) {
+        return !this.isInternal(position);
+    }
 }
