@@ -1,11 +1,10 @@
 package code.adt.map;
 
 public class HashTableMapDH<Key, Value> extends AbstractHashMap<Key, Value> {
-    private static final int PRIME_M = 31;
-    private static final int PRIME_B = 1610612741;
+    private static final int Q = 7;
 
     @Override
-    protected int rehash(int hash) {
-        return hash * PRIME_M + PRIME_B;
+    protected int rehash(int hash, int key, int trial) {
+        return hash + trial * (Q - (key % Q));
     }
 }

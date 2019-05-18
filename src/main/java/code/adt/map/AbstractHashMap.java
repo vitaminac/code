@@ -6,15 +6,19 @@ import java.util.function.Consumer;
 
 public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
     private static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
-    private static final double LAMBDA = 0.75;
+    private static final double LOAD_FACTOR = 0.5;
     protected int capacity;
     private int size;
     private Relation<Key, Value>[] relations;
 
     @SuppressWarnings("unchecked")
-    public AbstractHashMap() {
-        this.capacity = DEFAULT_INITIAL_CAPACITY;
+    public AbstractHashMap(int capacity) {
+        this.capacity = capacity;
         this.relations = new Relation[this.capacity];
+    }
+
+    public AbstractHashMap() {
+        this(DEFAULT_INITIAL_CAPACITY);
     }
 
     @Override
@@ -29,12 +33,13 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
 
     @Override
     public void link(Key key, Value value) {
-        if (((double) this.capacity) / this.size > LAMBDA) this.resize(this.capacity * 2);
-        int hash = this.hash(key);
-        int index = this.compress(hash);
+        if (((double) this.size) / this.capacity > LOAD_FACTOR) this.resize(this.capacity * 2);
+        int k = this.hash(key);
+        int hash = this.compress(k);
+        int index = hash;
+        int i = 1;
         while (this.relations[index] != null) {
-            hash = this.rehash(hash);
-            index = this.compress(hash);
+            index = this.compress(this.rehash(hash, k, i++));
         }
         this.relations[index] = new Relation<>(key, value);
         ++this.size;
@@ -42,15 +47,16 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
 
     @Override
     public Value map(Key key) {
-        int hash = this.hash(key);
-        int index = this.compress(hash);
-        while (this.relations[index] != null && this.relations[index] != Relation.SKIP) {
-            hash = this.rehash(hash);
-            index = this.compress(hash);
-        }
+        int k = this.hash(key);
+        int hash = this.compress(k);
+        int index = hash;
+        int i = 1;
         if (this.relations[index] == null) {
             return null;
         } else {
+            while (this.relations[index] == Relation.SKIP || !this.relations[index].getKey().equals(key)) {
+                index = this.compress(this.rehash(hash, k, i++));
+            }
             return this.relations[index].getValue();
         }
     }
@@ -58,11 +64,12 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
     @Override
     @SuppressWarnings("unchecked")
     public Value remove(Key key) {
-        int hash = this.hash(key);
-        int index = this.compress(hash);
+        int k = this.hash(key);
+        int hash = this.compress(k);
+        int index = hash;
+        int i = 1;
         while (index >= 0 && this.relations[index] == Relation.SKIP) {
-            hash = this.rehash(hash);
-            index = this.compress(hash);
+            index = this.compress(this.rehash(hash, k, i++));
         }
         if (this.relations[index] == null) {
             return null;
@@ -89,15 +96,17 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
     }
 
     protected int compress(int hash) {
-        return hash % this.capacity;
+        return Math.floorMod(hash, this.capacity);
     }
 
-    protected abstract int rehash(int hash);
+    protected abstract int rehash(int hash, int key, int trial);
 
     @SuppressWarnings("unchecked")
     private void resize(int capacity) {
         Relation<Key, Value>[] old = this.relations;
         this.relations = new Relation[capacity];
+        this.capacity = capacity;
+        this.size = 0;
         for (Relation<Key, Value> relation : old) {
             if (relation != null && relation != Relation.SKIP) {
                 this.link(relation.getKey(), relation.getValue());
