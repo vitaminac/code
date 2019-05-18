@@ -1,6 +1,8 @@
 package code.algorithm.divideandconquer;
 
 import code.adt.ArrayList;
+import code.adt.List;
+import code.adt.Position;
 
 import java.util.Comparator;
 
@@ -36,7 +38,7 @@ public class BinarySearch<E> {
         return this.binarySearchIterative(new ArrayList<>(array), key);
     }
 
-    public int binarySearchIterative(ArrayList<E> list, E key) {
+    public int binarySearchIterative(List<E> list, E key) {
         int low = 0;
         int high = list.size() - 1;
 
