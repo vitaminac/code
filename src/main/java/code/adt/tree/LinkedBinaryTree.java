@@ -130,6 +130,14 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
         return p.right;
     }
 
+    public void linkLeft(BTNode<E> position, BTNode<E> left) {
+        position.left = left;
+    }
+
+    public void linkRight(BTNode<E> position, BTNode<E> right) {
+        position.right = right;
+    }
+
     @Override
     public void enumerate(Consumer<BTNode<E>> consumer) {
         new InOrderTraversal<>(this).enumerate(consumer);
