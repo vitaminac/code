@@ -33,12 +33,15 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
             this.relations[index] = new ArrayList<>(new Relation<>(key, value));
             ++this.size;
         } else {
-            for (Relation<K, V> relation : this.relations[index]) {
+            Relation<K, V> newRelation = new Relation<>(key, value);
+            for (int i = 0; i < this.relations[index].size(); i++) {
+                Relation<K, V> relation = this.relations[index].get(i);
                 if (relation.getKey().equals(key)) {
-                    break;
+                    this.relations[index].set(i, newRelation);
+                    return;
                 }
             }
-            this.relations[index].add(0, new Relation<>(key, value));
+            this.relations[index].add(0, newRelation);
             ++this.size;
         }
     }
