@@ -1,49 +1,42 @@
 package code.adt.dict;
 
-import code.adt.LinkedList;
 import code.adt.Position;
-import code.adt.Queue;
-import code.adt.Relation;
 import code.adt.tree.LinkedBinaryTree;
+import code.algorithm.divideandconquer.BinarySearch;
 
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 public class UnbalancedBinarySearchTree<Key extends Comparable<Key>, Value> implements BinarySearchTree<Key, Value> {
-    protected LinkedBinaryTree<Relation<Key, Value>> binaryTree = new LinkedBinaryTree<>();
+    public static class Entry<Key extends Comparable<Key>, Value> implements Comparable<Entry<Key, Value>> {
+        private Key key;
+        private Value value;
 
-    protected LinkedBinaryTree.BTNode<Relation<Key, Value>> search(LinkedBinaryTree.BTNode<Relation<Key, Value>> position, Key key) {
-        int diff = position.getElement().getKey().compareTo(key);
-        if (diff == 0) {
-            return position;
-        } else if (diff < 0) {
-            if (this.binaryTree.left(position) == null) {
-                return position;
-            } else {
-                return this.search(this.binaryTree.left(position), key);
-            }
-        } else {
-            if (this.binaryTree.right(position) == null) {
-                return position;
-            } else {
-                return this.search(this.binaryTree.right(position), key);
-            }
+        public Entry(Key key, Value value) {
+            this.key = key;
+            this.value = value;
+        }
+
+        @Override
+        public int compareTo(Entry<Key, Value> o) {
+            return this.key.compareTo(o.key);
         }
     }
 
-    protected Relation<Key, Value> createEntry(Key key, Value value) {
-        return new Relation<>(key, value);
+    private LinkedBinaryTree<Entry<Key, Value>> binaryTree = new LinkedBinaryTree<>();
+    private BinarySearch<Entry<Key, Value>> binarySearch;
+
+    public UnbalancedBinarySearchTree() {
+        this.binarySearch = BinarySearch.get();
     }
 
     @Override
-    public Iterable<Relation<Key, Value>> findRange(Key min, Key max) {
-        Queue<Relation<Key, Value>> list = new LinkedList<>();
-        this.enumerate((relation -> {
-            if (relation.getKey().compareTo(min) >= 0 && relation.getKey().compareTo(max) <= 0) {
-                list.enqueue(relation);
+    public void findRange(Key min, Key max, Consumer<Key> consumer) {
+        this.enumerate((key -> {
+            if (key.compareTo(min) >= 0 && key.compareTo(max) <= 0) {
+                consumer.accept(key);
             }
         }));
-        return list;
     }
 
     @Override
@@ -58,12 +51,12 @@ public class UnbalancedBinarySearchTree<Key extends Comparable<Key>, Value> impl
 
     @Override
     public void link(Key key, Value value) {
-        Relation<Key, Value> entry = this.createEntry(key, value);
+        Entry<Key, Value> entry = new Entry<>(key, value);
         if (this.isEmpty()) {
             this.binaryTree.root(entry);
         } else {
-            LinkedBinaryTree.BTNode<Relation<Key, Value>> position = this.search(this.binaryTree.root(), key);
-            int diff = position.getElement().getKey().compareTo(key);
+            LinkedBinaryTree.BTNode<Entry<Key, Value>> position = this.binarySearch.search(this.binaryTree, entry);
+            int diff = key.compareTo(position.getElement().key);
             if (diff == 0) {
                 this.binaryTree.replace(position, entry);
             } else if (diff < 0) {
@@ -77,37 +70,37 @@ public class UnbalancedBinarySearchTree<Key extends Comparable<Key>, Value> impl
     @Override
     public Value map(Key key) {
         if (this.isEmpty()) return null;
-        Position<Relation<Key, Value>> position = this.search(this.binaryTree.root(), key);
-        if (position.getElement().getKey().compareTo(key) == 0) return position.getElement().getValue();
+        Position<Entry<Key, Value>> position = this.binarySearch.search(this.binaryTree, new Entry<>(key, null));
+        if (position.getElement().key.compareTo(key) == 0) return position.getElement().value;
         return null;
     }
 
     @Override
     public Value remove(Key key) {
         if (this.isEmpty()) throw new NoSuchElementException();
-        LinkedBinaryTree.BTNode<Relation<Key, Value>> position = this.search(this.binaryTree.root(), key);
-        Value value = position.getElement().getValue();
-        LinkedBinaryTree.BTNode<Relation<Key, Value>> parent = this.binaryTree.parent(position);
-        if (position.getElement().getKey().compareTo(key) == 0) {
+        LinkedBinaryTree.BTNode<Entry<Key, Value>> position = this.binarySearch.search(this.binaryTree, new Entry<>(key, null));
+        Value value = position.getElement().value;
+        LinkedBinaryTree.BTNode<Entry<Key, Value>> parent = this.binaryTree.parent(position);
+        if (key.compareTo(position.getElement().key) == 0) {
             if (this.binaryTree.isLeaf(position)) {
                 this.binaryTree.remove(position);
             } else {
                 if (this.binaryTree.hasLeft(position) && this.binaryTree.hasRight(position)) {
-                    LinkedBinaryTree.BTNode<Relation<Key, Value>> rightMost = this.binaryTree.right(position);
+                    LinkedBinaryTree.BTNode<Entry<Key, Value>> rightMost = this.binaryTree.right(position);
                     while (this.binaryTree.hasRight(rightMost)) {
                         rightMost = this.binaryTree.right(rightMost);
                     }
-                    this.remove(rightMost.getElement().getKey());
+                    this.remove(rightMost.getElement().key);
                     this.binaryTree.replace(position, rightMost.getElement());
                 } else {
-                    LinkedBinaryTree.BTNode<Relation<Key, Value>> child;
+                    LinkedBinaryTree.BTNode<Entry<Key, Value>> child;
                     if (!this.binaryTree.hasLeft(position)) {
                         child = this.binaryTree.right(position);
                     } else {
                         child = this.binaryTree.left(position);
                     }
                     this.binaryTree.remove(position);
-                    if (parent.getElement().getKey().compareTo(child.getElement().getKey()) < 0) {
+                    if (child.getElement().key.compareTo(parent.getElement().key) < 0) {
                         this.binaryTree.linkLeft(parent, child);
                     } else {
                         this.binaryTree.linkRight(parent, child);
@@ -121,7 +114,7 @@ public class UnbalancedBinarySearchTree<Key extends Comparable<Key>, Value> impl
     }
 
     @Override
-    public void enumerate(Consumer<Relation<Key, Value>> consumer) {
-        this.binaryTree.enumerate(position -> consumer.accept(position.getElement()));
+    public void enumerate(Consumer<Key> consumer) {
+        this.binaryTree.enumerate(position -> consumer.accept(position.getElement().key));
     }
 }

@@ -2,12 +2,11 @@ package code.adt.map;
 
 import code.adt.ArrayList;
 import code.adt.List;
-import code.adt.Relation;
 
 import java.util.function.Consumer;
 
-public class HashTableMapSC<K, V> implements Map<K, V> {
-    private List<Relation<K, V>> relations[];
+public class HashTableMapSC<Key, Value> implements Map<Key, Value> {
+    private List<Relation<Key, Value>> relations[];
 
     private int size = 0;
 
@@ -27,15 +26,15 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void link(K key, V value) {
+    public void link(Key key, Value value) {
         int index = this.hash(key);
         if (this.relations[index] == null) {
             this.relations[index] = new ArrayList<>(new Relation<>(key, value));
             ++this.size;
         } else {
-            Relation<K, V> newRelation = new Relation<>(key, value);
+            Relation<Key, Value> newRelation = new Relation<>(key, value);
             for (int i = 0; i < this.relations[index].size(); i++) {
-                Relation<K, V> relation = this.relations[index].get(i);
+                Relation<Key, Value> relation = this.relations[index].get(i);
                 if (relation.getKey().equals(key)) {
                     this.relations[index].set(i, newRelation);
                     return;
@@ -47,10 +46,10 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     }
 
     @Override
-    public V map(K key) {
+    public Value map(Key key) {
         int index = this.hash(key);
         if (this.relations[index] != null) {
-            for (Relation<K, V> relation : this.relations[index]) {
+            for (Relation<Key, Value> relation : this.relations[index]) {
                 if (relation.getKey().equals(key)) {
                     return relation.getValue();
                 }
@@ -60,7 +59,7 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     }
 
     @Override
-    public V remove(K key) {
+    public Value remove(Key key) {
         int found = -1;
         int index = this.hash(key);
         if (this.relations[index] != null) {
@@ -80,15 +79,15 @@ public class HashTableMapSC<K, V> implements Map<K, V> {
     }
 
     @Override
-    public void enumerate(Consumer<Relation<K, V>> consumer) {
-        for (List<Relation<K, V>> relations : this.relations) {
-            for (Relation<K, V> relation : relations) {
-                consumer.accept(relation);
+    public void enumerate(Consumer<Key> consumer) {
+        for (List<Relation<Key, Value>> relations : this.relations) {
+            for (Relation<Key, Value> relation : relations) {
+                consumer.accept(relation.getKey());
             }
         }
     }
 
-    private int hash(K key) {
+    private int hash(Key key) {
         return key.hashCode() % this.relations.length;
     }
 }

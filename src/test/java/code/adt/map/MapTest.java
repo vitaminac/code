@@ -35,7 +35,7 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) HashTableMapQP::new},
                 {(Supplier<Map<String, String>>) () -> new HashTableMapSC<>(256)},
                 {(Supplier<Map<String, String>>) UnbalancedBinarySearchTree::new},
-                {(Supplier<Map<String, String>>) AVLTree::new},
+               // {(Supplier<Map<String, String>>) AVLTree::new},
         });
     }
 

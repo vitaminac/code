@@ -3,6 +3,8 @@ package code.algorithm.divideandconquer;
 import code.adt.ArrayList;
 import code.adt.List;
 import code.adt.Position;
+import code.adt.tree.BinaryTree;
+import greedy.graph.Tree;
 
 import java.util.Comparator;
 
@@ -50,6 +52,29 @@ public class BinarySearch<E> {
             else return mid; // key found
         }
         return low;  // key not found
+    }
+
+    private <P extends Position<E>> P search(P position, BinaryTree<E, P> tree, E key) {
+        int diff = this.comparator.compare(key, position.getElement());
+        if (diff == 0) {
+            return position;
+        } else if (diff < 0) {
+            if (tree.left(position) == null) {
+                return position;
+            } else {
+                return this.search(tree.left(position), tree, key);
+            }
+        } else {
+            if (tree.right(position) == null) {
+                return position;
+            } else {
+                return this.search(tree.right(position), tree, key);
+            }
+        }
+    }
+
+    public <P extends Position<E>> P search(BinaryTree<E, P> tree, E key) {
+        return this.search(tree.root(), tree, key);
     }
 
     public static <T extends Comparable<? super T>> BinarySearch<T> get() {

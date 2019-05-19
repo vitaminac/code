@@ -1,9 +1,8 @@
 package code.adt.map;
 
 import code.adt.Enumerable;
-import code.adt.Relation;
 
-public interface Map<Domain, CoDomain> extends Enumerable<Relation<Domain, CoDomain>> {
+public interface Map<Domain, CoDomain> extends Enumerable<Domain> {
     int size();
 
     boolean isEmpty();

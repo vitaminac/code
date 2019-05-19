@@ -1,8 +1,9 @@
 package code.adt.dict;
 
-import code.adt.Relation;
 import code.adt.map.Map;
 
+import java.util.function.Consumer;
+
 public interface BinarySearchTree<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
-    Iterable<Relation<Key, Value>> findRange(Key min, Key max);
+    void findRange(Key min, Key max, Consumer<Key> consumer);
 }

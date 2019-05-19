@@ -1,7 +1,5 @@
 package code.adt.map;
 
-import code.adt.Relation;
-
 import java.util.function.Consumer;
 
 public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
@@ -83,10 +81,10 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
     }
 
     @Override
-    public void enumerate(Consumer<Relation<Key, Value>> consumer) {
+    public void enumerate(Consumer<Key> consumer) {
         for (Relation<Key, Value> relation : this.relations) {
             if (relation != null && relation != Relation.SKIP) {
-                consumer.accept(relation);
+                consumer.accept(relation.getKey());
             }
         }
     }
