@@ -132,10 +132,12 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
 
     public void linkLeft(BTNode<E> position, BTNode<E> left) {
         position.left = left;
+        left.parent = position;
     }
 
     public void linkRight(BTNode<E> position, BTNode<E> right) {
         position.right = right;
+        right.parent = position;
     }
 
     @Override

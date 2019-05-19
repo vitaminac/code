@@ -38,7 +38,7 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        while (this.relations[index] != null && !this.relations[index].getKey().equals(key)) {
+        while (this.relations[index] != null && this.relations[index] != Relation.SKIP && !this.relations[index].getKey().equals(key)) {
             index = this.compress(this.rehash(hash, k, i++));
         }
         this.relations[index] = new Relation<>(key, value);
