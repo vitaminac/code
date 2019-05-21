@@ -101,6 +101,17 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
 
     @Override
     public Value map(Key key) {
+        AVLNode<Key, Value> current = this.root;
+        while (current != null) {
+            int diff = key.compareTo(current.key);
+            if (diff == 0) {
+                return current.value;
+            } else if (diff < 0) {
+                current = current.left;
+            } else {
+                current = current.right;
+            }
+        }
         return null;
     }
 
