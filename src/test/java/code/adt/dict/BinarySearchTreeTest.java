@@ -1,6 +1,7 @@
 package code.adt.dict;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
@@ -21,7 +22,6 @@ public class BinarySearchTreeTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<BinarySearchTree<Integer, String>>) UnbalancedBinarySearchTree::new},
                 {(Supplier<BinarySearchTree<Integer, String>>) AVLTree::new},
         });
     }
@@ -30,5 +30,10 @@ public class BinarySearchTreeTest {
     @Before
     public void setUp() {
         this.binarySearchTree = supplier.get();
+    }
+
+    @Test
+    public void findRange() {
+
     }
 }

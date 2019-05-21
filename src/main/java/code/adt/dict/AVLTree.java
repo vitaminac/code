@@ -1,8 +1,6 @@
 package code.adt.dict;
 
 
-import code.adt.tree.LinkedBinaryTree;
-
 import java.util.function.Consumer;
 
 public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearchTree<Key, Value> {
@@ -10,30 +8,58 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
         private Key key;
         private Value value;
         private int height;
-        private AVLNode<Key, Value> parent;
         private AVLNode<Key, Value> left;
         private AVLNode<Key, Value> right;
 
-        public AVLNode(Key key, Value value, int height, AVLNode<Key, Value> parent, AVLNode<Key, Value> left, AVLNode<Key, Value> right) {
+        private AVLNode(Key key, Value value, int height, AVLNode<Key, Value> left, AVLNode<Key, Value> right) {
             this.key = key;
             this.value = value;
             this.height = height;
-            this.parent = parent;
             this.left = left;
             this.right = right;
         }
 
-        public AVLNode(Key key, Value value) {
-            this(key, value, 1, null, null, null);
+        private AVLNode(Key key, Value value) {
+            this(key, value, 1, null, null);
+        }
+
+        private void traversal(Consumer<Key> consumer) {
+            if (this.left != null) this.left.traversal(consumer);
+            consumer.accept(this.key);
+            if (this.right != null) this.right.traversal(consumer);
+        }
+
+        private int size() {
+            return 1 + (this.left == null ? 0 : this.left.size()) + (this.right == null ? 0 : this.right.size());
+        }
+
+        private static <Key extends Comparable<Key>, Value> int height(AVLNode<Key, Value> node) {
+            return node == null ? 0 : node.height;
+        }
+
+        private void setHeight() {
+            this.height = Math.max(height(this.left), height(this.right)) + 1;
+        }
+
+        private int balance() {
+            return height(this.left) - height(this.right);
+        }
+
+        private AVLNode<Key, Value> max() {
+            if (this.right == null) {
+                return this;
+            } else {
+                return this.right.max();
+            }
         }
     }
 
     private AVLNode<Key, Value> root;
-    private int size;
 
     @Override
     public int size() {
-        return this.size;
+        if (this.isEmpty()) return 0;
+        return this.root.size();
     }
 
     @Override
@@ -45,17 +71,9 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
         });
     }
 
-    private void traversal(Consumer<Key> consumer, AVLNode<Key, Value> node) {
-        if (node != null) {
-            this.traversal(consumer, node.left);
-            consumer.accept(node.key);
-            this.traversal(consumer, node.right);
-        }
-    }
-
     @Override
     public void enumerate(Consumer<Key> consumer) {
-        this.traversal(consumer, this.root);
+        this.root.traversal(consumer);
     }
 
     @Override
@@ -63,40 +81,76 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
         return this.root == null;
     }
 
+    private AVLNode<Key, Value> restructure(AVLNode<Key, Value> node) {
+        int balance = node.balance();
+
+        // If this node becomes unbalanced, then there are 4 cases
+        if (balance > 1) {
+            if (node.left.balance() >= 0) {
+                // Left Left Case
+                return rightRotate(node);
+            } else {
+                // Left Right Case
+                node.left = this.leftRotate(node.left);
+                return this.rightRotate(node);
+            }
+        } else if (balance < -1) {
+            if (node.right.balance() <= 0) {
+                // Right Right Case
+                return leftRotate(node);
+            } else {
+                // Right Left Case
+                node.right = this.rightRotate(node.right);
+                return leftRotate(node);
+            }
+        } else {
+            /* return the (unchanged) node pointer */
+            return node;
+        }
+    }
+
+    private AVLNode<Key, Value> insert(AVLNode<Key, Value> node, Key key, Value value) {
+        /* 1.  Perform the normal BST insertion */
+        if (node == null) {
+            return new AVLNode<>(key, value);
+        }
+        int diff = key.compareTo(node.key);
+        if (diff == 0) {
+            node.value = value;
+        } else if (diff < 0) {
+            node.left = this.insert(node.left, key, value);
+        } else {
+            node.right = this.insert(node.right, key, value);
+        }
+
+        /* 2. Update height of this ancestor node */
+        node.setHeight();
+
+        /* 3. Restructure T to fix any unbalance that may have occurred */
+        return this.restructure(node);
+    }
+
+    private AVLNode<Key, Value> leftRotate(AVLNode<Key, Value> z) {
+        AVLNode<Key, Value> y = z.right;
+        z.right = y.left;
+        z.setHeight();
+        y.left = z;
+        y.setHeight();
+        return y;
+    }
+
+    private AVLNode<Key, Value> rightRotate(AVLNode<Key, Value> z) {
+        AVLNode<Key, Value> y = z.left;
+        z.left = y.right;
+        z.setHeight();
+        y.right = z;
+        y.setHeight();
+        return y;
+    }
+
     @Override
     public void link(Key key, Value value) {
-        AVLNode<Key, Value> node = new AVLNode<>(key, value);
-        if (this.isEmpty()) {
-            this.root = node;
-            this.size = 1;
-        } else {
-            AVLNode<Key, Value> current = this.root;
-            int diff = key.compareTo(current.key);
-            while (diff != 0) {
-                if (diff < 0) {
-                    if (current.left == null) {
-                        this.left(current, node);
-                        this.reBalance(node);
-                        this.size += 1;
-                        return;
-                    } else {
-                        current = current.left;
-                    }
-                } else {
-                    if (current.right == null) {
-                        this.right(current, node);
-
-                        this.reBalance(node);
-                        this.size += 1;
-                        return;
-                    } else {
-                        current = current.right;
-                    }
-                }
-                diff = key.compareTo(current.key);
-            }
-            current.value = value;
-        }
+        this.root = this.insert(this.root, key, value);
     }
 
     @Override
@@ -115,112 +169,49 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
         return null;
     }
 
+    private AVLNode<Key, Value> delete(AVLNode<Key, Value> node, Key key) {
+        // STEP 1: PERFORM STANDARD BST DELETE
+        if (node == null) {
+            return null;
+        } else {
+            int diff = key.compareTo(node.key);
+            if (diff == 0) {
+                if (node.left == null) return node.right;
+                else if (node.right == null) return node.left;
+                else {
+                    // Get the inorder predecessor
+                    AVLNode<Key, Value> max = node.left.max();
+                    // Copy the data to this node
+                    node.key = max.key;
+                    node.value = max.value;
+                    // Delete the inorder predecessor
+                    node.left = delete(node.left, max.key);
+                }
+            } else if (diff < 0) {
+                // If the value to be deleted is smaller than the root's value,
+                // then it lies in left subtree
+                node.left = this.delete(node.left, key);
+            } else {
+                // If the value to be deleted is greater than the root's value,
+                // then it lies in right subtree
+                node.right = this.delete(node.right, key);
+            }
+            // STEP 2: UPDATE HEIGHT OF THE CURRENT NODE
+            node.setHeight();
+
+            // STEP 3: Restructure T to fix any unbalance that may have occurred
+            return this.restructure(node);
+        }
+    }
+
     @Override
     public Value remove(Key key) {
-        return null;
+        Value value = this.map(key);
+        this.delete(this.root, key);
+        return value;
     }
 
     public int getHeight() {
-        return this.root == null ? 0 : this.root.height;
-    }
-
-    private void linkLeft(AVLNode<Key, Value> node, AVLNode<Key, Value> left) {
-        node.left = left;
-        if (left != null) {
-            left.parent = node;
-        }
-    }
-
-    private void linkRight(AVLNode<Key, Value> node, AVLNode<Key, Value> right) {
-        node.right = right;
-        if (right != null) {
-            right.parent = node;
-        }
-    }
-
-    private void left(AVLNode<Key, Value> node, AVLNode<Key, Value> left) {
-        node.left = left;
-        left.parent = node;
-    }
-
-    private void right(AVLNode<Key, Value> node, AVLNode<Key, Value> right) {
-        node.right = right;
-        right.parent = node;
-    }
-
-    private AVLNode<Key, Value> left(AVLNode<Key, Value> node) {
-        return node.left;
-    }
-
-    private AVLNode<Key, Value> right(AVLNode<Key, Value> node) {
-        return node.right;
-    }
-
-    private AVLNode<Key, Value> parent(AVLNode<Key, Value> node) {
-        return node.parent;
-    }
-
-    private void root(AVLNode<Key, Value> node) {
-        this.root = node;
-        node.parent = null;
-    }
-
-    private void assignHeight(AVLNode<Key, Value> node) {
-        node.height = 1 + Math.max(this.height(this.left(node)), this.height(this.right(node)));
-    }
-
-    private int height(AVLNode<Key, Value> node) {
-        return node == null ? 0 : node.height;
-    }
-
-    private boolean isBalanced(AVLNode<Key, Value> node) {
-        return Math.abs(this.height(this.left(node)) - this.height(this.right(node))) <= 1;
-    }
-
-    private void rotate(AVLNode<Key, Value> x) {
-        AVLNode<Key, Value> y = this.parent(x);
-        AVLNode<Key, Value> z = this.parent(y);
-        if (this.left(y) == x) {
-            this.linkLeft(y, this.right(x));
-            this.linkRight(x, y);
-        } else {
-            this.linkRight(y, this.left(x));
-            this.linkLeft(x, y);
-        }
-        this.assignHeight(y);
-        this.assignHeight(x);
-        if (z == null) {
-            this.root(x);
-        } else {
-            if (this.left(z) == y) {
-                this.linkLeft(z, x);
-            } else {
-                this.linkRight(z, x);
-            }
-            this.assignHeight(z);
-        }
-    }
-
-    private void reBalance(AVLNode<Key, Value> node) {
-        this.assignHeight(node);
-        AVLNode<Key, Value> parent = this.parent(node);
-        if (parent != null) {
-            this.assignHeight(parent);
-            AVLNode<Key, Value> grandparent = this.parent(parent);
-            while (grandparent != null) {
-                if (!this.isBalanced(grandparent)) {
-                    if ((this.left(grandparent) == parent) == (this.left(parent) == node)) {
-                        this.rotate(parent);
-                    } else {
-                        this.rotate(node);
-                        this.rotate(node);
-                    }
-                }
-                this.assignHeight(grandparent);
-                node = parent;
-                parent = grandparent;
-                grandparent = this.parent(grandparent);
-            }
-        }
+        return AVLNode.height(this.root);
     }
 }
