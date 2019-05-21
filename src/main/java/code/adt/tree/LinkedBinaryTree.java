@@ -140,44 +140,6 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
         if (right != null) right.parent = position;
     }
 
-    public void rotate(BTNode<E> position) {
-        if (position != null) {
-            BTNode<E> parent = this.parent(position);
-            if (parent != null) {
-                BTNode<E> grandparent = this.parent(parent);
-                if (grandparent != null) {
-                    if (this.right(grandparent) == parent && this.right(parent) == position) {
-                        if (grandparent == this.root()) {
-                            this.root = parent;
-                            this.root.parent = null;
-                        } else {
-                            if (this.left(this.parent(grandparent)) == grandparent) {
-                                this.linkLeft(this.parent(grandparent), parent);
-                            } else {
-                                this.linkRight(this.parent(grandparent), parent);
-                            }
-                        }
-                        this.linkRight(grandparent, this.left(parent));
-                        this.linkLeft(parent, grandparent);
-                    } else if (this.left(grandparent) == parent && this.left(parent) == position) {
-                        if (grandparent == this.root()) {
-                            this.root = parent;
-                            this.root.parent = null;
-                        } else {
-                            if (this.left(this.parent(grandparent)) == grandparent) {
-                                this.linkLeft(this.parent(grandparent), parent);
-                            } else {
-                                this.linkRight(this.parent(grandparent), parent);
-                            }
-                        }
-                        this.linkLeft(grandparent, this.right(parent));
-                        this.linkRight(parent, grandparent);
-                    }
-                }
-            }
-        }
-    }
-
     @Override
     public void enumerate(Consumer<BTNode<E>> consumer) {
         new InOrderTraversal<>(this).enumerate(consumer);
