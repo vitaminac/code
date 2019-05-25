@@ -6,6 +6,7 @@
 - [ ] [Effective Java](doc/Effective-Java.pdf)
 - [ ] [Design Patterns](doc/Design-Patterns.chm)
 - [ ] [Clean Code](doc/Clean-Code.pdf)
+- [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
 
 ## Developer
 
