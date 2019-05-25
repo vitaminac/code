@@ -63,15 +63,6 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
     }
 
     @Override
-    public void findRange(Key min, Key max, Consumer<Key> consumer) {
-        this.enumerate(key -> {
-            if (key.compareTo(min) >= 0 && key.compareTo(max) <= 0) {
-                consumer.accept(key);
-            }
-        });
-    }
-
-    @Override
     public void enumerate(Consumer<Key> consumer) {
         this.root.traversal(consumer);
     }

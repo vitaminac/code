@@ -1,6 +1,7 @@
 package code.adt.map;
 
 import code.adt.dict.AVLTree;
+import code.adt.dict.RedBlackTree;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +35,7 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) HashTableMapQP::new},
                 {(Supplier<Map<String, String>>) () -> new HashTableMapSC<>(256)},
                 {(Supplier<Map<String, String>>) AVLTree::new},
+                {(Supplier<Map<String, String>>) RedBlackTree::new},
         });
     }
 

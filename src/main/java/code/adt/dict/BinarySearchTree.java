@@ -5,5 +5,11 @@ import code.adt.map.Map;
 import java.util.function.Consumer;
 
 public interface BinarySearchTree<Key extends Comparable<Key>, Value> extends Map<Key, Value> {
-    void findRange(Key min, Key max, Consumer<Key> consumer);
+    default void findRange(Key min, Key max, Consumer<Key> consumer) {
+        this.enumerate(key -> {
+            if (key.compareTo(min) >= 0 && key.compareTo(max) <= 0) {
+                consumer.accept(key);
+            }
+        });
+    }
 }
