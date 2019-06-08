@@ -1,5 +1,6 @@
 package code;
 
+import code.curso.LaberintoAdvanzado;
 import code.onlinejudge.P100;
 import org.junit.Test;
 
@@ -68,7 +69,8 @@ public class Judge {
                     System.out.println(output);
                     System.out.println(NORMAL);
                 }
-                System.out.println("Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
+                System.out.println(
+                        "Time elapsed for " + clazz.getSimpleName() + ": " + elapsedTime / 1000 + " microsecond");
             }
         } catch (NoSuchMethodException e) {
         }
@@ -77,7 +79,8 @@ public class Judge {
     @Test
     public void judgeAll() throws Exception {
         for (Utils.Pair pair : Utils.getResources(this.getClass(), "class")) {
-            Class<?> clazz = Class.forName(pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
+            Class<?> clazz = Class.forName(
+                    pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
             try {
                 judge(clazz, null);
             } catch (Throwable e) {
@@ -88,6 +91,6 @@ public class Judge {
 
     @Test
     public void judgeOne() throws Exception {
-        judge(P100.class, null);
+        judge(LaberintoAdvanzado.class, null);
     }
 }
