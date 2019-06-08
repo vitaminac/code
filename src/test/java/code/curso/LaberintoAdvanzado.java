@@ -2,6 +2,19 @@ package code.curso;
 
 import java.util.Scanner;
 
+/**
+ * Entrada La primera línea contiene tres enteros N, M y S que indican el número
+ * de filas de espacios, el número de espacios por cada fila, y el número de
+ * secciones en total que hay en ese Ikea. Las siguientes N líneas contienen N
+ * enteros que indican lo que hay en cada uno de los M espacios de esa línea. La
+ * entrada se denota por 0, la salida por 1, y las separaciones (que no son
+ * transitables) por 2. Las secciones se denotan con los números de 3 en
+ * adelante (si hay tres secciones, tendrán asignados los números 3, 4 y 5).
+ * 
+ * Salida La salida debe ser un número entero que contiene el número mínimo de
+ * espacios que hay que recorrer desde la entrada a la salida para visitar todas
+ * las secciones.
+ */
 public class LaberintoAdvanzado {
     public static int find(int laberinto[][], int x, int y, int step, int visited, int best) {
         if (x < 0 || y < 0 || x >= laberinto.length || y >= laberinto[0].length) {
