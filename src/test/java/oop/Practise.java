@@ -1,4 +1,4 @@
-package practise;
+package oop;
 
 import org.junit.Test;
 
@@ -47,7 +47,7 @@ public class Practise {
 
     @Test
     public void sumSquare2() {
-        assertEquals(30, new practise.IntStream(new int[]{1, 2, 3, 4}).map(x -> x * x).reduce((x, y) -> x + y));
+        assertEquals(30, Arrays.stream(new int[]{1, 2, 3, 4}).map(x -> x * x).reduce((x, y) -> x + y).getAsInt());
     }
 
     @Test
