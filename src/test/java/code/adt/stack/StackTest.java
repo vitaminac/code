@@ -34,10 +34,12 @@ public class StackTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
-        return Arrays.asList(new Object[][] { { (Supplier<ArrayList<String>>) ArrayList::new },
+        return Arrays.asList(new Object[][] { 
+                { (Supplier<ArrayList<String>>) ArrayList::new },
                 { (Supplier<FixedArray<String>>) () -> new FixedArray<>(5) },
                 { (Supplier<BoundedStack<String>>) () -> new BoundedStack<>(5) },
-                { (Supplier<LinkedList<String>>) LinkedList::new } });
+                { (Supplier<LinkedList<String>>) LinkedList::new } 
+            });
     }
 
     @Test
