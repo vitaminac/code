@@ -152,7 +152,11 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
 
     @Override
     public E pop() {
-        return this.removeLast();
+        try{
+            return this.removeLast();
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoSuchElementException();
+        }
     }
 
     @Override

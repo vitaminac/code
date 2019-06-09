@@ -1,6 +1,7 @@
 package code.adt;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class BoundedStack<E> implements Stack<E> {
     private final E[] stack;
@@ -42,7 +43,7 @@ public class BoundedStack<E> implements Stack<E> {
     @Override
     public E pop() {
         if (this.isEmpty())
-            throw new RuntimeException("The stack is empty");
+            throw new NoSuchElementException();
         else {
             final E returnVal = this.stack[this.top];
             this.top = (this.top - 1 + this.stack.length) % this.stack.length;
