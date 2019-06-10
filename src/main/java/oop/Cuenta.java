@@ -1,4 +1,4 @@
-package exam.sixteen.january;
+package oop;
 
 import java.util.Objects;
 

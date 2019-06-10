@@ -1,4 +1,4 @@
-package practise;
+package oop.practise;
 
 public class IntStream {
     private final int[] elements;

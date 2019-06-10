@@ -1,14 +1,14 @@
 package oop;
 
-import oop.serializable.Book;
-import oop.serializable.Library;
+import static org.junit.Assert.assertEquals;
+
+import java.math.BigInteger;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.StringWriter;
-import java.math.BigInteger;
-
-import static org.junit.Assert.assertEquals;
+import oop.serializable.Book;
+import oop.serializable.Library;
 
 public class SessionTen {
     private Book book;

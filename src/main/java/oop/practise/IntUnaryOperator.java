@@ -1,4 +1,4 @@
-package practise;
+package oop.practise;
 
 @FunctionalInterface
 public interface IntUnaryOperator {
