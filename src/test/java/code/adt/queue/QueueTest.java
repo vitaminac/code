@@ -1,9 +1,13 @@
-package code.adt;
+package code.adt.queue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+
+import code.adt.ArrayList;
+import code.adt.LinkedList;
+import code.adt.Queue;
 
 import java.util.Arrays;
 import java.util.Collection;
