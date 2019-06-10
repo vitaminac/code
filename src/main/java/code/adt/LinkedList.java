@@ -3,7 +3,8 @@ package code.adt;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E, LinkedList.LinkedNode<E>>, Deque<E> {
+public class LinkedList<E>
+        implements Bag<E>, Queue<E>, Stack<E>, PositionList<E, LinkedList.LinkedNode<E>>, Deque<E>, Cloneable {
     public static class LinkedNode<E> implements Position<E> {
         private E element;
         private LinkedNode<E> next;
@@ -26,15 +27,18 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
     }
 
     public LinkedList(Iterable<E> iterable) {
-        for (E item : iterable) this.addLast(item);
+        for (E item : iterable)
+            this.addLast(item);
     }
 
     public LinkedList(Stack<E> stack) {
-        while (!stack.isEmpty()) this.push(stack.pop());
+        while (!stack.isEmpty())
+            this.push(stack.pop());
     }
 
     public LinkedList(Queue<E> queue) {
-        while (!queue.isEmpty()) this.enqueue(queue.dequeue());
+        while (!queue.isEmpty())
+            this.enqueue(queue.dequeue());
     }
 
     @Override
@@ -50,7 +54,8 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
     @Override
     public void addFirst(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.isEmpty()) this.last = node;
+        if (this.isEmpty())
+            this.last = node;
         else {
             this.first.prev = node;
             node.next = this.first;
@@ -61,7 +66,8 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
     @Override
     public void addLast(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.isEmpty()) this.first = node;
+        if (this.isEmpty())
+            this.first = node;
         else {
             this.last.next = node;
             node.prev = this.last;
@@ -71,7 +77,8 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
 
     @Override
     public E removeFirst() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         E element = this.first.getElement();
         if (this.first == this.last) {
             this.first = null;
@@ -85,7 +92,8 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
 
     @Override
     public E removeLast() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         E element = this.last.getElement();
         if (this.first == this.last) {
             this.first = null;
@@ -99,13 +107,15 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
 
     @Override
     public E first() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         return this.firstPosition().getElement();
     }
 
     @Override
     public E last() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         return this.lastPosition().getElement();
     }
 
@@ -144,7 +154,6 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
         node.prev = position;
         return node;
     }
-
 
     @Override
     public E peek() {
@@ -199,5 +208,25 @@ public class LinkedList<E> implements Bag<E>, Queue<E>, Stack<E>, PositionList<E
                 return item;
             }
         };
+    }
+
+    @Override
+    public LinkedList<E> clone() {
+        LinkedList<E> list = new LinkedList<>();
+        for (E e : this) {
+            list.add(e);
+        }
+        return list;
+    }
+
+    public LinkedList<E> concatenate(Iterable<E> iterable) {
+        LinkedList<E> list = new LinkedList<>();
+        for (E e : this) {
+            list.add(e);
+        }
+        for (E e : iterable) {
+            list.add(e);
+        }
+        return list;
     }
 }

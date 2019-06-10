@@ -1,5 +1,6 @@
 package code.adt;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -33,7 +34,8 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
 
     @Override
     public void addFirst(E element) {
-        if (this.size++ >= this.elements.length) this.resize(2 * this.elements.length);
+        if (this.size++ >= this.elements.length)
+            this.resize(2 * this.elements.length);
         this.first = (this.first - 1 + this.elements.length) % this.elements.length;
         this.set(0, element);
     }
@@ -63,7 +65,8 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
 
     @Override
     public E last() {
-        if (this.isEmpty()) throw new NoSuchElementException();
+        if (this.isEmpty())
+            throw new NoSuchElementException();
         return this.get(this.size() - 1);
     }
 
@@ -116,7 +119,8 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
         }
         --this.size;
         // shrink size of array if necessary
-        if (this.size > 0 && this.size == this.elements.length / 4) resize(this.elements.length / 2);
+        if (this.size > 0 && this.size == this.elements.length / 4)
+            resize(this.elements.length / 2);
         return returnVal;
     }
 
@@ -152,7 +156,7 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
 
     @Override
     public E pop() {
-        try{
+        try {
             return this.removeLast();
         } catch (IndexOutOfBoundsException e) {
             throw new NoSuchElementException();
@@ -209,5 +213,16 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
     @Override
     public ArrayList<E> clone() {
         return new ArrayList<>(Arrays.copyOf(this.elements, this.elements.length), this.first, this.size);
+    }
+
+    public ArrayList<E> concatenate(Iterable<E> iterable) {
+        ArrayList<E> list = new ArrayList<>();
+        for (E e : this) {
+            list.add(e);
+        }
+        for (E e : iterable) {
+            list.add(e);
+        }
+        return list;
     }
 }
