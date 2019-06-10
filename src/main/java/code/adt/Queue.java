@@ -5,7 +5,6 @@ public interface Queue<E> extends Iterable<E> {
 
     boolean isEmpty();
 
-    // TODO: head
     E peek();
 
     void enqueue(E element);
