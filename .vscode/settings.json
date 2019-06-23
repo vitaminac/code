@@ -1,4 +1,13 @@
 {
-    "java.test.defaultConfig": "junit",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.test.config": [
+        {
+            "name": "junit",
+            "workingDirectory": "${workspaceFolder}",
+            "vmargs": [
+                "-ea"
+            ]
+        }
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.test.defaultConfig": "junit"
 }
