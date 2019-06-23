@@ -20,7 +20,7 @@ dependencies {
 }
 
 test {
-    jvmArgs = ["-Djava.compiler=NONE", "-Dfile.encoding=UTF8"]
+    jvmArgs = ["-Djava.compiler=NONE", "-Dfile.encoding=UTF8", "-Dline.separator=\n"]
     testLogging.showStandardStreams = true
     testLogging.exceptionFormat = 'full'
 }
