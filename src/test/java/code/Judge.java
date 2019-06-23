@@ -18,13 +18,11 @@ import java.nio.file.Paths;
 
 import org.junit.Test;
 
-import code.curso.LaberintoAdvanzado;
-
 public class Judge {
     private static final String WARNING = "\u001B[33m";
     private static final String NORMAL = "\033[0;30m";
 
-    private static <T> void judge(Class<T> clazz, String[] params) throws Exception {
+    public static <T> void judge(Class<T> clazz, String[] params) throws Exception {
         try {
             Method method = clazz.getMethod("main", String[].class);
             if (method == null || !Modifier.isPublic(clazz.getModifiers())) {
@@ -87,10 +85,5 @@ public class Judge {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Test
-    public void judgeOne() throws Exception {
-        judge(LaberintoAdvanzado.class, null);
     }
 }
