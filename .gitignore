@@ -414,3 +414,7 @@ ASALocalRun/
 /.idea/
 /daa.iml
 /src/test/java/TestCode.java
+
+.classpath
+.project
+.settings/org.eclipse.buildship.core.prefs

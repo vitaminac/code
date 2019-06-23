@@ -1,0 +1,4 @@
+{
+    "java.test.defaultConfig": "junit",
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
