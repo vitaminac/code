@@ -4,7 +4,8 @@
             "name": "junit",
             "workingDirectory": "${workspaceFolder}",
             "vmargs": [
-                "-ea"
+                "-ea",
+                "-Dline.separator=\n"
             ]
         }
     ],
