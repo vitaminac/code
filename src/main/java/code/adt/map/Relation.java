@@ -2,7 +2,7 @@ package code.adt.map;
 
 import java.util.Objects;
 
-class Relation<Domain, CoDomain> {
+public class Relation<Domain, CoDomain> {
     public static final Relation SKIP = new Relation<>(null, null);
 
     private Domain key;

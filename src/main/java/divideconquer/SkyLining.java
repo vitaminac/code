@@ -1,9 +1,9 @@
 package divideconquer;
 
-import javafx.util.Pair;
-
 import java.util.LinkedList;
 import java.util.Queue;
+
+import code.adt.map.Relation;
 
 public class SkyLining {
     private final int n;
@@ -24,22 +24,22 @@ public class SkyLining {
         this.heights[n] = height;
     }
 
-    private Queue<Pair<Integer, Integer>> plan(int left, int right) {
-        Queue<Pair<Integer, Integer>> plan = new LinkedList<>();
+    private Queue<Relation<Integer, Integer>> plan(int left, int right) {
+        Queue<Relation<Integer, Integer>> plan = new LinkedList<>();
         int mid = (left + right) / 2;
         if (mid <= left) {
-            plan.add(new Pair<>(this.startPosition[left], this.heights[left]));
-            plan.add(new Pair<>(this.endPosition[left], 0));
+            plan.add(new Relation<>(this.startPosition[left], this.heights[left]));
+            plan.add(new Relation<>(this.endPosition[left], 0));
         } else {
-            final Queue<Pair<Integer, Integer>> plan1 = this.plan(left, mid);
-            final Queue<Pair<Integer, Integer>> plan2 = this.plan(mid, right);
-            Pair<Integer, Integer> skyline1 = plan1.remove();
-            Pair<Integer, Integer> skyline2 = plan2.remove();
+            final Queue<Relation<Integer, Integer>> plan1 = this.plan(left, mid);
+            final Queue<Relation<Integer, Integer>> plan2 = this.plan(mid, right);
+            Relation<Integer, Integer> skyline1 = plan1.remove();
+            Relation<Integer, Integer> skyline2 = plan2.remove();
             int height1 = 0;
             int height2 = 0;
             int lastHeight = 0;
             while ((skyline1 != null) || (skyline2 != null)) {
-                Pair<Integer, Integer> nextSkyline;
+                Relation<Integer, Integer> nextSkyline;
                 if (skyline1 == null) {
                     nextSkyline = skyline2;
                     height2 = skyline2.getValue();
@@ -75,7 +75,7 @@ public class SkyLining {
                 }
                 int newHeight = Math.max(height1, height2);
                 if (newHeight != lastHeight) {
-                    plan.add(new Pair<>(nextSkyline.getKey(), newHeight));
+                    plan.add(new Relation<>(nextSkyline.getKey(), newHeight));
                     lastHeight = newHeight;
                 }
             }
@@ -83,7 +83,7 @@ public class SkyLining {
         return plan;
     }
 
-    public Queue<Pair<Integer, Integer>> plan() {
+    public Queue<Relation<Integer, Integer>> plan() {
         return this.plan(0, this.n);
     }
 }
