@@ -1,9 +1,9 @@
 package code.adt.queue.simulation;
 
-import java.util.List;
+import code.adt.List;
 
 public class AnyAvailableChoose implements ChooseOut {
-    public static ChooseOut instance = new AnyAvailableChoose();
+    public static final ChooseOut instance = new AnyAvailableChoose();
 
     private AnyAvailableChoose() {
 

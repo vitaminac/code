@@ -1,13 +1,15 @@
 package code.adt.queue.simulation;
 
-import java.util.ArrayList;
-import java.util.List;
+import code.adt.ArrayList;
+import code.adt.Bag;
+import code.adt.List;
+
 import java.util.function.Consumer;
 
 public abstract class Component {
-    protected final List<Component> outs = new ArrayList<>(); // TODO
-    private final List<Consumer<Atom>> consumersOnEnter = new ArrayList<>(); // TODO
-    private final List<Consumer<Atom>> consumersOnExit = new ArrayList<>(); // TODO
+    protected final List<Component> outs = new ArrayList<>();
+    private final Bag<Consumer<Atom>> consumersOnEnter = new ArrayList<>();
+    private final Bag<Consumer<Atom>> consumersOnExit = new ArrayList<>();
     private final ChooseOut chooseOut;
 
     public Component(ChooseOut chooseOut) {
@@ -48,6 +50,6 @@ public abstract class Component {
     }
 
     public void addOutput(Component component) {
-        this.outs.add(component);
+        this.outs.add(this.outs.size(), component);
     }
 }

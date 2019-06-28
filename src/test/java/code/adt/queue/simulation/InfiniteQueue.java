@@ -1,10 +1,10 @@
 package code.adt.queue.simulation;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import code.adt.LinkedList;
+import code.adt.Queue;
 
 public class InfiniteQueue extends Component {
-    private final Queue<Atom> queue = new LinkedList<>(); // TODO
+    private final Queue<Atom> queue = new LinkedList<>();
 
     public InfiniteQueue(Clock clock, ChooseOut chooseOut) {
         super(chooseOut);
@@ -13,7 +13,7 @@ public class InfiniteQueue extends Component {
             public void run() {
                 if (!InfiniteQueue.this.queue.isEmpty()) {
                     if (InfiniteQueue.this.tryExit(InfiniteQueue.this.queue.peek())) {
-                        InfiniteQueue.this.queue.remove();
+                        InfiniteQueue.this.queue.dequeue();
                     }
                 }
             }
@@ -28,7 +28,7 @@ public class InfiniteQueue extends Component {
     public void enter(Atom atom) {
         this.onEnter(atom);
         if (!this.tryExit(atom)) {
-            this.queue.add(atom);
+            this.queue.enqueue(atom);
         }
     }
 

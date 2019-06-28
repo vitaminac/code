@@ -1,8 +1,7 @@
 package code.adt.queue.simulation;
 
+import code.adt.List;
 import code.algorithm.Statistic;
-
-import java.util.List;
 
 public class RandomChooseOutput implements ChooseOut {
     public static final ChooseOut instance = new RandomChooseOutput();

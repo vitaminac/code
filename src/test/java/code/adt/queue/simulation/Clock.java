@@ -1,14 +1,16 @@
 package code.adt.queue.simulation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import code.adt.ArrayHeap;
+import code.adt.Bag;
+import code.adt.LinkedList;
+import code.adt.PriorityQueue;
+
 
 public class Clock {
     private double time = 0;
-    private PriorityQueue<Event> events = new PriorityQueue<>();// TODO
+    private PriorityQueue<Event> events = ArrayHeap.create();
 
-    private List<Runnable> listeners = new ArrayList<>();// TODO
+    private Bag<Runnable> listeners = new LinkedList<>();
 
     public void run(int hours) {
         var until = hours * 60 * 60;

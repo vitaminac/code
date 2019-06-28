@@ -38,7 +38,7 @@ public class kMM1Queue {
             totalProcessTime += (Double) atom.get("process_time");
         }
         assertEquals(45, bag.size() / hours, 1);
-        assertEquals(2.8, totalResponseTime / bag.size() / 60, 0.1);
+        assertEquals(2.8, totalResponseTime / bag.size() / 60, 0.2);
         assertEquals(1 / 1.1, totalProcessTime / bag.size() / 60, 0.1);
     }
 }

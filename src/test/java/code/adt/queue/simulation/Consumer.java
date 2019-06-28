@@ -1,14 +1,14 @@
 package code.adt.queue.simulation;
 
-import java.util.LinkedList;
-import java.util.List;
+import code.adt.Bag;
+import code.adt.LinkedList;
 
 public class Consumer extends Component {
     public Consumer() {
         super(null);
     }
 
-    private List<Atom> bag = new LinkedList<>(); // TODO
+    private Bag<Atom> bag = new LinkedList<>();
 
     @Override
     public void enter(Atom atom) {
@@ -26,7 +26,7 @@ public class Consumer extends Component {
         throw new RuntimeException();
     }
 
-    public List<Atom> getBag() {
+    public Bag<Atom> getBag() {
         return this.bag;
     }
 }

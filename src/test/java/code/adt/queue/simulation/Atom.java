@@ -1,16 +1,16 @@
 package code.adt.queue.simulation;
 
-import java.util.HashMap;
-import java.util.Map;
+import code.adt.map.HashTableMapLP;
+import code.adt.map.Map;
 
 public class Atom {
-    private Map<String, Object> map = new HashMap<>(); // TODO
+    private Map<String, Object> map = new HashTableMapLP<>();
 
     public void save(String name, Object value) {
-        this.map.put(name, value);
+        this.map.link(name, value);
     }
 
     public Object get(String name) {
-        return this.map.get(name);
+        return this.map.map(name);
     }
 }
