@@ -76,14 +76,19 @@ public class Judge {
 
     @Test
     public void judgeAll() throws Exception {
+        int n_all_tests = 0;
+        int n_failed = 0;
         for (Utils.Pair pair : Utils.getResources(this.getClass(), "class")) {
             Class<?> clazz = Class.forName(
                     pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
             try {
+                n_all_tests += 1;
                 judge(clazz, null);
             } catch (Throwable e) {
+                n_failed += 1;
                 e.printStackTrace();
             }
         }
+        System.out.println("Total " + n_all_tests + " unit tests and " + n_failed + " of them have failed!");
     }
 }

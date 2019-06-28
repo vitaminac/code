@@ -1,12 +1,13 @@
 package code.algorithm;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Statistic {
-    private final static Random rand = new Random();
+    private final static Random random = new Random();
 
-    public double nextExp(double lambda) {
-        return Math.log(1 - rand.nextDouble()) / (-lambda);
+    public static int sampleUniform(int min, int max) {
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 
     // slow
