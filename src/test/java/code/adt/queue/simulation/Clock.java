@@ -1,14 +1,15 @@
 package code.adt.queue.simulation;
 
-import code.adt.ArrayHeap;
 import code.adt.Bag;
 import code.adt.LinkedList;
-import code.adt.PriorityQueue;
+
+import java.util.PriorityQueue;
 
 
 public class Clock {
     private double time = 0;
-    private PriorityQueue<Event> events = ArrayHeap.create();
+    // private PriorityQueue<Event> events = ArrayHeap.create(); TODO
+    private PriorityQueue<Event> events = new PriorityQueue<>();
 
     private Bag<Runnable> listeners = new LinkedList<>();
 

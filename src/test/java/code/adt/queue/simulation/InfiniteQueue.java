@@ -36,4 +36,8 @@ public class InfiniteQueue extends Component {
     public boolean canEnter() {
         return true;
     }
+
+    public int getSize() {
+        return this.queue.size();
+    }
 }
