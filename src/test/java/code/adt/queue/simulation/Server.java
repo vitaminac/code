@@ -1,14 +1,14 @@
 package code.adt.queue.simulation;
 
 import org.apache.commons.math3.distribution.ExponentialDistribution;
+import org.apache.commons.math3.distribution.RealDistribution;
 
-public class SingleServer extends Component {
+public class Server extends Component {
     private final Runnable process;
     private Atom processing;
 
-    public SingleServer(Clock clock, double mu, ChooseOut chooseOut) {
+    public Server(Clock clock, RealDistribution distribution, ChooseOut chooseOut) {
         super(chooseOut);
-        var distribution = new ExponentialDistribution(1 / mu);
         this.process = new Runnable() {
             @Override
             public void run() {
@@ -16,15 +16,19 @@ public class SingleServer extends Component {
                 clock.addEvent(new Event((clock.getTime() + interval), new Runnable() {
                     @Override
                     public void run() {
-                        SingleServer.this.tryExit(SingleServer.this.processing);
-                        SingleServer.this.processing = null;
+                        Server.this.tryExit(Server.this.processing);
+                        Server.this.processing = null;
                     }
                 }));
             }
         };
     }
 
-    public SingleServer(Clock clock, double mu) {
+    public Server(Clock clock, double mu, ChooseOut chooseOut) {
+        this(clock, new ExponentialDistribution(1 / mu), chooseOut);
+    }
+
+    public Server(Clock clock, double mu) {
         this(clock, mu, RandomChooseOutput.instance);
     }
 
