@@ -1,7 +1,7 @@
 package code.adt;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
@@ -174,6 +174,7 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             private int remain = ArrayList.this.size;
+            private final int originalSize = ArrayList.this.size;
 
             @Override
             public boolean hasNext() {
@@ -182,6 +183,16 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
 
             @Override
             public E next() {
+                /**
+                 * Modify the iterator code to immediately throw a java.util.ConcurrentModificationException
+                 * if the client modifies the collection (via push() or pop()) during iteration.
+                 * Solution: Maintain a counter that counts the number of push() and pop() operations.
+                 * When creating an iterator, store this value as an iterator instance variable.
+                 * Before each call to hasNext() and next(),
+                 * check that this value has not changed
+                 * since construction of the iterator; if it has, throw an exception.
+                 */
+                if (originalSize != ArrayList.this.size) throw new ConcurrentModificationException();
                 return ArrayList.this.get(--this.remain);
             }
         };
