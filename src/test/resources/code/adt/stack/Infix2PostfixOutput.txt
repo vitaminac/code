@@ -1,0 +1,6 @@
+AB+
+AB+C*
+ABC*+D+
+AB+CD+*
+AB*CD*+
+AB+C+D+
