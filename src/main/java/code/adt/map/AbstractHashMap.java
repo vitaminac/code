@@ -6,7 +6,7 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
     private static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
     private static final double LOAD_FACTOR = 0.5;
     private static final Relation SKIP = new Relation<>(null, null);
-    protected int capacity;
+    private int capacity;
     private int size;
     private Relation<Key, Value>[] relations;
 
@@ -30,14 +30,14 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
 
     @Override
     public void link(Key key, Value value) {
+        this.remove(key); // ensure that we can place at first SKIP position
         if (((double) this.size) / this.capacity > LOAD_FACTOR) this.resize(this.capacity * 2);
         int k = this.hash(key);
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        while (this.relations[index] != null && this.relations[index] != SKIP && !this.relations[index].getKey().equals(key)) {
-            index = this.compress(this.rehash(hash, k, i++));
-        }
+        for (Relation<Key, Value> relation = this.relations[index]; relation != null && relation != SKIP && !relation.getKey().equals(key); index = this.compress(this.rehash(hash, k, i++)), relation = this.relations[index])
+            ;
         this.relations[index] = new Relation<>(key, value);
         ++this.size;
     }
@@ -48,9 +48,8 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        while (this.relations[index] != null && (this.relations[index] == SKIP || !this.relations[index].getKey().equals(key))) {
-            index = this.compress(this.rehash(hash, k, i++));
-        }
+        for (Relation<Key, Value> relation = this.relations[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehash(hash, k, i++)), relation = this.relations[index])
+            ;
         if (this.relations[index] == null) {
             return null;
         } else {
@@ -65,9 +64,8 @@ public abstract class AbstractHashMap<Key, Value> implements Map<Key, Value> {
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        while (index >= 0 && this.relations[index] == SKIP) {
-            index = this.compress(this.rehash(hash, k, i++));
-        }
+        for (Relation<Key, Value> relation = this.relations[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehash(hash, k, i++)), relation = this.relations[index])
+            ;
         if (this.relations[index] == null) {
             return null;
         } else {
