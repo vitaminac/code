@@ -117,4 +117,20 @@ public class MapTest {
         this.map.link("350", "Correct");
         assertEquals("Correct", this.map.map("350"));
     }
+
+    @Test
+    public void clear() {
+        for (int i = 0; i < 1000; i++) {
+            this.map.link(String.valueOf(i), String.valueOf(i));
+        }
+        assertEquals(1000, this.map.size());
+        for (int i = 0; i < 1000; i++) {
+            assertNotNull(this.map.map(String.valueOf(i)));
+        }
+        this.map.clear();
+        assertEquals(0, this.map.size());
+        for (int i = 0; i < 1000; i++) {
+            assertNull(this.map.map(String.valueOf(i)));
+        }
+    }
 }

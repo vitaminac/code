@@ -196,6 +196,11 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements BinaryS
     }
 
     @Override
+    public void clear() {
+        this.root = null;
+    }
+
+    @Override
     public void enumerate(Consumer<Key> consumer) {
         if (this.root != null) this.root.traversal(consumer);
     }

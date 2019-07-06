@@ -12,4 +12,6 @@ public interface Map<Domain, CoDomain> extends Enumerable<Domain> {
     CoDomain map(Domain key);
 
     CoDomain remove(Domain key);
+
+    void clear();
 }

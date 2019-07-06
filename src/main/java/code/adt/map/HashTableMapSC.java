@@ -7,12 +7,10 @@ import java.util.function.Consumer;
 
 public class HashTableMapSC<Key, Value> implements Map<Key, Value> {
     private List<Relation<Key, Value>> relations[];
+    private int size;
 
-    private int size = 0;
-
-    @SuppressWarnings("unchecked")
     public HashTableMapSC(int capacity) {
-        this.relations = new ArrayList[capacity];
+        this.init(capacity);
     }
 
     @Override
@@ -79,6 +77,11 @@ public class HashTableMapSC<Key, Value> implements Map<Key, Value> {
     }
 
     @Override
+    public void clear() {
+        this.init(this.relations.length);
+    }
+
+    @Override
     public void enumerate(Consumer<Key> consumer) {
         for (List<Relation<Key, Value>> relations : this.relations) {
             for (Relation<Key, Value> relation : relations) {
@@ -89,5 +92,11 @@ public class HashTableMapSC<Key, Value> implements Map<Key, Value> {
 
     private int hash(Key key) {
         return key.hashCode() % this.relations.length;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void init(int capacity) {
+        this.relations = new ArrayList[capacity];
+        this.size = 0;
     }
 }

@@ -202,6 +202,11 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearch
         return value;
     }
 
+    @Override
+    public void clear() {
+        this.root = null;
+    }
+
     public int getHeight() {
         return AVLNode.height(this.root);
     }
