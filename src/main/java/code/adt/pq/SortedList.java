@@ -1,5 +1,6 @@
-package code.adt;
+package code.adt.pq;
 
+import code.adt.ArrayList;
 import code.algorithm.divideandconquer.BinarySearch;
 
 import java.util.Comparator;

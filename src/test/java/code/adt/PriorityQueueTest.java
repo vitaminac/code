@@ -1,5 +1,8 @@
 package code.adt;
 
+import code.adt.pq.ArrayHeap;
+import code.adt.pq.PriorityQueue;
+import code.adt.pq.SortedList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

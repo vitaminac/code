@@ -1,4 +1,6 @@
-package code.adt;
+package code.adt.pq;
+
+import code.adt.ArrayList;
 
 import java.util.Comparator;
 import java.util.Iterator;

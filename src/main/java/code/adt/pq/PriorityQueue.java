@@ -1,4 +1,4 @@
-package code.adt;
+package code.adt.pq;
 
 public interface PriorityQueue<E> extends Iterable<E> {
     void add(E element);
