@@ -10,26 +10,26 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 @RunWith(Parameterized.class)
-public class BinarySearchTreeTest {
+public class DictionaryTest {
 
-    private BinarySearchTree<Integer, String> binarySearchTree;
-    private Supplier<BinarySearchTree<Integer, String>> supplier;
+    private Dictionary<Integer, String> dictionary;
+    private Supplier<Dictionary<Integer, String>> supplier;
 
-    public BinarySearchTreeTest(Supplier<BinarySearchTree<Integer, String>> supplier) {
+    public DictionaryTest(Supplier<Dictionary<Integer, String>> supplier) {
         this.supplier = supplier;
     }
 
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<BinarySearchTree<Integer, String>>) AVLTree::new},
+                {(Supplier<Dictionary<Integer, String>>) AVLTree::new},
         });
     }
 
 
     @Before
     public void setUp() {
-        this.binarySearchTree = supplier.get();
+        this.dictionary = supplier.get();
     }
 
     @Test

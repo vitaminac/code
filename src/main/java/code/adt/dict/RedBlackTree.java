@@ -2,7 +2,7 @@ package code.adt.dict;
 
 import java.util.function.Consumer;
 
-public class RedBlackTree<Key extends Comparable<Key>, Value> implements BinarySearchTree<Key, Value> {
+public class RedBlackTree<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 

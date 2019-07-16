@@ -3,7 +3,7 @@ package code.adt.dict;
 
 import java.util.function.Consumer;
 
-public class AVLTree<Key extends Comparable<Key>, Value> implements BinarySearchTree<Key, Value> {
+public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
     private static class AVLNode<Key extends Comparable<Key>, Value> {
         private Key key;
         private Value value;
