@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class LinkedList<E>
-        implements Bag<E>, Queue<E>, Stack<E>, PositionList<E, LinkedList.LinkedNode<E>>, Deque<E>, Cloneable {
+        implements Bag<E>, Queue<E>, Stack<E>, PositionList<E>, Deque<E>, Cloneable {
     public static class LinkedNode<E> implements Position<E> {
         private E element;
         private LinkedNode<E> next;
@@ -130,17 +130,35 @@ public class LinkedList<E>
     }
 
     @Override
-    public LinkedNode<E> before(LinkedNode<E> position) {
+    public Position<E> first(E element) {
+        this.first = new LinkedNode<>(element);
+        this.last = this.first;
+        return this.first;
+    }
+
+    private LinkedNode<E> checkPosition(Position<E> position) {
+        if (position instanceof LinkedNode) {
+            return (LinkedNode<E>) position;
+        } else {
+            throw new RuntimeException();
+        }
+    }
+
+    @Override
+    public LinkedNode<E> before(Position<E> p) {
+        LinkedNode<E> position = this.checkPosition(p);
         return position.prev;
     }
 
     @Override
-    public LinkedNode<E> after(LinkedNode<E> position) {
+    public LinkedNode<E> after(Position<E> p) {
+        LinkedNode<E> position = this.checkPosition(p);
         return position.next;
     }
 
     @Override
-    public LinkedNode<E> insertBefore(LinkedNode<E> position, E element) {
+    public LinkedNode<E> insertBefore(Position<E> p, E element) {
+        LinkedNode<E> position = this.checkPosition(p);
         LinkedNode<E> node = new LinkedNode<E>(element);
         position.prev = node;
         node.next = position;
@@ -148,7 +166,8 @@ public class LinkedList<E>
     }
 
     @Override
-    public LinkedNode<E> insertAfter(LinkedNode<E> position, E element) {
+    public LinkedNode<E> insertAfter(Position<E> p, E element) {
+        LinkedNode<E> position = this.checkPosition(p);
         LinkedNode<E> node = new LinkedNode<E>(element);
         position.next = node;
         node.prev = position;

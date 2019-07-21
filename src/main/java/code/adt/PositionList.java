@@ -1,6 +1,6 @@
 package code.adt;
 
-public interface PositionList<E, P extends Position<E>> {
+public interface PositionList<E> {
     int size();
 
     boolean isEmpty();
@@ -9,11 +9,13 @@ public interface PositionList<E, P extends Position<E>> {
 
     Position<E> lastPosition();
 
-    Position<E> before(P position);
+    Position<E> first(E element);
 
-    Position<E> after(P position);
+    Position<E> before(Position<E> position);
 
-    Position<E> insertBefore(P position, E element);
+    Position<E> after(Position<E> position);
 
-    Position<E> insertAfter(P position, E element);
+    Position<E> insertBefore(Position<E> position, E element);
+
+    Position<E> insertAfter(Position<E> position, E element);
 }
