@@ -5,6 +5,8 @@ public interface List<E> extends Enumerable<E> {
 
     boolean isEmpty();
 
+    void clear();
+
     E get(int index);
 
     void set(int index, E element);

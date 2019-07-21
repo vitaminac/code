@@ -86,6 +86,12 @@ public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<
     }
 
     @Override
+    public void clear() {
+        this.size = 0;
+        this.first = 0;
+    }
+
+    @Override
     public E get(int index) {
         this.checkIndex(index);
         return this.elements[(this.first + this.elements.length + index) % this.elements.length];
