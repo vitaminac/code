@@ -2,6 +2,7 @@ package code.adt.map;
 
 import code.adt.dict.AVLTree;
 import code.adt.dict.RedBlackTree;
+import code.adt.dict.SkipList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +37,31 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) () -> new HashTableMapSC<>(256)},
                 {(Supplier<Map<String, String>>) AVLTree::new},
                 {(Supplier<Map<String, String>>) RedBlackTree::new},
+                {(Supplier<Map<String, String>>) SkipList::new},
         });
+    }
+
+    @Test
+    public void sizeInc() {
+        for (int i = 0; i < 10; i++) {
+            assertEquals(i, this.map.size());
+            this.map.link(String.valueOf(i), String.valueOf(i));
+        }
+        assertEquals(10, this.map.size());
+    }
+
+    @Test
+    public void sizeDec() {
+        for (int i = 0; i < 10; i++) {
+            assertEquals(i, this.map.size());
+            this.map.link(String.valueOf(i), String.valueOf(i));
+        }
+        assertEquals(10, this.map.size());
+        for (int i = 9; i >= 0; i--) {
+            this.map.remove(String.valueOf(i));
+            assertEquals(i, this.map.size());
+        }
+        assertEquals(0, this.map.size());
     }
 
     @Test
@@ -59,6 +84,7 @@ public class MapTest {
     public void link() {
         for (int i = 0; i < 1000; i++) {
             this.map.link(String.valueOf(i), String.valueOf(i));
+            assertEquals(String.valueOf(i), this.map.map(String.valueOf(i)));
         }
         this.map.link("0", "hello");
         this.map.link("1", "world");
@@ -79,9 +105,18 @@ public class MapTest {
     @Test
     public void map() {
         for (int i = 0; i < 1000; i++) {
-            this.map.link(String.valueOf(i), "N:" + String.valueOf(i));
+            this.map.link(String.valueOf(i), "N:" + i);
         }
         assertEquals("N:100", this.map.map("100"));
+    }
+
+    @Test
+    public void testAddOneRemoveOne() {
+        this.map.link("0", "hello");
+        assertEquals("hello", this.map.map("0"));
+        assertEquals(1, this.map.size());
+        this.map.remove("0");
+        assertEquals(0, this.map.size());
     }
 
     @Test
