@@ -130,10 +130,10 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
             }
         }
         if (diff >= 0) {
-            while (current.next != null && current.next.element.compareTo(max) <= 0) {
-                current = current.next;
+            do {
                 consumer.accept(current.element.getKey());
-            }
+                current = current.next;
+            } while (current != null && current.element.compareTo(max) <= 0);
         }
     }
 
