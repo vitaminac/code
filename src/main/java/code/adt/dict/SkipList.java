@@ -2,7 +2,6 @@ package code.adt.dict;
 
 import code.adt.LinkedList;
 import code.adt.Stack;
-import code.adt.map.Relation;
 
 import java.util.function.Consumer;
 
@@ -14,6 +13,11 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
 
         private Node(E element) {
             this.element = element;
+        }
+
+        @Override
+        public String toString() {
+            return "Element:" + element + "; Next: " + (next == null ? null : next.element) + "; Down:" + (down == null ? null : down.element);
         }
     }
 
@@ -45,36 +49,39 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
         return this.top.down == null;
     }
 
-    @Override
-    public void link(Key key, Value value) {
-        Node<Vocabulary<Key, Value>> current = this.top;
-        Stack<Node<Vocabulary<Key, Value>>> stack = new LinkedList<>();
-        while (current.down != null) {
-            stack.push(current);
-            current = current.down;
-            while (current.next != null && current.next.element.compareTo(key) <= 0) {
-                current = current.next;
+    private Node<Vocabulary<Key, Value>> link(Node<Vocabulary<Key, Value>> node, Vocabulary<Key, Value> vocabulary) {
+        if (node == null) return new Node<>(vocabulary);
+        var current = node;
+        int diff = current.element.compareTo(vocabulary.getKey());
+        while (current.next != null && (diff = current.next.element.compareTo(vocabulary.getKey())) < 0) {
+            current = current.next;
+        }
+        if (diff == 0) {
+            current = current.next;
+            while (current != null) {
+                current.element = vocabulary;
+                current = current.down;
+            }
+        } else {
+            Node<Vocabulary<Key, Value>> newNode = this.link(node.down, vocabulary);
+            if (newNode != null) {
+                newNode.next = current.next;
+                current.next = newNode;
+                if (Math.random() > 0.5) {
+                    var retVal = new Node<>(vocabulary);
+                    retVal.down = newNode;
+                    return retVal;
+                }
             }
         }
-        double flag = Math.random();
-        int diff = current.element.compareTo(key);
-        if (diff == 0) {
-            do {
-                current.element = new Vocabulary<>(key, value);
-            } while (!stack.isEmpty() && (current = stack.pop()) != null);
-        } else {
-            Node<Vocabulary<Key, Value>> down = null;
-            do {
-                Node<Vocabulary<Key, Value>> node = new Node<>(new Vocabulary<>(key, value));
-                node.next = current.next;
-                current.next = node;
-                node.down = down;
-                down = node;
-            } while (!stack.isEmpty() && (current = stack.pop()) != null && ((flag *= 2) < 0.5));
+        return null;
+    }
 
-        }
-        if (current == this.top) {
-            Node<Vocabulary<Key, Value>> newTop = new Node<>(MIN_SENTIMENTAL);
+    @Override
+    public void link(Key key, Value value) {
+        this.link(this.top, new Vocabulary<>(key, value));
+        if (this.top.next != null) {
+            var newTop = new Node<>(MIN_SENTIMENTAL);
             newTop.down = this.top;
             this.top = newTop;
         }

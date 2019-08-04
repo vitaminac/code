@@ -31,4 +31,9 @@ public class Relation<Domain, CoDomain> {
     public int hashCode() {
         return Objects.hash(key);
     }
+
+    @Override
+    public String toString() {
+        return key + ":" + value;
+    }
 }

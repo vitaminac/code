@@ -86,19 +86,24 @@ public class MapTest {
             this.map.link(String.valueOf(i), String.valueOf(i));
             assertEquals(String.valueOf(i), this.map.map(String.valueOf(i)));
         }
-        this.map.link("0", "hello");
-        this.map.link("1", "world");
-        this.map.link("2", "today");
-        this.map.link("3", "afternoon");
-        this.map.link("4", "night");
-        this.map.link("5", "morning");
-
         assertEquals("105", this.map.map("105"));
+
+        this.map.link("0", "hello");
         assertEquals("hello", this.map.map("0"));
+
+        this.map.link("1", "world");
         assertEquals("world", this.map.map("1"));
+
+        this.map.link("2", "today");
         assertEquals("today", this.map.map("2"));
+
+        this.map.link("3", "afternoon");
         assertEquals("afternoon", this.map.map("3"));
+
+        this.map.link("4", "night");
         assertEquals("night", this.map.map("4"));
+
+        this.map.link("5", "morning");
         assertEquals("morning", this.map.map("5"));
     }
 
@@ -106,8 +111,8 @@ public class MapTest {
     public void map() {
         for (int i = 0; i < 1000; i++) {
             this.map.link(String.valueOf(i), "N:" + i);
+            assertEquals("N:" + i, this.map.map(String.valueOf(i)));
         }
-        assertEquals("N:100", this.map.map("100"));
     }
 
     @Test
