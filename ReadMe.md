@@ -31,3 +31,7 @@
 - [ ] [Data Structures and Algorithms Specialization Offered By UNIVERSITY OF CALIFORNIA SAN DIEGO](https://www.coursera.org/specializations/data-structures-algorithms)
 - [ ] [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
+
+# Jobs
+
+* [Google Kick Start](https://codingcompetitions.withgoogle.com/code.kickstart)
