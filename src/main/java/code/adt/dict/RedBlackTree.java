@@ -2,6 +2,12 @@ package code.adt.dict;
 
 import java.util.function.Consumer;
 
+/**
+ * https://algs4.cs.princeton.edu/33balanced/
+ *
+ * @param <Key>
+ * @param <Value>
+ */
 public class RedBlackTree<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
@@ -20,9 +26,9 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
             this.size = size;
         }
 
-        private void traversal(Consumer<Key> consumer) {
+        private void traversal(Consumer<Node<Key, Value>> consumer) {
             if (this.left != null) this.left.traversal(consumer);
-            consumer.accept(this.key);
+            consumer.accept(this);
             if (this.right != null) this.right.traversal(consumer);
         }
     }
@@ -30,23 +36,12 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     private Node<Key, Value> root;
 
     private boolean isRed(Node x) {
-        if (x == null) return false;
-        return x.color == RED;
+        // All Leaves are black
+        return x != null && x.color == RED;
     }
 
     private int size(Node x) {
-        if (x == null) return 0;
-        return x.size;
-    }
-
-    private Value get(Node<Key, Value> x, Key key) {
-        while (x != null) {
-            int diff = key.compareTo(x.key);
-            if (diff < 0) x = x.left;
-            else if (diff > 0) x = x.right;
-            else return x.val;
-        }
-        return null;
+        return x == null ? 0 : x.size;
     }
 
     private Node<Key, Value> rotateRight(Node<Key, Value> z) {
@@ -78,6 +73,17 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     }
 
     private Node<Key, Value> put(Node<Key, Value> z, Key key, Value val) {
+        /*
+        Insert into a 2-node.
+        To insert a new node in a 2-3 tree,
+        we might do an unsuccessful search and then hook on the node at the bottom,
+        as we did with BSTs,
+        but the new tree would not remain perfectly balanced.
+        It is easy to maintain perfect balance
+        if the node at which the search terminates is a 2-node:
+        We just replace the node with a 3-node containing its key
+        and the new key to be inserted.
+         */
         if (z == null) return new Node<>(key, val, RED, 1);
 
         int diff = key.compareTo(z.key);
@@ -174,12 +180,19 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     @Override
     public void link(Key key, Value value) {
         root = put(root, key, value);
-        root.color = BLACK;
+        root.color = BLACK; // The root is black
     }
 
     @Override
     public Value map(Key key) {
-        return get(root, key);
+        var node = this.root;
+        while (node != null) {
+            int diff = key.compareTo(node.key);
+            if (diff < 0) node = node.left;
+            else if (diff > 0) node = node.right;
+            else return node.val;
+        }
+        return null;
     }
 
     @Override
@@ -202,6 +215,25 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
 
     @Override
     public void enumerate(Consumer<Key> consumer) {
-        if (this.root != null) this.root.traversal(consumer);
+        if (this.root != null) this.root.traversal(node -> consumer.accept(node.key));
+    }
+
+    private void buildTree(StringBuilder sb, Node<Key, Value> node, int level) {
+        sb.append(System.lineSeparator());
+        if (!this.isRed(node)) level += 1;
+        if (node != null) this.buildTree(sb, node.right, level);
+        for (int i = 0; i < level; i++) {
+            sb.append('\t');
+        }
+        sb.append(node == null ? "*" : (this.isRed(node) ? "\u001B[31m" + node.key : String.valueOf(node.key)));
+        if (node != null) this.buildTree(sb, node.left, level);
+        sb.append(System.lineSeparator());
+    }
+
+    @Override
+    public String toString() {
+        final var sb = new StringBuilder();
+        this.buildTree(sb, this.root, -1);
+        return sb.toString();
     }
 }
