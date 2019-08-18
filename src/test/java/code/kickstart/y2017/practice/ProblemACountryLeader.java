@@ -1,4 +1,4 @@
-package code.kickstart.y2017;
+package code.kickstart.y2017.practice;
 
 import code.Judge;
 import org.junit.Test;
