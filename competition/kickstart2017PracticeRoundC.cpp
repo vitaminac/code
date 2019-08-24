@@ -12,7 +12,7 @@ int main()
     int T;
     cin >> T;
 
-    LOOP_UNTIL_EQUALS(t, T)
+    REP(t, T)
     {
         Dbg(t);
         uint L;
