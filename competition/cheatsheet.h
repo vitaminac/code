@@ -8,20 +8,20 @@ using namespace std;
 #define Dbg(x)
 #endif
 
-#define LL long long
+#define LL unsigned long long int
 
-const double E = 1e-8;
-const double PI = acos(-1);
+constexpr double E = 1e-8;
+constexpr double PI = 3.14159265358979323;
+constexpr int INF = 1 << 29;
 
 #define FOR(i, N) for (int i = 0; i < N; i++)
 #define REP(i, N) for (int i = 1; i <= N; i++)
 
 // https://www.cnblogs.com/linyujun/p/5194184.html
-#define ADD(x, y, p) (x % p + y % p)
-#define SUB(x, y, p) (x % p - y % p)
-#define MUL(x, y, p) ((x % p) * (y % p))
-
-LL pow_mod(LL a, LL b, LL p)
+#define ADD(x, y, p) ((x + y) % p)
+#define SUB(x, y, p) ((x - y) % p)
+#define MUL(x, y, p) ((x * y) % p)
+LL fast_power_mod(LL a, LL b, LL p)
 { //a的b次方求余p
     LL ret = 1;
     while (b)
@@ -33,3 +33,5 @@ LL pow_mod(LL a, LL b, LL p)
     }
     return ret;
 }
+#define MOD_INV(a, p) fast_power_mod(a, p - 2, p) //费马求a关于b的逆元
+#define DIV(x, y, p) MUL(x, MOD_INV(y, p), p)
