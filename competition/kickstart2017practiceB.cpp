@@ -12,7 +12,7 @@ int main()
     int T;
     cin >> T;
 
-    LOOP(i, T)
+    LOOP_UNTIL_EQUALS(i, T)
     {
         Dbg(i);
         int N;
@@ -21,7 +21,7 @@ int main()
         Dbg(N);
         Dbg(M);
         double y = (double)(N - M) / (N + M);
-        cout << "Case #" << i + 1 << ": " << y << endl;
+        cout << "Case #" << i << ": " << y << endl;
     }
 
     return 0;

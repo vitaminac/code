@@ -12,3 +12,4 @@ const double E = 1e-8;
 const double PI = acos(-1);
 
 #define LOOP(i, N) for (int i = 0; i < N; i++)
+#define LOOP_UNTIL_EQUALS(i, N) for (int i = 1; i <= N; i++)
