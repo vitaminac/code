@@ -33,5 +33,6 @@ LL fast_power_mod(LL a, LL b, LL p)
     }
     return ret;
 }
-#define MOD_INV(a, p) fast_power_mod(a, p - 2, p) //费马求a关于b的逆元
+#define FERMAT(a, p) fast_power_mod(a, p - 2, p) //费马求a关于b的逆元
+#define MOD_INV(a, p) FERMAT(a, p)
 #define DIV(x, y, p) MUL(x, MOD_INV(y, p), p)

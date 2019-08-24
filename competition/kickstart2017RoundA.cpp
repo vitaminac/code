@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #include "cheatsheet.h"
 
 constexpr int MOD = 1000000007;
@@ -14,28 +14,20 @@ int main()
     freopen("ans.out", "w", stdout);
 
     int T;
-    uint R, C;
-    __uint128_t n, m, y;
+    uint64_t n, m, y;
     cin >> T;
 
     REP(t, T)
     {
         Dbg(t);
-        cin >> R >> C;
-        Dbg(R); // the number of dots in each row
-        Dbg(C); // column of the grid
-        if (R <= C)
-        {
-            n = R;
-            m = C;
-        }
-        else
-        {
-            n = C;
-            m = R;
-        }
+        cin >> n >> m;
+        Dbg(n); // the number of dots in each row
+        Dbg(m); // column of the grid
+        if (m < n)
+            swap(n, m);
         y = DIV(MUL(MUL(MUL(SUB(n, 1, MOD), n, MOD), ADD(n, 1, MOD), MOD), SUB(2 * m, n, MOD), MOD), 12, MOD);
-        cout << "Case #" << t << ": " << (unsigned)(y) << endl;
+        Dbg(y);
+        cout << "Case #" << t << ": " << y << endl;
     }
 
     return 0;
