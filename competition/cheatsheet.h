@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 
+// NAMESPACES
 using namespace std;
 
+// DEBUG
 #ifdef DEBUG
 #define Dbg(x) cerr << __LINE__ << ":" << #x << "=" << (x) << endl;
 #define Test(action) action
@@ -10,16 +12,23 @@ using namespace std;
 #define Test(action)
 #endif
 
+// TYPES
 #define LLU uint64_t
 #define LL int64_t
 
+// IO
+// EMPTY
+
+// CONSTANTs
 constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
 constexpr int INF = 1 << 31 - 1;
 
-#define FOR(i, N) for (int i = 0; i < N; i++)
-#define REP(i, N) for (int i = 1; i <= N; i++)
+// LOOP
+#define FOR(i, N) for (i = 0; i < N; i++)
+#define REP(i, N) for (i = 1; i <= N; i++)
 
+// MODULAR ARITHMETIC
 // https://www.cnblogs.com/linyujun/p/5194184.html
 #define ADD(x, y, p) ((x + y) % p)
 #define SUB(x, y, p) ((x - y) % p)
@@ -40,8 +49,10 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 #define MOD_INV(a, p) FERMAT(a, p)
 #define DIV(x, y, p) MUL(x, MOD_INV(y, p), p)
 
+// MEMORY OPERATION
 #define MSET(arr, val) memset(arr, val, sizeof(arr));
 
+// USEFUL DATASTRUCTURES
 template <typename T>
 struct UnionFind
 {

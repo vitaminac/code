@@ -2,12 +2,11 @@
 #include "cheatsheet.h"
 
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050edb/00000000001707b8
-constexpr int NMAX = 10000;
+constexpr int NMAX = 100000;
 typedef struct slot
 {
     int C;
     int E;
-    double f;
 } slot;
 
 slot slots[NMAX];
@@ -21,9 +20,10 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    LLU T, D, S, A, B;
+    LL T, D, S, A, B;
+    int s, t, d;
+    double f;
     vector<slot *> ordered_slots;
-    double remain_C, remain_E;
 
     ordered_slots.resize(NMAX);
     cin >> T;
@@ -61,38 +61,38 @@ int main()
         {
             cin >> A;
             cin >> B;
+            f = 1;
 
-            FOR(s, S)
+            for (s = 0; s < S; s++)
             {
-                slots[s].f = 1; // reset remaining portion
-            }
-
-            FOR(s, S)
-            {
-                remain_C = ordered_slots[s]->f * ordered_slots[s]->C;
-                if (A > remain_C)
+                if (A > ordered_slots[s]->C)
                 {
-                    ordered_slots[s]->f = 0;
-                    A -= remain_C;
+                    A -= ordered_slots[s]->C;
                 }
                 else
                 {
-                    ordered_slots[s]->f -= ((double)A) / ordered_slots[s]->C;
+                    f = 1.0 - ((double)A) / ordered_slots[s]->C;
                     A = 0;
-                }
-
-                remain_E = ordered_slots[S - s - 1]->f * ordered_slots[S - s - 1]->E;
-                if (B > remain_E)
-                {
-                    ordered_slots[S - s - 1]->f = 0;
-                    B -= remain_E;
-                }
-                else
-                {
-                    ordered_slots[S - s - 1]->f -= ((double)B) / ordered_slots[S - s - 1]->E;
-                    B = 0;
+                    break;
                 }
             }
+
+            if (s < S)
+            {
+                for (B -= f * ordered_slots[s]->E, s += 1; s < S; s++)
+                {
+                    if (B > ordered_slots[s]->E)
+                    {
+                        B -= ordered_slots[s]->E;
+                    }
+                    else
+                    {
+                        B = 0;
+                        break;
+                    }
+                }
+            }
+
             cout << ((A <= 0 && B <= 0) ? 'Y' : 'N');
         }
 
