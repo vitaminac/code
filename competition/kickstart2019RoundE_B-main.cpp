@@ -7,6 +7,9 @@ typedef struct slot
 {
     int C;
     int E;
+    int ac_C;
+    int ac_E;
+    double rate; // cache property to speed up the sort operation
 } slot;
 
 slot slots[NMAX];
@@ -20,9 +23,8 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    LL T, D, S, A, B;
-    int s, t, d;
-    double f;
+    int T, D, S, A, B, s, t, d, A_index, B_index;
+    double remains, need;
     vector<slot *> ordered_slots;
 
     ordered_slots.resize(NMAX);
@@ -37,23 +39,34 @@ int main()
         {
             cin >> slots[s].C;
             cin >> slots[s].E;
-            ordered_slots[s] = slots + s;
-        }
-
-        sort(ordered_slots.begin(), ordered_slots.begin() + S, [](const slot *left, const slot *right) {
-            if (left->E == 0)
+            if (slots[s].E == 0)
             {
-                return true;
-            }
-            else if (right->E == 0)
-            {
-                return false;
+                slots[s].rate = INF;
             }
             else
             {
-                return (((double)left->C) / left->E) > (((double)right->C) / right->E);
+                slots[s].rate = ((double)slots[s].C) / slots[s].E;
             }
-        });
+            ordered_slots[s] = slots + s;
+        }
+        auto begin = ordered_slots.begin();
+        auto end = begin + S;
+        sort(begin, end, [](const slot *left, const slot *right) { return left->rate > right->rate; });
+
+        ordered_slots[0]->ac_C = ordered_slots[0]->C;
+        ordered_slots[S - 1]->ac_E = ordered_slots[S - 1]->E;
+        for (int i = S - 2; i >= 0; i--)
+        {
+            ordered_slots[i]->ac_E = ordered_slots[i + 1]->ac_E + ordered_slots[i]->E;
+            ordered_slots[S - i - 1]->ac_C = ordered_slots[S - i - 2]->ac_C + ordered_slots[S - i - 1]->C;
+        }
+
+        Test(
+            for (auto it = ordered_slots.begin(); it != ordered_slots.begin() + S; it++) {
+                std::stringstream ss;
+                ss << '{' << "C:" << (*it)->C << ", E:" << (*it)->E << ", ac_C:" << (*it)->ac_C << ", ac_E:" << (*it)->ac_E << ", rate:" << (*it)->rate << '}';
+                Dbg(ss.str());
+            });
 
         cout << "Case #" << t << ": ";
 
@@ -61,41 +74,47 @@ int main()
         {
             cin >> A;
             cin >> B;
-            f = 1;
 
-            for (s = 0; s < S; s++)
+            auto A_ptr = lower_bound(begin, end, A, [](const slot *left, const int val) { return left->ac_C < val; });
+            auto rbegin = ordered_slots.rbegin() + (NMAX - S);
+            auto rend = ordered_slots.rend();
+            auto B_ptr = lower_bound(rbegin, rend, B, [](const slot *left, const int val) { return left->ac_E < val; });
+
+            if (A_ptr == end || B_ptr == rend)
             {
-                if (A > ordered_slots[s]->C)
-                {
-                    A -= ordered_slots[s]->C;
-                }
-                else
-                {
-                    f = 1.0 - ((double)A) / ordered_slots[s]->C;
-                    A = 0;
-                    break;
-                }
+                cout << 'N';
             }
-
-            if (s < S)
+            else
             {
-                for (B -= f * ordered_slots[s]->E, s += 1; s < S; s++)
+                Dbg((*A_ptr)->ac_C);
+                Dbg((*B_ptr)->ac_E);
+                A_index = A_ptr - begin;
+                B_index = rend - B_ptr - 1;
+                if (A_index < B_index)
                 {
-                    if (B > ordered_slots[s]->E)
+                    cout << 'Y';
+                }
+                else if (A_index == B_index)
+                {
+                    remains = ((double)(ordered_slots[A_index]->ac_C - A)) / ordered_slots[A_index]->C;
+                    Dbg(remains);
+                    need = 1.0 - ((double)(ordered_slots[B_index]->ac_E - B)) / ordered_slots[B_index]->E;
+                    Dbg(need);
+                    if (need <= remains)
                     {
-                        B -= ordered_slots[s]->E;
+                        cout << 'Y';
                     }
                     else
                     {
-                        B = 0;
-                        break;
+                        cout << 'N';
                     }
                 }
+                else
+                {
+                    cout << 'N';
+                }
             }
-
-            cout << ((A <= 0 && B <= 0) ? 'Y' : 'N');
         }
-
         cout << endl;
     }
 
