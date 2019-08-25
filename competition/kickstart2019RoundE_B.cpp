@@ -14,19 +14,16 @@ int T, D, S, A, B;
 
 bool cmp(const PII left, const PII right) { return left.coding * right.eating > right.coding * left.eating; }
 
-LL crs(LL x1, LL y1, LL x2, LL y2, LL x3, LL y3)
-{
-    return (x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1);
-}
-
 bool solve(const int A, const int B)
 {
-    if (A > ac_C[S])
+    if (A > ac_C[S] || B > ac_E[S])
         return false;
-    int index = lower_bound(ac_C, ac_C + S + 1, A) - ac_C;
-    if (index)
-        index--;
-    return crs(A - ac_C[index], B - (ac_E[S] - ac_E[index + 1]), slots[index].coding, 0, 0, slots[index].eating) >= 0;
+    int index = lower_bound(ac_C, ac_C + S + 1, A) - ac_C - 1;
+    LL need_coding = A - ac_C[index];
+    LL need_eating = B - (ac_E[S] - ac_E[index + 1]);
+    LL max_available_coding = slots[index].coding;
+    LL max_available_eating = slots[index].eating;
+    return (max_available_coding - need_coding) * (max_available_eating - need_eating) - (0 - need_coding) * (0 - need_eating) >= 0;
 }
 
 int main()
@@ -65,7 +62,6 @@ int main()
         }
 
         cout << "Case #" << t << ": ";
-
         FOR(d, D)
         {
             cin >> A >> B;
