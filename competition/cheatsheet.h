@@ -10,7 +10,8 @@ using namespace std;
 #define Test(action)
 #endif
 
-#define LL unsigned long long int
+#define LLU uint64_t
+#define LL int64_t
 
 constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
@@ -23,9 +24,9 @@ constexpr int INF = 1 << 31 - 1;
 #define ADD(x, y, p) ((x + y) % p)
 #define SUB(x, y, p) ((x - y) % p)
 #define MUL(x, y, p) ((x * y) % p)
-LL fast_power_mod(LL a, LL b, LL p)
+LLU fast_power_mod(LLU a, LLU b, LLU p)
 { //a的b次方求余p
-    LL ret = 1;
+    LLU ret = 1;
     while (b)
     {
         if (b & 1)
