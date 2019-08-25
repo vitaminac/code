@@ -39,3 +39,32 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 #define FERMAT(a, p) fast_power_mod(a, p - 2, p) //费马求a关于b的逆元
 #define MOD_INV(a, p) FERMAT(a, p)
 #define DIV(x, y, p) MUL(x, MOD_INV(y, p), p)
+
+#define MSET(arr, val) memset(arr, val, sizeof(arr));
+
+template <typename T>
+struct UnionFind
+{
+    vector<T> parent;
+    void init(T size)
+    {
+        parent.resize(size + 1);
+        for (T i = 0; i < parent.size(); i++)
+            parent[i] = i;
+    }
+
+    void merge(T x, T y)
+    {
+        parent[find(x)] = find(y);
+    }
+
+    int find(T x)
+    {
+        return x == parent[x] ? x : parent[x] = find(parent[x]);
+    }
+
+    bool together(T x, T y)
+    {
+        return find(x) == find(y);
+    }
+};
