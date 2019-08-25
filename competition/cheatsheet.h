@@ -3,16 +3,18 @@
 using namespace std;
 
 #ifdef DEBUG
-#define Dbg(x) cerr << __LINE__ << ":" << #x << "=" << x << endl;
+#define Dbg(x) cerr << __LINE__ << ":" << #x << "=" << (x) << endl;
+#define Test(action) action
 #else
 #define Dbg(x)
+#define Test(action)
 #endif
 
 #define LL unsigned long long int
 
 constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
-constexpr int INF = 1 << 29;
+constexpr int INF = 1 << 31 - 1;
 
 #define FOR(i, N) for (int i = 0; i < N; i++)
 #define REP(i, N) for (int i = 1; i <= N; i++)
