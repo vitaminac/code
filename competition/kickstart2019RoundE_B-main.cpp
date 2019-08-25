@@ -7,6 +7,7 @@ typedef struct slot
 {
     int C;
     int E;
+    double rate; // cache property to speed up the sort operation
 } slot;
 
 slot slots[NMAX];
@@ -20,8 +21,7 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    LL T, D, S, A, B;
-    int s, t, d;
+    int T, D, S, A, B, s, t, d;
     double f;
     vector<slot *> ordered_slots;
 
@@ -37,23 +37,18 @@ int main()
         {
             cin >> slots[s].C;
             cin >> slots[s].E;
-            ordered_slots[s] = slots + s;
-        }
-
-        sort(ordered_slots.begin(), ordered_slots.begin() + S, [](const slot *left, const slot *right) {
-            if (left->E == 0)
+            if (slots[s].E == 0)
             {
-                return true;
-            }
-            else if (right->E == 0)
-            {
-                return false;
+                slots[s].rate = INF;
             }
             else
             {
-                return (((double)left->C) / left->E) > (((double)right->C) / right->E);
+                slots[s].rate = ((double)slots[s].C) / slots[s].E;
             }
-        });
+            ordered_slots[s] = slots + s;
+        }
+
+        sort(ordered_slots.begin(), ordered_slots.begin() + S, [](const slot *left, const slot *right) { return left->rate > right->rate; });
 
         cout << "Case #" << t << ": ";
 
