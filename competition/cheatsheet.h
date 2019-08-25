@@ -13,8 +13,8 @@ using namespace std;
 #endif
 
 // TYPES
-#define LLU uint64_t
-#define LL int64_t
+typedef uint64_t LLU;
+typedef int64_t LL;
 
 // IO
 // EMPTY
@@ -53,6 +53,9 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 #define MSET(arr, val) memset(arr, val, sizeof(arr));
 
 // USEFUL DATASTRUCTURES
+typedef pair<int, int> PII;
+#define pb push_back
+#define mp make_pair
 template <typename T>
 struct UnionFind
 {
