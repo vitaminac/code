@@ -23,7 +23,7 @@ bool solve(const int A, const int B)
     LL need_eating = B - (ac_E[S] - ac_E[index + 1]);
     LL max_available_coding = slots[index].coding;
     LL max_available_eating = slots[index].eating;
-    return (max_available_coding - need_coding) * (max_available_eating - need_eating) >= need_coding * need_eating;
+    return (max_available_coding - need_coding) * max_available_eating >= need_eating * max_available_coding;
 }
 
 int main()
