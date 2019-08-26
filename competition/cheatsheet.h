@@ -41,6 +41,7 @@ inline constexpr bool is_power_of_two(int x)
 {
     return x && (!(x & (x - 1)));
 }
+inline bool equals(double a, double b) { return fabs(a - b) < 1e-9; }
 
 // STRING
 inline size_t length(char *str)
