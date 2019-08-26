@@ -28,6 +28,29 @@ constexpr int INF = 1 << 31 - 1;
 #define FOR(i, N) for (i = 0; i < N; i++)
 #define REP(i, N) for (i = 1; i <= N; i++)
 
+// ARITHMETIC
+#define IS_ODD(n) (n & 1)
+#define DOUBLE(n) (n << 1)
+#define HALF(n) (n >> 1)
+#define COUNT_DIGITS(N) (floor(log10(N)) + 1)
+#define SWAP(a, b) \
+    a ^= b;        \
+    b ^= a;        \
+    a ^= b;
+inline constexpr bool is_power_of_two(int x)
+{
+    return x && (!(x & (x - 1)));
+}
+
+// STRING
+inline size_t length(char *str)
+{
+    size_t count;
+    for (count = 0; str[count]; ++count)
+        ;
+    return count;
+}
+
 // MODULAR ARITHMETIC
 // https://www.cnblogs.com/linyujun/p/5194184.html
 #define ADD(x, y, p) ((x + y) % p)
@@ -54,7 +77,7 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 
 // USEFUL DATASTRUCTURES
 typedef pair<int, int> PII;
-#define pb push_back
+#define pb emplace_back
 #define mp make_pair
 template <typename T>
 struct UnionFind
