@@ -8,9 +8,7 @@ int T, t, n, m, i, j;
 // https://code.google.com/codejam/contest/8284486/dashboard#s=p1
 int main()
 {
-    // Speed up I/O Operationa
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    INIT_IO;
 
 #ifdef DEBUG
     freopen("B-large-practice.in", "r", stdin);

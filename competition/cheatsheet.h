@@ -1,3 +1,7 @@
+/**
+ * Author: Gao
+ **/
+
 #include <bits/stdc++.h>
 
 // NAMESPACES
@@ -17,9 +21,10 @@ typedef uint64_t LLU;
 typedef int64_t LL;
 
 // IO
-// EMPTY
+// Speed up I/O Operation
+#define INIT_IO ios::sync_with_stdio(false); cin.tie(nullptr);
 
-// CONSTANTs
+// CONSTANTS
 constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
 constexpr int INF = 1 << 31 - 1;

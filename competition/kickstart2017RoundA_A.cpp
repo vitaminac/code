@@ -9,7 +9,8 @@ constexpr int MOD = 1000000007;
 // https://stackoverflow.com/questions/57640454/square-counting-of-the-grid
 int main()
 {
-    ios::sync_with_stdio(false);
+    INIT_IO;
+    
     freopen("A-large-practice.in", "r", stdin);
     freopen("ans.out", "w", stdout);
 

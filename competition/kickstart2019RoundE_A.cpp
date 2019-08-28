@@ -4,7 +4,7 @@
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050edb/0000000000170721
 int main()
 {
-    ios::sync_with_stdio(false);
+    INIT_IO;
 
 #ifdef DEBUG
     freopen("test.in", "r", stdin);

@@ -29,8 +29,7 @@ bool solve(const int A, const int B)
 int main()
 {
     // Speed up I/O Operation
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    INIT_IO;
 
 #ifdef DEBUG
     freopen("test.in", "r", stdin);
