@@ -1,6 +1,8 @@
 #define DEBUG
 #include "cheatsheet.h"
 
+int T, M, t, m;
+
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050edb/0000000000170721
 int main()
 {
@@ -11,7 +13,7 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    LLU T, N, M, C, D, answer;
+    LLU N, C, D, answer;
     UnionFind<LLU> us;
     cin >> T;
 
