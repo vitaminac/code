@@ -19,15 +19,20 @@ using namespace std;
 // TYPES
 typedef uint64_t LLU;
 typedef int64_t LL;
+typedef __int128_t LLL;
+typedef __uint128_t LLLU;
 
 // IO
 // Speed up I/O Operation
-#define INIT_IO ios::sync_with_stdio(false); cin.tie(nullptr);
+#define INIT_IO                  \
+    ios::sync_with_stdio(false); \
+    cin.tie(nullptr);
 
 // CONSTANTS
 constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
 constexpr int INF = 1 << 31 - 1;
+constexpr int NINF = 1 << 31;
 
 // LOOP
 #define FOR(i, N) for (i = 0; i < N; i++)
