@@ -1,5 +1,8 @@
 /**
  * Author: Gao
+ * Reference:
+ * https://www.quora.com/What-template-do-you-use-in-competitive-programming
+ * https://github.com/helloproclub/competitive-programming-cheat-sheet
  **/
 
 #include <bits/stdc++.h>
