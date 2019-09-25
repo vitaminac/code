@@ -8,13 +8,14 @@
 - [ ] Clean Code
 - [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
 
-## Developer
+## Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] Introduction to Algorithms
 - [ ] Data Structures and Algorithms in Java
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
-- [ ] [Competitive Programming 3](doc/Competitive-Programming-3.pdf)
+- [ ] Competitive Programming 3
+- [ ] Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People
 
 # Practice
 
