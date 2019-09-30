@@ -5,17 +5,42 @@
  * https://github.com/helloproclub/competitive-programming-cheat-sheet
  **/
 
+// OPTIMIZATIONS
+#pragma comment(linker, "/stack:200000000")
+#pragma GCC optimize("O3")
+// #pragma GCC optimize("O3fast")
+#pragma GCC optimize("Ofast,unroll-loops,no-stack-protector,fast-math")
+#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+#pragma GCC optimize("unroll-loops")
+
 #include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
 
 // NAMESPACES
 using namespace std;
+using namespace __gnu_pbds;
 
 // DEBUG
 #ifdef DEBUG
-#define Dbg(x) cerr << __LINE__ << ":" << #x << "=" << (x) << endl;
+template <typename Arg>
+void log(const char *name, Arg &&arg)
+{
+    cerr << name << " = " << arg << std::endl;
+}
+template <typename Arg1, typename... Args>
+void log(const char *names, Arg1 &&arg1, Args &&... args)
+{
+    const char *comma = strchr(names + 1, ',');
+    cerr.write(names, comma - names) << " = " << arg1;
+    log(comma, args...);
+}
+#define Dbg(...)                                    \
+    cerr << __FUNCTION__ << ":" << __LINE__ << ":"; \
+    log(#__VA_ARGS__, __VA_ARGS__)
 #define Test(action) action
 #else
-#define Dbg(x)
+#define Dbg(...)
 #define Test(action)
 #endif
 
@@ -91,6 +116,15 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 
 // USEFUL DATASTRUCTURES
 typedef pair<int, int> PII;
+template <typename T>
+using HashSet = std::unordered_set<T>;
+template <typename T>
+using TreeSet = std::set<T>;
+template <typename Key, typename Value>
+using HashMap = std::unordered_map<Key, Value>;
+template <typename Key, typename Value>
+using TreeMap = std::map<Key, Value>;
+#define CONTAINS(SET, ELEMENT) (SET.find(ELEMENT) != SET.end())
 #define pb emplace_back
 #define mp make_pair
 template <typename T>
