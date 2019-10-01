@@ -6,12 +6,12 @@
  **/
 
 // OPTIMIZATIONS
-#pragma comment(linker, "/stack:200000000")
-#pragma GCC optimize("O3")
+// #pragma comment(linker, "/stack:200000000")
+// #pragma GCC optimize("O3")
 // #pragma GCC optimize("O3fast")
-#pragma GCC optimize("Ofast,unroll-loops,no-stack-protector,fast-math")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
-#pragma GCC optimize("unroll-loops")
+// #pragma GCC optimize("Ofast,unroll-loops,no-stack-protector,fast-math")
+// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx,avx")
+// #pragma GCC optimize("unroll-loops")
 
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
@@ -80,6 +80,18 @@ inline constexpr bool is_power_of_two(int x)
     return x && (!(x & (x - 1)));
 }
 inline bool equals(double a, double b) { return fabs(a - b) < 1e-9; }
+template <class n, class s>
+void mini(n &p, s y)
+{
+    if (p > y)
+        p = y;
+}
+template <class n, class s>
+void maxi(n &p, s y)
+{
+    if (p < y)
+        p = y;
+}
 
 // STRING
 inline size_t length(char *str)
@@ -113,6 +125,14 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 
 // MEMORY OPERATION
 #define MSET(arr, val) memset(arr, val, sizeof(arr));
+#define FILL(arr, val, size)       \
+    for (int i = 0; i < size; i++) \
+        arr[i] = val;
+
+#define FILL_M(arr, val, rows, cols)   \
+    for (int i = 0; i < rows; i++)     \
+        for (int j = 0; j < cols; j++) \
+            arr[i][j] = val;
 
 // USEFUL DATASTRUCTURES
 typedef pair<int, int> PII;
