@@ -75,6 +75,7 @@ constexpr int NINF = 1 << 31;
     a ^= b;        \
     b ^= a;        \
     a ^= b;
+#define SWAP_EVEN_NUMBER(n) (((n + 1) ^ 1) - 1)
 inline constexpr bool is_power_of_two(int x)
 {
     return x && (!(x & (x - 1)));
