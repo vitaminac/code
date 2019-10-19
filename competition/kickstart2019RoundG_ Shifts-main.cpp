@@ -1,10 +1,28 @@
 #define DEBUG
 #include "cheatsheet.h"
 
-constexpr int MAX_N = 1010;
-constexpr LL INITIAL_PIVOT = 1LL << 50;
+constexpr int MAX_N = 20 + 10;
 
-int T, N, M, A[MAX_N];
+int T, N, H, A[MAX_N], B[MAX_N], Total_A, Total_B;
+
+int backtracking(int happiness_A, int happiness_B, int i)
+{
+    if (happiness_A < H || happiness_B < H)
+    {
+        return 0;
+    }
+    else
+    {
+        if (i == N)
+        {
+            return 1;
+        }
+        else
+        {
+            return backtracking(happiness_A - A[i], happiness_B, i + 1) + backtracking(happiness_A, happiness_B - B[i], i + 1) + backtracking(happiness_A, happiness_B, i + 1);
+        }
+    }
+}
 
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fd5e
 int main()
@@ -16,49 +34,33 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    int t, i, j;
-    LL m, prev_m, answer, pivot, next_answer, mask;
+    int t, i, answer;
+
     cin >> T;
 
     REP(t, T)
     {
-        cin >> N >> M;
+        cin >> N >> H;
 
-        Dbg(N, M);
+        Dbg(t, N, H);
 
+        Total_A = 0;
         FOR(i, N)
         {
             cin >> A[i];
+            Total_A += A[i];
         }
 
-        pivot = INITIAL_PIVOT;
-
-        answer = 0;
-
-        REP(j, 51)
+        Total_B = 0;
+        FOR(i, N)
         {
-            m = 0;
-            prev_m = 0;
-            mask |= pivot;
-            next_answer = answer | pivot;
-            FOR(i, N)
-            {
-                prev_m += (A[i] & mask) ^ answer;
-                m += (A[i] & mask) ^ next_answer;
-            }
-            if (m <= M || m <= prev_m)
-            {
-                answer = next_answer;
-            }
-            pivot >>= 1;
+            cin >> B[i];
+            Total_B += B[i];
         }
+
+        answer = backtracking(Total_A, Total_B, 0);
 
         Dbg(answer);
-
-        if (m > M && prev_m > M)
-        {
-            answer = -1;
-        }
 
         cout << "Case #" << t << ": " << answer << endl;
     }
