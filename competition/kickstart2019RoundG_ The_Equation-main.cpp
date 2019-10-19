@@ -1,10 +1,12 @@
 #define DEBUG
 #include "cheatsheet.h"
 
-int T, N, M, Q;
-HashSet<int> P;
+constexpr int MAX_N = 1010;
+constexpr LL INITIAL_PIVOT = 1LL << 50;
 
-https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fe36
+int T, N, M, A[MAX_N];
+
+// https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fe36
 int main()
 {
     INIT_IO;
@@ -14,38 +16,50 @@ int main()
     freopen("ans.out", "w", stdout);
 #endif
 
-    int t, i, tmp, answer;
+    int t, i, j;
+    LL m, prev_m, answer, pivot, next_answer, mask;
     cin >> T;
 
     REP(t, T)
     {
-        cin >> N >> M >> Q;
+        cin >> N >> M;
 
-        Dbg(N, M, Q);
+        Dbg(N, M);
 
-        P.clear();
-
-        FOR(i, M)
+        FOR(i, N)
         {
-            cin >> tmp;
-            P.insert(tmp);
+            cin >> A[i];
         }
+
+        pivot = INITIAL_PIVOT;
 
         answer = 0;
 
-        FOR(i, Q)
+        REP(j, 51)
         {
-            cin >> tmp;
-            answer += N / tmp;
-            for (int torn : P)
+            m = 0;
+            prev_m = 0;
+            mask |= pivot;
+            next_answer = answer | pivot;
+            FOR(i, N)
             {
-                if (torn % tmp == 0)
-                {
-                    answer -= 1;
-                }
+                prev_m += (A[i] & mask) ^ answer;
+                m += (A[i] & mask) ^ next_answer;
             }
+            if (m <= M || m <= prev_m)
+            {
+                answer = next_answer;
+            }
+            pivot >>= 1;
         }
+
         Dbg(answer);
+
+        if (m > M && prev_m > M)
+        {
+            answer = -1;
+        }
+
         cout << "Case #" << t << ": " << answer << endl;
     }
 
