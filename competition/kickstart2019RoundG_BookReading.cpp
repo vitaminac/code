@@ -1,8 +1,10 @@
 #define DEBUG
 #include "cheatsheet.h"
 
-int T, N, M, Q;
-HashSet<int> P;
+constexpr int MAX_N = 1e5 + 10;
+
+int T, N, M, Q, answers[MAX_N];
+bool bad[MAX_N];
 
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fd0d
 int main()
@@ -10,11 +12,12 @@ int main()
     INIT_IO;
 
 #ifdef DEBUG
-    freopen("test.in", "r", stdin);
-    freopen("ans.out", "w", stdout);
+    freopen("kickstart2019RoundG_BookReading.in", "r", stdin);
+    freopen("answer.out", "w", stdout);
 #endif
 
-    int t, i, tmp, answer;
+    int t, i, p, q;
+    LLU total;
     cin >> T;
 
     REP(t, T)
@@ -23,30 +26,33 @@ int main()
 
         Dbg(N, M, Q);
 
-        P.clear();
-
+        FILL(bad, false, N + 1)
         FOR(i, M)
         {
-            cin >> tmp;
-            P.insert(tmp);
+            cin >> p;
+            bad[p] = true;
         }
 
-        answer = 0;
-
+        FILL(answers, -1, N + 1);
+        total = 0;
         FOR(i, Q)
         {
-            cin >> tmp;
-            answer += N / tmp;
-            for (int torn : P)
+            cin >> q;
+            if (answers[q] == -1)
             {
-                if (torn % tmp == 0)
+                answers[q] = 0;
+                for (int j = q; j <= N; j += q)
                 {
-                    answer -= 1;
+                    if (!bad[j])
+                    {
+                        answers[q] += 1;
+                    }
                 }
             }
+            total += answers[q];
         }
-        Dbg(answer);
-        cout << "Case #" << t << ": " << answer << endl;
+        Dbg(total);
+        cout << "Case #" << t << ": " << total << endl;
     }
 
     return 0;
