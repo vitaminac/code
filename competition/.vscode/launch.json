@@ -5,7 +5,7 @@
                 "name": "(gdb) Launch",
                 "type": "cppdbg",
                 "request": "launch",
-                "program": "/home/dalao/bin.out",
+                "program": "program.out",
                 "args": [],
                 "stopAtEntry": true,
                 "cwd": ".",

@@ -16,8 +16,8 @@
             "args": [
                 "-g",
                 "-o",
-                "/home/dalao/bin.out",
-                "*main.cpp"
+                "program.out",
+                "${relativeFile}"
             ],
             "group": {
                 "kind": "build",
