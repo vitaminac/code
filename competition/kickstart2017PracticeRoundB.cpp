@@ -9,7 +9,7 @@ int main()
     freopen("B-large-practice.in", "r", stdin);
     freopen("ans.out", "w", stdout);
 
-    int T;
+    int T, i;
     cin >> T;
 
     REP(i, T)

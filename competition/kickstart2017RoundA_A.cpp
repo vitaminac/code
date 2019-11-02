@@ -14,7 +14,7 @@ int main()
     freopen("A-large-practice.in", "r", stdin);
     freopen("ans.out", "w", stdout);
 
-    int T;
+    int T, t;
     uint64_t n, m, y;
     cin >> T;
 
