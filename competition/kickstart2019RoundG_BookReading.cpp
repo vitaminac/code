@@ -1,4 +1,4 @@
-#define DEBUG
+//#define DEBUG
 #include "cheatsheet.h"
 
 constexpr int MAX_N = 1e5 + 10;
