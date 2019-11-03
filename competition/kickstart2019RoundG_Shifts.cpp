@@ -1,11 +1,12 @@
-#define DEBUG
+//#define DEBUG
 #include "cheatsheet.h"
 
 constexpr int MAX_N = 20 + 10;
 
-int T, N, H, A[MAX_N], B[MAX_N], Total_A, Total_B;
+int T, N, H, A[MAX_N], B[MAX_N];
+LL Total_A, Total_B;
 
-int backtracking(int happiness_A, int happiness_B, int i)
+LL backtracking(LL happiness_A, LL happiness_B, int i)
 {
     if (happiness_A < H || happiness_B < H)
     {
@@ -15,7 +16,7 @@ int backtracking(int happiness_A, int happiness_B, int i)
     {
         if (i == N)
         {
-            return 1;
+            return 1LL;
         }
         else
         {
@@ -30,13 +31,16 @@ int main()
     INIT_IO;
 
 #ifdef DEBUG
-    freopen("test.in", "r", stdin);
-    freopen("ans.out", "w", stdout);
+    freopen("kickstart2019RoundG_Shifts.in", "r", stdin);
+    freopen("answer.out", "w", stdout);
 #endif
 
-    int t, i, answer;
+    int t, i;
+    LL answer;
 
     cin >> T;
+
+    Dbg(T);
 
     REP(t, T)
     {
