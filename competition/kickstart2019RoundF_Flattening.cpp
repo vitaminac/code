@@ -12,8 +12,8 @@ int main()
     INIT_IO;
 
 #ifdef DEBUG
-    freopen("test.in", "r", stdin);
-    freopen("ans.out", "w", stdout);
+    freopen("kickstart2019RoundF_Flattening.in", "r", stdin);
+    freopen("answer.out", "w", stdout);
 #endif
 
     int t, i, j, group;
@@ -25,16 +25,16 @@ int main()
 
         Dbg(t, N, K);
 
-        for (i = 1; i <= N; ++i)
+        for (i = 0; i < N; i++)
         {
             cin >> A[i];
         }
 
-        for (i = 1; i <= N; ++i)
+        for (i = 0; i < N; i++)
         {
             MSET(H, 0);
             int n_same = 0;
-            for (j = i; j <= N; ++j)
+            for (j = i; j < N; j++)
             {
                 ++H[A[j]];
                 maxi(n_same, H[A[j]]);
@@ -45,20 +45,22 @@ int main()
         FILL_M(dp, INF, MAX_N, MAX_N);
 
         dp[0][0] = 0;
+        K = min(K + 1, N);
+        Dbg(K);
 
-        for (int group = 0; group < N; ++group)
+        for (int group = 1; group <= K; group++)
         {
-            for (i = 1; i <= N; ++i)
+            for (i = 0; i < N; i++)
             {
-                for (j = i; j <= N; ++j)
+                dp[group][0] = 0;
+                for (j = i; j < N; j++)
                 {
-                    mini(dp[group + 1][j], dp[group][i - 1] + cost[i][j]);
+                    mini(dp[group][j + 1], dp[group - 1][i] + cost[i][j]);
                 }
             }
         }
 
-        ++K;
-        K = min(K, N);
+        Dbg(dp[K][N]);
         cout << "Case #" << t << ": " << dp[K][N] << endl;
     }
 
