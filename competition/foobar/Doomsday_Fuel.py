@@ -189,6 +189,13 @@ def solution(m):
 
 
 if __name__ == "__main__":
+    # Absorbing Markov chain
+    # https://www.youtube.com/watch?v=BsOkOaB8SFk
+    # https://github.com/ivanseed/google-foobar-help/blob/master/challenges/doomsday_fuel/doomsday_fuel.md
+    # https://github.com/rajakodumuri/Google-Foobar/blob/master/doomsday_fuel.py
+    # https://surajshetiya.github.io/Google-foobar/#round-3
+    # https://math.stackexchange.com/questions/2560653/proof-of-the-equation-of-the-fundamental-matrix-in-absorbing-markov-chains
+
     from unittest import TestCase
     t = TestCase()
     expected = [7, 6, 8, 21]
