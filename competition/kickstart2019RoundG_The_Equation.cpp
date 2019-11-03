@@ -2,9 +2,10 @@
 #include "cheatsheet.h"
 
 constexpr int MAX_N = 1010;
-constexpr LL INITIAL_PIVOT = 1LL << 50;
+constexpr int HIGHEST_BIT = 50;
 
-int T, N, M, A[MAX_N];
+int T, N;
+LL M, A[MAX_N], cost_set[HIGHEST_BIT], cost_unset[HIGHEST_BIT], minimums[HIGHEST_BIT];
 
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fe36
 int main()
@@ -12,12 +13,13 @@ int main()
     INIT_IO;
 
 #ifdef DEBUG
-    freopen("test.in", "r", stdin);
-    freopen("ans.out", "w", stdout);
+    freopen("kickstart2019RoundG_The_Equation.in", "r", stdin);
+    freopen("answer.out", "w", stdout);
 #endif
 
     int t, i, j;
-    LL m, prev_m, answer, pivot, next_answer, mask;
+    LL pivot;
+
     cin >> T;
 
     REP(t, T)
@@ -31,34 +33,48 @@ int main()
             cin >> A[i];
         }
 
-        pivot = INITIAL_PIVOT;
-
-        answer = 0;
-
-        REP(j, 51)
+        minimums[0] = 0;
+        for (i = 0; i < HIGHEST_BIT; i++)
         {
-            m = 0;
-            prev_m = 0;
-            mask |= pivot;
-            next_answer = answer | pivot;
-            FOR(i, N)
+            pivot = ONE << i;
+            cost_set[i] = cost_unset[i] = 0;
+            FOR(j, N)
             {
-                prev_m += (A[i] & mask) ^ answer;
-                m += (A[i] & mask) ^ next_answer;
+                if (A[j] & pivot)
+                {
+                    cost_unset[i] += pivot;
+                }
+                else
+                {
+                    cost_set[i] += pivot;
+                }
             }
-            if (m <= M || m <= prev_m)
+            minimums[i + 1] = minimums[i] + min(cost_set[i], cost_unset[i]);
+        }
+
+        LL sum = 0;
+        LL answer = 0;
+        for (i = HIGHEST_BIT - 1; i >= 0; i--)
+        {
+            pivot = ONE << i;
+            if (sum + cost_set[i] + minimums[i] <= M)
             {
-                answer = next_answer;
+                answer |= pivot;
+                sum += cost_set[i];
             }
-            pivot >>= 1;
+            else
+            {
+                sum += cost_unset[i];
+            }
+
+            if (sum > M)
+            {
+                answer = -1;
+                break;
+            }
         }
 
         Dbg(answer);
-
-        if (m > M && prev_m > M)
-        {
-            answer = -1;
-        }
 
         cout << "Case #" << t << ": " << answer << endl;
     }

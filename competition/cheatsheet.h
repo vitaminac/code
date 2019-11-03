@@ -61,6 +61,7 @@ constexpr double E = 1e-8;
 constexpr double PI = 3.14159265358979323;
 constexpr int INF = 1 << 31 - 1;
 constexpr int NINF = 1 << 31;
+constexpr LL ONE = 1;
 
 // LOOP
 #define FOR(i, N) for (i = 0; i < N; i++)
