@@ -1,29 +1,11 @@
 //#define DEBUG
 #include "cheatsheet.h"
 
-constexpr int MAX_N = 20 + 10;
+constexpr int MAX_N = 20;
+constexpr int COMBINATION = 1 << MAX_N;
 
 int T, N, H, A[MAX_N], B[MAX_N];
-LL Total_A, Total_B;
-
-LL backtracking(LL happiness_A, LL happiness_B, int i)
-{
-    if (happiness_A < H || happiness_B < H)
-    {
-        return 0;
-    }
-    else
-    {
-        if (i == N)
-        {
-            return 1LL;
-        }
-        else
-        {
-            return backtracking(happiness_A - A[i], happiness_B, i + 1) + backtracking(happiness_A, happiness_B - B[i], i + 1) + backtracking(happiness_A, happiness_B, i + 1);
-        }
-    }
-}
+LL combinations[COMBINATION];
 
 // https://codingcompetitions.withgoogle.com/kickstart/round/0000000000050e02/000000000018fd5e
 int main()
@@ -36,7 +18,7 @@ int main()
 #endif
 
     int t, i;
-    LL answer;
+    LL n_combination, mask, answer;
 
     cin >> T;
 
@@ -48,21 +30,63 @@ int main()
 
         Dbg(t, N, H);
 
-        Total_A = 0;
+        n_combination = 1 << N;
+        Dbg(n_combination);
+        FILL(combinations, 0, n_combination);
+
         FOR(i, N)
         {
             cin >> A[i];
-            Total_A += A[i];
         }
 
-        Total_B = 0;
         FOR(i, N)
         {
             cin >> B[i];
-            Total_B += B[i];
         }
 
-        answer = backtracking(Total_A, Total_B, 0);
+        for (mask = 0; mask < n_combination; ++mask)
+        {
+            LL sum = 0;
+            for (int i = 0; i < N; ++i)
+            {
+                if (!(mask & (1 << i)))
+                {
+                    sum += B[i];
+                }
+            }
+            if (sum >= H)
+            {
+                combinations[mask] = 1;
+            }
+        }
+
+        for (int i = 0; i < N; ++i)
+        {
+            for (int mask = 0; mask < n_combination; ++mask)
+            {
+                if (mask & (1 << i))
+                {
+                    combinations[mask] += combinations[mask ^ (1 << i)];
+                }
+            }
+        }
+
+        answer = 0;
+        for (mask = 0; mask < n_combination; ++mask)
+        {
+            LL sum = 0;
+            for (int i = 0; i < N; ++i)
+            {
+                if (mask & (1 << i))
+                {
+                    sum += A[i];
+                }
+            }
+            if (sum >= H)
+            {
+                answer += combinations[mask];
+            }
+        }
 
         Dbg(answer);
 

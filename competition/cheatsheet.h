@@ -138,6 +138,7 @@ LLU fast_power_mod(LLU a, LLU b, LLU p)
 
 // USEFUL DATASTRUCTURES
 typedef pair<int, int> PII;
+typedef pair<LL, LL> PLL;
 template <typename T>
 using HashSet = std::unordered_set<T>;
 template <typename T>
