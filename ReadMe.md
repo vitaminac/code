@@ -4,10 +4,15 @@
 
 ### Programming
 
+- [ ] C Primer Plus
+- [ ] Effective C++ Digital Collection: 140 Ways to Improve Your Programming
+- [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
+- [ ] Inside the C++ Object Model
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Design patterns implemented in Java](https://github.com/iluwatar/java-design-patterns)
 - [ ] Clean Code
+- [ ] Refactoring: Improving the Design of Existing Code
 - [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
 
 ### Algorithms
