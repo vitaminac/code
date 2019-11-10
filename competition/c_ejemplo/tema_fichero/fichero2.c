@@ -2,16 +2,15 @@
 
 int main()
 {
-    int c;
     char content[255];
     char filename[255];
     FILE *file;
     printf("Introduzca el nombre de archivo: ");
     scanf("%s", filename);
     file = fopen(filename, "r");
-    while ((c = fgetc(file)) != EOF)
+    while (fgets(content, 255, file))
     {
-        fputc(c, stdout);
+        fputs(content, stdout);
     }
     fclose(file);
 }
