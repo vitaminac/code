@@ -99,13 +99,13 @@ from itertools import combinations
 
 
 def solution(num_buns, num_required):
-    bunny_keyrings = [[] for num in range(num_buns)]
-    bunnies_per_key = num_buns - num_required + 1
-    for keynum, keyholders in enumerate(combinations(range(num_buns), bunnies_per_key)):
-        for index in keyholders:
-            bunny_keyrings[index].append(keynum)
+    keyrings = [[] for num in range(num_buns)]
+    copies_per_key = num_buns - num_required + 1
+    for key, bunnies in enumerate(combinations(range(num_buns), copies_per_key)):
+        for bunny in bunnies:
+            keyrings[bunny].append(key)
 
-    return bunny_keyrings
+    return keyrings
 
 
 if __name__ == "__main__":
