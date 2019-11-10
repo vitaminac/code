@@ -4,13 +4,15 @@
         "options": {
             "shell": {
                 "executable": "bash.exe",
-                "args": ["-c"]
+                "args": [
+                    "-c"
+                ]
             }
         }
     },
     "tasks": [
         {
-            "label": "Build on WSL",
+            "label": "Build With G++",
             "type": "shell",
             "command": "g++",
             "args": [
@@ -23,6 +25,22 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Build With GCC",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-o",
+                "program.out",
+                "${relativeFile}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         }
     ]
 }
