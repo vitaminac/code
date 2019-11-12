@@ -14,6 +14,7 @@
 - [ ] Clean Code
 - [ ] Refactoring: Improving the Design of Existing Code
 - [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
+- [ ] Programming Pearls
 
 ### Algorithms
 
