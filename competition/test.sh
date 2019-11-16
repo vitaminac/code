@@ -1,8 +1,8 @@
 #!/bin/bash
 
-rm *.bin
-for file in *.cpp; do
-    ./judge.sh $(basename -s .cpp $file) &
+rm $(find . -name "*.bin")
+for file in $(find . -name "*.cpp"); do
+    ./judge.sh $file &
 done
 
 for py in $(find . -name "*.py"); do
