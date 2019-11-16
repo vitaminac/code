@@ -61,6 +61,25 @@ int to_bin(int decimal, char *result)
     }
 }
 
+void encrypt(char *phrase)
+{
+    for (int i = 0; phrase[i]; i++)
+    {
+        if (phrase[i] >= 'a' && phrase[i] <= 'z')
+        {
+            phrase[i] = (phrase[i] - 'a' + 2 + 26) % 26 + 'a';
+        }
+        else if (phrase[i] >= 'A' && phrase[i] <= 'Z')
+        {
+            phrase[i] = (phrase[i] - 'A' + 2 + 26) % 26 + 'A';
+        }
+        else if (phrase[i] >= '0' && phrase[i] <= '9')
+        {
+            phrase[i] = (phrase[i] - '0' + 2 + 10) % 10 + '0';
+        }
+    }
+}
+
 int main()
 {
     char result[255];
@@ -70,5 +89,8 @@ int main()
     int len = to_bin(987654321, result);
     result[len] = '\0';
     printf("%s\n", result);
+    char welcome[255] = "Hola Mundo!";
+    encrypt(welcome);
+    printf("%s\n", welcome);
     return 0;
 }
