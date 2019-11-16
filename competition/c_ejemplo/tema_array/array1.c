@@ -8,11 +8,11 @@ int main()
     srand(time(NULL));
     for (int i = 0; i < 10; i++)
     {
-        randoms[i] = rand();
+        randoms[i] = rand() % 51 + 50;
     }
     for (int i = 0; i < 10; i++)
     {
-        printf("%d ", randoms[i] % 51 + 50);
+        printf("%d ", randoms[i]);
     }
     printf("\n");
     return 0;
