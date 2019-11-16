@@ -89,6 +89,14 @@ void round_arr(float *arr, int n)
     }
 }
 
+int fibonacci(int n)
+{
+    if (n < 2)
+        return n;
+    else
+        return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
 int main()
 {
     char result[255];
@@ -105,5 +113,6 @@ int main()
     printf("%f %f %f %f %f\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
     round_arr(arr, 5);
     printf("%f %f %f %f %f\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
+    printf("fibonacci 8: %d\n", fibonacci(8));
     return 0;
 }
