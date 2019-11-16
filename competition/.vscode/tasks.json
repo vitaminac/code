@@ -35,6 +35,7 @@
                 "-o",
                 "program.out",
                 "${relativeFile}"
+                "-lm",
             ],
             "group": {
                 "kind": "build",

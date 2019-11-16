@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <math.h>
 
 int inverse(int n)
 {
@@ -80,6 +81,14 @@ void encrypt(char *phrase)
     }
 }
 
+void round_arr(float *arr, int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        arr[i] = round(arr[i]);
+    }
+}
+
 int main()
 {
     char result[255];
@@ -92,5 +101,9 @@ int main()
     char welcome[255] = "Hola Mundo!";
     encrypt(welcome);
     printf("%s\n", welcome);
+    float arr[5] = {1.1f, 2.2f, 3.3f, 4.4f, 5.5f};
+    printf("%f %f %f %f %f\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
+    round_arr(arr, 5);
+    printf("%f %f %f %f %f\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
     return 0;
 }
