@@ -4,7 +4,7 @@
 
 ### Programming
 
-- [ ] C Primer Plus
+- [x] C Primer Plus
 - [ ] Effective C++ Digital Collection: 140 Ways to Improve Your Programming
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Inside the C++ Object Model
