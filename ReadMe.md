@@ -31,6 +31,7 @@
 - [ ] [Accelerated Computer Science Fundamentals Specialization](https://www.coursera.org/specializations/cs-fundamentals)
 - [ ] [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
+- [ ] [MIT Open Courseware: Algorithm and Data Structures](https://ocw.mit.edu/courses/find-by-topic/#cat=engineering&subcat=computerscience&spec=algorithmsanddatastructures)
 - [ ] [Computer Science: Algorithms, Theory, and Machines](https://www.coursera.org/learn/cs-algorithms-theory-machines)
 - [ ] [Analysis of Algorithms](https://www.coursera.org/learn/analysis-of-algorithms)
 - [ ] [Networks Illustrated: Principles without Calculus](https://www.coursera.org/learn/networks-illustrated)
@@ -40,7 +41,13 @@
 - [ ] [Data Structures and Algorithms Specialization](https://www.coursera.org/specializations/data-structures-algorithms)
 - [ ] [Introduction to Discrete Mathematics for Computer Science Specialization](https://www.coursera.org/specializations/discrete-mathematics)
 
-# Tutorial
+## Program Sheet
+
+* [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
+* [MIT Computer Science and Engineering](http://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/)
+* [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
+
+## Tutorial
 
 - [ ] [LeetCode Learn](https://leetcode.com/explore/)
 - [ ] [GeeksforGeeks](https://www.geeksforgeeks.org/)
