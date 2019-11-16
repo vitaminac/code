@@ -57,9 +57,11 @@
 
 * [GitHub](https://github.com/)
 * [Leet Code](https://leetcode.com/)
+* [Codeforces](https://codeforces.com/)
 * [UVA Onlinejudge](https://uva.onlinejudge.org/)
 * [Stack Overflow](https://stackoverflow.com/)
 
 ## Jobs
 
-* [Google Kick Start](https://codingcompetitions.withgoogle.com/code.kickstart)
+* [Google's Coding Competitions](https://codingcompetitions.withgoogle.com/)
+* [Google Foor.Bar](https://foobar.withgoogle.com/)
