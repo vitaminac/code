@@ -38,9 +38,17 @@ bool es_amigo(int a, int b)
     }
 }
 
+int suma_lenta(int n1, int n2)
+{
+    if (n2 == 0)
+        return n1;
+    return suma_lenta(n1 + 1, n2 - 1);
+}
+
 int main()
 {
     imprimir(inverse(-5));
-    printf("es amigo: %s", (es_amigo(220, 284) ? "true" : "false"));
+    printf("es amigo: %s\n", (es_amigo(220, 284) ? "true" : "false"));
+    printf("suma lenta: %d\n", suma_lenta(5, 9));
     return 0;
 }
