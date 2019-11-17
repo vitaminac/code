@@ -44,9 +44,11 @@
 
 ## Program Sheet
 
+* [Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
 * [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
 * [MIT Computer Science and Engineering](http://catalog.mit.edu/degree-charts/computer-science-engineering-course-6-3/)
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
+* [EE-CS Courses at Stanford](https://ee.stanford.edu/eecs)
 
 ## Tutorial
 
