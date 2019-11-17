@@ -34,7 +34,7 @@
                 "-g",
                 "-o",
                 "program.out",
-                "${relativeFile}"
+                "${relativeFile}",
                 "-lm",
             ],
             "group": {
