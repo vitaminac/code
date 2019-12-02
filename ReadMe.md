@@ -18,6 +18,7 @@
 - [ ] Refactoring: Improving the Design of Existing Code
 - [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
 - [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
+- [ ] Agile Software Development, Principles, Patterns, and Practices
 - [ ] Programming Pearls
 
 ### Algorithms
