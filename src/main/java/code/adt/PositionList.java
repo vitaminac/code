@@ -1,6 +1,6 @@
 package code.adt;
 
-public interface PositionList<E> {
+public interface PositionList<E> extends Iterable<E> {
     int size();
 
     boolean isEmpty();
@@ -8,8 +8,6 @@ public interface PositionList<E> {
     Position<E> firstPosition();
 
     Position<E> lastPosition();
-
-    Position<E> first(E element);
 
     Position<E> before(Position<E> position);
 

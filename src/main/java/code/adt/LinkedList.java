@@ -31,16 +31,6 @@ public class LinkedList<E>
             this.addLast(item);
     }
 
-    public LinkedList(Stack<E> stack) {
-        while (!stack.isEmpty())
-            this.push(stack.pop());
-    }
-
-    public LinkedList(Queue<E> queue) {
-        while (!queue.isEmpty())
-            this.enqueue(queue.dequeue());
-    }
-
     @Override
     public void add(E item) {
         this.addLast(item);
@@ -129,13 +119,6 @@ public class LinkedList<E>
         return this.last;
     }
 
-    @Override
-    public Position<E> first(E element) {
-        this.first = new LinkedNode<>(element);
-        this.last = this.first;
-        return this.first;
-    }
-
     private LinkedNode<E> checkPosition(Position<E> position) {
         if (position instanceof LinkedNode) {
             return (LinkedNode<E>) position;
@@ -208,6 +191,17 @@ public class LinkedList<E>
             node = node.next;
         }
         return size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Iterable)) return false;
+        Iterator<Object> it = ((Iterable<Object>) o).iterator();
+        Iterator<E> iterator = this.iterator();
+        while (it.hasNext() && iterator.hasNext()) {
+            if (!it.next().equals(iterator.next())) return false;
+        }
+        return !it.hasNext() && !iterator.hasNext();
     }
 
     @Override

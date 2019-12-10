@@ -59,7 +59,6 @@
 
 ## Tutorial
 
-- [ ] [LeetCode Learn](https://leetcode.com/explore/)
 - [ ] [GeeksforGeeks](https://www.geeksforgeeks.org/)
 - [ ] [Tutorials Point](http://www.tutorialspoint.com/)
 
@@ -70,6 +69,7 @@
 * [Codeforces](https://codeforces.com/)
 * [UVA Onlinejudge](https://uva.onlinejudge.org/)
 * [Stack Overflow](https://stackoverflow.com/)
+* [Java Utils](https://github.com/openjdk/jdk/tree/master/src/java.base/share/classes/java/util)
 
 ## Jobs
 
