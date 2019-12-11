@@ -1,19 +1,19 @@
 package code.adt.stack;
 
-import code.adt.ArrayList;
+import code.adt.LinkedList;
 import code.adt.Stack;
 
 import java.util.Scanner;
 
 public class StackMax {
     public static void main(String[] args) {
-        Stack<Integer> maximums = new ArrayList<>();
-        Stack<Integer> temp = new ArrayList<>();
+        Stack<Integer> maximums = new LinkedList<>();
+        Stack<Integer> temp = new LinkedList<>();
 
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
             int value = scanner.nextInt();
-            while (!maximums.isEmpty() && maximums.peek() > value) {
+            while (!maximums.isEmpty() && maximums.top() > value) {
                 temp.push(maximums.pop());
             }
             maximums.push(value);

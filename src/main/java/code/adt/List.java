@@ -1,17 +1,13 @@
 package code.adt;
 
-public interface List<E> extends Enumerable<E> {
+public interface List<E> extends Enumerable<E>, RandomAccess<E> {
     int size();
 
     boolean isEmpty();
 
     void clear();
 
-    E get(int index);
-
-    void set(int index, E element);
-
-    void add(int index, E element);
+    void insert(int index, E element);
 
     E remove(int index);
 

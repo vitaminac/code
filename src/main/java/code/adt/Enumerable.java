@@ -1,7 +1,10 @@
 package code.adt;
 
 import java.util.Iterator;
-import java.util.function.*;
+import java.util.function.BiFunction;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.function.UnaryOperator;
 
 public interface Enumerable<E> extends Iterable<E> {
     void enumerate(Consumer<E> consumer);
@@ -10,28 +13,11 @@ public interface Enumerable<E> extends Iterable<E> {
         return consumer -> this.enumerate(e -> consumer.accept(operator.apply(e)));
     }
 
-    abstract class Reducer<E, R> implements Consumer<E>, Supplier<R> {
-        protected R result;
-
-        private Reducer(R initial) {
-            this.result = initial;
-        }
-
-        @Override
-        public R get() {
-            return this.result;
-        }
-    }
-
+    @SuppressWarnings("unchecked")
     default <R> R reduce(R identity, BiFunction<E, R, R> accumulator) {
-        Reducer<E, R> reducer = new Reducer<E, R>(identity) {
-            @Override
-            public void accept(E e) {
-                this.result = accumulator.apply(e, this.result);
-            }
-        };
-        this.forEach(reducer);
-        return reducer.get();
+        R[] ref = (R[]) new Object[]{identity};
+        this.enumerate(e -> ref[0] = accumulator.apply(e, ref[0]));
+        return ref[0];
     }
 
     default Enumerable<E> filter(Predicate<E> predicate) {
@@ -44,7 +30,7 @@ public interface Enumerable<E> extends Iterable<E> {
 
     @Override
     default Iterator<E> iterator() {
-        Queue<E> queue = new ArrayList<>();
+        Queue<E> queue = new LinkedList<>();
         this.enumerate(queue::enqueue);
         return queue.iterator();
     }

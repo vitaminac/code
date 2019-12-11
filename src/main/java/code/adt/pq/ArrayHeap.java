@@ -31,7 +31,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     @Override
     public void add(E element) {
         int child = this.list.size();
-        this.list.add(child, element);
+        this.list.insert(child, element);
         while (child > 0) {
             int parent = (child - 1) / 2;
             if (this.comparator.compare(this.list.get(child), this.list.get(parent)) < 0) {
@@ -94,6 +94,6 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
 
     @Override
     public ArrayHeap<E> clone() {
-        return new ArrayHeap<E>(list.clone(), this.comparator);
+        return new ArrayHeap<E>(new ArrayList<>(list), this.comparator);
     }
 }

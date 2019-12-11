@@ -38,7 +38,7 @@ public class HashTableMapSC<Key, Value> implements Map<Key, Value> {
                     return;
                 }
             }
-            this.relations[index].add(0, newRelation);
+            this.relations[index].insert(0, newRelation);
             ++this.size;
         }
     }

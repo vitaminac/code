@@ -1,12 +1,11 @@
 package code.adt;
 
-public interface Stack<E> extends Iterable<E> {
+public interface Stack<E> extends Enumerable<E> {
     int size();
 
     boolean isEmpty();
 
-    // TODO: top
-    E peek();
+    E top();
 
     void push(E element);
 

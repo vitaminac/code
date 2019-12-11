@@ -1,11 +1,11 @@
 package code.adt;
 
-public interface Queue<E> extends Iterable<E> {
+public interface Queue<E> extends Enumerable<E> {
     int size();
 
     boolean isEmpty();
 
-    E peek();
+    E head();
 
     void enqueue(E element);
 

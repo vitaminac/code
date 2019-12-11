@@ -20,7 +20,7 @@ public class SortedList<E> implements PriorityQueue<E> {
 
     @Override
     public void add(E element) {
-        this.list.add(this.search.binarySearchIterative(list, element), element);
+        this.list.insert(this.search.binarySearchIterative(list, element), element);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class SortedList<E> implements PriorityQueue<E> {
 
     @Override
     public E remove() {
-        return this.list.removeFirst();
+        return this.list.remove(0);
     }
 
     @Override

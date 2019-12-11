@@ -1,15 +1,10 @@
 package code.adt.stack;
 
+import code.adt.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import code.adt.ArrayList;
-import code.adt.BoundedStack;
-import code.adt.FixedArray;
-import code.adt.LinkedList;
-import code.adt.Stack;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -34,12 +29,10 @@ public class StackTest {
 
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
-        return Arrays.asList(new Object[][] { 
-                { (Supplier<ArrayList<String>>) ArrayList::new },
-                { (Supplier<FixedArray<String>>) () -> new FixedArray<>(5) },
-                { (Supplier<BoundedStack<String>>) () -> new BoundedStack<>(5) },
-                { (Supplier<LinkedList<String>>) LinkedList::new } 
-            });
+        return Arrays.asList(new Object[][]{
+                {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
+                {(Supplier<LinkedList<String>>) LinkedList::new}
+        });
     }
 
     @Test
@@ -79,7 +72,7 @@ public class StackTest {
      * client (depending on where the pop operations occur). Solution. The stack
      * does not underflow unless there exists an integer k such that the first k pop
      * operations occur before the first k push operations.
-     * 
+     * <p>
      * If a given permutation can be generated, it is uniquely generated as follows:
      * if the next integer in the permutation is in the top of the stack, pop it;
      * otherwise, push the next integer in the input sequence onto the stack (or

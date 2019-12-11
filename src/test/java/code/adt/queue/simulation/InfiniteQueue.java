@@ -12,7 +12,7 @@ public class InfiniteQueue extends Component {
             @Override
             public void run() {
                 if (!InfiniteQueue.this.queue.isEmpty()) {
-                    if (InfiniteQueue.this.tryExit(InfiniteQueue.this.queue.peek())) {
+                    if (InfiniteQueue.this.tryExit(InfiniteQueue.this.queue.head())) {
                         InfiniteQueue.this.queue.dequeue();
                     }
                 }

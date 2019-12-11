@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class LinkedList<E>
-        implements Bag<E>, Queue<E>, Stack<E>, PositionList<E>, Deque<E>, Cloneable {
-    public static class LinkedNode<E> implements Position<E> {
+public class LinkedList<E> implements Deque<E>, Bag<E> {
+
+    public static class LinkedNode<E> {
         private E element;
         private LinkedNode<E> next;
         private LinkedNode<E> prev;
@@ -14,201 +14,108 @@ public class LinkedList<E>
         private LinkedNode(E element) {
             this.element = element;
         }
-
-        @Override
-        public E getElement() {
-            return this.element;
-        }
     }
 
-    private LinkedNode<E> first;
-    private LinkedNode<E> last;
+    private LinkedNode<E> head;
+    private LinkedNode<E> tail;
 
     public LinkedList() {
     }
 
-    public LinkedList(Iterable<E> iterable) {
-        for (E item : iterable)
-            this.addLast(item);
+    public LinkedList(Enumerable<E> enumerable) {
+        enumerable.enumerate(this::addLast);
+    }
+
+    @Override
+    public int size() {
+        int n = 0;
+        LinkedNode<E> node = this.head;
+        while (node != null) {
+            n++;
+            node = node.next;
+        }
+        return n;
     }
 
     @Override
     public void add(E item) {
-        this.addLast(item);
+        this.push(item);
     }
 
     @Override
     public boolean isEmpty() {
-        return this.first == null;
-    }
-
-    @Override
-    public void addFirst(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.isEmpty())
-            this.last = node;
-        else {
-            this.first.prev = node;
-            node.next = this.first;
-        }
-        this.first = node;
-    }
-
-    @Override
-    public void addLast(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
-        if (this.isEmpty())
-            this.first = node;
-        else {
-            this.last.next = node;
-            node.prev = this.last;
-        }
-        this.last = node;
-    }
-
-    @Override
-    public E removeFirst() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
-        E element = this.first.getElement();
-        if (this.first == this.last) {
-            this.first = null;
-            this.last = null;
-        } else {
-            this.first = this.first.next;
-            this.first.prev = null;
-        }
-        return element;
-    }
-
-    @Override
-    public E removeLast() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
-        E element = this.last.getElement();
-        if (this.first == this.last) {
-            this.first = null;
-            this.last = null;
-        } else {
-            this.last = this.last.prev;
-            this.last.next = null;
-        }
-        return element;
+        return this.head == null;
     }
 
     @Override
     public E first() {
         if (this.isEmpty())
             throw new NoSuchElementException();
-        return this.firstPosition().getElement();
+        return this.head.element;
     }
 
     @Override
     public E last() {
         if (this.isEmpty())
             throw new NoSuchElementException();
-        return this.lastPosition().getElement();
+        return this.tail.element;
     }
 
     @Override
-    public LinkedNode<E> firstPosition() {
-        return this.first;
-    }
-
-    @Override
-    public LinkedNode<E> lastPosition() {
-        return this.last;
-    }
-
-    private LinkedNode<E> checkPosition(Position<E> position) {
-        if (position instanceof LinkedNode) {
-            return (LinkedNode<E>) position;
+    public void addFirst(E element) {
+        LinkedNode<E> node = new LinkedNode<E>(element);
+        if (this.isEmpty()) {
+            this.tail = node;
         } else {
-            throw new RuntimeException();
+            this.head.prev = node;
+            node.next = this.head;
+        }
+        this.head = node;
+    }
+
+    @Override
+    public void addLast(E element) {
+        LinkedNode<E> node = new LinkedNode<E>(element);
+        if (this.isEmpty()) {
+            this.head = node;
+        } else {
+            this.tail.next = node;
+            node.prev = this.tail;
+        }
+        this.tail = node;
+    }
+
+    @Override
+    public void removeFirst() {
+        if (this.isEmpty())
+            throw new NoSuchElementException();
+        if (this.head == this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.head = this.head.next;
+            this.head.prev = null;
         }
     }
 
     @Override
-    public LinkedNode<E> before(Position<E> p) {
-        LinkedNode<E> position = this.checkPosition(p);
-        return position.prev;
-    }
-
-    @Override
-    public LinkedNode<E> after(Position<E> p) {
-        LinkedNode<E> position = this.checkPosition(p);
-        return position.next;
-    }
-
-    @Override
-    public LinkedNode<E> insertBefore(Position<E> p, E element) {
-        LinkedNode<E> position = this.checkPosition(p);
-        LinkedNode<E> node = new LinkedNode<E>(element);
-        position.prev = node;
-        node.next = position;
-        return node;
-    }
-
-    @Override
-    public LinkedNode<E> insertAfter(Position<E> p, E element) {
-        LinkedNode<E> position = this.checkPosition(p);
-        LinkedNode<E> node = new LinkedNode<E>(element);
-        position.next = node;
-        node.prev = position;
-        return node;
-    }
-
-    @Override
-    public void remove(Position<E> p) {
-        LinkedNode<E> position = this.checkPosition(p);
-        LinkedNode<E> prev = position.prev;
-        LinkedNode<E> next = position.next;
-        if (position == this.first) this.first = next;
-        if (position == this.last) this.last = prev;
-        if (prev != null) prev.next = next;
-        if (next != null) next.prev = prev;
-    }
-
-    @Override
-    public E peek() {
-        return this.first();
-    }
-
-    @Override
-    public void push(E element) {
-        this.addFirst(element);
-    }
-
-    @Override
-    public E pop() {
-        return this.removeFirst();
-    }
-
-    @Override
-    public void enqueue(E element) {
-        this.addLast(element);
-    }
-
-    @Override
-    public E dequeue() {
-        return this.removeFirst();
-    }
-
-    @Override
-    public int size() {
-        int size = 0;
-        LinkedNode<E> node = this.first;
-        while (node != null) {
-            ++size;
-            node = node.next;
+    public void removeLast() {
+        if (this.isEmpty())
+            throw new NoSuchElementException();
+        if (this.head == this.tail) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
         }
-        return size;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean equals(Object o) {
         if (!(o instanceof Iterable)) return false;
-        Iterator<Object> it = ((Iterable<Object>) o).iterator();
+        Iterator<Object> it = ((Enumerable<Object>) o).iterator();
         Iterator<E> iterator = this.iterator();
         while (it.hasNext() && iterator.hasNext()) {
             if (!it.next().equals(iterator.next())) return false;
@@ -218,7 +125,7 @@ public class LinkedList<E>
 
     @Override
     public void enumerate(Consumer<E> consumer) {
-        LinkedNode<E> node = this.first;
+        LinkedNode<E> node = this.head;
         while (node != null) {
             consumer.accept(node.element);
             node = node.next;
@@ -228,7 +135,7 @@ public class LinkedList<E>
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = LinkedList.this.first;
+            private LinkedNode<E> next = LinkedList.this.head;
 
             @Override
             public boolean hasNext() {
@@ -242,25 +149,5 @@ public class LinkedList<E>
                 return item;
             }
         };
-    }
-
-    @Override
-    public LinkedList<E> clone() {
-        LinkedList<E> list = new LinkedList<>();
-        for (E e : this) {
-            list.add(e);
-        }
-        return list;
-    }
-
-    public LinkedList<E> concatenate(Iterable<E> iterable) {
-        LinkedList<E> list = new LinkedList<>();
-        for (E e : this) {
-            list.add(e);
-        }
-        for (E e : iterable) {
-            list.add(e);
-        }
-        return list;
     }
 }

@@ -1,6 +1,6 @@
 package code.adt.stack;
 
-import code.adt.ArrayList;
+import code.adt.LinkedList;
 import code.adt.Stack;
 
 import java.util.Scanner;
@@ -27,8 +27,8 @@ public class ArithmeticExpressionEvaluation {
     }
 
     public static void main(String[] args) {
-        Stack<String> ops = new ArrayList<>();
-        Stack<Double> values = new ArrayList<>();
+        Stack<String> ops = new LinkedList<>();
+        Stack<Double> values = new LinkedList<>();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -43,21 +43,21 @@ public class ArithmeticExpressionEvaluation {
                         break;
                     case "+":
                     case "-":
-                        if (!ops.isEmpty() && (ops.peek().equals("+") || ops.peek().equals("-"))) {
+                        if (!ops.isEmpty() && (ops.top().equals("+") || ops.top().equals("-"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                         ops.push(token);
                         break;
                     case ")":
-                        if (!ops.peek().equals("(")) values.push(apply(ops.pop(), values.pop(), values.pop()));
+                        if (!ops.top().equals("(")) values.push(apply(ops.pop(), values.pop(), values.pop()));
                         ops.pop();
-                        if (!ops.isEmpty() && (ops.peek().equals("*") || ops.peek().equals("/"))) {
+                        if (!ops.isEmpty() && (ops.top().equals("*") || ops.top().equals("/"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                         break;
                     default:
                         values.push(Double.parseDouble(token));
-                        if (!ops.isEmpty() && (ops.peek().equals("*") || ops.peek().equals("/"))) {
+                        if (!ops.isEmpty() && (ops.top().equals("*") || ops.top().equals("/"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                 }

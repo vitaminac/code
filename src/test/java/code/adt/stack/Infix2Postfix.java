@@ -44,7 +44,7 @@ public class Infix2Postfix {
                             if (stack.isEmpty()) {
                                 stack.push(c);
                             } else {
-                                if (precedence[c] > precedence[stack.peek()]) {
+                                if (precedence[c] > precedence[stack.top()]) {
                                     // Operator with high precedence than top of stack: push onto stack.
                                     stack.push(c);
                                 } else {
@@ -54,7 +54,7 @@ public class Infix2Postfix {
                                     // Push the scanned operator onto the stack.
                                     do {
                                         sb.append(stack.pop());
-                                    } while (!stack.isEmpty() && precedence[c] <= precedence[stack.peek()]);
+                                    } while (!stack.isEmpty() && precedence[c] <= precedence[stack.top()]);
                                     stack.push(c);
                                 }
                             }

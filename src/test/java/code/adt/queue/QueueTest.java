@@ -1,5 +1,6 @@
 package code.adt.queue;
 
+import code.adt.ArrayDeque;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class QueueTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<ArrayList<String>>) ArrayList::new},
+                {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
                 {(Supplier<LinkedList<String>>) LinkedList::new}
         });
     }
