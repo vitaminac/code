@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<E>, Cloneable {
+public class ArrayList<E> implements List<E>, Deque<E>, Stack<E>, Queue<E>, Bag<E>, RandomAccess<E>, Cloneable {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;
