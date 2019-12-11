@@ -1,10 +1,7 @@
 package code.adt;
 
 import java.util.Iterator;
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
+import java.util.function.*;
 
 public interface Enumerable<E> extends Iterable<E> {
     void enumerate(Consumer<E> consumer);
@@ -35,6 +32,14 @@ public interface Enumerable<E> extends Iterable<E> {
         };
         this.forEach(reducer);
         return reducer.get();
+    }
+
+    default Enumerable<E> filter(Predicate<E> predicate) {
+        return consumer -> this.enumerate(e -> {
+            if (predicate.test(e)) {
+                consumer.accept(e);
+            }
+        });
     }
 
     @Override
