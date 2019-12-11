@@ -3,7 +3,7 @@ package code.adt;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class ArrayDeque<E> implements Deque<E> {
+public class ArrayDeque<E> extends AbstractOrderedCollection<E> implements Deque<E> {
     private final E[] elements;
     private int first = 0;
     private int size = 0;

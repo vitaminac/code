@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
-public class ArrayList<E> implements List<E> {
+public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;
 
     private E[] elements;

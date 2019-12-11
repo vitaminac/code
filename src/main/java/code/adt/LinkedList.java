@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class LinkedList<E> implements Deque<E>, Bag<E> {
+public class LinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E>, Bag<E> {
 
     public static class LinkedNode<E> {
         private E element;
@@ -109,18 +109,6 @@ public class LinkedList<E> implements Deque<E>, Bag<E> {
             this.tail = this.tail.prev;
             this.tail.next = null;
         }
-    }
-
-    @Override
-    @SuppressWarnings("unchecked")
-    public boolean equals(Object o) {
-        if (!(o instanceof Iterable)) return false;
-        Iterator<Object> it = ((Enumerable<Object>) o).iterator();
-        Iterator<E> iterator = this.iterator();
-        while (it.hasNext() && iterator.hasNext()) {
-            if (!it.next().equals(iterator.next())) return false;
-        }
-        return !it.hasNext() && !iterator.hasNext();
     }
 
     @Override
