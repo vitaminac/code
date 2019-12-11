@@ -158,6 +158,17 @@ public class LinkedList<E>
     }
 
     @Override
+    public void remove(Position<E> p) {
+        LinkedNode<E> position = this.checkPosition(p);
+        LinkedNode<E> prev = position.prev;
+        LinkedNode<E> next = position.next;
+        if (position == this.first) this.first = next;
+        if (position == this.last) this.last = prev;
+        if (prev != null) prev.next = next;
+        if (next != null) next.prev = prev;
+    }
+
+    @Override
     public E peek() {
         return this.first();
     }

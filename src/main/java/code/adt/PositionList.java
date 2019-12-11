@@ -16,4 +16,6 @@ public interface PositionList<E> extends Iterable<E> {
     Position<E> insertBefore(Position<E> position, E element);
 
     Position<E> insertAfter(Position<E> position, E element);
+
+    void remove(Position<E> position);
 }
