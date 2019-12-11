@@ -2,6 +2,7 @@ package code.adt;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 public class LinkedList<E>
         implements Bag<E>, Queue<E>, Stack<E>, PositionList<E>, Deque<E>, Cloneable {
@@ -213,6 +214,15 @@ public class LinkedList<E>
             if (!it.next().equals(iterator.next())) return false;
         }
         return !it.hasNext() && !iterator.hasNext();
+    }
+
+    @Override
+    public void enumerate(Consumer<E> consumer) {
+        LinkedNode<E> node = this.first;
+        while (node != null) {
+            consumer.accept(node.element);
+            node = node.next;
+        }
     }
 
     @Override
