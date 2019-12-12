@@ -19,7 +19,6 @@
 - [ ] [Hacker Laws](https://github.com/dwmkerr/hacker-laws)
 - [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
 - [ ] Agile Software Development, Principles, Patterns, and Practices
-- [ ] Programming Pearls
 
 ### Algorithms
 
@@ -33,13 +32,12 @@
 
 ## Courses
 
+- [ ] [Accelerated Computer Science Fundamentals Specialization](https://www.coursera.org/specializations/cs-fundamentals)
 - [ ] [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
 - [ ] [MIT 6.851: Advanced Data Structures](https://courses.csail.mit.edu/6.851/)
 - [ ] [MIT 6.854/18.415J: Advanced Algorithms](http://courses.csail.mit.edu/6.854)
 - [ ] [MIT Open Courseware: Algorithm and Data Structures](https://ocw.mit.edu/courses/find-by-topic/#cat=engineering&subcat=computerscience&spec=algorithmsanddatastructures)
-- [ ] [Accelerated Computer Science Fundamentals Specialization](https://www.coursera.org/specializations/cs-fundamentals)
-- [ ] [Object Oriented Java Programming: Data Structures and Beyond Specialization](https://www.coursera.org/specializations/java-object-oriented)
 - [ ] [Computer Science: Algorithms, Theory, and Machines](https://www.coursera.org/learn/cs-algorithms-theory-machines)
 - [ ] [Analysis of Algorithms](https://www.coursera.org/learn/analysis-of-algorithms)
 - [ ] [Networks Illustrated: Principles without Calculus](https://www.coursera.org/learn/networks-illustrated)
@@ -57,19 +55,18 @@
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
 * [EE-CS Courses at Stanford](https://ee.stanford.edu/eecs)
 
-## Tutorial
+## Code
 
-- [ ] [GeeksforGeeks](https://www.geeksforgeeks.org/)
-- [ ] [Tutorials Point](http://www.tutorialspoint.com/)
+* [Java Utils](https://github.com/openjdk/jdk/tree/master/src/java.base/share/classes/java/util)
 
 ## Practice
 
 * [GitHub](https://github.com/)
 * [Leet Code](https://leetcode.com/)
 * [Codeforces](https://codeforces.com/)
+* [GeeksforGeeks](https://www.geeksforgeeks.org/)
 * [UVA Onlinejudge](https://uva.onlinejudge.org/)
 * [Stack Overflow](https://stackoverflow.com/)
-* [Java Utils](https://github.com/openjdk/jdk/tree/master/src/java.base/share/classes/java/util)
 
 ## Jobs
 
