@@ -2,7 +2,7 @@ package code.adt.map;
 
 import code.adt.dict.AVLTree;
 import code.adt.dict.RedBlackTree;
-import code.adt.dict.SkipList;
+import code.adt.dict.ConcurrentSkipListMap;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +37,7 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) () -> new HashTableMapSC<>(256)},
                 {(Supplier<Map<String, String>>) AVLTree::new},
                 {(Supplier<Map<String, String>>) RedBlackTree::new},
-                {(Supplier<Map<String, String>>) SkipList::new},
+                {(Supplier<Map<String, String>>) ConcurrentSkipListMap::new},
         });
     }
 

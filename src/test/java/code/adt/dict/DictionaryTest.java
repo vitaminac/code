@@ -28,7 +28,7 @@ public class DictionaryTest {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Dictionary<Integer, String>>) AVLTree::new},
                 {(Supplier<Map<Integer, String>>) RedBlackTree::new},
-                {(Supplier<Dictionary<Integer, String>>) SkipList::new},
+                {(Supplier<Dictionary<Integer, String>>) ConcurrentSkipListMap::new},
         });
     }
 

@@ -9,6 +9,12 @@ import java.util.function.UnaryOperator;
 public interface Enumerable<E> extends Iterable<E> {
     void enumerate(Consumer<E> consumer);
 
+    default int size() {
+        int[] ref = new int[]{0};
+        this.enumerate(e -> ref[0]++);
+        return ref[0];
+    }
+
     default Enumerable<E> map(UnaryOperator<E> operator) {
         return consumer -> this.enumerate(e -> consumer.accept(operator.apply(e)));
     }

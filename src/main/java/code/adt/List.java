@@ -1,8 +1,6 @@
 package code.adt;
 
 public interface List<E> extends Enumerable<E>, RandomAccess<E> {
-    int size();
-
     boolean isEmpty();
 
     void clear();
