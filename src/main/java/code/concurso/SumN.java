@@ -1,13 +1,9 @@
-package code.curso;
+package code.concurso;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
-
-import org.junit.Test;
-
-import code.Judge;
 
 /**
  * Se pide implementar un algoritmo basado en la técnica de backtracking para
@@ -51,10 +47,5 @@ public class SumN {
                 System.out.print(i + " ");
             }
         }
-    }
-
-    @Test
-    public void test() throws Exception {
-        Judge.judge(this.getClass(), null);
     }
 }

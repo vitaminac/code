@@ -1,4 +1,4 @@
-package code.curso;
+package code.concurso;
 
 import java.util.HashSet;
 import java.util.Scanner;

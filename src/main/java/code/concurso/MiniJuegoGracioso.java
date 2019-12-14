@@ -1,4 +1,4 @@
-package code.curso;
+package code.concurso;
 
 import java.util.Arrays;
 import java.util.Scanner;

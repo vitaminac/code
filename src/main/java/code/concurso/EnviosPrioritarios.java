@@ -1,4 +1,4 @@
-package code.curso;
+package code.concurso;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

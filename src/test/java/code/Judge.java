@@ -73,7 +73,7 @@ public class Judge {
     public void judgeAll() throws Exception {
         int n_all_tests = 0;
         int n_failed = 0;
-        String[] packages = new String[]{"code.aceptaelreto"};
+        String[] packages = new String[]{"code.aceptaelreto", "code.concurso"};
         for (String pkg : packages) {
             for (Utils.Pair pair : Utils.getResources(pkg, "class")) {
                 Class<?> clazz = Class.forName(
