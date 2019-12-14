@@ -1,3 +1,4 @@
+package code.foobar.l4;
 /*
   You've blown up the LAMBCHOP doomsday device and broken the bunnies out of Lambda's prison,
   and now you need to escape from the space station as quickly and as orderly as possible!
@@ -87,7 +88,7 @@ import java.util.Queue;
 import java.util.Arrays;
 
 
-class Solution {
+public class EscapePods {
     private static final int INF = Integer.MAX_VALUE;
 
     private static int[][] transform(int[] sources, int[] sinks, int[][] network) {
@@ -166,7 +167,5 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        assert solution(new int[]{0}, new int[]{3}, new int[][]{{0, 7, 0, 0}, {0, 0, 6, 0}, {0, 0, 0, 8}, {9, 0, 0, 0}}) == 6;
-        assert solution(new int[]{0, 1}, new int[]{4, 5}, new int[][]{{0, 0, 4, 6, 0, 0}, {0, 0, 5, 2, 0, 0}, {0, 0, 0, 0, 4, 4}, {0, 0, 0, 0, 6, 6}, {0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0}}) == 16;
-    }
+      }
 }
