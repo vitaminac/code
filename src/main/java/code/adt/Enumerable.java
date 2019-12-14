@@ -34,6 +34,20 @@ public interface Enumerable<E> extends Iterable<E> {
         });
     }
 
+    default boolean all(Predicate<E> predicate) {
+        for (E e : this) {
+            if (!predicate.test(e)) return false;
+        }
+        return true;
+    }
+
+    default boolean some(Predicate<E> predicate) {
+        for (E e : this) {
+            if (predicate.test(e)) return true;
+        }
+        return false;
+    }
+
     @Override
     default Iterator<E> iterator() {
         Queue<E> queue = new LinkedList<>();
