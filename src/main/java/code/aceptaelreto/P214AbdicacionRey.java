@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 // https://www.aceptaelreto.com/problem/statement.php?id=214
-public class AbdicacionRey {
+public class P214AbdicacionRey {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int numKing;
