@@ -1,14 +1,8 @@
 package code;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.FileDescriptor;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.PrintStream;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.net.URL;
@@ -16,7 +10,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class Judge {
     private static final String WARNING = "\u001B[33m";
@@ -28,7 +23,7 @@ public class Judge {
             if (method == null || !Modifier.isPublic(clazz.getModifiers())) {
                 System.out.println(WARNING + "Skipped hidden class " + clazz.getName() + NORMAL);
             } else {
-                final URL inputResource = clazz.getResource(clazz.getSimpleName() + "Input.txt");
+                final URL inputResource = clazz.getResource(clazz.getSimpleName() + ".in");
                 assertNotNull(clazz.getSimpleName() + "'s input is empty", inputResource);
                 final byte[] input = Files.readAllBytes(Paths.get(inputResource.toURI()));
 
@@ -56,7 +51,7 @@ public class Judge {
                 printStream.close();
 
                 // compare result
-                final URL outputResource = clazz.getResource(clazz.getSimpleName() + "Output.txt");
+                final URL outputResource = clazz.getResource(clazz.getSimpleName() + ".out");
                 System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
                 final String output = new String(stdout.toByteArray(), StandardCharsets.UTF_8);
                 if (outputResource != null) {
@@ -78,15 +73,18 @@ public class Judge {
     public void judgeAll() throws Exception {
         int n_all_tests = 0;
         int n_failed = 0;
-        for (Utils.Pair pair : Utils.getResources(this.getClass(), "class")) {
-            Class<?> clazz = Class.forName(
-                    pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
-            try {
-                n_all_tests += 1;
-                judge(clazz, null);
-            } catch (Throwable e) {
-                n_failed += 1;
-                e.printStackTrace();
+        String[] packages = new String[]{"code.aceptaelreto"};
+        for (String pkg : packages) {
+            for (Utils.Pair pair : Utils.getResources(pkg, "class")) {
+                Class<?> clazz = Class.forName(
+                        pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
+                try {
+                    n_all_tests += 1;
+                    judge(clazz, null);
+                } catch (Throwable e) {
+                    n_failed += 1;
+                    e.printStackTrace();
+                }
             }
         }
         System.out.println("Total " + n_all_tests + " unit tests and " + n_failed + " of them have failed!");

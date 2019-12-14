@@ -36,7 +36,7 @@ class Utils {
         return resources;
     }
 
-    private static List<Pair> getResources(String packageName, String type) throws Exception {
+    public static List<Pair> getResources(String packageName, String type) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');
