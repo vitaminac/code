@@ -3,7 +3,7 @@ package code.adt.map;
 import java.util.Objects;
 
 public class Relation<Domain, CoDomain> {
-    private Domain key;
+    private final Domain key;
     private CoDomain value;
 
     public Relation(Domain key, CoDomain value) {

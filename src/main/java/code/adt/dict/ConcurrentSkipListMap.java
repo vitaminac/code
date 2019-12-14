@@ -1,11 +1,14 @@
 package code.adt.dict;
 
-import code.adt.LinkedList;
-import code.adt.Stack;
-
 import java.util.function.Consumer;
 
-public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
+/**
+ * https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf
+ * http://www.cse.chalmers.se/~tsigas/papers/SLIDES/Lock-free%20Skip%20Lists%20and%20Priority%20Queues.ppt
+ * http://www.cs.tau.ac.il/~shanir/nir-pubs-web/Papers/OPODIS2006-BA.pdf
+ * TODO: ConcurrentSkipListMap
+ */
+public class ConcurrentSkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V> {
     private static class Node<E> {
         private E element;
         private Node<E> next;
@@ -21,35 +24,25 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
         }
     }
 
-    private final Vocabulary<Key, Value> MIN_SENTIMENTAL = new Vocabulary<>(null, null) {
+    private static class IndexNode<E> {
+
+    }
+
+    private final Vocabulary<K, V> MIN_SENTIMENTAL = new Vocabulary<>(null, null) {
         @Override
-        public int compareTo(Key key) {
+        public int compareTo(K key) {
             return -1;
         }
     };
 
-    private Node<Vocabulary<Key, Value>> top = new Node<>(MIN_SENTIMENTAL);
-
-    @Override
-    public int size() {
-        Node<Vocabulary<Key, Value>> current = this.top;
-        while (current.down != null) {
-            current = current.down;
-        }
-        int size = 0;
-        while (current.next != null) {
-            current = current.next;
-            size += 1;
-        }
-        return size;
-    }
+    private Node<Vocabulary<K, V>> top = new Node<>(MIN_SENTIMENTAL);
 
     @Override
     public boolean isEmpty() {
         return this.top.down == null;
     }
 
-    private Node<Vocabulary<Key, Value>> link(Node<Vocabulary<Key, Value>> node, Vocabulary<Key, Value> vocabulary) {
+    private Node<Vocabulary<K, V>> link(Node<Vocabulary<K, V>> node, Vocabulary<K, V> vocabulary) {
         if (node == null) return new Node<>(vocabulary);
         var current = node;
         int diff = current.element.compareTo(vocabulary.getKey());
@@ -63,7 +56,7 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
                 current = current.down;
             }
         } else {
-            Node<Vocabulary<Key, Value>> newNode = this.link(node.down, vocabulary);
+            Node<Vocabulary<K, V>> newNode = this.link(node.down, vocabulary);
             if (newNode != null) {
                 newNode.next = current.next;
                 current.next = newNode;
@@ -78,7 +71,7 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
     }
 
     @Override
-    public void link(Key key, Value value) {
+    public void link(K key, V value) {
         this.link(this.top, new Vocabulary<>(key, value));
         if (this.top.next != null) {
             var newTop = new Node<>(MIN_SENTIMENTAL);
@@ -88,8 +81,8 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
     }
 
     @Override
-    public Value map(Key key) {
-        Node<Vocabulary<Key, Value>> current = this.top;
+    public V map(K key) {
+        Node<Vocabulary<K, V>> current = this.top;
         while (current.down != null) {
             current = current.down;
             int diff = -1;
@@ -104,10 +97,10 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
     }
 
     @Override
-    public Value remove(Key key) {
-        Node<Vocabulary<Key, Value>> current = this.top;
+    public V remove(K key) {
+        Node<Vocabulary<K, V>> current = this.top;
         int diff = -1;
-        Value result = null;
+        V result = null;
         while (current.down != null) {
             current = current.down;
             while (current.next != null && (diff = current.next.element.compareTo(key)) < 0) {
@@ -127,8 +120,8 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
     }
 
     @Override
-    public void findRange(Key min, Key max, Consumer<Key> consumer) {
-        Node<Vocabulary<Key, Value>> current = this.top;
+    public void findRange(K min, K max, Consumer<K> consumer) {
+        Node<Vocabulary<K, V>> current = this.top;
         int diff = -1;
         while (current.down != null) {
             current = current.down;
@@ -145,8 +138,8 @@ public class SkipList<Key extends Comparable<Key>, Value> implements Dictionary<
     }
 
     @Override
-    public void enumerate(Consumer<Key> consumer) {
-        Node<Vocabulary<Key, Value>> current = this.top;
+    public void enumerate(Consumer<K> consumer) {
+        Node<Vocabulary<K, V>> current = this.top;
         while (current.down != null) current = current.down;
         current = current.next;
         do {
