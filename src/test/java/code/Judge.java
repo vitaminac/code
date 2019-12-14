@@ -20,7 +20,7 @@ public class Judge {
     public static <T> void judge(Class<T> clazz, String[] params) throws Exception {
         try {
             Method method = clazz.getMethod("main", String[].class);
-            if (method == null || !Modifier.isPublic(clazz.getModifiers())) {
+            if (method == null || Modifier.isPrivate(clazz.getModifiers())) {
                 System.out.println(WARNING + "Skipped hidden class " + clazz.getName() + NORMAL);
             } else {
                 final URL inputResource = clazz.getResource(clazz.getSimpleName() + ".in");
@@ -73,7 +73,7 @@ public class Judge {
     public void judgeAll() throws Exception {
         int n_all_tests = 0;
         int n_failed = 0;
-        String[] packages = new String[]{"code.aceptaelreto", "code.concurso"};
+        String[] packages = new String[]{"code.aceptaelreto", "code.concurso", "code.algs4"};
         for (String pkg : packages) {
             for (Utils.Pair pair : Utils.getResources(pkg, "class")) {
                 Class<?> clazz = Class.forName(

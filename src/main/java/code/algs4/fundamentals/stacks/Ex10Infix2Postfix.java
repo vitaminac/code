@@ -1,4 +1,4 @@
-package code.adt.stack;
+package code.algs4.fundamentals.stacks;
 
 import code.adt.LinkedList;
 import code.adt.Stack;
@@ -7,10 +7,10 @@ import java.util.PrimitiveIterator;
 import java.util.Scanner;
 
 /**
- * Write a program to convert an infix expression to postfix.
+ * 10. Write a program to convert an infix expression to postfix.
  * Scan the infix expression from left to right.
  */
-public class Infix2Postfix {
+class Infix2Postfix {
     private static final int precedence[] = new int[128];
 
     static {
