@@ -142,9 +142,9 @@ public class ConcurrentSkipListMap<K extends Comparable<K>, V> implements Dictio
         Node<Vocabulary<K, V>> current = this.top;
         while (current.down != null) current = current.down;
         current = current.next;
-        do {
+        while (current != null) {
             consumer.accept(current.element.getKey());
             current = current.next;
-        } while (current != null);
+        }
     }
 }
