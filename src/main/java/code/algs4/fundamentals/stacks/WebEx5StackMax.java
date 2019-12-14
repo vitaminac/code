@@ -13,7 +13,7 @@ import java.util.function.Consumer;
  * Assume the elements are integers or reals so that you can compare them.
  * Hint: use two stacks, one to store all of the elements and a second stack to store the maximums.
  */
-class StackMax implements Stack<Integer> {
+public class WebEx5StackMax implements Stack<Integer> {
     private Stack<Integer> stack = new LinkedList<>();
     private Stack<Integer> maxStack = new LinkedList<>();
 
