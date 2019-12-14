@@ -8,7 +8,7 @@ public class WebEx5StackMaxTest {
 
     @Test
     public void test() {
-        WebEx5StackMax webEx5StackMax = new WebEx5StackMax();
+        StackMax webEx5StackMax = new StackMax();
         webEx5StackMax.push(0);
         assertEquals(0, webEx5StackMax.max());
         webEx5StackMax.push(-1);
