@@ -54,4 +54,21 @@ public interface Enumerable<E> extends Iterable<E> {
         this.enumerate(queue::enqueue);
         return queue.iterator();
     }
+
+    static Enumerable<Integer> range(final int start, final int stop, final int step) {
+        return consumer -> {
+            for (int i = start; i < stop; i += step) {
+                consumer.accept(i);
+            }
+        };
+    }
+
+    static Enumerable<Double> linspace(final double start, final double stop, int n) {
+        final double step = (stop - start) / n;
+        return consumer -> {
+            for (double i = start; i < stop; i += step) {
+                consumer.accept(step);
+            }
+        };
+    }
 }
