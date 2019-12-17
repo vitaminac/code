@@ -80,4 +80,8 @@ package code.foobar.l5;
  * 19
  */
 public class DodgeTheLasers {
+    public String solution(String s) {
+        // Your code here
+        return null;
+    }
 }
