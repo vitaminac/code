@@ -16,9 +16,11 @@ How to become a good developer?
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Design patterns implemented in Java](https://github.com/iluwatar/java-design-patterns)
+- [ ] [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/a/2707195/9980245)
 
 ### Algorithms
 
+- [ ] Discrete Mathematics and Its Applications
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
@@ -42,8 +44,9 @@ How to become a good developer?
 ## Courses
 
 - [ ] [Accelerated Computer Science Fundamentals Specialization](https://www.coursera.org/specializations/cs-fundamentals)
-- [ ] [Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
-- [ ] [Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
+- [ ] [Coursera: Introduction to Discrete Mathematics for Computer Science Specialization](https://www.coursera.org/specializations/discrete-mathematics)
+- [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
+- [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
 - [ ] [MIT 6.851: Advanced Data Structures](https://courses.csail.mit.edu/6.851/)
 - [ ] [MIT 6.854/18.415J: Advanced Algorithms](http://courses.csail.mit.edu/6.854)
 - [ ] [MIT 6.856J/18.416J: Randomized Algorithms](http://courses.csail.mit.edu/6.856)
@@ -54,7 +57,6 @@ How to become a good developer?
 - [ ] [Analytic Combinatorics](https://www.coursera.org/learn/analytic-combinatorics)
 - [ ] [Algorithms Specialization](https://www.coursera.org/specializations/algorithms)
 - [ ] [Data Structures and Algorithms Specialization](https://www.coursera.org/specializations/data-structures-algorithms)
-- [ ] [Introduction to Discrete Mathematics for Computer Science Specialization](https://www.coursera.org/specializations/discrete-mathematics)
 
 ## Program Sheet
 
@@ -68,6 +70,7 @@ How to become a good developer?
 ## Code
 
 * [Java Utils](https://github.com/openjdk/jdk/tree/master/src/java.base/share/classes/java/util)
+* [C# Generic](https://github.com/dotnet/runtime/tree/master/src/libraries/System.Collections/src/System/Collections/Generic)
 
 ## Learn
 
@@ -76,6 +79,8 @@ How to become a good developer?
 * [Udacity](https://www.udacity.com/)
 * [Udemy](https://www.udemy.com/)
 * [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
+* [Sanford Online](https://online.stanford.edu/courses)
+* [Stanford Engineering Everywhere](https://see.stanford.edu/Course)
 
 ## Practice
 
