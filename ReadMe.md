@@ -43,8 +43,13 @@ How to become a good developer?
 
 ## Courses
 
+- [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
+- [ ] [Stanford: CS103 Mathematical Foundations of Computing](http://web.stanford.edu/class/cs103/)
+- [ ] [MIT 6.042J/18.062J: Mathematics for Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-spring-2015/)
+- [ ] [Stanford: CS161: Design and Analysis of Algorithms](http://web.stanford.edu/class/archive/cs/cs161/cs161.1182/)
 - [ ] [Accelerated Computer Science Fundamentals Specialization](https://www.coursera.org/specializations/cs-fundamentals)
 - [ ] [Coursera: Introduction to Discrete Mathematics for Computer Science Specialization](https://www.coursera.org/specializations/discrete-mathematics)
+- [ ] [Coursera: Discrete Mathematics](https://www.coursera.org/learn/discrete-mathematics)
 - [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
 - [ ] [MIT 6.851: Advanced Data Structures](https://courses.csail.mit.edu/6.851/)
@@ -81,6 +86,7 @@ How to become a good developer?
 * [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
 * [Sanford Online](https://online.stanford.edu/courses)
 * [Stanford Engineering Everywhere](https://see.stanford.edu/Course)
+* [Tutorialspoint](https://www.tutorialspoint.com/)
 
 ## Practice
 
