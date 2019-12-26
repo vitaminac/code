@@ -1,5 +1,8 @@
 package code.foobar.l5;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 /**
  * Dodge the Lasers!
  * =================
@@ -79,9 +82,30 @@ package code.foobar.l5;
  * Output:
  * 19
  */
-public class DodgeTheLasers {
-    public String solution(String s) {
-        // Your code here
-        return null;
+class Solution {
+    private static final BigInteger TWO = BigInteger.valueOf(2);
+    private static final BigDecimal FACTOR =
+            new BigDecimal("1.4142135623730950488016887242096980785696718753769480731766797379907324784621070388503875343276415727350138462309122970249248360558507372126441214971").subtract(BigDecimal.ONE);
+
+    private static BigInteger beattySequence(BigInteger n) {
+        // S(sqrt(2), 0) = 0
+        if (n.equals(BigInteger.ZERO)) {
+            return BigInteger.ZERO;
+        } else {
+            // n' = floor(sqrt(2) - 1)*n)
+            BigInteger n_prime = FACTOR.multiply(new BigDecimal(n)).toBigInteger();
+            // S(sqrt(2), n) = p + q - r - S(sqrt(2), n')
+            // p = nn'
+            BigInteger p = n.multiply(n_prime);
+            // q = n(n+1)/2
+            BigInteger q = n.multiply(n.add(BigInteger.ONE)).divide(TWO);
+            // r = n'(n'+1)/2
+            BigInteger r = n_prime.multiply(n_prime.add(BigInteger.ONE)).divide(TWO);
+            return p.add(q).subtract(r).subtract(beattySequence(n_prime));
+        }
+    }
+
+    public static String solution(String str_n) {
+        return beattySequence(new BigInteger(str_n)).toString();
     }
 }
