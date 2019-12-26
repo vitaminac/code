@@ -165,7 +165,4 @@ public class EscapePods {
     public static int solution(int[] entrances, int[] exits, int[][] path) {
         return solveWithFordFulkerson(transform(entrances, exits, path));
     }
-
-    public static void main(String[] args) {
-      }
 }
