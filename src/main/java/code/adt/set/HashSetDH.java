@@ -1,9 +1,9 @@
 package code.adt.set;
 
-import code.adt.map.HashTableMapDH;
+import code.adt.map.OpenAddressingHashTableMapDH;
 
 public class HashSetDH<E> extends AbstractHashSet<E> {
     protected HashSetDH() {
-        super(new HashTableMapDH<>());
+        super(new OpenAddressingHashTableMapDH<>());
     }
 }

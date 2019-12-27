@@ -1,9 +1,9 @@
 package code.adt.set;
 
-import code.adt.map.HashTableMapQP;
+import code.adt.map.OpenAddressingHashTableMapQP;
 
 public class HashSetQP<E> extends AbstractHashSet<E> {
     protected HashSetQP() {
-        super(new HashTableMapQP<>());
+        super(new OpenAddressingHashTableMapQP<>());
     }
 }

@@ -19,6 +19,10 @@ public class Relation<Domain, CoDomain> {
         return this.value;
     }
 
+    public void setValue(CoDomain value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

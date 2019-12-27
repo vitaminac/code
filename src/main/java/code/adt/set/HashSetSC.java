@@ -1,9 +1,9 @@
 package code.adt.set;
 
-import code.adt.map.HashTableMapSC;
+import code.adt.map.SeparateChainingHashTableMap;
 
 public class HashSetSC<E> extends AbstractHashSet<E> {
-    public HashSetSC(int capacity) {
-        super(new HashTableMapSC<>(capacity));
+    public HashSetSC() {
+        super(new SeparateChainingHashTableMap<>());
     }
 }

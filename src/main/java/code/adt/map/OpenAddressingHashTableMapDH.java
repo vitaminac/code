@@ -1,6 +1,6 @@
 package code.adt.map;
 
-public class HashTableMapDH<Key, Value> extends AbstractHashMap<Key, Value> {
+public class OpenAddressingHashTableMapDH<Key, Value> extends AbstractOpenAddressingHashMap<Key, Value> {
     private static final int Q = 7;
 
     @Override

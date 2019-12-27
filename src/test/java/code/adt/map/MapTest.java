@@ -31,10 +31,10 @@ public class MapTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<Map<String, String>>) HashTableMapDH::new},
-                {(Supplier<Map<String, String>>) HashTableMapLP::new},
-                {(Supplier<Map<String, String>>) HashTableMapQP::new},
-                {(Supplier<Map<String, String>>) () -> new HashTableMapSC<>(256)},
+                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapDH::new},
+                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapLP::new},
+                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapQP::new},
+                {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
                 {(Supplier<Map<String, String>>) AVLTree::new},
                 {(Supplier<Map<String, String>>) RedBlackTree::new},
                 {(Supplier<Map<String, String>>) ConcurrentSkipListMap::new},
