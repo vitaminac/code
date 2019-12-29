@@ -101,3 +101,7 @@ How to become a good developer?
 
 * [Google's Coding Competitions](https://codingcompetitions.withgoogle.com/)
 * [Google Foor.Bar](https://foobar.withgoogle.com/)
+
+## Interview
+* [JavaGuide](https://javaguide.cn/)
+* [sec-jobs](https://github.com/SecYouth/sec-jobs)
