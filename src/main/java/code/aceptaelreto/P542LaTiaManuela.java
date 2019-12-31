@@ -16,18 +16,10 @@ public class P542LaTiaManuela {
                 caja[1] = sc.nextInt();
                 caja[2] = sc.nextInt();
                 System.out.println((
-                        (
-                                false
-                                        || caja[0] > juguete[0] && ((caja[1] > juguete[1] && caja[2] > juguete[2]) || (caja[1] > juguete[2] && caja[2] > juguete[1]))
-                                        || caja[0] > juguete[1] && ((caja[1] > juguete[0] && caja[2] > juguete[2]) || (caja[1] > juguete[2] && caja[2] > juguete[0]))
-                                        || caja[0] > juguete[2] && ((caja[1] > juguete[0] && caja[2] > juguete[1]) || (caja[1] > juguete[1] && caja[2] > juguete[0]))
-                                        || caja[1] > juguete[0] && ((caja[0] > juguete[1] && caja[2] > juguete[2]) || (caja[0] > juguete[2] && caja[2] > juguete[1]))
-                                        || caja[1] > juguete[1] && ((caja[0] > juguete[0] && caja[2] > juguete[2]) || (caja[0] > juguete[2] && caja[2] > juguete[0]))
-                                        || caja[1] > juguete[2] && ((caja[0] > juguete[0] && caja[2] > juguete[1]) || (caja[0] > juguete[1] && caja[2] > juguete[0]))
-                                        || caja[2] > juguete[0] && ((caja[0] > juguete[1] && caja[1] > juguete[2]) || (caja[0] > juguete[2] && caja[1] > juguete[1]))
-                                        || caja[2] > juguete[1] && ((caja[0] > juguete[0] && caja[1] > juguete[2]) || (caja[0] > juguete[2] && caja[1] > juguete[0]))
-                                        || caja[2] > juguete[2] && ((caja[0] > juguete[0] && caja[1] > juguete[1]) || (caja[0] > juguete[1] && caja[1] > juguete[0]))
-                        )
+                        false
+                                || (caja[0] > juguete[0] && ((caja[1] > juguete[1] && caja[2] > juguete[2]) || (caja[1] > juguete[2] && caja[2] > juguete[1])))
+                                || (caja[0] > juguete[1] && ((caja[1] > juguete[0] && caja[2] > juguete[2]) || (caja[1] > juguete[2] && caja[2] > juguete[0])))
+                                || (caja[0] > juguete[2] && ((caja[1] > juguete[0] && caja[2] > juguete[1]) || (caja[1] > juguete[1] && caja[2] > juguete[0])))
                 ) ? "SIRVE" : "NO SIRVE");
             }
         }
