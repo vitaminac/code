@@ -5,7 +5,7 @@ import code.adt.Position;
 
 import java.util.function.Consumer;
 
-public class BinaryArrayTree<E> implements BinaryTree<E, BinaryArrayTree.BTNode<E>> {
+public class ArrayBinaryTree<E> implements BinaryTree<E, ArrayBinaryTree.BTNode<E>> {
     public static class BTNode<E> implements Position<E> {
         private E element;
         private int index;
@@ -71,23 +71,18 @@ public class BinaryArrayTree<E> implements BinaryTree<E, BinaryArrayTree.BTNode<
     }
 
     private int countDescent(BTNode<E> node) {
-        if (this.hasLeft(node)) {
-            if (this.hasRight(node)) {
-                return this.countDescent(this.left(node)) + this.countDescent(this.right(node)) + 1;
-            }
-            return this.countDescent(this.left(node)) + 1;
-        }
-        return 1;
+        if (node == null) return 0;
+        else return 1 + this.countDescent(this.left(node)) + this.countDescent(this.right(node));
     }
 
     @Override
     public int size() {
-        return this.countDescent(this.tree.get(0));
+        return this.countDescent(this.root());
     }
 
     @Override
     public boolean isEmpty() {
-        return this.tree.get(0) == null;
+        return this.root() == null;
     }
 
     @Override
