@@ -3,10 +3,10 @@ package code.adt.tree;
 import code.adt.Enumerable;
 import code.adt.Position;
 
-public interface NAryTree<E, P extends Position<E>> extends Tree<E, P> {
-    P get(String path);
+public interface NAryTree<E> extends Tree<E> {
+    Position<E> get(String path);
 
-    P add(P position, String name, E element);
+    Position<E> add(Position<E> position, String name, E element);
 
-    Enumerable<P> children(P position);
+    Enumerable<Position<E>> children(Position<E> position);
 }

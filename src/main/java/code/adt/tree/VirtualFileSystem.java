@@ -7,19 +7,12 @@ import code.adt.Position;
 import code.adt.Stack;
 import org.apache.commons.io.IOUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
 
-public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRSTree<E>> {
+public class VirtualFileSystem<E> implements NAryTree<E> {
     public static class LCRSTree<E> implements Position<E>, Serializable {
         private String filename;
         private E element;
@@ -183,10 +176,14 @@ public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRST
         return current;
     }
 
+    private LCRSTree<E> check(Position<E> position) {
+        return (LCRSTree<E>) position;
+    }
+
     @Override
-    public E remove(LCRSTree<E> position) {
+    public E remove(Position<E> position) {
         LCRSTree<E> prev = null;
-        LCRSTree<E> current = position.parent.leftChild;
+        LCRSTree<E> current = this.check(position).parent.leftChild;
 
         while (current != null && current != position) {
             prev = current;
@@ -194,7 +191,7 @@ public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRST
         }
 
         if (prev == null) {
-            position.parent.leftChild = position.rightSibling;
+            this.check(position).parent.leftChild = this.check(position).rightSibling;
         } else if (current != null) {
             prev.rightSibling = current.rightSibling;
         }
@@ -202,20 +199,20 @@ public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRST
     }
 
     @Override
-    public Enumerable<LCRSTree<E>> children(LCRSTree<E> position) {
-        return position.children();
+    public Enumerable<Position<E>> children(Position<E> position) {
+        return consumer -> VirtualFileSystem.this.check(position).children().enumerate(consumer::accept);
     }
 
     @Override
-    public LCRSTree<E> add(LCRSTree<E> position, String name, E element) {
+    public LCRSTree<E> add(Position<E> position, String name, E element) {
         if (position != null) {
             if (position.getElement() != null) throw new IllegalArgumentException("path specify a file");
-            final Iterator<LCRSTree<E>> it = position.children().iterator();
+            final Iterator<LCRSTree<E>> it = this.check(position).children().iterator();
             while (it.hasNext()) {
-                if (position.filename.equals(it.next().filename))
+                if (this.check(position).filename.equals(it.next().filename))
                     throw new IllegalArgumentException("file already existed!");
             }
-            return position.addChild(name, element);
+            return this.check(position).addChild(name, element);
         } else throw new IllegalArgumentException();
     }
 
@@ -241,25 +238,25 @@ public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRST
     }
 
     @Override
-    public LCRSTree<E> parent(LCRSTree<E> position) {
-        return position.parent;
+    public LCRSTree<E> parent(Position<E> position) {
+        return this.check(position).parent;
     }
 
     @Override
-    public E replace(LCRSTree<E> position, E element) {
+    public E replace(Position<E> position, E element) {
         E retVal = position.getElement();
-        position.element = element;
+        this.check(position).element = element;
         return retVal;
     }
 
     @Override
-    public boolean isInternal(LCRSTree<E> position) {
-        return position.leftChild != null;
+    public boolean isInternal(Position<E> position) {
+        return !this.isLeaf(position);
     }
 
     @Override
-    public boolean isLeaf(LCRSTree<E> position) {
-        return position.leftChild == null;
+    public boolean isLeaf(Position<E> position) {
+        return this.check(position).leftChild == null;
     }
 
     public String getPath(LCRSTree<E> position) {
@@ -279,7 +276,7 @@ public class VirtualFileSystem<E> implements NAryTree<E, VirtualFileSystem.LCRST
     }
 
     @Override
-    public void enumerate(Consumer<LCRSTree<E>> consumer) {
+    public void enumerate(Consumer<Position<E>> consumer) {
         new DFSTraversal<>(this).enumerate(consumer);
     }
 }

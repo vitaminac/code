@@ -5,19 +5,19 @@ import code.adt.Position;
 
 import java.util.function.Consumer;
 
-public class InOrderTraversal<E, P extends Position<E>> implements Enumerable<P> {
-    private BinaryTree<E, P> tree;
+public class InOrderTraversal<E> implements Enumerable<Position<E>> {
+    private BinaryTree<E> tree;
 
-    public InOrderTraversal(BinaryTree<E, P> tree) {
+    public InOrderTraversal(BinaryTree<E> tree) {
         this.tree = tree;
     }
 
     @Override
-    public void enumerate(Consumer<P> consumer) {
+    public void enumerate(Consumer<Position<E>> consumer) {
         this.traversal(this.tree.root(), consumer);
     }
 
-    public void traversal(P node, Consumer<P> consumer) {
+    public void traversal(Position<E> node, Consumer<Position<E>> consumer) {
         if (node == null) return;
         traversal(this.tree.left(node), consumer);
         consumer.accept(node);

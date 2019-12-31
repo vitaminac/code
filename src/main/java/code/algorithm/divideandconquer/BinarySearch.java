@@ -4,7 +4,6 @@ import code.adt.ArrayList;
 import code.adt.List;
 import code.adt.Position;
 import code.adt.tree.BinaryTree;
-import greedy.graph.Tree;
 
 import java.util.Comparator;
 
@@ -54,7 +53,7 @@ public class BinarySearch<E> {
         return low;  // key not found
     }
 
-    private <P extends Position<E>> P search(P position, BinaryTree<E, P> tree, E key) {
+    private Position<E> search(Position<E> position, BinaryTree<E> tree, E key) {
         int diff = this.comparator.compare(key, position.getElement());
         if (diff == 0) {
             return position;
@@ -73,7 +72,7 @@ public class BinarySearch<E> {
         }
     }
 
-    public <P extends Position<E>> P search(BinaryTree<E, P> tree, E key) {
+    public Position<E> search(BinaryTree<E> tree, E key) {
         return this.search(tree.root(), tree, key);
     }
 

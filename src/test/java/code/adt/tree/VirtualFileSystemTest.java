@@ -5,12 +5,8 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.Iterator;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class VirtualFileSystemTest {
     private VirtualFileSystem<byte[]> vfs;
@@ -40,7 +36,7 @@ public class VirtualFileSystemTest {
         this.vfs.zip("test.zip");
         assertEquals(this.vfs.toString(), VirtualFileSystem.unzip(new File("test.zip")).toString());
     }
-    
+
     @Test
     public void get() {
         assertEquals("01234567890123456789", new String(this.vfs.get("/a/a.ext").getElement(), StandardCharsets.UTF_8));
@@ -63,7 +59,7 @@ public class VirtualFileSystemTest {
 
     @Test
     public void children() {
-        final Iterator<VirtualFileSystem.LCRSTree<byte[]>> it = this.vfs.children(this.vfs.get("/a")).iterator();
+        final var it = this.vfs.children(this.vfs.get("/a")).iterator();
         assertTrue(it.hasNext());
         assertEquals("01234567890123456789", new String(it.next().getElement(), StandardCharsets.UTF_8));
         assertTrue(it.hasNext());

@@ -2,29 +2,29 @@ package code.adt.tree;
 
 import code.adt.Position;
 
-public interface BinaryTree<E, P extends Position<E>> extends Tree<E, P> {
+public interface BinaryTree<E> extends Tree<E> {
 
-    P left(P position);
+    Position<E> left(Position<E> position);
 
-    P right(P position);
+    Position<E> right(Position<E> position);
 
-    boolean hasLeft(P position);
+    boolean hasLeft(Position<E> position);
 
-    boolean hasRight(P position);
+    boolean hasRight(Position<E> position);
 
-    P sibling(P p);
+    Position<E> sibling(Position<E> p);
 
-    P left(P position, E element);
+    Position<E> left(Position<E> position, E element);
 
-    P right(P position, E element);
+    Position<E> right(Position<E> position, E element);
 
     @Override
-    default boolean isInternal(P position) {
+    default boolean isInternal(Position<E> position) {
         return this.hasLeft(position) || this.hasRight(position);
     }
 
     @Override
-    default boolean isLeaf(P position) {
+    default boolean isLeaf(Position<E> position) {
         return !this.isInternal(position);
     }
 }

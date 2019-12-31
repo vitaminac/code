@@ -6,20 +6,20 @@ import code.adt.Queue;
 
 import java.util.function.Consumer;
 
-public class BFSTraversal<E, P extends Position<E>, T extends NAryTree<E, P>> implements Enumerable<P> {
-    private final T tree;
-    private Queue<P> queue;
+public class BFSTraversal<E> implements Enumerable<Position<E>> {
+    private final NAryTree<E> tree;
+    private Queue<Position<E>> queue;
 
-    public BFSTraversal(T tree) {
+    public BFSTraversal(NAryTree<E> tree) {
         this.tree = tree;
     }
 
     @Override
-    public void enumerate(Consumer<P> consumer) {
+    public void enumerate(Consumer<Position<E>> consumer) {
         this.traversal(this.tree.root(), consumer);
     }
 
-    public void traversal(P node, Consumer<P> consumer) {
+    public void traversal(Position<E> node, Consumer<Position<E>> consumer) {
         if (node == null) return;
         consumer.accept(node);
         this.tree.children(node).enumerate(p -> {

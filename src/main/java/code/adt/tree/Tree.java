@@ -3,22 +3,22 @@ package code.adt.tree;
 import code.adt.Enumerable;
 import code.adt.Position;
 
-public interface Tree<E, P extends Position<E>> extends Enumerable<P> {
+public interface Tree<E> extends Enumerable<Position<E>> {
     int size();
 
     boolean isEmpty();
 
-    P root();
+    Position<E> root();
 
     void root(E element);
 
-    P parent(P position);
+    Position<E> parent(Position<E> position);
 
-    E replace(P position, E element);
+    E replace(Position<E> position, E element);
 
-    E remove(P position);
+    E remove(Position<E> position);
 
-    boolean isInternal(P position);
+    boolean isInternal(Position<E> position);
 
-    boolean isLeaf(P position);
+    boolean isLeaf(Position<E> position);
 }

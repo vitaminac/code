@@ -5,13 +5,13 @@ import code.adt.Position;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNode<E>> {
-    public static class BTNode<T> implements Position<T> {
+public class LinkedBinaryTree<E> implements BinaryTree<E> {
+    public class BTNode implements Position<E> {
 
-        private T element;
-        private BTNode<T> left, right, parent;
+        private E element;
+        private BTNode left, right, parent;
 
-        public BTNode(T element, BTNode<T> parent, BTNode<T> left, BTNode<T> right) {
+        public BTNode(E element, BTNode parent, BTNode left, BTNode right) {
             this.element = element;
             this.parent = parent;
             this.left = left;
@@ -19,7 +19,7 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
         }
 
         @Override
-        public T getElement() {
+        public E getElement() {
             return this.element;
         }
 
@@ -31,10 +31,14 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
         }
     }
 
-    private BTNode<E> root;
+    private BTNode root;
 
     public LinkedBinaryTree() {
         root = null;
+    }
+
+    private BTNode check(Position<E> position) {
+        return (BTNode) position;
     }
 
     @Override
@@ -49,66 +53,68 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
     }
 
     @Override
-    public boolean hasLeft(BTNode<E> p) {
-        return p.left != null;
+    public boolean hasLeft(Position<E> p) {
+        return this.check(p).left != null;
     }
 
     @Override
-    public boolean hasRight(BTNode<E> p) {
-        return p.right != null;
+    public boolean hasRight(Position<E> p) {
+        return this.check(p).left.right != null;
     }
 
     @Override
-    public BTNode<E> root() {
+    public Position<E> root() {
         return root;
     }
 
     @Override
     public void root(E element) {
-        if (root == null) this.root = new BTNode<>(element, null, null, null);
+        if (root == null) this.root = new BTNode(element, null, null, null);
         else this.root.element = element;
     }
 
     @Override
-    public BTNode<E> left(BTNode<E> position) throws RuntimeException {
-        return position.left;
+    public Position<E> left(Position<E> position) throws RuntimeException {
+        return this.check(position).left;
     }
 
     @Override
-    public BTNode<E> right(BTNode<E> position) throws RuntimeException {
-        return position.right;
+    public Position<E> right(Position<E> position) throws RuntimeException {
+        return this.check(position).right;
     }
 
     @Override
-    public BTNode<E> parent(BTNode<E> position) throws RuntimeException {
-        return position.parent;
+    public Position<E> parent(Position<E> position) throws RuntimeException {
+        return this.check(position).parent;
     }
 
     @Override
-    public E replace(BTNode<E> position, E e) {
-        E retVal = position.element;
-        position.element = e;
+    public E replace(Position<E> position, E e) {
+        BTNode node = this.check(position);
+        E retVal = node.element;
+        node.element = e;
         return retVal;
     }
 
     @Override
-    public E remove(BTNode<E> position) {
-        if (position == this.root) {
+    public E remove(Position<E> position) {
+        var node = this.check(position);
+        if (node == this.root) {
             this.root = null;
         } else {
-            if (position.parent.left == position) {
-                position.parent.left = null;
+            if (node.parent.left == position) {
+                node.parent.left = null;
             } else {
-                position.parent.right = null;
+                node.parent.right = null;
             }
         }
-        return position.element;
+        return node.element;
     }
 
 
     @Override
-    public BTNode<E> sibling(BTNode<E> p) throws RuntimeException {
-        BTNode<E> parent = this.parent(p);
+    public Position<E> sibling(Position<E> p) throws RuntimeException {
+        BTNode parent = this.check(this.parent(p));
         if (parent == null) return null;
         if (this.hasLeft(parent) && this.left(parent) == p) return this.right(p);
         if (this.hasRight(parent) && this.right(parent) == p) return this.left(p);
@@ -117,31 +123,23 @@ public class LinkedBinaryTree<E> implements BinaryTree<E, LinkedBinaryTree.BTNod
 
 
     @Override
-    public BTNode<E> left(BTNode<E> p, E e) {
-        if (p.left == null) p.left = new BTNode<>(e, p, null, null);
-        else p.left.element = e;
-        return p.left;
+    public Position<E> left(Position<E> p, E e) {
+        var node = this.check(p);
+        if (node.left == null) node.left = new BTNode(e, node, null, null);
+        else node.left.element = e;
+        return node.left;
     }
 
     @Override
-    public BTNode<E> right(BTNode<E> p, E e) throws RuntimeException {
-        if (p.right == null) p.right = new BTNode<>(e, p, null, null);
-        else p.right.element = e;
-        return p.right;
-    }
-
-    public void linkLeft(BTNode<E> position, BTNode<E> left) {
-        position.left = left;
-        if (left != null) left.parent = position;
-    }
-
-    public void linkRight(BTNode<E> position, BTNode<E> right) {
-        position.right = right;
-        if (right != null) right.parent = position;
+    public Position<E> right(Position<E> p, E e) throws RuntimeException {
+        var node = this.check(p);
+        if (node.right == null) node.right = new BTNode(e, node, null, null);
+        else node.right.element = e;
+        return node.right;
     }
 
     @Override
-    public void enumerate(Consumer<BTNode<E>> consumer) {
+    public void enumerate(Consumer<Position<E>> consumer) {
         new InOrderTraversal<>(this).enumerate(consumer);
     }
 }

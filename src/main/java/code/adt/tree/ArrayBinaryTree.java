@@ -5,8 +5,8 @@ import code.adt.Position;
 
 import java.util.function.Consumer;
 
-public class ArrayBinaryTree<E> implements BinaryTree<E, ArrayBinaryTree.BTNode<E>> {
-    public static class BTNode<E> implements Position<E> {
+public class ArrayBinaryTree<E> implements BinaryTree<E> {
+    public class BTNode implements Position<E> {
         private E element;
         private int index;
 
@@ -21,56 +21,74 @@ public class ArrayBinaryTree<E> implements BinaryTree<E, ArrayBinaryTree.BTNode<
         }
     }
 
-    private ArrayList<BTNode<E>> tree = new ArrayList<>();
+    private ArrayList<BTNode> tree = new ArrayList<>();
 
-    @Override
-    public BTNode<E> left(BTNode<E> position) {
-        return this.tree.get(position.index * 2 + 1);
+    private BTNode check(Position<E> position) {
+        return (BTNode) position;
     }
 
-    @Override
-    public BTNode<E> right(BTNode<E> position) {
-        return this.tree.get(position.index * 2 + 2);
-    }
-
-    @Override
-    public boolean hasLeft(BTNode<E> position) {
-        int index = position.index * 2 + 1;
-        return this.tree.size() > index && this.tree.get(index) != null;
-    }
-
-    @Override
-    public boolean hasRight(BTNode<E> position) {
-        int index = position.index * 2 + 2;
-        return this.tree.size() > index && this.tree.get(index) != null;
-    }
-
-    @Override
-    public BTNode<E> sibling(BTNode<E> position) {
-        if (position.index % 2 == 0) {
-            return this.tree.get(position.index - 1);
+    private BTNode ensureGet(int index) {
+        if (this.tree.size() > index) {
+            return this.tree.get(index);
         } else {
-            return this.tree.get(position.index + 1);
+            return null;
+        }
+    }
+
+    private void ensureSet(int index, BTNode node) {
+        while (this.tree.size() <= index) {
+            this.tree.insert(this.tree.size(), null);
+        }
+        this.tree.set(index, node);
+    }
+
+    @Override
+    public BTNode left(Position<E> position) {
+        return this.ensureGet(this.check(position).index * 2 + 1);
+    }
+
+    @Override
+    public BTNode right(Position<E> position) {
+        return this.ensureGet(this.check(position).index * 2 + 2);
+    }
+
+    @Override
+    public boolean hasLeft(Position<E> position) {
+        return this.ensureGet(this.check(position).index * 2 + 1) != null;
+    }
+
+    @Override
+    public boolean hasRight(Position<E> position) {
+        return this.ensureGet(this.check(position).index * 2 + 2) != null;
+    }
+
+    @Override
+    public BTNode sibling(Position<E> position) {
+        BTNode node = this.check(position);
+        if (node.index % 2 == 0) {
+            return this.ensureGet(node.index - 1);
+        } else {
+            return this.ensureGet(node.index + 1);
         }
     }
 
     @Override
-    public BTNode<E> left(BTNode<E> position, E element) {
-        int index = position.index * 2 + 1;
-        BTNode<E> node = new BTNode<>(element, index);
-        this.tree.set(index, node);
+    public BTNode left(Position<E> position, E element) {
+        int index = this.check(position).index * 2 + 1;
+        BTNode node = new BTNode(element, index);
+        this.ensureSet(index, node);
         return node;
     }
 
     @Override
-    public BTNode<E> right(BTNode<E> position, E element) {
-        int index = position.index * 2 + 2;
-        BTNode<E> node = new BTNode<>(element, index);
-        this.tree.set(index, node);
+    public BTNode right(Position<E> position, E element) {
+        int index = this.check(position).index * 2 + 2;
+        BTNode node = new BTNode(element, index);
+        this.ensureSet(index, node);
         return node;
     }
 
-    private int countDescent(BTNode<E> node) {
+    private int countDescent(Position<E> node) {
         if (node == null) return 0;
         else return 1 + this.countDescent(this.left(node)) + this.countDescent(this.right(node));
     }
@@ -86,39 +104,40 @@ public class ArrayBinaryTree<E> implements BinaryTree<E, ArrayBinaryTree.BTNode<
     }
 
     @Override
-    public BTNode<E> root() {
-        return this.tree.get(0);
+    public Position<E> root() {
+        return this.ensureGet(0);
     }
 
     @Override
     public void root(E element) {
-        if (this.tree.get(0) == null) {
-            this.tree.set(0, new BTNode<>(element, 0));
+        if (this.root() == null) {
+            this.ensureSet(0, new BTNode(element, 0));
         } else {
-            this.tree.get(0).element = element;
+            this.check(this.root()).element = element;
         }
     }
 
     @Override
-    public BTNode<E> parent(BTNode<E> position) {
-        return this.tree.get((position.index - 1) / 2);
+    public BTNode parent(Position<E> position) {
+        return this.ensureGet((this.check(position).index - 1) / 2);
     }
 
     @Override
-    public E replace(BTNode<E> position, E element) {
-        E retVal = position.element;
-        position.element = element;
+    public E replace(Position<E> position, E element) {
+        BTNode node = this.check(position);
+        E retVal = node.element;
+        node.element = element;
         return retVal;
     }
 
     @Override
-    public E remove(BTNode<E> position) {
-        this.tree.set(position.index, null);
+    public E remove(Position<E> position) {
+        this.ensureSet(this.check(position).index, null);
         return position.getElement();
     }
 
     @Override
-    public void enumerate(Consumer<BTNode<E>> consumer) {
+    public void enumerate(Consumer<Position<E>> consumer) {
         new InOrderTraversal<>(this).enumerate(consumer);
     }
 }
