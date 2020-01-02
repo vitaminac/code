@@ -6,28 +6,31 @@ import code.adt.Position;
 import java.util.function.Consumer;
 
 public class ArrayBinaryTree<E> implements BinaryTree<E> {
-    public class BTNode implements Position<E> {
-        private E element;
+    private class BTNode<T> implements Position<T> {
+        private T element;
         private int index;
 
-        public BTNode(E element, int index) {
+        public BTNode(T element, int index) {
             this.element = element;
             this.index = index;
         }
 
         @Override
-        public E getElement() {
+        public T getElement() {
             return this.element;
         }
     }
 
-    private ArrayList<BTNode> tree = new ArrayList<>();
+    private ArrayList<BTNode<E>> tree = new ArrayList<>();
 
-    private BTNode check(Position<E> position) {
-        return (BTNode) position;
+    private BTNode<E> check(Position<E> position) {
+        if (!(position instanceof BTNode)) {
+            throw new RuntimeException("The position is invalid");
+        }
+        return (BTNode<E>) position;
     }
 
-    private BTNode ensureGet(int index) {
+    private BTNode<E> ensureGet(int index) {
         if (this.tree.size() > index) {
             return this.tree.get(index);
         } else {
@@ -35,7 +38,7 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
         }
     }
 
-    private void ensureSet(int index, BTNode node) {
+    private void ensureSet(int index, BTNode<E> node) {
         while (this.tree.size() <= index) {
             this.tree.insert(this.tree.size(), null);
         }
@@ -43,12 +46,12 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     }
 
     @Override
-    public BTNode left(Position<E> position) {
+    public Position<E> left(Position<E> position) {
         return this.ensureGet(this.check(position).index * 2 + 1);
     }
 
     @Override
-    public BTNode right(Position<E> position) {
+    public Position<E> right(Position<E> position) {
         return this.ensureGet(this.check(position).index * 2 + 2);
     }
 
@@ -63,8 +66,8 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     }
 
     @Override
-    public BTNode sibling(Position<E> position) {
-        BTNode node = this.check(position);
+    public Position<E> sibling(Position<E> position) {
+        BTNode<E> node = this.check(position);
         if (node.index % 2 == 0) {
             return this.ensureGet(node.index - 1);
         } else {
@@ -73,17 +76,17 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     }
 
     @Override
-    public BTNode left(Position<E> position, E element) {
+    public Position<E> left(Position<E> position, E element) {
         int index = this.check(position).index * 2 + 1;
-        BTNode node = new BTNode(element, index);
+        BTNode<E> node = new BTNode<>(element, index);
         this.ensureSet(index, node);
         return node;
     }
 
     @Override
-    public BTNode right(Position<E> position, E element) {
+    public Position<E> right(Position<E> position, E element) {
         int index = this.check(position).index * 2 + 2;
-        BTNode node = new BTNode(element, index);
+        BTNode<E> node = new BTNode<>(element, index);
         this.ensureSet(index, node);
         return node;
     }
@@ -111,20 +114,20 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
     @Override
     public void root(E element) {
         if (this.root() == null) {
-            this.ensureSet(0, new BTNode(element, 0));
+            this.ensureSet(0, new BTNode<>(element, 0));
         } else {
             this.check(this.root()).element = element;
         }
     }
 
     @Override
-    public BTNode parent(Position<E> position) {
+    public Position<E> parent(Position<E> position) {
         return this.ensureGet((this.check(position).index - 1) / 2);
     }
 
     @Override
     public E replace(Position<E> position, E element) {
-        BTNode node = this.check(position);
+        BTNode<E> node = this.check(position);
         E retVal = node.element;
         node.element = element;
         return retVal;
