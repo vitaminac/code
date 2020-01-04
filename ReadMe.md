@@ -30,6 +30,7 @@ How to become a good developer?
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - [ ] Competitive Programming 3
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+- [ ] [Numerical Recipes](http://numerical.recipes)
 
 ## Software Engineering
 
@@ -91,8 +92,3 @@ How to become a good developer?
 * [TopCoder](https://www.topcoder.com/)
 * [Freelancer](https://www.freelancer.com/)
 * [Upwork](https://www.upwork.com/)
-
-## Interview
-
-* [JavaGuide](https://javaguide.cn/)
-* [Sec-Jobs](https://github.com/SecYouth/sec-jobs)
