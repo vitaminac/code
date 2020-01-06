@@ -45,6 +45,7 @@ How to become a good developer?
 
 ## Courses
 
+- [ ] [Learning How to Learn](https://www.coursera.org/learn/learning-how-to-learn)
 - [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
@@ -53,12 +54,15 @@ How to become a good developer?
 - [ ] [Functional Programming in Scala Specialization](https://www.coursera.org/specializations/scala)
 - [ ] [Coursera: Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp)
 
-## Program Sheet
+## Roadmap
 
 * [MIT Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
-* [MIT Electrical Engineering and Computer Science Courses](http://catalog.mit.edu/subjects/6/)
+* [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
-* [EE-CS Courses at Stanford](https://ee.stanford.edu/eecs)
+* [Stanford Undergraduate Programs in Electrical Engineering](https://exploredegrees.stanford.edu/schoolofengineering/electricalengineering)
+* [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
+* [CMU CS Curriculum](https://www.csd.cs.cmu.edu/academics/undergraduate/requirements)
+* [CMU B.S. AI Curriculum](https://www.cs.cmu.edu/bs-in-artificial-intelligence/curriculum)
 * [Berkeley Undergraduate Computer Science Courses](http://guide.berkeley.edu/undergraduate/degree-programs/computer-science/#coursestext)
 * [Berkeley Graduate Computer Science Courses](http://guide.berkeley.edu/graduate/degree-programs/computer-science/#coursestext)
 
@@ -74,9 +78,6 @@ How to become a good developer?
 * [Khan Academy](https://www.khanacademy.org/)
 * [Udacity](https://www.udacity.com/)
 * [Udemy](https://www.udemy.com/)
-* [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
-* [Sanford Online](https://online.stanford.edu/courses)
-* [Stanford Engineering Everywhere](https://see.stanford.edu/Course)
 
 ## Practices
 
@@ -85,7 +86,6 @@ How to become a good developer?
 * [Leet Code](https://leetcode.com/)
 * [GeeksforGeeks](https://www.geeksforgeeks.org/)
 * [Codeforces](https://codeforces.com/)
-* [Google's Coding Competitions](https://codingcompetitions.withgoogle.com/)
 
 ## Jobs
 
