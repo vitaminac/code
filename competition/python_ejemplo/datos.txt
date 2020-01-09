@@ -1,0 +1,18 @@
+China|nombre1 apellido1 16 diestro|nombre2 apellido2 18 zurdo
+Espana|nombre3 apellido3 24 diestro|nombre24 apellido4 20 zurdo
+Turquia|nombre5 apellido3 24 diestro|nombre25 apellido4 20 zurdo
+Suecia|nombre7 apellido3 24 diestro|nombre26 apellido4 20 zurdo
+Rusia|nombre10 apellido3 24 diestro|nombre27 apellido4 20 zurdo
+Argentina|nombre11 apellido3 24 diestro|nombre28 apellido4 20 zurdo
+Mexico|nombre12 apellido3 24 diestro|nombre29 apellido4 20 zurdo
+Holanda|nombre13 apellido3 24 diestro|nombre30 apellido4 20 zurdo
+Australia|nombre14 apellido3 24 diestro|nombre31 apellido4 20 zurdo
+Italia|nombre15 apellido3 24 diestro|nombre32 apellido4 20 zurdo
+Francia|nombre16 apellido3 24 diestro|nombre33 apellido4 20 zurdo
+Portugal|nombre17 apellido3 24 diestro|nombre34 apellido4 20 zurdo
+Alemania|nombre18 apellido3 24 diestro|nombre35 apellido4 20 zurdo
+Suiza|nombre19 apellido3 24 diestro|nombre36 apellido4 20 zurdo
+India|nombre20 apellido3 24 diestro|nombre37 apellido4 20 zurdo
+Corea|nombre21 apellido3 24 diestro|nombre38 apellido4 20 zurdo
+Japon|nombre22 apellido3 24 diestro|nombre39 apellido4 20 zurdo
+Reino Unido|nombre23 apellido3 24 diestro|nombre40 apellido4 20 zurdo
