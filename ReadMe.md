@@ -26,9 +26,6 @@ How to become a good developer?
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
-- [ ] Data Structures and Algorithms in Java
-- [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
-- [ ] Competitive Programming 3
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] [Numerical Recipes](http://numerical.recipes)
 
@@ -65,6 +62,8 @@ How to become a good developer?
 * [CMU B.S. AI Curriculum](https://www.cs.cmu.edu/bs-in-artificial-intelligence/curriculum)
 * [Berkeley Undergraduate Computer Science Courses](http://guide.berkeley.edu/undergraduate/degree-programs/computer-science/#coursestext)
 * [Berkeley Graduate Computer Science Courses](http://guide.berkeley.edu/graduate/degree-programs/computer-science/#coursestext)
+* [Illinois B.S. in Computer Science](https://cs.illinois.edu/academics/undergraduate/degree-program-options/bs-computer-science)
+* [Illinois Master in Computer Science](https://cs.illinois.edu/academics/graduate/ms-program)
 
 ## Project
 
