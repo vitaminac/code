@@ -22,7 +22,6 @@ How to become a good developer?
 
 - [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] Discrete Mathematics and Its Applications
-- [ ] Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
@@ -83,8 +82,14 @@ How to become a good developer?
 * [GitHub](https://github.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 * [Leet Code](https://leetcode.com/)
-* [GeeksforGeeks](https://www.geeksforgeeks.org/)
 * [Codeforces](https://codeforces.com/)
+
+## Online Degree
+
+[University of London Bachelor of Computer Science](https://www.coursera.org/degrees/bachelor-of-science-computer-science-london)
+[Georgia Tech OMSCS](http://www.omscs.gatech.edu/)
+[Illinois Master of Computer Science](https://www.coursera.org/degrees/master-of-computer-science-illinois)
+[Texas at Austin Master of Computer Science](https://www.edx.org/masters/online-master-science-computer-science-utaustinx)
 
 ## Jobs
 
