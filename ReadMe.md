@@ -86,10 +86,10 @@ How to become a good developer?
 
 ## Online Degree
 
-[University of London Bachelor of Computer Science](https://www.coursera.org/degrees/bachelor-of-science-computer-science-london)
-[Georgia Tech OMSCS](http://www.omscs.gatech.edu/)
-[Illinois Master of Computer Science](https://www.coursera.org/degrees/master-of-computer-science-illinois)
-[Texas at Austin Master of Computer Science](https://www.edx.org/masters/online-master-science-computer-science-utaustinx)
+* [University of London Bachelor of Computer Science](https://www.coursera.org/degrees/bachelor-of-science-computer-science-london)
+* [Georgia Tech OMSCS](http://www.omscs.gatech.edu/)
+* [Illinois Master of Computer Science](https://www.coursera.org/degrees/master-of-computer-science-illinois)
+* [Texas at Austin Master of Computer Science](https://www.edx.org/masters/online-master-science-computer-science-utaustinx)
 
 ## Jobs
 
