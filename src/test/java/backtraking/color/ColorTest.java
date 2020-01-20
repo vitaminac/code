@@ -8,7 +8,7 @@ public class ColorTest {
 
     @Test
     public void color() {
-        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<SimpleEdge>(4);
+        final SimpleUndirectedGraph graph = new SimpleUndirectedGraph(4);
         graph.addEdge(new SimpleEdge(0, 1));
         graph.addEdge(new SimpleEdge(0, 2));
         graph.addEdge(new SimpleEdge(0, 3));

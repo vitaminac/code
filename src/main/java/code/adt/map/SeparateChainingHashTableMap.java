@@ -72,7 +72,7 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
     }
 
     @Override
-    public void enumerate(Consumer<Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         for (Entry<Key, Value> entry : this.entries) {
             while (entry != null) {
                 consumer.accept(entry.getKey());

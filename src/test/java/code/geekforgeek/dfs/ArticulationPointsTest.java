@@ -10,7 +10,7 @@ public class ArticulationPointsTest {
 
     @Test
     public void findArticulationPoint() {
-        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<>(5);
+        final SimpleUndirectedGraph graph = new SimpleUndirectedGraph(5);
         graph.addEdge(new SimpleEdge(1, 2));
         graph.addEdge(new SimpleEdge(1, 0));
         graph.addEdge(new SimpleEdge(2, 0));
@@ -24,7 +24,7 @@ public class ArticulationPointsTest {
 
     @Test
     public void findArticulationPointTestCase() {
-        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<>(7);
+        final SimpleUndirectedGraph graph = new SimpleUndirectedGraph(7);
         graph.addEdge(new SimpleEdge(0, 1));
         graph.addEdge(new SimpleEdge(0, 2));
         graph.addEdge(new SimpleEdge(1, 2));

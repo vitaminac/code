@@ -1,11 +1,10 @@
 package code.geekforgeek.dfs;
 
-import code.adt.graph.SimpleEdge;
 import code.adt.graph.SimpleUndirectedGraph;
 
 // https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/
 public class ArticulationPoints {
-    private void findArticulationPoint(SimpleUndirectedGraph<SimpleEdge> g, int u, boolean[] critical, boolean[] visited, int[] depth, int level) {
+    private void findArticulationPoint(SimpleUndirectedGraph g, int u, boolean[] critical, boolean[] visited, int[] depth, int level) {
         // Mark the current node as visited
         visited[u] = true;
         depth[u] = level;
@@ -23,7 +22,7 @@ public class ArticulationPoints {
         });
     }
 
-    public boolean[] findArticulationPoint(SimpleUndirectedGraph<SimpleEdge> g) {
+    public boolean[] findArticulationPoint(SimpleUndirectedGraph g) {
         boolean[] critical = new boolean[g.size()];
         this.findArticulationPoint(g, 0, critical, new boolean[g.size()], new int[g.size()], 0);
         // (1) u is root of DFS tree and has two or more children.

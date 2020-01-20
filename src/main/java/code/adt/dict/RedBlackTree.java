@@ -214,7 +214,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     }
 
     @Override
-    public void enumerate(Consumer<Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         if (this.root != null) this.root.traversal(node -> consumer.accept(node.key));
     }
 

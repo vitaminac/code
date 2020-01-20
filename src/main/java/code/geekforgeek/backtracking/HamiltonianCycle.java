@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Set;
 
 public class HamiltonianCycle {
-    private boolean find(SimpleUndirectedGraph<SimpleEdge> graph, int u, int v, List<Integer> path, Set<Integer> unvisited) {
+    private boolean find(SimpleUndirectedGraph graph, int u, int v, List<Integer> path, Set<Integer> unvisited) {
         if (unvisited.contains(v)) {
             unvisited.remove(v);
             path.add(v);
@@ -29,7 +29,7 @@ public class HamiltonianCycle {
         return false;
     }
 
-    public List<Integer> find(SimpleUndirectedGraph<SimpleEdge> graph, int u) {
+    public List<Integer> find(SimpleUndirectedGraph graph, int u) {
         List<Integer> path = new LinkedList<>();
         Set<Integer> noVisited = new HashSet<>();
         for (int i = 0; i < graph.size(); i++) noVisited.add(i);

@@ -13,12 +13,12 @@ public class SimpleEdge implements Edge<Integer> {
 
     @Override
     public Integer getSource() {
-        return null;
+        return this.source;
     }
 
     @Override
     public Integer getDestination() {
-        return null;
+        return this.destination;
     }
 
     @Override

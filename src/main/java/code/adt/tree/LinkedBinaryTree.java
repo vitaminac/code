@@ -3,7 +3,6 @@ package code.adt.tree;
 import code.adt.Position;
 
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 
 public class LinkedBinaryTree<E> implements BinaryTree<E> {
     public class BTNode implements Position<E> {

@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.Iterator;
 
 
-public class VirtualFileSystem<E> implements NAryTree<E> {
+public class VirtualFileSystem<E> {
     public static class LCRSTree<E> implements Position<E>, Serializable {
         private String filename;
         private E element;
@@ -161,7 +161,6 @@ public class VirtualFileSystem<E> implements NAryTree<E> {
         return this.vfs.toString();
     }
 
-    @Override
     public LCRSTree<E> get(String path) {
         LCRSTree<E> current = this.vfs;
         final String[] paths = path.split("/");
@@ -179,7 +178,6 @@ public class VirtualFileSystem<E> implements NAryTree<E> {
         return (LCRSTree<E>) position;
     }
 
-    @Override
     public E remove(Position<E> position) {
         LCRSTree<E> prev = null;
         LCRSTree<E> current = this.check(position).parent.leftChild;
@@ -197,12 +195,10 @@ public class VirtualFileSystem<E> implements NAryTree<E> {
         return current.getElement();
     }
 
-    @Override
     public Enumerable<Position<E>> children(Position<E> position) {
         return consumer -> VirtualFileSystem.this.check(position).children().enumerate(consumer::accept);
     }
 
-    @Override
     public LCRSTree<E> add(Position<E> position, String name, E element) {
         if (position != null) {
             if (position.getElement() != null) throw new IllegalArgumentException("path specify a file");
@@ -215,45 +211,37 @@ public class VirtualFileSystem<E> implements NAryTree<E> {
         } else throw new IllegalArgumentException();
     }
 
-    @Override
     public int size() {
         return this.root().size();
     }
 
-    @Override
     public boolean isEmpty() {
         return this.root().leftChild == null;
     }
 
-    @Override
     public LCRSTree<E> root() {
         return this.vfs;
     }
 
-    @Override
     public void root(E element) {
         if (root().leftChild != null) throw new RuntimeException("Root is a directory");
         this.root().element = element;
     }
 
-    @Override
     public LCRSTree<E> parent(Position<E> position) {
         return this.check(position).parent;
     }
 
-    @Override
     public E replace(Position<E> position, E element) {
         E retVal = position.getElement();
         this.check(position).element = element;
         return retVal;
     }
 
-    @Override
     public boolean isInternal(Position<E> position) {
         return !this.isLeaf(position);
     }
 
-    @Override
     public boolean isLeaf(Position<E> position) {
         return this.check(position).leftChild == null;
     }

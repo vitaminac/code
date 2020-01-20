@@ -31,7 +31,7 @@ public interface BinaryTree<E> extends Tree<E> {
         return !this.isInternal(position);
     }
 
-    private void preOrderTraversal(Position<E> node, Consumer<Position<E>> consumer) {
+    private void preOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
         if (node == null) return;
         consumer.accept(node);
         this.preOrderTraversal(this.left(node), consumer);
@@ -43,7 +43,7 @@ public interface BinaryTree<E> extends Tree<E> {
         return consumer -> this.preOrderTraversal(this.root(), consumer);
     }
 
-    private void postOrderTraversal(Position<E> node, Consumer<Position<E>> consumer) {
+    private void postOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
         if (node == null) return;
         this.postOrderTraversal(this.left(node), consumer);
         this.postOrderTraversal(this.right(node), consumer);
@@ -55,7 +55,7 @@ public interface BinaryTree<E> extends Tree<E> {
         return consumer -> this.postOrderTraversal(this.root(), consumer);
     }
 
-    private void inOrderTraversal(Position<E> node, Consumer<Position<E>> consumer) {
+    private void inOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
         if (node == null) return;
         this.inOrderTraversal(this.left(node), consumer);
         consumer.accept(node);
@@ -63,7 +63,7 @@ public interface BinaryTree<E> extends Tree<E> {
     }
 
     @Override
-    default void enumerate(Consumer<Position<E>> consumer) {
+    default void enumerate(Consumer<? super Position<E>> consumer) {
         this.inOrderTraversal(this.root(), consumer);
     }
 

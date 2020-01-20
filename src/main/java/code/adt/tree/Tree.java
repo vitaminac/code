@@ -6,6 +6,7 @@ import code.adt.Position;
 public interface Tree<E> extends Enumerable<Position<E>> {
     int size();
 
+    // remove isEmpty use tree as node
     boolean isEmpty();
 
     Position<E> root();

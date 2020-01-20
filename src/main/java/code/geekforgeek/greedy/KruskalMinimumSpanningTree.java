@@ -1,13 +1,15 @@
 package code.geekforgeek.greedy;
 
-import code.adt.graph.SimpleUndirectedGraph;
-import code.adt.graph.SimpleWeightedEdge;
 import code.adt.DisjointSet;
+import code.adt.graph.SimpleUndirectedWeightedGraph;
+import code.adt.graph.SimpleWeightedEdge;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class KruskalMinimumSpanningTree {
-    public Set<SimpleWeightedEdge> find(SimpleUndirectedGraph<SimpleWeightedEdge> g) {
+    public Set<SimpleWeightedEdge> find(SimpleUndirectedWeightedGraph g) {
         Set<SimpleWeightedEdge> candidates = new TreeSet<>();
         for (int i = 0; i < g.size(); i++) g.getEdges(i).enumerate(candidates::add);
         Set<SimpleWeightedEdge> minSpanningTree = new HashSet<>();

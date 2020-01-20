@@ -23,7 +23,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
             this(key, value, 1, null, null);
         }
 
-        private void traversal(Consumer<Key> consumer) {
+        private void traversal(Consumer<? super Key> consumer) {
             if (this.left != null) this.left.traversal(consumer);
             consumer.accept(this.key);
             if (this.right != null) this.right.traversal(consumer);
@@ -63,7 +63,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     }
 
     @Override
-    public void enumerate(Consumer<Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         this.root.traversal(consumer);
     }
 

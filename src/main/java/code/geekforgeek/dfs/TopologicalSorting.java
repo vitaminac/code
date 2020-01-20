@@ -1,13 +1,12 @@
 package code.geekforgeek.dfs;
 
 import code.adt.graph.SimpleDirectedGraph;
-import code.adt.graph.SimpleEdge;
 
 import java.util.Collections;
 import java.util.Stack;
 
 public class TopologicalSorting {
-    private void topologicalVisit(int u, SimpleDirectedGraph<SimpleEdge> g, boolean[] visited, Stack<Integer> sorting) {
+    private void topologicalVisit(int u, SimpleDirectedGraph g, boolean[] visited, Stack<Integer> sorting) {
         visited[u] = true;
         g.getAdjacentVertices(u).enumerate(v -> {
             if (!visited[v]) {
@@ -17,7 +16,7 @@ public class TopologicalSorting {
         sorting.push(u);
     }
 
-    public Stack<Integer> getTopologicalSorting(SimpleDirectedGraph<SimpleEdge> g) {
+    public Stack<Integer> getTopologicalSorting(SimpleDirectedGraph g) {
         Stack<Integer> sorting = new Stack<>();
         boolean[] visited = new boolean[g.size()];
         for (int j = 0; j < g.size(); j++) {

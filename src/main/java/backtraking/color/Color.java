@@ -1,16 +1,15 @@
 package backtraking.color;
 
-import code.adt.graph.SimpleEdge;
 import code.adt.graph.SimpleUndirectedGraph;
 
 import java.util.HashMap;
 
 public class Color {
-    private final SimpleUndirectedGraph<SimpleEdge> graph;
+    private final SimpleUndirectedGraph graph;
     private final int nColor;
     private HashMap<Integer, Integer> coloring = new HashMap<>();
 
-    public Color(SimpleUndirectedGraph<SimpleEdge> graph, int nColor) {
+    public Color(SimpleUndirectedGraph graph, int nColor) {
         this.graph = graph;
         this.nColor = nColor;
         for (int i = 0; i < graph.size(); i++) {

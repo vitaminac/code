@@ -1,5 +1,7 @@
 package code;
 
+import code.aceptaelreto.P542LaTiaManuela;
+import code.aceptaelreto.P544QueNoSeAtraganten;
 import org.junit.Test;
 
 import java.io.*;
@@ -88,5 +90,10 @@ public class Judge {
             }
         }
         System.out.println("Total " + n_all_tests + " unit tests and " + n_failed + " of them have failed!");
+    }
+
+    @Test
+    public void test() throws Exception {
+        Judge.judge(P542LaTiaManuela.class, null);
     }
 }

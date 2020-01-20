@@ -1,6 +1,6 @@
 package code.geekforgeek.greedy;
 
-import code.adt.graph.SimpleUndirectedGraph;
+import code.adt.graph.SimpleUndirectedWeightedGraph;
 import code.adt.graph.SimpleWeightedEdge;
 
 import java.util.HashSet;
@@ -10,7 +10,7 @@ import java.util.Set;
 
 // https://www.geeksforgeeks.org/prims-minimum-spanning-tree-mst-greedy-algo-5/
 public class PrimMinimumSpanningTree {
-    public Set<SimpleWeightedEdge> find(SimpleUndirectedGraph<SimpleWeightedEdge> g) {
+    public Set<SimpleWeightedEdge> find(SimpleUndirectedWeightedGraph g) {
         // Keeps track of vertices already included in MST
         boolean[] visited = new boolean[g.size()];
         visited[0] = true;

@@ -8,7 +8,7 @@ public class TopologicalSortingTest {
 
     @Test
     public void sort() {
-        SimpleDirectedGraph<SimpleEdge> g = new SimpleDirectedGraph<SimpleEdge>(6);
+        SimpleDirectedGraph g = new SimpleDirectedGraph(6);
         g.addEdge(new SimpleEdge(5, 0));
         g.addEdge(new SimpleEdge(4, 0));
         g.addEdge(new SimpleEdge(5, 2));

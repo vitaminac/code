@@ -93,7 +93,7 @@ public class BitSet implements Set<Integer> {
     }
 
     @Override
-    public void enumerate(Consumer<Integer> consumer) {
+    public void enumerate(Consumer<? super Integer> consumer) {
         for (int i = 0; i < this.set.length; i++) {
             if (this.set[i]) {
                 consumer.accept(i);

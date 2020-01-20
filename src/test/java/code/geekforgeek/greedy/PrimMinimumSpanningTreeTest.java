@@ -1,6 +1,6 @@
 package code.geekforgeek.greedy;
 
-import code.adt.graph.SimpleUndirectedGraph;
+import code.adt.graph.SimpleUndirectedWeightedGraph;
 import code.adt.graph.SimpleWeightedEdge;
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ public class PrimMinimumSpanningTreeTest {
 
     @Test
     public void find() {
-        SimpleUndirectedGraph<SimpleWeightedEdge> graph = new SimpleUndirectedGraph<SimpleWeightedEdge>(7);
+        SimpleUndirectedWeightedGraph graph = new SimpleUndirectedWeightedGraph(7);
         HashSet<SimpleWeightedEdge> sol = new HashSet<>();
         graph.addEdge(new SimpleWeightedEdge(0, 2, 1));
         graph.addEdge(new SimpleWeightedEdge(0, 3, 2));

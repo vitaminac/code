@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 public interface Enumerable<E> extends Iterable<E> {
-    void enumerate(Consumer<E> consumer);
+    void enumerate(Consumer<? super E> consumer);
 
     default int size() {
         int[] ref = new int[]{0};

@@ -112,7 +112,7 @@ public class LinkedList<E> extends AbstractOrderedCollection<E> implements Deque
     }
 
     @Override
-    public void enumerate(Consumer<E> consumer) {
+    public void enumerate(Consumer<? super E> consumer) {
         LinkedNode<E> node = this.head;
         while (node != null) {
             consumer.accept(node.element);

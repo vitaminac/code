@@ -8,12 +8,18 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public interface Graph<Vertex, E extends Edge<Vertex>> {
+public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
+    Enumerable<Vertex> getVertices();
+
+    void addVertex(Vertex vertex);
+
     boolean isAdjacent(Vertex u, Vertex v);
 
-    Enumerable<E> getEdges(Vertex vertex);
+    default Enumerable<Vertex> getAdjacentVertices(Vertex vertex) {
+        return consumer -> this.getEdges(vertex).enumerate(edge -> consumer.accept(edge.getDestination()));
+    }
 
-    Enumerable<Vertex> getAdjacentVertices(Vertex vertex);
+    Enumerable<E> getEdges(Vertex vertex);
 
     void addEdge(E edge);
 
@@ -33,7 +39,7 @@ public interface Graph<Vertex, E extends Edge<Vertex>> {
         };
     }
 
-    private void dfs(Vertex vertex, Set<Vertex> visited, Consumer<Vertex> consumer) {
+    private void dfs(Vertex vertex, Set<Vertex> visited, Consumer<? super Vertex> consumer) {
         if (!visited.contains(vertex)) {
             consumer.accept(vertex);
             visited.add(vertex);

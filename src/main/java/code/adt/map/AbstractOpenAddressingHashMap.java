@@ -56,7 +56,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
     }
 
     @Override
-    public void enumerate(Consumer<Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         for (Relation<Key, Value> relation : this.entries) {
             if (relation != null && relation != SKIP) {
                 consumer.accept(relation.getKey());

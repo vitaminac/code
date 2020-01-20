@@ -14,7 +14,7 @@ public class HamiltonianCycleTest {
 
     @Test
     public void findOne() {
-        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<SimpleEdge>(5);
+        final SimpleUndirectedGraph graph = new SimpleUndirectedGraph(5);
         graph.addEdge(new SimpleEdge(0, 1));
         graph.addEdge(new SimpleEdge(0, 3));
         graph.addEdge(new SimpleEdge(1, 0));
@@ -34,7 +34,7 @@ public class HamiltonianCycleTest {
 
     @Test
     public void findNone() {
-        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<SimpleEdge>(5);
+        final SimpleUndirectedGraph graph = new SimpleUndirectedGraph(5);
         graph.addEdge(new SimpleEdge(0, 1));
         graph.addEdge(new SimpleEdge(0, 3));
         graph.addEdge(new SimpleEdge(1, 0));

@@ -138,7 +138,7 @@ public class ConcurrentSkipListMap<K extends Comparable<K>, V> implements Dictio
     }
 
     @Override
-    public void enumerate(Consumer<K> consumer) {
+    public void enumerate(Consumer<? super K> consumer) {
         Node<Vocabulary<K, V>> current = this.top;
         while (current.down != null) current = current.down;
         current = current.next;

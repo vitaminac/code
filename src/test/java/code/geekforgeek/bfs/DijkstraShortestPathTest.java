@@ -1,6 +1,6 @@
 package code.geekforgeek.bfs;
 
-import code.adt.graph.SimpleDirectedGraph;
+import code.adt.graph.SimpleDirectedWeightedGraph;
 import code.adt.graph.SimpleWeightedEdge;
 import org.junit.Test;
 
@@ -10,7 +10,7 @@ public class DijkstraShortestPathTest {
 
     @Test
     public void find() {
-        SimpleDirectedGraph<SimpleWeightedEdge> graph = new SimpleDirectedGraph<>(5);
+        SimpleDirectedWeightedGraph graph = new SimpleDirectedWeightedGraph(5);
         graph.addEdge(new SimpleWeightedEdge(0, 1, 10));
         graph.addEdge(new SimpleWeightedEdge(0, 4, 5));
         graph.addEdge(new SimpleWeightedEdge(1, 2, 1));

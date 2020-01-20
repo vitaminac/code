@@ -1,6 +1,6 @@
 package code.adt.graph;
 
-public class SimpleWeightedEdge extends SimpleEdge implements Comparable<SimpleWeightedEdge> {
+public class SimpleWeightedEdge extends SimpleEdge implements WeightedEdge<Integer, SimpleWeightedEdge> {
     private double weight;
 
     public SimpleWeightedEdge(int source, int destination, double weight) {

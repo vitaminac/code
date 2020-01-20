@@ -8,14 +8,11 @@ import code.adt.Queue;
 import java.util.function.Consumer;
 
 public interface NAryTree<E> extends Tree<E> {
-    Position<E> get(String path);
+    Position<E> addChild(Position<E> position, E element);
 
-    // TODO: fix, remove name and change method name to addChild
-    Position<E> add(Position<E> position, String name, E element);
+    Enumerable<? extends Position<E>> children(Position<E> position);
 
-    Enumerable<Position<E>> children(Position<E> position);
-
-    private void preOrderTraversal(Position<E> node, Consumer<Position<E>> consumer) {
+    private void preOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
         if (node == null) return;
         consumer.accept(node);
         this.children(node).enumerate(consumer);
@@ -26,7 +23,7 @@ public interface NAryTree<E> extends Tree<E> {
         return consumer -> this.preOrderTraversal(this.root(), consumer);
     }
 
-    private void postOrderTraversal(Position<E> node, Consumer<Position<E>> consumer) {
+    private void postOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
         if (node == null) return;
         this.children(node).enumerate(consumer);
         consumer.accept(node);
@@ -49,12 +46,8 @@ public interface NAryTree<E> extends Tree<E> {
         };
     }
 
-    default Enumerable<Position<E>> dfs() {
-        return this.preOrder();
-    }
-
     @Override
-    default void enumerate(Consumer<Position<E>> consumer) {
-        this.dfs().enumerate(consumer);
+    default void enumerate(Consumer<? super Position<E>> consumer) {
+        this.preOrder().enumerate(consumer);
     }
 }

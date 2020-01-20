@@ -97,7 +97,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     @Override
-    public void enumerate(Consumer<E> consumer) {
+    public void enumerate(Consumer<? super E> consumer) {
         for (int i = 0; i < this.size(); i++) {
             consumer.accept(this.get(i));
         }

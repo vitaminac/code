@@ -1,6 +1,6 @@
 package code.geekforgeek.bfs;
 
-import code.adt.graph.SimpleDirectedGraph;
+import code.adt.graph.SimpleDirectedWeightedGraph;
 import code.adt.graph.SimpleWeightedEdge;
 
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 // https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/
 public class DijkstraShortestPath {
-    public double[] find(SimpleDirectedGraph<SimpleWeightedEdge> g, int u) {
+    public double[] find(SimpleDirectedWeightedGraph g, int u) {
         PriorityQueue<SimpleWeightedEdge> candidate = new PriorityQueue<>();
         // Keeps track of vertices whose minimum distance from source is calculated and finalized
         boolean[] visited = new boolean[g.size()];
