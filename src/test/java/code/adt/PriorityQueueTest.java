@@ -10,12 +10,9 @@ import org.junit.runners.Parameterized;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.function.Supplier;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
 public class PriorityQueueTest {
@@ -49,12 +46,12 @@ public class PriorityQueueTest {
         this.priorityQueue.add(1.1);
         assertEquals(6, this.priorityQueue.size());
         assertFalse(this.priorityQueue.isEmpty());
-        assertEquals(1.1, this.priorityQueue.peek(), 0.01);
+        assertEquals(1.1, this.priorityQueue.min(), 0.01);
     }
 
     @Test
     public void peek() {
-        assertEquals(5.86, this.priorityQueue.peek(), 0.01);
+        assertEquals(5.86, this.priorityQueue.min(), 0.01);
     }
 
     @Test
@@ -76,15 +73,5 @@ public class PriorityQueueTest {
         assertEquals(13.68, this.priorityQueue.remove(), 0.01);
         assertEquals(15.5, this.priorityQueue.remove(), 0.01);
         assertEquals(95.84, this.priorityQueue.remove(), 0.01);
-    }
-
-    @Test
-    public void iterator() {
-        final Iterator<Double> it = this.priorityQueue.iterator();
-        assertEquals(5.86, it.next(), 0.001);
-        assertEquals(10.95, it.next(), 0.001);
-        assertEquals(13.68, it.next(), 0.001);
-        assertEquals(15.5, it.next(), 0.001);
-        assertEquals(95.84, it.next(), 0.001);
     }
 }

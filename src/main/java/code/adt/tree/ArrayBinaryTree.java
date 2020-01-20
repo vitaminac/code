@@ -135,9 +135,4 @@ public class ArrayBinaryTree<E> implements BinaryTree<E> {
         this.ensureSet(this.check(position).index, null);
         return position.getElement();
     }
-
-    @Override
-    public void enumerate(Consumer<Position<E>> consumer) {
-        new InOrderTraversal<>(this).enumerate(consumer);
-    }
 }

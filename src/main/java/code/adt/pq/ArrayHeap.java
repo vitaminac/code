@@ -3,7 +3,6 @@ package code.adt.pq;
 import code.adt.ArrayList;
 
 import java.util.Comparator;
-import java.util.Iterator;
 
 public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     private final ArrayList<E> list;
@@ -42,7 +41,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public E peek() {
+    public E min() {
         return this.list.get(0);
     }
 
@@ -73,27 +72,5 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
             } else break;
         }
         return retVal;
-    }
-
-    @Override
-    public Iterator<E> iterator() {
-        return new Iterator<E>() {
-            private ArrayHeap<E> heap = ArrayHeap.this.clone();
-
-            @Override
-            public boolean hasNext() {
-                return !this.heap.isEmpty();
-            }
-
-            @Override
-            public E next() {
-                return this.heap.remove();
-            }
-        };
-    }
-
-    @Override
-    public ArrayHeap<E> clone() {
-        return new ArrayHeap<E>(new ArrayList<>(list), this.comparator);
     }
 }

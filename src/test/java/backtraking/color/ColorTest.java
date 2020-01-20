@@ -1,17 +1,18 @@
 package backtraking.color;
 
-import greedy.graph.Graph;
+import code.adt.graph.SimpleEdge;
+import code.adt.graph.SimpleUndirectedGraph;
 import org.junit.Test;
 
 public class ColorTest {
 
     @Test
     public void color() {
-        final Graph graph = new Graph(4);
-        graph.add(0, 1);
-        graph.add(0, 2);
-        graph.add(0, 3);
-        graph.add(2, 3);
+        final SimpleUndirectedGraph<SimpleEdge> graph = new SimpleUndirectedGraph<SimpleEdge>(4);
+        graph.addEdge(new SimpleEdge(0, 1));
+        graph.addEdge(new SimpleEdge(0, 2));
+        graph.addEdge(new SimpleEdge(0, 3));
+        graph.addEdge(new SimpleEdge(2, 3));
         final Color color = new Color(graph, 3);
         color.color();
         System.out.println(color);

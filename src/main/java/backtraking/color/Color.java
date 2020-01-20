@@ -1,31 +1,32 @@
 package backtraking.color;
 
-import greedy.graph.Graph;
+import code.adt.graph.SimpleEdge;
+import code.adt.graph.SimpleUndirectedGraph;
 
 import java.util.HashMap;
 
 public class Color {
-    private final Graph graph;
+    private final SimpleUndirectedGraph<SimpleEdge> graph;
     private final int nColor;
     private HashMap<Integer, Integer> coloring = new HashMap<>();
 
-    public Color(Graph graph, int nColor) {
+    public Color(SimpleUndirectedGraph<SimpleEdge> graph, int nColor) {
         this.graph = graph;
         this.nColor = nColor;
-        for (int i = 0; i < graph.getNumberOfVertices(); i++) {
+        for (int i = 0; i < graph.size(); i++) {
             coloring.put(i, -1);
         }
     }
 
     private boolean isFeasible(int vertex) {
-        return graph.getAdjVertices(vertex).stream().noneMatch(v -> coloring.get(v).equals(coloring.get(vertex)));
+        return graph.getAdjacentVertices(vertex).all(v -> !coloring.get(v).equals(coloring.get(vertex)));
     }
 
     private boolean color(int vertex) {
         for (int i = 0; i < this.nColor; i++) {
             coloring.put(vertex, i);
             if (isFeasible(vertex)) {
-                if (vertex == graph.getNumberOfVertices() - 1) {
+                if (vertex == graph.size() - 1) {
                     return true;
                 } else if (color(vertex + 1)) {
                     return true;

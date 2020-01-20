@@ -137,9 +137,4 @@ public class LinkedBinaryTree<E> implements BinaryTree<E> {
         else node.right.element = e;
         return node.right;
     }
-
-    @Override
-    public void enumerate(Consumer<Position<E>> consumer) {
-        new InOrderTraversal<>(this).enumerate(consumer);
-    }
 }

@@ -1,9 +1,9 @@
 package code.adt.pq;
 
-public interface PriorityQueue<E> extends Iterable<E> {
+public interface PriorityQueue<E> {
     void add(E element);
 
-    E peek();
+    E min();
 
     int size();
 

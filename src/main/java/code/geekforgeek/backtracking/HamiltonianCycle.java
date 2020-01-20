@@ -1,6 +1,7 @@
 package code.geekforgeek.backtracking;
 
-import greedy.graph.Graph;
+import code.adt.graph.SimpleEdge;
+import code.adt.graph.SimpleUndirectedGraph;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -8,30 +9,30 @@ import java.util.List;
 import java.util.Set;
 
 public class HamiltonianCycle {
-    private boolean find(Graph graph, int u, int v, List<Integer> path, Set<Integer> noVisited) {
-        if (noVisited.contains(v)) {
-            noVisited.remove(v);
+    private boolean find(SimpleUndirectedGraph<SimpleEdge> graph, int u, int v, List<Integer> path, Set<Integer> unvisited) {
+        if (unvisited.contains(v)) {
+            unvisited.remove(v);
             path.add(v);
-            if (noVisited.isEmpty() && graph.getAdjVertices(v).contains(u)) {
+            if (unvisited.isEmpty() && graph.getAdjacentVertices(v).some(w -> w == u)) {
                 path.add(u);
                 return true;
             } else {
-                for (int adj : graph.getAdjVertices(v)) {
-                    if (this.find(graph, u, adj, path, noVisited)) {
+                for (int adj : graph.getAdjacentVertices(v)) {
+                    if (this.find(graph, u, adj, path, unvisited)) {
                         return true;
                     }
                 }
             }
             path.remove(path.size() - 1);
-            noVisited.add(v);
+            unvisited.add(v);
         }
         return false;
     }
 
-    public List<Integer> find(Graph graph, int u) {
+    public List<Integer> find(SimpleUndirectedGraph<SimpleEdge> graph, int u) {
         List<Integer> path = new LinkedList<>();
         Set<Integer> noVisited = new HashSet<>();
-        for (int i = 0; i < graph.getNumberOfVertices(); i++) noVisited.add(i);
+        for (int i = 0; i < graph.size(); i++) noVisited.add(i);
         this.find(graph, u, u, path, noVisited);
         return path;
     }

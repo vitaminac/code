@@ -21,4 +21,8 @@ public interface Tree<E> extends Enumerable<Position<E>> {
     boolean isInternal(Position<E> position);
 
     boolean isLeaf(Position<E> position);
+
+    Enumerable<Position<E>> preOrder();
+
+    Enumerable<Position<E>> postOrder();
 }

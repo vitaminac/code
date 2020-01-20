@@ -9,7 +9,6 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.util.Iterator;
-import java.util.function.Consumer;
 
 
 public class VirtualFileSystem<E> implements NAryTree<E> {
@@ -273,10 +272,5 @@ public class VirtualFileSystem<E> implements NAryTree<E> {
             }
         }
         return sb.toString();
-    }
-
-    @Override
-    public void enumerate(Consumer<Position<E>> consumer) {
-        new DFSTraversal<>(this).enumerate(consumer);
     }
 }
