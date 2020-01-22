@@ -4,27 +4,40 @@ import code.adt.graph.SimpleUndirectedGraph;
 
 // https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/
 public class ArticulationPoints {
-    private void findArticulationPoint(SimpleUndirectedGraph g, int u, boolean[] critical, boolean[] visited, int[] depth, int level) {
-        // Mark the current node as visited
-        visited[u] = true;
-        depth[u] = level;
+    private int time;
+    private int[] timestamp;
+    private boolean[] critical;
+    private SimpleUndirectedGraph g;
 
+    private void findArticulationPoint(int u, int parent) {
+        // Mark the current node as visited, if timestamp[u] == 0, then it is not visited
+        // record the discovery timestamp
+        int currentTimeStamp = timestamp[u] = ++this.time;
+
+        // Go through all vertices adjacent to this
         g.getAdjacentVertices(u).enumerate(v -> {
-            if (visited[v]) {
-                depth[u] = Math.min(depth[u], depth[v] + 1);
-            } else {
-                this.findArticulationPoint(g, v, critical, visited, depth, level + 1);
-                // if any descent node can reach a ancestor the all nodes between descent-ancestor are safe
-                depth[u] = Math.min(depth[u], depth[v]);
-                // (2) If u is not root and the descent cannot reach any of the ancestors
-                if (depth[v] > depth[u]) critical[u] = true;
-            }
+            // skip child-parent connection to prevent the infinite loop
+            if (v == parent) return;
+
+            // If v is not visited yet, then dfs for it
+            if (timestamp[v] == 0) this.findArticulationPoint(v, u);
+
+            // Check if the subtree rooted with v has a
+            // connection to one of the ancestors of u
+            timestamp[u] = Math.min(timestamp[u], timestamp[v]);
+
+            // If one of the child doesn't have any descent to u's ancestor
+            // then u is articulation point
+            if (currentTimeStamp < timestamp[v]) critical[u] = true;
         });
     }
 
     public boolean[] findArticulationPoint(SimpleUndirectedGraph g) {
-        boolean[] critical = new boolean[g.size()];
-        this.findArticulationPoint(g, 0, critical, new boolean[g.size()], new int[g.size()], 0);
+        this.g = g;
+        this.time = 0;
+        this.critical = new boolean[g.size()];
+        this.timestamp = new int[g.size()];
+        this.findArticulationPoint(0, -1);
         // (1) u is root of DFS tree and has two or more children.
         critical[0] = g.getAdjacentVertices(0).size() > 1;
         return critical;

@@ -34,7 +34,7 @@ public class ArticulationPointsTest {
         graph.addEdge(new SimpleEdge(3, 5));
         graph.addEdge(new SimpleEdge(4, 5));
         assertArrayEquals(
-                new boolean[]{false, true, false, false, false, false, false},
+                new boolean[]{true, true, false, false, false, false, false},
                 new ArticulationPoints().findArticulationPoint(graph)
         );
     }
