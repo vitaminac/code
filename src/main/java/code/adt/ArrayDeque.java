@@ -56,6 +56,7 @@ public class ArrayDeque<E> extends AbstractOrderedCollection<E> implements Deque
     @Override
     public void removeFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
+        this.elements[this.first] = null; // fix obsolete reference
         this.first = (this.first + 1) % this.elements.length;
         this.size--;
     }
@@ -64,6 +65,7 @@ public class ArrayDeque<E> extends AbstractOrderedCollection<E> implements Deque
     public void removeLast() {
         if (this.isEmpty()) throw new NoSuchElementException();
         this.size--;
+        this.elements[this.first + this.size] = null; // fix obsolete reference
     }
 
     @Override

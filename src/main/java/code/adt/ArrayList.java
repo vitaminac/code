@@ -76,10 +76,11 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     public E remove(int index) {
         this.checkIndex(index);
         E returnVal = this.elements[index];
+        this.size -= 1;
         for (; index < size - 1; index++) {
             this.elements[index] = this.elements[index + 1];
         }
-        --this.size;
+        this.elements[this.size] = null; // fix obsolete reference
         // shrink size of array if necessary
         if (this.size > 0 && this.size == this.elements.length / 4)
             resize(this.elements.length / 2);
