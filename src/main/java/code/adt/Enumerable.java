@@ -3,8 +3,8 @@ package code.adt;
 import java.util.Iterator;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
 
 public interface Enumerable<E> extends Iterable<E> {
     void enumerate(Consumer<? super E> consumer);
@@ -15,7 +15,7 @@ public interface Enumerable<E> extends Iterable<E> {
         return ref[0];
     }
 
-    default Enumerable<E> map(UnaryOperator<E> operator) {
+    default <R> Enumerable<R> map(Function<E, R> operator) {
         return consumer -> this.enumerate(e -> consumer.accept(operator.apply(e)));
     }
 
@@ -31,6 +31,13 @@ public interface Enumerable<E> extends Iterable<E> {
             if (predicate.test(e)) {
                 consumer.accept(e);
             }
+        });
+    }
+
+    default Enumerable<E> touch(Consumer<? super E> consumer) {
+        return this.map(e -> {
+            consumer.accept(e);
+            return e;
         });
     }
 
@@ -69,6 +76,12 @@ public interface Enumerable<E> extends Iterable<E> {
             for (double i = start; i < stop; i += step) {
                 consumer.accept(step);
             }
+        };
+    }
+
+    static <E> Enumerable<E> from(E[] arr) {
+        return consumer -> {
+            for (E e : arr) consumer.accept(e);
         };
     }
 }

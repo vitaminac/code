@@ -1,29 +1,23 @@
 package code.adt.tree;
 
 import code.adt.Enumerable;
-import code.adt.Position;
 
-public interface Tree<E> extends Enumerable<Position<E>> {
+public interface Tree<E, SelfType extends Tree<E, SelfType>> {
+    int height();
+
     int size();
 
-    // remove isEmpty use tree as node
-    boolean isEmpty();
+    E getElement();
 
-    Position<E> root();
+    void replace(E element);
 
-    void root(E element);
+    default boolean isInternal() {
+        return !this.isLeaf();
+    }
 
-    Position<E> parent(Position<E> position);
+    boolean isLeaf();
 
-    E replace(Position<E> position, E element);
+    Enumerable<SelfType> preOrder();
 
-    E remove(Position<E> position);
-
-    boolean isInternal(Position<E> position);
-
-    boolean isLeaf(Position<E> position);
-
-    Enumerable<Position<E>> preOrder();
-
-    Enumerable<Position<E>> postOrder();
+    Enumerable<SelfType> postOrder();
 }

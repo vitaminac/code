@@ -6,10 +6,11 @@ import org.junit.Test;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class VirtualFileSystemTest {
-    private VirtualFileSystem<byte[]> vfs;
+    private VirtualFileSystem<String, byte[]> vfs;
 
     @Before
     public void setUp() throws Exception {
@@ -27,7 +28,9 @@ public class VirtualFileSystemTest {
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
                 "/b/d/f\n" +
-                "/b/d/f/e.ext";
+                "/b/d/f/e.ext\n" +
+                "/b/d/.e\n" +
+                "/b/d/.e/d.ext\n";
         assertEquals(expected, this.vfs.toString());
     }
 
@@ -39,87 +42,12 @@ public class VirtualFileSystemTest {
 
     @Test
     public void get() {
-        assertEquals("01234567890123456789", new String(this.vfs.get("/a/a.ext").getElement(), StandardCharsets.UTF_8));
+        assertEquals("01234567890123456789", new String(VirtualFileSystem.find(this.vfs, "/a/a.ext").getElement(), StandardCharsets.UTF_8));
     }
 
     @Test
     public void remove() {
-        this.vfs.remove(this.vfs.get("/b/d/f/e.ext"));
-        String expected = "\n" +
-                "/a\n" +
-                "/a/a.ext\n" +
-                "/a/b.ext\n" +
-                "/b\n" +
-                "/b/c\n" +
-                "/b/c/c.ext\n" +
-                "/b/d\n" +
-                "/b/d/f";
-        assertEquals(expected, this.vfs.toString());
-    }
-
-    @Test
-    public void children() {
-        final var it = this.vfs.children(this.vfs.get("/a")).iterator();
-        assertTrue(it.hasNext());
-        assertEquals("01234567890123456789", new String(it.next().getElement(), StandardCharsets.UTF_8));
-        assertTrue(it.hasNext());
-        assertEquals("1", new String(it.next().getElement(), StandardCharsets.UTF_8));
-    }
-
-    @Test
-    public void root() {
-        assertNull(this.vfs.root().getElement());
-        assertEquals("", this.vfs.getPath(this.vfs.root()));
-    }
-
-    @Test
-    public void parent() {
-        assertNull(this.vfs.parent(this.vfs.root()));
-        assertEquals(this.vfs.get("/b/d/.e/"), this.vfs.parent(this.vfs.get("/b/d/.e/d.ext")));
-        assertEquals(this.vfs.get("/b/d/.e"), this.vfs.parent(this.vfs.get("/b/d/.e/d.ext")));
-    }
-
-    @Test
-    public void getPath() {
-        assertEquals("/b/d/.e/d.ext", this.vfs.getPath(this.vfs.get("/b/d/.e/d.ext")));
-    }
-
-    @Test
-    public void isInternal() {
-        assertTrue(this.vfs.isInternal(this.vfs.root()));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/a")));
-        assertFalse(this.vfs.isInternal(this.vfs.get("/a/a.ext")));
-        assertFalse(this.vfs.isInternal(this.vfs.get("/a/b.ext")));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/b")));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/b/c")));
-        assertFalse(this.vfs.isInternal(this.vfs.get("/b/c/c.ext")));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/b/d")));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/b/d/.e")));
-        assertFalse(this.vfs.isInternal(this.vfs.get("/b/d/.e/d.ext")));
-        assertTrue(this.vfs.isInternal(this.vfs.get("/b/d/f")));
-        assertFalse(this.vfs.isInternal(this.vfs.get("/b/d/f/e.ext")));
-    }
-
-    @Test
-    public void isLeaf() {
-        assertFalse(this.vfs.isLeaf(this.vfs.root()));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/a")));
-        assertTrue(this.vfs.isLeaf(this.vfs.get("/a/a.ext")));
-        assertTrue(this.vfs.isLeaf(this.vfs.get("/a/b.ext")));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/b")));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/b/c")));
-        assertTrue(this.vfs.isLeaf(this.vfs.get("/b/c/c.ext")));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/b/d")));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/b/d/.e")));
-        assertTrue(this.vfs.isLeaf(this.vfs.get("/b/d/.e/d.ext")));
-        assertFalse(this.vfs.isLeaf(this.vfs.get("/b/d/f")));
-        assertTrue(this.vfs.isLeaf(this.vfs.get("/b/d/f/e.ext")));
-    }
-
-    @Test
-    public void add() {
-        this.vfs.add(this.vfs.get("/b/d/.e"), "o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8));
-        this.vfs.add(this.vfs.get("/b/d/f"), "o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8));
+        VirtualFileSystem.find(this.vfs, "/b/d/f/e.ext").remove();
         String expected = "\n" +
                 "/a\n" +
                 "/a/a.ext\n" +
@@ -129,8 +57,49 @@ public class VirtualFileSystemTest {
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
                 "/b/d/f\n" +
+                "/b/d/.e\n" +
+                "/b/d/.e/d.ext\n";
+        assertEquals(expected, this.vfs.toString());
+    }
+
+    @Test
+    public void children() {
+        final var it = VirtualFileSystem.find(this.vfs, "/a").children().iterator();
+        assertTrue(it.hasNext());
+        assertEquals("01234567890123456789", new String(it.next().getElement(), StandardCharsets.UTF_8));
+        assertTrue(it.hasNext());
+        assertEquals("1", new String(it.next().getElement(), StandardCharsets.UTF_8));
+    }
+
+    @Test
+    public void root() {
+        assertEquals("", VirtualFileSystem.find(this.vfs, "/").getFilename().toString());
+    }
+
+    @Test
+    public void parent() {
+        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/.e/"), VirtualFileSystem.find(this.vfs, "/b/d/.e/d.ext").parent());
+        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/.e"), VirtualFileSystem.find(this.vfs, "/b/d/.e/d.ext").parent());
+    }
+
+    @Test
+    public void add() {
+        VirtualFileSystem.find(this.vfs, "/b/d/.e").addChild(new VirtualFileSystem<>("o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8)));
+        VirtualFileSystem.find(this.vfs, "/b/d/f").addChild(new VirtualFileSystem<>("o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8)));
+        String expected = "\n" +
+                "/a\n" +
+                "/a/a.ext\n" +
+                "/a/b.ext\n" +
+                "/b\n" +
+                "/b/c\n" +
+                "/b/c/c.ext\n" +
+                "/b/d\n" +
+                "/b/d/f\n" +
+                "/b/d/f/o.ext\n" +
                 "/b/d/f/e.ext\n" +
-                "/b/d/f/o.ext";
+                "/b/d/.e\n" +
+                "/b/d/.e/d.ext\n" +
+                "/b/d/.e/o.ext\n";
         assertEquals(expected, this.vfs.toString());
     }
 }

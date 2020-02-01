@@ -28,6 +28,7 @@ How to become a good developer?
 ### Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
+- [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
 - [ ] Programming Pearls

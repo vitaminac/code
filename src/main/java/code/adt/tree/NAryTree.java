@@ -2,52 +2,48 @@ package code.adt.tree;
 
 import code.adt.Enumerable;
 import code.adt.LinkedList;
-import code.adt.Position;
 import code.adt.Queue;
 
-import java.util.function.Consumer;
+public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tree<E, SelfType> {
+    void addChild(SelfType tree);
 
-public interface NAryTree<E> extends Tree<E> {
-    Position<E> addChild(Position<E> position, E element);
+    Enumerable<SelfType> children();
 
-    Enumerable<? extends Position<E>> children(Position<E> position);
-
-    private void preOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
-        if (node == null) return;
-        consumer.accept(node);
-        this.children(node).enumerate(consumer);
+    @Override
+    default int height() {
+        return this.children().map(NAryTree::height).reduce(0, Math::max) + 1;
     }
 
     @Override
-    default Enumerable<Position<E>> preOrder() {
-        return consumer -> this.preOrderTraversal(this.root(), consumer);
-    }
-
-    private void postOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
-        if (node == null) return;
-        this.children(node).enumerate(consumer);
-        consumer.accept(node);
+    default int size() {
+        return this.children().map(NAryTree::size).reduce(0, Integer::sum) + 1;
     }
 
     @Override
-    default Enumerable<Position<E>> postOrder() {
-        return consumer -> this.postOrderTraversal(this.root(), consumer);
-    }
-
-    default Enumerable<Position<E>> bfs() {
+    default Enumerable<SelfType> preOrder() {
         return consumer -> {
-            Queue<Position<E>> unvisited = new LinkedList<>();
-            unvisited.enqueue(this.root());
-            while (!unvisited.isEmpty()) {
-                var node = unvisited.dequeue();
-                consumer.accept(node);
-                this.children(node).enumerate(unvisited::enqueue);
-            }
+            consumer.accept((SelfType) this);
+            this.children().enumerate(child -> child.preOrder().enumerate(consumer));
         };
     }
 
     @Override
-    default void enumerate(Consumer<? super Position<E>> consumer) {
-        this.preOrder().enumerate(consumer);
+    default Enumerable<SelfType> postOrder() {
+        return consumer -> {
+            this.children().enumerate(child -> child.preOrder().enumerate(consumer));
+            consumer.accept((SelfType) this);
+        };
+    }
+
+    default Enumerable<SelfType> bfs() {
+        return consumer -> {
+            Queue<SelfType> unvisited = new LinkedList<>();
+            unvisited.enqueue((SelfType) this);
+            while (!unvisited.isEmpty()) {
+                var node = unvisited.dequeue();
+                consumer.accept(node);
+                this.children().enumerate(unvisited::enqueue);
+            }
+        };
     }
 }

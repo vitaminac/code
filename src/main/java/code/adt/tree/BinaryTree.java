@@ -1,73 +1,57 @@
 package code.adt.tree;
 
 import code.adt.Enumerable;
-import code.adt.Position;
 
-import java.util.function.Consumer;
+public interface BinaryTree<E, SelfType extends BinaryTree<E, SelfType>> extends Tree<E, SelfType> {
+    SelfType left();
 
-public interface BinaryTree<E> extends Tree<E> {
+    SelfType right();
 
-    Position<E> left(Position<E> position);
+    void left(SelfType tree);
 
-    Position<E> right(Position<E> position);
-
-    boolean hasLeft(Position<E> position);
-
-    boolean hasRight(Position<E> position);
-
-    Position<E> sibling(Position<E> p);
-
-    Position<E> left(Position<E> position, E element);
-
-    Position<E> right(Position<E> position, E element);
+    void right(SelfType tree);
 
     @Override
-    default boolean isInternal(Position<E> position) {
-        return this.hasLeft(position) || this.hasRight(position);
+    default int height() {
+        return Math.max(this.left() == null ? 0 : this.left().height(), this.right() == null ? 0 : this.right().height()) + 1;
     }
 
     @Override
-    default boolean isLeaf(Position<E> position) {
-        return !this.isInternal(position);
-    }
-
-    private void preOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
-        if (node == null) return;
-        consumer.accept(node);
-        this.preOrderTraversal(this.left(node), consumer);
-        this.preOrderTraversal(this.right(node), consumer);
+    default int size() {
+        int size = 1;
+        if (this.left() != null) size += this.left().size();
+        if (this.right() != null) size += this.right().size();
+        return size;
     }
 
     @Override
-    default Enumerable<Position<E>> preOrder() {
-        return consumer -> this.preOrderTraversal(this.root(), consumer);
-    }
-
-    private void postOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
-        if (node == null) return;
-        this.postOrderTraversal(this.left(node), consumer);
-        this.postOrderTraversal(this.right(node), consumer);
-        consumer.accept(node);
+    default boolean isLeaf() {
+        return this.left() == null && this.right() == null;
     }
 
     @Override
-    default Enumerable<Position<E>> postOrder() {
-        return consumer -> this.postOrderTraversal(this.root(), consumer);
-    }
-
-    private void inOrderTraversal(Position<E> node, Consumer<? super Position<E>> consumer) {
-        if (node == null) return;
-        this.inOrderTraversal(this.left(node), consumer);
-        consumer.accept(node);
-        this.inOrderTraversal(this.right(node), consumer);
+    default Enumerable<SelfType> preOrder() {
+        return consumer -> {
+            consumer.accept((SelfType) this);
+            if (this.left() != null) this.left().preOrder().enumerate(consumer);
+            if (this.right() != null) this.right().preOrder().enumerate(consumer);
+        };
     }
 
     @Override
-    default void enumerate(Consumer<? super Position<E>> consumer) {
-        this.inOrderTraversal(this.root(), consumer);
+    default Enumerable<SelfType> postOrder() {
+        return consumer -> {
+            if (this.left() != null) this.left().postOrder().enumerate(consumer);
+            if (this.right() != null) this.right().postOrder().enumerate(consumer);
+            consumer.accept((SelfType) this);
+        };
     }
 
-    default Enumerable<Position<E>> inOrder() {
-        return this;
+    default Enumerable<SelfType> inOrder() {
+        return consumer -> {
+            if (this.left() != null) this.left().inOrder().enumerate(consumer);
+            consumer.accept((SelfType) this);
+            if (this.right() != null) this.right().inOrder().enumerate(consumer);
+        };
     }
 }
