@@ -1,8 +1,14 @@
 package code.geekforgeek.dfs;
 
+import code.adt.Enumerable;
 import code.adt.graph.SimpleDirectedGraph;
 import code.adt.graph.SimpleEdge;
 import org.junit.Test;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import static org.junit.Assert.assertTrue;
 
 public class TopologicalSortingTest {
 
@@ -16,6 +22,14 @@ public class TopologicalSortingTest {
         g.addEdge(new SimpleEdge(2, 3));
         g.addEdge(new SimpleEdge(3, 1));
         var result = new TopologicalSorting().getTopologicalSorting(g);
-        result.forEach(System.out::println);
+        Set<Integer> candidates = new HashSet<>();
+        Enumerable.range(0, 6, 1).forEach(candidates::add);
+        while (!result.isEmpty()) {
+            int u = result.pop();
+            candidates.remove(u);
+            for (int i : candidates) {
+                assertTrue(g.getAdjacentVertices(i).filter(candidates::contains).all(v -> v != u));
+            }
+        }
     }
 }
