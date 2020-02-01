@@ -1,6 +1,5 @@
 package code.geekforgeek.backtracking;
 
-import code.adt.graph.SimpleEdge;
 import code.adt.graph.SimpleUndirectedGraph;
 
 import java.util.HashSet;
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 public class HamiltonianCycle {
-    private boolean find(SimpleUndirectedGraph graph, int u, int v, List<Integer> path, Set<Integer> unvisited) {
+    private static boolean find(SimpleUndirectedGraph graph, int u, int v, List<Integer> path, Set<Integer> unvisited) {
         if (unvisited.contains(v)) {
             unvisited.remove(v);
             path.add(v);
@@ -18,7 +17,7 @@ public class HamiltonianCycle {
                 return true;
             } else {
                 for (int adj : graph.getAdjacentVertices(v)) {
-                    if (this.find(graph, u, adj, path, unvisited)) {
+                    if (find(graph, u, adj, path, unvisited)) {
                         return true;
                     }
                 }
@@ -29,11 +28,11 @@ public class HamiltonianCycle {
         return false;
     }
 
-    public List<Integer> find(SimpleUndirectedGraph graph, int u) {
+    public static List<Integer> find(SimpleUndirectedGraph graph, int u) {
         List<Integer> path = new LinkedList<>();
         Set<Integer> noVisited = new HashSet<>();
         for (int i = 0; i < graph.size(); i++) noVisited.add(i);
-        this.find(graph, u, u, path, noVisited);
+        find(graph, u, u, path, noVisited);
         return path;
     }
 }

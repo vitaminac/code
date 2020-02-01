@@ -29,7 +29,7 @@ public class HamiltonianCycleTest {
         graph.addEdge(new SimpleEdge(4, 1));
         graph.addEdge(new SimpleEdge(4, 2));
         graph.addEdge(new SimpleEdge(4, 3));
-        assertEquals(Arrays.asList(0, 1, 2, 4, 3, 0), new HamiltonianCycle().find(graph, 0));
+        assertEquals(Arrays.asList(0, 1, 2, 4, 3, 0), HamiltonianCycle.find(graph, 0));
     }
 
     @Test
@@ -47,6 +47,6 @@ public class HamiltonianCycleTest {
         graph.addEdge(new SimpleEdge(3, 1));
         graph.addEdge(new SimpleEdge(4, 1));
         graph.addEdge(new SimpleEdge(4, 2));
-        assertTrue(new HamiltonianCycle().find(graph, 0).isEmpty());
+        assertTrue(HamiltonianCycle.find(graph, 0).isEmpty());
     }
 }

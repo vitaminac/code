@@ -14,7 +14,7 @@ public class GraphVertexColorTest {
         graph.addEdge(0, 2);
         graph.addEdge(0, 3);
         graph.addEdge(2, 3);
-        assertArrayEquals(new int[]{0, 1, 1, 2}, new GraphVertexColor().color(graph));
+        assertArrayEquals(new int[]{0, 1, 1, 2}, GraphVertexColor.color(graph));
     }
 
     @Test
@@ -26,7 +26,7 @@ public class GraphVertexColorTest {
         g1.addEdge(1, 3);
         g1.addEdge(2, 3);
         g1.addEdge(3, 4);
-        assertArrayEquals(new int[]{0, 1, 2, 0, 1}, new GraphVertexColor().color(g1));
+        assertArrayEquals(new int[]{0, 1, 2, 0, 1}, GraphVertexColor.color(g1));
     }
 
     @Test
@@ -38,6 +38,6 @@ public class GraphVertexColorTest {
         g2.addEdge(1, 4);
         g2.addEdge(2, 4);
         g2.addEdge(4, 3);
-        assertArrayEquals(new int[]{0, 1, 2, 0, 3}, new GraphVertexColor().color(g2));
+        assertArrayEquals(new int[]{0, 1, 2, 0, 3}, GraphVertexColor.color(g2));
     }
 }

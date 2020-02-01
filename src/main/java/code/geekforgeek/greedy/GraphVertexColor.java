@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 // https://www.geeksforgeeks.org/graph-coloring-set-2-greedy-algorithm/
 public class GraphVertexColor {
-    public int[] color(final SimpleUndirectedGraph graph) {
+    public static int[] color(final SimpleUndirectedGraph graph) {
         int[] coloring = new int[graph.size()];
         Arrays.fill(coloring, -1);
         coloring[0] = 0;
