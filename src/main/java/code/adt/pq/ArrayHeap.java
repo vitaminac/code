@@ -60,13 +60,12 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
         this.swap(0, this.list.size() - 1);
         E retVal = this.list.remove(this.list.size() - 1);
         int parent = 0;
-        int left;
+        int left, right;
         while ((left = parent * 2 + 1) < this.list.size()) {
-            int right = parent * 2 + 2;
             if (this.comparator.compare(this.list.get(left), this.list.get(parent)) < 0) {
                 swap(parent, left);
                 parent = left;
-            } else if (right < this.list.size() && this.comparator.compare(this.list.get(right), this.list.get(parent)) < 0) {
+            } else if ((right = parent * 2 + 2) < this.list.size() && this.comparator.compare(this.list.get(right), this.list.get(parent)) < 0) {
                 swap(parent, right);
                 parent = right;
             } else break;
