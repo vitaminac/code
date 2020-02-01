@@ -2,7 +2,6 @@ package code.adt;
 
 import code.adt.pq.ArrayHeap;
 import code.adt.pq.PriorityQueue;
-import code.adt.pq.SortedList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +25,6 @@ public class PriorityQueueTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<PriorityQueue<Double>>) SortedList::create},
                 {(Supplier<PriorityQueue<Double>>) ArrayHeap::create}
         });
     }
@@ -56,13 +54,11 @@ public class PriorityQueueTest {
 
     @Test
     public void size() {
-        assertEquals(0, SortedList.<Double>create().size());
         assertEquals(5, this.priorityQueue.size());
     }
 
     @Test
     public void isEmpty() {
-        assertTrue(SortedList.<Double>create().isEmpty());
         assertFalse(this.priorityQueue.isEmpty());
     }
 

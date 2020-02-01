@@ -9,5 +9,5 @@ public interface List<E> extends Enumerable<E>, RandomAccess<E> {
 
     E remove(int index);
 
-    int find(E element);
+    int indexOf(E element);
 }

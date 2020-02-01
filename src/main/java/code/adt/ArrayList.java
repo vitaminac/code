@@ -1,6 +1,6 @@
 package code.adt;
 
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
@@ -20,7 +20,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     public ArrayList(ArrayList<E> list) {
-        this(Arrays.copyOf(list.elements, list.elements.length), list.size);
+        this(Arrays.copyFrom(list.elements, 0, list.elements.length), list.size);
     }
 
     @SuppressWarnings("unchecked")
@@ -88,7 +88,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     @Override
-    public int find(E element) {
+    public int indexOf(E element) {
         for (int i = 0; i < this.size(); i++) {
             if (this.elements[i].equals(element)) {
                 return i;
@@ -141,5 +141,21 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
             spaces[i] = this.elements[i];
         }
         this.elements = spaces;
+    }
+
+    public static <E> int binarySearch(ArrayList<E> list, E key, int low, int high, Comparator<? super E> comparator) {
+        return Arrays.binarySearch(list.elements, key, low, high, comparator);
+    }
+
+    public static <E> int binarySearch(ArrayList<E> list, E key, Comparator<? super E> comparator) {
+        return Arrays.binarySearch(list.elements, key, comparator);
+    }
+
+    public static <E extends Comparable<? super E>> int binarySearch(ArrayList<E> list, E key, int low, int high) {
+        return Arrays.binarySearch(list.elements, key, low, high);
+    }
+
+    public static <E extends Comparable<? super E>> int binarySearch(ArrayList<E> list, E key) {
+        return Arrays.binarySearch(list.elements, key);
     }
 }
