@@ -1,6 +1,6 @@
 package code.algs4.fundamentals.stacks;
 
-import code.adt.DoublyLinkedList;
+import code.adt.SinglyLinkedList;
 import code.adt.Stack;
 
 import java.util.function.Consumer;
@@ -14,8 +14,8 @@ import java.util.function.Consumer;
  * Hint: use two stacks, one to store all of the elements and a second stack to store the maximums.
  */
 public class WebEx5StackMax implements Stack<Integer> {
-    private Stack<Integer> stack = new DoublyLinkedList<>();
-    private Stack<Integer> maxStack = new DoublyLinkedList<>();
+    private Stack<Integer> stack = new SinglyLinkedList<>();
+    private Stack<Integer> maxStack = new SinglyLinkedList<>();
 
     @Override
     public int size() {

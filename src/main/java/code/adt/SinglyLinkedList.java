@@ -4,11 +4,10 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E>, Bag<E> {
+public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     private static class LinkedNode<E> {
         private E element;
         private LinkedNode<E> next;
-        private LinkedNode<E> prev;
 
         private LinkedNode(E element) {
             this.element = element;
@@ -18,11 +17,11 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
 
-    public DoublyLinkedList() {
+    public SinglyLinkedList() {
     }
 
-    public DoublyLinkedList(Enumerable<E> enumerable) {
-        enumerable.enumerate(this::addLast);
+    public SinglyLinkedList(Enumerable<E> enumerable) {
+        enumerable.enumerate(this::push);
     }
 
     @Override
@@ -37,77 +36,58 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     @Override
-    public void add(E item) {
-        this.push(item);
-    }
-
-    @Override
     public boolean isEmpty() {
         return this.head == null;
     }
 
     @Override
-    public E first() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
+    public E top() {
+        return this.head();
+    }
+
+    @Override
+    public E head() {
         return this.head.element;
     }
 
     @Override
-    public E last() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
-        return this.tail.element;
-    }
-
-    @Override
-    public void addFirst(E element) {
+    public void push(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
         } else {
-            this.head.prev = node;
             node.next = this.head;
         }
         this.head = node;
     }
 
     @Override
-    public void addLast(E element) {
+    public void enqueue(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
         } else {
             this.tail.next = node;
-            node.prev = this.tail;
         }
         this.tail = node;
     }
 
     @Override
-    public void removeFirst() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
+    public E dequeue() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        E retVal = this.head.element;
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
         } else {
             this.head = this.head.next;
-            this.head.prev = null;
         }
+        return retVal;
     }
 
     @Override
-    public void removeLast() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
-        if (this.head == this.tail) {
-            this.head = null;
-            this.tail = null;
-        } else {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-        }
+    public E pop() {
+        return this.dequeue();
     }
 
     @Override
@@ -122,7 +102,7 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = DoublyLinkedList.this.head;
+            private LinkedNode<E> next = SinglyLinkedList.this.head;
 
             @Override
             public boolean hasNext() {

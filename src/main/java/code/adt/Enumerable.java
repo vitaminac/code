@@ -57,7 +57,7 @@ public interface Enumerable<E> extends Iterable<E> {
 
     @Override
     default Iterator<E> iterator() {
-        Queue<E> queue = new DoublyLinkedList<>();
+        Queue<E> queue = new SinglyLinkedList<>();
         this.enumerate(queue::enqueue);
         return queue.iterator();
     }
