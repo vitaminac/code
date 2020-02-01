@@ -13,6 +13,10 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
         this.comparator = comparator;
     }
 
+    public ArrayHeap(Comparator<E> comparator, int capacity) {
+        this(new ArrayList<>(capacity), comparator);
+    }
+
     public ArrayHeap(Comparator<E> comparator) {
         this(new ArrayList<>(), comparator);
     }
@@ -71,5 +75,10 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
             } else break;
         }
         return retVal;
+    }
+
+    @Override
+    public void clear() {
+        this.list.clear();
     }
 }

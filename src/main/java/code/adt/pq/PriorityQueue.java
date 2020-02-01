@@ -10,4 +10,6 @@ public interface PriorityQueue<E> {
     boolean isEmpty();
 
     E remove();
+
+    void clear();
 }

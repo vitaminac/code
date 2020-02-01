@@ -44,6 +44,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
 
     @Override
     public void clear() {
+        for (int i = 0; i < this.size; i++) this.elements[i] = null; // remove obsolete reference
         this.size = 0;
     }
 

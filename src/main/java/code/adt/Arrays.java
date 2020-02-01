@@ -10,6 +10,10 @@ public class Arrays {
         return clone;
     }
 
+    public static <E> void fill(E[] arr, E value) {
+        for (int i = 0; i < arr.length; i++) arr[i] = value;
+    }
+
     /**
      * Returns the left-most index of the specified key in a sorted array.
      *
