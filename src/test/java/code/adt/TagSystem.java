@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TagSystem {
     public static void main(String[] args) {
-        Queue<Integer> queue = new LinkedList<>();
+        Queue<Integer> queue = new DoublyLinkedList<>();
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine().chars().forEach(queue::enqueue);
 

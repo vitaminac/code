@@ -1,6 +1,6 @@
 package code.algs4.fundamentals.stacks;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Stack;
 
 import java.util.PrimitiveIterator;
@@ -25,7 +25,7 @@ class Infix2Postfix {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 PrimitiveIterator.OfInt it = line.chars().iterator();
-                Stack<Character> stack = new LinkedList<>();
+                Stack<Character> stack = new DoublyLinkedList<>();
                 StringBuilder sb = new StringBuilder();
                 while (it.hasNext()) {
                     char c = (char) (int) it.next();

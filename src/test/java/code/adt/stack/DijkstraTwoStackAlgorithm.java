@@ -1,6 +1,6 @@
 package code.adt.stack;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Stack;
 
 import java.util.Scanner;
@@ -10,8 +10,8 @@ public class DijkstraTwoStackAlgorithm {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
-            Stack<String> ops = new LinkedList<>();
-            Stack<Double> vals = new LinkedList<>();
+            Stack<String> ops = new DoublyLinkedList<>();
+            Stack<Double> vals = new DoublyLinkedList<>();
             String line = scanner.nextLine();
             final StringTokenizer tokenizer = new StringTokenizer(line);
             while (tokenizer.hasMoreTokens()) {

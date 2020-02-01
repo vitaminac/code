@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
 import code.adt.Bag;
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 
 import java.util.PriorityQueue;
 
@@ -11,7 +11,7 @@ public class Clock {
     // private PriorityQueue<Event> events = ArrayHeap.create(); TODO
     private PriorityQueue<Event> events = new PriorityQueue<>();
 
-    private Bag<Runnable> listeners = new LinkedList<>();
+    private Bag<Runnable> listeners = new DoublyLinkedList<>();
 
     public void run(int hours) {
         var until = hours * 60 * 60;

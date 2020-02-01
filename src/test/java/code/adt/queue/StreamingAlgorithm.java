@@ -1,6 +1,6 @@
 package code.adt.queue;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 import java.util.Scanner;
@@ -10,7 +10,7 @@ public class StreamingAlgorithm<E> {
     private int k;
 
     public StreamingAlgorithm(int k) {
-        this.queue = new LinkedList<>();
+        this.queue = new DoublyLinkedList<>();
         this.k = k;
     }
 

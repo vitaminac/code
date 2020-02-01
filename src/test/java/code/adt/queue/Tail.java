@@ -1,13 +1,13 @@
 package code.adt.queue;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 import java.util.Scanner;
 
 public class Tail {
     public static void main(String[] args) {
-        Queue<String> queue = new LinkedList<>();
+        Queue<String> queue = new DoublyLinkedList<>();
         Scanner scanner = new Scanner(System.in);
         int k = scanner.nextInt();
         while (scanner.hasNextLine()) {

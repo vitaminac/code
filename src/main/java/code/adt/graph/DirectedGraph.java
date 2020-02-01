@@ -1,7 +1,7 @@
 package code.adt.graph;
 
 import code.adt.Enumerable;
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 import java.util.HashSet;
@@ -26,7 +26,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     default Enumerable<Vertex> bfs(Vertex u) {
         return consumer -> {
             Set<Vertex> visited = new HashSet<>();
-            Queue<Vertex> q = new LinkedList<>();
+            Queue<Vertex> q = new DoublyLinkedList<>();
             q.enqueue(u);
             while (!q.isEmpty()) {
                 var vertex = q.dequeue();

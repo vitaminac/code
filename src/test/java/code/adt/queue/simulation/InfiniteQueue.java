@@ -1,10 +1,10 @@
 package code.adt.queue.simulation;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 public class InfiniteQueue extends Component {
-    private final Queue<Atom> queue = new LinkedList<>();
+    private final Queue<Atom> queue = new DoublyLinkedList<>();
 
     public InfiniteQueue(Clock clock, ChooseOut chooseOut) {
         super(chooseOut);

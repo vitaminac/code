@@ -6,8 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import code.adt.ArrayList;
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 import java.util.Arrays;
@@ -34,7 +33,7 @@ public class QueueTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
-                {(Supplier<LinkedList<String>>) LinkedList::new}
+                {(Supplier<DoublyLinkedList<String>>) DoublyLinkedList::new}
         });
     }
 

@@ -1,6 +1,6 @@
 package code.adt.stack;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Stack;
 
 import java.util.Scanner;
@@ -27,8 +27,8 @@ public class ArithmeticExpressionEvaluation {
     }
 
     public static void main(String[] args) {
-        Stack<String> ops = new LinkedList<>();
-        Stack<Double> values = new LinkedList<>();
+        Stack<String> ops = new DoublyLinkedList<>();
+        Stack<Double> values = new DoublyLinkedList<>();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

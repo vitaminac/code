@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
 import code.adt.Bag;
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class Consumer extends Component {
         super(null);
     }
 
-    private Bag<Atom> bag = new LinkedList<>();
+    private Bag<Atom> bag = new DoublyLinkedList<>();
 
     @Override
     public void enter(Atom atom) {

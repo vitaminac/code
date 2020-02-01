@@ -1,14 +1,14 @@
 package code.adt.stack;
 
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Stack;
 
 import java.util.Scanner;
 
 public class TuringTape {
     public static void main(String[] args) {
-        Stack<Integer> left = new LinkedList<>();
-        Stack<Integer> right = new LinkedList<>();
+        Stack<Integer> left = new DoublyLinkedList<>();
+        Stack<Integer> right = new DoublyLinkedList<>();
         int active = 0;
 
         Scanner scanner = new Scanner(System.in);

@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class LinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E>, Bag<E> {
+public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E>, Bag<E> {
 
     public static class LinkedNode<E> {
         private E element;
@@ -19,10 +19,10 @@ public class LinkedList<E> extends AbstractOrderedCollection<E> implements Deque
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
 
-    public LinkedList() {
+    public DoublyLinkedList() {
     }
 
-    public LinkedList(Enumerable<E> enumerable) {
+    public DoublyLinkedList(Enumerable<E> enumerable) {
         enumerable.enumerate(this::addLast);
     }
 
@@ -123,7 +123,7 @@ public class LinkedList<E> extends AbstractOrderedCollection<E> implements Deque
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = LinkedList.this.head;
+            private LinkedNode<E> next = DoublyLinkedList.this.head;
 
             @Override
             public boolean hasNext() {

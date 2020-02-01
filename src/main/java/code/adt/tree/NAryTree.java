@@ -1,7 +1,7 @@
 package code.adt.tree;
 
 import code.adt.Enumerable;
-import code.adt.LinkedList;
+import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 
 public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tree<E, SelfType> {
@@ -37,7 +37,7 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
 
     default Enumerable<SelfType> bfs() {
         return consumer -> {
-            Queue<SelfType> unvisited = new LinkedList<>();
+            Queue<SelfType> unvisited = new DoublyLinkedList<>();
             unvisited.enqueue((SelfType) this);
             while (!unvisited.isEmpty()) {
                 var node = unvisited.dequeue();

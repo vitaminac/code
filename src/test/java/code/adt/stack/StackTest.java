@@ -31,7 +31,7 @@ public class StackTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
-                {(Supplier<LinkedList<String>>) LinkedList::new}
+                {(Supplier<DoublyLinkedList<String>>) DoublyLinkedList::new}
         });
     }
 

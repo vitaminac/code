@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class BagTest {
     public static void main(String[] args) {
-        Bag<Double> numbers = new LinkedList<>();
+        Bag<Double> numbers = new DoublyLinkedList<>();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextInt()) {
             numbers.add(scanner.nextDouble());
