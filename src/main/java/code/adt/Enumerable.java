@@ -62,6 +62,11 @@ public interface Enumerable<E> extends Iterable<E> {
         return queue.iterator();
     }
 
+    @Override
+    default void forEach(Consumer<? super E> consumer){
+        this.enumerate(consumer);
+    }
+
     static Enumerable<Integer> range(final int start, final int stop, final int step) {
         return consumer -> {
             for (int i = start; i < stop; i += step) {
