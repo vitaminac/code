@@ -44,4 +44,35 @@ public class Arrays {
     public static <E extends Comparable<? super E>> int binarySearch(E[] arr, E key) {
         return binarySearch(arr, key, E::compareTo);
     }
+
+    public static <E> void quicksort(E[] arr, int low, int high, Comparator<? super E> comparator) {
+        if (low >= high) return;
+        int left = low;
+        int right = high - 1;
+        E pivot = arr[high];
+        while (right >= left) {
+            if (comparator.compare(arr[left], pivot) <= 0) left += 1;
+            else {
+                E tmp = arr[left];
+                arr[left] = arr[right];
+                arr[right--] = tmp;
+            }
+        }
+        arr[high] = arr[left];
+        arr[left] = pivot;
+        quicksort(arr, low, right, comparator);
+        quicksort(arr, left, high, comparator);
+    }
+
+    public static <E> void quicksort(E[] arr, Comparator<? super E> comparator) {
+        quicksort(arr, 0, arr.length - 1, comparator);
+    }
+
+    public static <E extends Comparable<? super E>> void quicksort(E[] arr, int low, int high) {
+        quicksort(arr, low, high, E::compareTo);
+    }
+
+    public static <E extends Comparable<? super E>> void quicksort(E[] arr) {
+        quicksort(arr, E::compareTo);
+    }
 }
