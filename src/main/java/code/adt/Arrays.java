@@ -14,6 +14,10 @@ public class Arrays {
         for (int i = 0; i < arr.length; i++) arr[i] = value;
     }
 
+    public static <E> void copyTo(E[] source, E[] destination, int from, int to) {
+        for (int i = from; i <= to; i++) destination[i] = source[i];
+    }
+
     /**
      * Returns the left-most index of the specified key in a sorted array.
      *
@@ -24,7 +28,7 @@ public class Arrays {
     public static <E> int binarySearch(E[] arr, E key, int low, int high, Comparator<? super E> comparator) {
         int diff = -1;
         while (low <= high) {
-            int mid = low + ((high - low) >>> 1);
+            int mid = low + ((high - low) / 2);
             diff = comparator.compare(key, arr[mid]);
             if (diff <= 0) high = mid - 1;
             else low = mid + 1;
@@ -74,5 +78,41 @@ public class Arrays {
 
     public static <E extends Comparable<? super E>> void quicksort(E[] arr) {
         quicksort(arr, E::compareTo);
+    }
+
+    public static <E> void merge(E[] arr, E[] aux, int low, int mid, int high, Comparator<? super E> comparator) {
+        int left = low, right = mid + 1;
+        for (int i = low; i <= high; i++) {
+            if (left > mid) arr[i] = aux[right++];
+            else if (right > high) arr[i] = aux[left++];
+            else if (comparator.compare(aux[left], aux[right]) <= 0) arr[i] = aux[left++];
+            else arr[i] = aux[right++];
+        }
+    }
+
+    public static <E> void mergesort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
+        if (low >= high) return;
+        int mid = low + (high - low) / 2;
+        mergesort(arr, aux, low, mid, comparator);
+        mergesort(arr, aux, mid + 1, high, comparator);
+        Arrays.copyTo(arr, aux, low, high);
+        merge(arr, aux, low, mid, high, comparator);
+    }
+
+    public static <E> void mergesort(E[] arr, int low, int high, Comparator<? super E> comparator) {
+        mergesort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
+    }
+
+
+    public static <E> void mergesort(E[] arr, Comparator<? super E> comparator) {
+        mergesort(arr, 0, arr.length - 1, comparator);
+    }
+
+    public static <E extends Comparable<? super E>> void mergesort(E[] arr, int low, int high) {
+        mergesort(arr, low, high, E::compareTo);
+    }
+
+    public static <E extends Comparable<? super E>> void mergesort(E[] arr) {
+        mergesort(arr, E::compareTo);
     }
 }

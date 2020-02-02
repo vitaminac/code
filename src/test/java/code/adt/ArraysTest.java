@@ -27,4 +27,14 @@ public class ArraysTest {
             assertTrue(dff < 0);
         }
     }
+
+    @Test
+    public void mergesort() {
+        Integer[] arr = {5, 0, 3, 4, 9, 1, 2, 6, 7, 8};
+        Arrays.mergesort(arr);
+        for (int i = 0; i < arr.length - 1; i++) {
+            int dff = arr[i].compareTo(arr[i + 1]);
+            assertTrue(dff < 0);
+        }
+    }
 }
