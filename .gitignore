@@ -421,3 +421,9 @@ ASALocalRun/
 /roadmap.iml
 *.pdf
 !/libs/*.jar
+.gradle/
+.idea/
+.settings/
+build/
+competition/*/*.bin
+*.class
