@@ -1,7 +1,5 @@
 package code.adt;
 
-import code.algorithm.GreatestCommonDivisor;
-
 public class Rational {
     //region member
     private int numerator;
@@ -47,7 +45,7 @@ public class Rational {
     public Rational sum(Rational term) {
         int numerator = this.getNumerator() * term.getDenominator() + term.getNumerator() * this.getDenominator();
         int denominator = this.getDenominator() * term.getDenominator();
-        int gcd = GreatestCommonDivisor.gcd(Math.abs(numerator), Math.abs(denominator));
+        int gcd = Math.gcd(Math.abs(numerator), Math.abs(denominator));
         return new Rational(numerator / gcd, denominator / gcd);
     }
 

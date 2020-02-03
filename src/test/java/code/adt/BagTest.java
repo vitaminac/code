@@ -24,7 +24,7 @@ public class BagTest {
             sum += (x - mean) * (x - mean);
         }
 
-        double stddev = Math.sqrt(sum / (n - 1));
+        double stddev = java.lang.Math.sqrt(sum / (n - 1));
 
         System.out.printf("Mean:    %.2f\n", mean);
         System.out.printf("Std dev: %.2f\n", stddev);
