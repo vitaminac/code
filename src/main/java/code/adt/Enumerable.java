@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+@FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
     void enumerate(Consumer<? super E> consumer);
 
@@ -63,7 +64,7 @@ public interface Enumerable<E> extends Iterable<E> {
     }
 
     @Override
-    default void forEach(Consumer<? super E> consumer){
+    default void forEach(Consumer<? super E> consumer) {
         this.enumerate(consumer);
     }
 
