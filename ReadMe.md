@@ -24,6 +24,8 @@ How to become a good developer?
 - [ ] Discrete Mathematics and Its Applications
 - [ ] [Structure and Interpretation of Computer Programs](https://web.mit.edu/alexmv/6.037/sicp.pdf)
 - [ ] [Numerical Recipes](http://numerical.recipes)
+- [x] 数学之美
+- [ ] What is Mathematics
 
 ### Algorithms
 
