@@ -1,5 +1,7 @@
 package code.adt;
 
+import java.util.function.DoubleUnaryOperator;
+
 public class Math {
     public static final double PI = 3.14159265358979323846;
 
@@ -49,5 +51,9 @@ public class Math {
     public static int gcd(int a, int b) {
         if (a == 0) return b;
         return gcd(b % a, a);
+    }
+
+    public static double derivative(DoubleUnaryOperator f, double x, double epsilon) {
+        return (f.applyAsDouble(x + epsilon) - f.applyAsDouble(x - epsilon)) / (2 * epsilon);
     }
 }
