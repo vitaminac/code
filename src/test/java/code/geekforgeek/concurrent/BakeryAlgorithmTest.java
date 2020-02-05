@@ -1,4 +1,4 @@
-package code.so;
+package code.geekforgeek.concurrent;
 
 import java.util.Scanner;
 

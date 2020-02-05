@@ -1,4 +1,4 @@
-package code.so;
+package code.geekforgeek.concurrent;
 
 class Turn {
     public static final int LEFT = 0;

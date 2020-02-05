@@ -1,4 +1,4 @@
-package code.so;
+package code.geekforgeek.concurrent;
 
 // https://www.geeksforgeeks.org/petersons-algorithm-using-processes-shared-memory/
 

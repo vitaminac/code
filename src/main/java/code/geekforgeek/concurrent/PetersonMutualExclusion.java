@@ -1,4 +1,4 @@
-package code.so;
+package code.geekforgeek.concurrent;
 
 // https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-1/
 // https://www.geeksforgeeks.org/petersons-algorithm-for-mutual-exclusion-set-2-cpu-cycles-and-memory-fence/
