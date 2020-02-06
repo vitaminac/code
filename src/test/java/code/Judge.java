@@ -1,7 +1,6 @@
 package code;
 
-import code.aceptaelreto.P542LaTiaManuela;
-import code.aceptaelreto.P544QueNoSeAtraganten;
+import code.onlinejudge.P11659;
 import org.junit.Test;
 
 import java.io.*;
@@ -99,6 +98,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P542LaTiaManuela.class, null);
+        Judge.judge(P11659.class, null);
     }
 }
