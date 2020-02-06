@@ -89,7 +89,6 @@ How to become a good developer?
 * [GitHub](https://github.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 * [Leet Code](https://leetcode.com/)
-* [GeekForGeeks](https://www.geeksforgeeks.org/)
 * [Codeforces](https://codeforces.com/)
 
 ## Online Degree

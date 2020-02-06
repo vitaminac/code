@@ -1,17 +1,12 @@
-package code.kickstart.y2017.practice;
+package code.kickstart;
 
-import code.Judge;
-import org.junit.Test;
-
-import java.io.FileOutputStream;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
  * https://code.google.com/codejam/contest/6304486/dashboard
  */
-public class ProblemACountryLeader {
+public class P2017PractiseACountryLeader {
     public static void solve(Scanner scanner) {
         int T = scanner.nextInt();
         var used = new boolean[26];
@@ -52,19 +47,11 @@ public class ProblemACountryLeader {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        // try (var scanner = new Scanner(System.in)) {
+    public static void main(String[] args) {
         try (
-                var scanner = new Scanner(ProblemACountryLeader.class.getResourceAsStream("ProblemACountryLeader-A-large-practice.in"));
-                var output = new PrintStream(new FileOutputStream("output.txt"))
+                var scanner = new Scanner(System.in);
         ) {
-            System.setOut(output);
             solve(scanner);
         }
-    }
-
-    @Test
-    public void test() throws Exception {
-        Judge.judge(this.getClass(), null);
     }
 }
