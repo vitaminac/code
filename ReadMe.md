@@ -33,8 +33,9 @@ How to become a good developer?
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
-- [ ] Programming Pearls
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+- [ ] Programming Pearls
+- [ ] 编程之美
 
 ## Software Engineering
 
