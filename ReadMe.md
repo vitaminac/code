@@ -99,6 +99,11 @@ How to become a good developer?
 * [Illinois Master of Computer Science](https://www.coursera.org/degrees/master-of-computer-science-illinois)
 * [Texas at Austin Master of Computer Science](https://www.edx.org/masters/online-master-science-computer-science-utaustinx)
 
+## Researches
+
+* [arXiv](https://arxiv.org)
+* [Papers With Code](https://paperswithcode.com)
+
 ## Jobs
 
 * [TopCoder](https://www.topcoder.com/)
