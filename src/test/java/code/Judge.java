@@ -81,7 +81,6 @@ public class Judge {
                 count += 1;
             }
             assertTrue(clazz.getSimpleName() + " hasn't been tested! No input found!", count > 0);
-            System.out.println(clazz.getSimpleName() + " " + count + " input tests pass");
         }
     }
 
