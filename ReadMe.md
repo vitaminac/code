@@ -24,7 +24,6 @@ How to become a good developer?
 - [ ] Discrete Mathematics and Its Applications
 - [ ] [Structure and Interpretation of Computer Programs](https://web.mit.edu/alexmv/6.037/sicp.pdf)
 - [ ] [Numerical Recipes](http://numerical.recipes)
-- [x] 数学之美
 - [ ] What is Mathematics
 
 ### Algorithms
@@ -34,8 +33,6 @@ How to become a good developer?
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
-- [ ] Programming Pearls
-- [ ] 编程之美
 
 ## Software Engineering
 
@@ -46,6 +43,13 @@ How to become a good developer?
 - [ ] Code Complete
 - [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
 - [ ] Agile Software Development, Principles, Patterns, and Practices
+
+## Inteviews
+
+- [x] 数学之美
+- [ ] Programming Pearls
+- [ ] 编程之美
+- [ ] [CRACKING the CODING INTERVIEW](http://www.crackingthecodinginterview.com/)
 
 ## Courses
 
