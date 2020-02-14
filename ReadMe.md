@@ -50,6 +50,7 @@ How to become a good developer?
 - [ ] Programming Pearls
 - [ ] 编程之美
 - [ ] [CRACKING the CODING INTERVIEW](http://www.crackingthecodinginterview.com/)
+- [ ] 剑指offer
 
 ## Courses
 
@@ -94,7 +95,6 @@ How to become a good developer?
 * [GitHub](https://github.com/)
 * [Stack Overflow](https://stackoverflow.com/)
 * [Leet Code](https://leetcode.com/)
-* [Codeforces](https://codeforces.com/)
 
 ## Online Degree
 
