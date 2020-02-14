@@ -1,4 +1,4 @@
-package dinamicprogramming;
+package code.clrs;
 
 import org.junit.Test;
 

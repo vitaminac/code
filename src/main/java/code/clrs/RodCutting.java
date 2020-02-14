@@ -1,4 +1,4 @@
-package dinamicprogramming;
+package code.clrs;
 
 
 public class RodCutting {
