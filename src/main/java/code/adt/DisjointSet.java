@@ -4,8 +4,8 @@ import java.util.Arrays;
 
 // https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/
 public class DisjointSet {
-    private final int parent[];
-    private final int rank[];
+    private final int[] parent;
+    private final int[] rank;
 
     public DisjointSet(int n) {
         this.parent = new int[n];
