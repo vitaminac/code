@@ -153,6 +153,62 @@ public class Math {
         return product;
     }
 
+    public static long[] divide(long dividend, long divisor) {
+        long remainder;
+        // determinate the sign of dividend and divisor, and future quotient
+        boolean willBeNegative = false;
+        boolean remainder_sign = false;
+        if (dividend < 0) {
+            dividend = neg(dividend);
+            willBeNegative = true;
+            remainder_sign = true;
+        }
+        if (divisor < 0) {
+            divisor = neg(divisor);
+            willBeNegative ^= true;
+        }
+
+        // invert order and add a highest bit,
+        // for example dividend=101011 invert=1110101, initial invert value 2 will add a highest bit
+        // it's for knowing where the number finish
+        // if not dividend=1010, will invert to 0101, the origin zero will be ignore
+        // we cant determinate the origin number length
+        long invert = 2;
+        while (dividend != 0) {
+            invert |= dividend & 0x1;
+            invert = invert << 1;
+            dividend = dividend >> 1;
+        }
+
+        long quotient = 0;
+        remainder = 0;
+        // invert = 2 set highest bit as a delimiter
+        while ((invert & ~0x1L) != 0)// until delimiter, the highest bit
+        {
+            remainder = remainder << 1;
+            remainder |= invert & 0x1;
+            invert = invert >> 1;
+            quotient = quotient << 1;
+
+            if (remainder > divisor) {
+                quotient |= 0x1;
+                remainder = sub(remainder, divisor);
+            }
+        }
+
+        // apply sign to the quotient
+        if (willBeNegative) {
+            quotient = neg(quotient);
+        }
+
+        // apply sign to the remainder
+        if (remainder_sign) {
+            remainder = neg(remainder);
+        }
+
+        return new long[]{quotient, remainder};
+    }
+
     public static int[] extended_gcd(int a, int b) {
         int s = 0;
         int old_s = 1;

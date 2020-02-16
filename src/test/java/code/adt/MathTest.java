@@ -121,4 +121,11 @@ public class MathTest {
         assertEquals(-81, Math.booth_mul(-9, 9));
         assertEquals(-81, Math.booth_mul(9, -9));
     }
+
+    @Test
+    public void divide() {
+        assertArrayEquals(new long[]{9, 5}, Math.divide(86, 9));
+        assertArrayEquals(new long[]{-9, -5}, Math.divide(-86, 9));
+        assertArrayEquals(new long[]{-9, 5}, Math.divide(86, -9));
+    }
 }
