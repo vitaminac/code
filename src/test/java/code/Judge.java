@@ -1,6 +1,6 @@
 package code;
 
-import code.spoj.RPLJ_JustTheDistance;
+import code.aceptaelreto.P511Houston;
 import org.junit.Test;
 
 import java.io.*;
@@ -94,6 +94,7 @@ public class Judge {
                 "code.algs4",
                 "code.onlinejudge",
                 "code.kickstart",
+                "code.codeforces",
                 "code.spoj"
         };
         for (String pkg : packages) {
@@ -114,6 +115,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(RPLJ_JustTheDistance.class, null);
+        Judge.judge(P511Houston.class, null);
     }
 }

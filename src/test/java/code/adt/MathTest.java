@@ -2,6 +2,7 @@ package code.adt;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MathTest {
@@ -53,7 +54,27 @@ public class MathTest {
     }
 
     @Test
-    public void test() {
+    public void gcd() {
         assertEquals(6, Math.gcd(270, 192));
+    }
+
+    @Test
+    public void sum() {
+        assertEquals(0, Math.sum(0, 0));
+        assertEquals(1, Math.sum(1, 0));
+        assertEquals(1, Math.sum(0, 1));
+        assertEquals(2, Math.sum(1, 1));
+        assertEquals(0, Math.sum(1, -1));
+        assertEquals(0, Math.sum(-1, 1));
+        assertEquals(-1, Math.sum(-1, 0));
+        assertEquals(-1, Math.sum(0, -1));
+        assertEquals(-2, Math.sum(-1, -1));
+        assertEquals(-1, Math.sum(Integer.MIN_VALUE, Integer.MAX_VALUE));
+        assertEquals(-1, Math.sum(Integer.MAX_VALUE, Integer.MIN_VALUE));
+    }
+
+    @Test
+    public void extended_gcd() {
+        assertArrayEquals(new int[]{-9, 47}, Math.extended_gcd(240, 46));
     }
 }
