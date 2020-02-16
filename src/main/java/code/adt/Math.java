@@ -238,10 +238,13 @@ public class Math {
         return new int[]{old_s, old_t};
     }
 
+    /*
+     * Exponentiation by squaring
+     */
     public static long pow(long base, int exp) {
         if (exp == 0) return 1;
         else if (exp % 2 == 0) return pow(base * base, exp / 2);
-        else return pow(base * base, exp / 2) * base;
+        else return pow(base, exp - 1) * base;
     }
 
     /*
@@ -291,5 +294,23 @@ public class Math {
         BigInteger abcd = karatsuba_mul(a.add(b), c.add(d));
 
         return ac.add(abcd.subtract(ac).subtract(bd).shiftLeft(N)).add(bd.shiftLeft(2 * N));
+    }
+
+    // Hamming weight
+// https://en.wikipedia.org/wiki/Hamming_weight
+// It is thus equivalent to the Hamming distance from the all-zero string of the same length
+    public static long count_bits(long a) {
+        // obtain bitcout of each 2 bit
+        a = ((a >> 1) & 0x5555555555555555L) + (a & 0x5555555555555555L);
+        // obtain sum bitcout of each 2 group of 2 bit, (each overall 4bit)
+        a = ((a >> 2) & 0x3333333333333333L) + (a & 0x3333333333333333L);
+        // obtain sum bitcout of each 2 group of 4 bit, (each overall 8bit)
+        a = ((a >> 4) & 0x0f0f0f0f0f0f0f0fL) + (a & 0x0f0f0f0f0f0f0f0fL);
+        // obtain sum bitcout of each 2 group of 8 bit, (each overall 16bit)
+        a = ((a >> 8) & 0x00ff00ff00ff00ffL) + (a & 0x00ff00ff00ff00ffL);
+        // and so on..
+        a = ((a >> 16) & 0x0000ffff0000ffffL) + (a & 0x0000ffff0000ffffL);
+        a = ((a >> 32) & 0x00000000ffffffffL) + (a & 0x00000000ffffffffL);
+        return a;
     }
 }

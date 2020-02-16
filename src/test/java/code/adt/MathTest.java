@@ -140,4 +140,9 @@ public class MathTest {
     public void karatsuba_mul() {
         assertEquals(BigInteger.valueOf(123456789).multiply(BigInteger.valueOf(987654321)), Math.karatsuba_mul(BigInteger.valueOf(123456789), BigInteger.valueOf(987654321)));
     }
+
+    @Test
+    public void count_bits() {
+        assertEquals(9, Math.count_bits(46139));
+    }
 }
