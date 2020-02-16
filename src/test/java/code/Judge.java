@@ -1,6 +1,6 @@
 package code;
 
-import code.aceptaelreto.P511Houston;
+import code.codechef.LEAPY;
 import org.junit.Test;
 
 import java.io.*;
@@ -90,11 +90,12 @@ public class Judge {
         int n_failed = 0;
         String[] packages = new String[]{
                 "code.aceptaelreto",
-                "code.concurso",
                 "code.algs4",
-                "code.onlinejudge",
-                "code.kickstart",
+                "code.codechef",
                 "code.codeforces",
+                "code.concurso",
+                "code.kickstart",
+                "code.onlinejudge",
                 "code.spoj"
         };
         for (String pkg : packages) {
@@ -115,6 +116,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P511Houston.class, null);
+        Judge.judge(LEAPY.class, null);
     }
 }
