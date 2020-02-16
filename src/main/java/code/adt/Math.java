@@ -296,9 +296,11 @@ public class Math {
         return ac.add(abcd.subtract(ac).subtract(bd).shiftLeft(N)).add(bd.shiftLeft(2 * N));
     }
 
-    // Hamming weight
-// https://en.wikipedia.org/wiki/Hamming_weight
-// It is thus equivalent to the Hamming distance from the all-zero string of the same length
+    /*
+     * Hamming weight
+     * https://en.wikipedia.org/wiki/Hamming_weight
+     * It is thus equivalent to the Hamming distance from the all-zero string of the same length
+     */
     public static long count_bits(long a) {
         // obtain bitcout of each 2 bit
         a = ((a >> 1) & 0x5555555555555555L) + (a & 0x5555555555555555L);
@@ -311,6 +313,25 @@ public class Math {
         // and so on..
         a = ((a >> 16) & 0x0000ffff0000ffffL) + (a & 0x0000ffff0000ffffL);
         a = ((a >> 32) & 0x00000000ffffffffL) + (a & 0x00000000ffffffffL);
+        return a;
+    }
+
+    // http://homepage.divms.uiowa.edu/~jones/bcd/mod.shtml
+    // we can compute a mod 3 as "a mod 3 = ((a/4) + (a mod 4)) mod 3"
+    public static int mod3(int a) {
+        a = (a >> 16) + (a & 0xFFFF); /* sum base 2**16 digits
+								  a <= 0x1FFFE */
+        a = (a >> 8) + (a & 0xFF); /* sum base 2**8 digits
+								 a <= 0x2FD */
+        a = (a >> 4) + (a & 0xF); /* sum base 2**4 digits
+								 a <= 0x3C; worst case 0x3B */
+        a = (a >> 2) + (a & 0x3); /* sum base 2**2 digits
+								 a <= 0x1D; worst case 0x1B */
+        a = (a >> 2) + (a & 0x3); /* sum base 2**2 digits
+								 a <= 0x9; worst case 0x7 */
+        a = (a >> 2) + (a & 0x3); /* sum base 2**2 digits
+								 a <= 0x4 */
+        if (a > 2) a = a - 3;
         return a;
     }
 }

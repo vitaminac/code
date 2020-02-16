@@ -145,4 +145,9 @@ public class MathTest {
     public void count_bits() {
         assertEquals(9, Math.count_bits(46139));
     }
+
+    @Test
+    public void mod3() {
+        assertEquals(123456789 % 3, Math.mod3(123456789));
+    }
 }
