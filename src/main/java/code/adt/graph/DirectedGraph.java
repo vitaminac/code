@@ -1,7 +1,6 @@
 package code.adt.graph;
 
 import code.adt.Enumerable;
-import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 import code.adt.SinglyLinkedList;
 
@@ -17,7 +16,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     boolean isAdjacent(Vertex u, Vertex v);
 
     default Enumerable<Vertex> getAdjacentVertices(Vertex vertex) {
-        return consumer -> this.getEdges(vertex).enumerate(edge -> consumer.accept(edge.getDestination()));
+        return consumer -> this.getEdges(vertex).forEach(edge -> consumer.accept(edge.getDestination()));
     }
 
     Enumerable<E> getEdges(Vertex vertex);
@@ -34,7 +33,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
                 if (!visited.contains(vertex)) {
                     consumer.accept(vertex);
                     visited.add(vertex);
-                    this.getAdjacentVertices(vertex).enumerate(q::enqueue);
+                    this.getAdjacentVertices(vertex).forEach(q::enqueue);
                 }
             }
         };
@@ -44,7 +43,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
         if (!visited.contains(vertex)) {
             consumer.accept(vertex);
             visited.add(vertex);
-            this.getAdjacentVertices(vertex).enumerate(v -> this.dfs(v, visited, consumer));
+            this.getAdjacentVertices(vertex).forEach(v -> this.dfs(v, visited, consumer));
         }
     }
 

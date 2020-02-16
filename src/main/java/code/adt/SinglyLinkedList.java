@@ -21,7 +21,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     }
 
     public SinglyLinkedList(Enumerable<E> enumerable) {
-        enumerable.enumerate(this::push);
+        enumerable.forEach(this::push);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     }
 
     @Override
-    public void enumerate(Consumer<? super E> consumer) {
+    public void forEach(Consumer<? super E> consumer) {
         LinkedNode<E> node = this.head;
         while (node != null) {
             consumer.accept(node.element);

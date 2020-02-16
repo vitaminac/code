@@ -27,8 +27,8 @@ public abstract class AbstractHashSet<E> implements Set<E> {
     }
 
     @Override
-    public void enumerate(Consumer<? super E> consumer) {
-        this.map.enumerate(consumer);
+    public void forEach(Consumer<? super E> consumer) {
+        this.map.forEach(consumer);
     }
 
     @Override

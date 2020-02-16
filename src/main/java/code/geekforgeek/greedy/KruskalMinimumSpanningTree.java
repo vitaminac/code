@@ -11,7 +11,7 @@ import java.util.TreeSet;
 public class KruskalMinimumSpanningTree {
     public Set<SimpleWeightedEdge> find(SimpleUndirectedWeightedGraph g) {
         Set<SimpleWeightedEdge> candidates = new TreeSet<>();
-        for (int i = 0; i < g.size(); i++) g.getEdges(i).enumerate(candidates::add);
+        for (int i = 0; i < g.size(); i++) g.getEdges(i).forEach(candidates::add);
         Set<SimpleWeightedEdge> minSpanningTree = new HashSet<>();
         DisjointSet subGraphs = new DisjointSet(g.size());
         // select

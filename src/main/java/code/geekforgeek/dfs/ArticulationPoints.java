@@ -15,7 +15,7 @@ public class ArticulationPoints {
         int currentTimeStamp = timestamp[u] = ++this.time;
 
         // Go through all vertices adjacent to this
-        g.getAdjacentVertices(u).enumerate(v -> {
+        g.getAdjacentVertices(u).forEach(v -> {
             // skip child-parent connection to prevent the infinite loop
             if (v == parent) return;
 

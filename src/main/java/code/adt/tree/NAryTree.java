@@ -1,7 +1,6 @@
 package code.adt.tree;
 
 import code.adt.Enumerable;
-import code.adt.DoublyLinkedList;
 import code.adt.Queue;
 import code.adt.SinglyLinkedList;
 
@@ -24,14 +23,14 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
     default Enumerable<SelfType> preOrder() {
         return consumer -> {
             consumer.accept((SelfType) this);
-            this.children().enumerate(child -> child.preOrder().enumerate(consumer));
+            this.children().forEach(child -> child.preOrder().forEach(consumer));
         };
     }
 
     @Override
     default Enumerable<SelfType> postOrder() {
         return consumer -> {
-            this.children().enumerate(child -> child.preOrder().enumerate(consumer));
+            this.children().forEach(child -> child.preOrder().forEach(consumer));
             consumer.accept((SelfType) this);
         };
     }
@@ -43,7 +42,7 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
             while (!unvisited.isEmpty()) {
                 var node = unvisited.dequeue();
                 consumer.accept(node);
-                this.children().enumerate(unvisited::enqueue);
+                this.children().forEach(unvisited::enqueue);
             }
         };
     }

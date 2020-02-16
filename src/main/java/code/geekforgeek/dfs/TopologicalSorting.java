@@ -8,7 +8,7 @@ import java.util.Stack;
 public class TopologicalSorting {
     private void topologicalVisit(int u, SimpleDirectedGraph g, boolean[] visited, Stack<Integer> sorting) {
         visited[u] = true;
-        g.getAdjacentVertices(u).enumerate(v -> {
+        g.getAdjacentVertices(u).forEach(v -> {
             if (!visited[v]) {
                 this.topologicalVisit(v, g, visited, sorting);
             }

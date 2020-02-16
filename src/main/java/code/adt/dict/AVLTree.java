@@ -63,7 +63,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     }
 
     @Override
-    public void enumerate(Consumer<? super Key> consumer) {
+    public void forEach(Consumer<? super Key> consumer) {
         this.root.traversal(consumer);
     }
 

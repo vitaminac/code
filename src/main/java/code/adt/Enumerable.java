@@ -8,27 +8,25 @@ import java.util.function.Predicate;
 
 @FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
-    void enumerate(Consumer<? super E> consumer);
-
     default int size() {
         int[] ref = new int[]{0};
-        this.enumerate(e -> ref[0]++);
+        this.forEach(e -> ref[0]++);
         return ref[0];
     }
 
     default <R> Enumerable<R> map(Function<E, R> operator) {
-        return consumer -> this.enumerate(e -> consumer.accept(operator.apply(e)));
+        return consumer -> this.forEach(e -> consumer.accept(operator.apply(e)));
     }
 
     @SuppressWarnings("unchecked")
     default <R> R reduce(R identity, BiFunction<E, R, R> accumulator) {
         R[] ref = (R[]) new Object[]{identity};
-        this.enumerate(e -> ref[0] = accumulator.apply(e, ref[0]));
+        this.forEach(e -> ref[0] = accumulator.apply(e, ref[0]));
         return ref[0];
     }
 
     default Enumerable<E> filter(Predicate<E> predicate) {
-        return consumer -> this.enumerate(e -> {
+        return consumer -> this.forEach(e -> {
             if (predicate.test(e)) {
                 consumer.accept(e);
             }
@@ -59,14 +57,12 @@ public interface Enumerable<E> extends Iterable<E> {
     @Override
     default Iterator<E> iterator() {
         Queue<E> queue = new SinglyLinkedList<>();
-        this.enumerate(queue::enqueue);
+        this.forEach(queue::enqueue);
         return queue.iterator();
     }
 
     @Override
-    default void forEach(Consumer<? super E> consumer) {
-        this.enumerate(consumer);
-    }
+    void forEach(Consumer<? super E> consumer);
 
     static Enumerable<Integer> range(final int start, final int stop, final int step) {
         return consumer -> {

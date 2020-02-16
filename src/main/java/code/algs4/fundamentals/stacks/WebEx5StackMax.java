@@ -52,7 +52,7 @@ public class WebEx5StackMax implements Stack<Integer> {
     }
 
     @Override
-    public void enumerate(Consumer<? super Integer> consumer) {
-        this.stack.enumerate(consumer);
+    public void forEach(Consumer<? super Integer> consumer) {
+        this.stack.forEach(consumer);
     }
 }

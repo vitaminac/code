@@ -16,16 +16,16 @@ public class PrimMinimumSpanningTree {
         visited[0] = true;
         Set<SimpleWeightedEdge> minSpanningTree = new HashSet<>();
         Queue<SimpleWeightedEdge> candidate = new PriorityQueue<>();
-        g.getEdges(0).enumerate(candidate::add);
+        g.getEdges(0).forEach(candidate::add);
         while (minSpanningTree.size() < g.size() - 1) {
             final SimpleWeightedEdge edge = candidate.remove();
             if (!visited[edge.getSource()]) {
                 visited[edge.getSource()] = false;
-                g.getEdges(edge.getSource()).enumerate(candidate::add);
+                g.getEdges(edge.getSource()).forEach(candidate::add);
                 minSpanningTree.add(edge);
             } else if (!visited[edge.getDestination()]) {
                 visited[edge.getDestination()] = false;
-                g.getEdges(edge.getDestination()).enumerate(candidate::add);
+                g.getEdges(edge.getDestination()).forEach(candidate::add);
                 minSpanningTree.add(edge);
             }
         }

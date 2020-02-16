@@ -22,7 +22,7 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     public DoublyLinkedList(Enumerable<E> enumerable) {
-        enumerable.enumerate(this::addLast);
+        enumerable.forEach(this::addLast);
     }
 
     @Override
@@ -111,7 +111,7 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     @Override
-    public void enumerate(Consumer<? super E> consumer) {
+    public void forEach(Consumer<? super E> consumer) {
         LinkedNode<E> node = this.head;
         while (node != null) {
             consumer.accept(node.element);

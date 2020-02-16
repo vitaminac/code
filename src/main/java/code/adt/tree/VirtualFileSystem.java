@@ -49,7 +49,7 @@ public class VirtualFileSystem<Key, E> implements NAryTree<E, VirtualFileSystem<
 
     private static void writeToFileSystem(VirtualFileSystem<String, byte[]> tree, File root) {
         final File file = root.toPath().resolve(tree.filename).toFile();
-        tree.children().enumerate(child -> writeToFileSystem(child, file));
+        tree.children().forEach(child -> writeToFileSystem(child, file));
         try (OutputStream out = new FileOutputStream(file)) {
             out.write(tree.getElement());
         } catch (IOException e) {

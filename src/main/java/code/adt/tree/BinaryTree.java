@@ -33,25 +33,25 @@ public interface BinaryTree<E, SelfType extends BinaryTree<E, SelfType>> extends
     default Enumerable<SelfType> preOrder() {
         return consumer -> {
             consumer.accept((SelfType) this);
-            if (this.left() != null) this.left().preOrder().enumerate(consumer);
-            if (this.right() != null) this.right().preOrder().enumerate(consumer);
+            if (this.left() != null) this.left().preOrder().forEach(consumer);
+            if (this.right() != null) this.right().preOrder().forEach(consumer);
         };
     }
 
     @Override
     default Enumerable<SelfType> postOrder() {
         return consumer -> {
-            if (this.left() != null) this.left().postOrder().enumerate(consumer);
-            if (this.right() != null) this.right().postOrder().enumerate(consumer);
+            if (this.left() != null) this.left().postOrder().forEach(consumer);
+            if (this.right() != null) this.right().postOrder().forEach(consumer);
             consumer.accept((SelfType) this);
         };
     }
 
     default Enumerable<SelfType> inOrder() {
         return consumer -> {
-            if (this.left() != null) this.left().inOrder().enumerate(consumer);
+            if (this.left() != null) this.left().inOrder().forEach(consumer);
             consumer.accept((SelfType) this);
-            if (this.right() != null) this.right().inOrder().enumerate(consumer);
+            if (this.right() != null) this.right().inOrder().forEach(consumer);
         };
     }
 }
