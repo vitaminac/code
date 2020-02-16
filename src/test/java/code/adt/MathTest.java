@@ -107,4 +107,18 @@ public class MathTest {
         assertEquals(-81, Math.mul(-9, 9));
         assertEquals(81, Math.mul(-9, -9));
     }
+
+    @Test
+    public void dec() {
+        assertEquals(0, Math.dec(1));
+    }
+
+    @Test
+    public void booth_mul() {
+        assertEquals(-12, Math.booth_mul(3, -4));
+        assertEquals(81, Math.booth_mul(9, 9));
+        assertEquals(0, Math.booth_mul(0, 0));
+        assertEquals(-81, Math.booth_mul(-9, 9));
+        assertEquals(-81, Math.booth_mul(9, -9));
+    }
 }

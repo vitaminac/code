@@ -9,6 +9,6 @@ public class P1APlusB {
      * @return: The sum of a and b
      */
     public int aplusb(int a, int b) {
-        return Math.sum(a, b);
+        return (int) Math.sum(a, b);
     }
 }
