@@ -74,7 +74,37 @@ public class MathTest {
     }
 
     @Test
+    public void sub() {
+        assertEquals(0, Math.sub(0, 0));
+        assertEquals(1, Math.sub(1, 0));
+        assertEquals(-1, Math.sub(0, 1));
+        assertEquals(0, Math.sub(1, 1));
+        assertEquals(2, Math.sub(1, -1));
+        assertEquals(-2, Math.sub(-1, 1));
+        assertEquals(-1, Math.sub(-1, 0));
+        assertEquals(1, Math.sub(0, -1));
+        assertEquals(0, Math.sub(-1, -1));
+        assertEquals(0, Math.sub(Integer.MAX_VALUE, Integer.MAX_VALUE));
+        assertEquals(0, Math.sub(Integer.MIN_VALUE, Integer.MIN_VALUE));
+    }
+
+    @Test
     public void extended_gcd() {
         assertArrayEquals(new int[]{-9, 47}, Math.extended_gcd(240, 46));
+    }
+
+    @Test
+    public void neg() {
+        assertEquals(0, Math.neg(0));
+        assertEquals(-1, Math.neg(1));
+        assertEquals(1, Math.neg(-1));
+    }
+
+    @Test
+    public void mul() {
+        assertEquals(81, Math.mul(9, 9));
+        assertEquals(-81, Math.mul(9, -9));
+        assertEquals(-81, Math.mul(-9, 9));
+        assertEquals(81, Math.mul(-9, -9));
     }
 }

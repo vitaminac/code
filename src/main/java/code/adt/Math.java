@@ -64,6 +64,38 @@ public class Math {
         else return sum(result, carry);
     }
 
+    public static int neg(int n) {
+        return sum(~n, 1);
+    }
+
+    public static int sub(int a, int b) {
+        return sum(a, neg(b));
+    }
+
+    public static int mul(int multiplicand, int multiplier) {
+        boolean willBeNegative = false;
+        int product = 0;
+        if ((multiplicand & 0x80000) != 0) {
+            multiplicand = neg(multiplicand);
+            willBeNegative = true;
+        }
+        if ((multiplier & 0x80000) != 0) {
+            multiplier = neg(multiplier);
+            willBeNegative = !willBeNegative;
+        }
+        while (multiplier != 0) {
+            if ((multiplier & 1) != 0) {
+                product = sum(product, multiplicand);
+            }
+            multiplicand <<= 1;
+            multiplier >>= 1;
+        }
+        if (willBeNegative) {
+            product = neg(product);
+        }
+        return product;
+    }
+
     public static int[] extended_gcd(int a, int b) {
         int s = 0;
         int old_s = 1;
