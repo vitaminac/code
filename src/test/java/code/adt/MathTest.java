@@ -2,6 +2,8 @@ package code.adt;
 
 import org.junit.Test;
 
+import java.math.BigInteger;
+
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -132,5 +134,10 @@ public class MathTest {
     @Test
     public void exp_mod() {
         assertEquals(Math.pow(5, 3) % 13, Math.exp_mod(5, 3, 13));
+    }
+
+    @Test
+    public void karatsuba_mul() {
+        assertEquals(BigInteger.valueOf(123456789).multiply(BigInteger.valueOf(987654321)), Math.karatsuba_mul(BigInteger.valueOf(123456789), BigInteger.valueOf(987654321)));
     }
 }

@@ -43,6 +43,7 @@ How to become a good developer?
 - [ ] Code Complete
 - [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
 - [ ] Agile Software Development, Principles, Patterns, and Practices
+- [ ] [The Architecture of Open Source Applications](http://aosabook.org/)
 
 ## Inteviews
 
@@ -66,7 +67,6 @@ How to become a good developer?
 ## Roadmap
 
 * [MIT Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
-* [MIT Open Courseware: Electrical Engineering and Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/)
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
 * [Stanford Undergraduate Programs in Electrical Engineering](https://exploredegrees.stanford.edu/schoolofengineering/electricalengineering)
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
@@ -88,6 +88,8 @@ How to become a good developer?
 * [edX](https://www.edx.org/)
 * [Khan Academy](https://www.khanacademy.org/)
 * [Udacity](https://www.udacity.com/)
+* [MIT Open Courseware](https://ocw.mit.edu)
+* [Harvard Online Courses](https://online-learning.harvard.edu/)
 * [Udemy](https://www.udemy.com/)
 
 ## Practices
