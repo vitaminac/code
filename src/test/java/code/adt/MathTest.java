@@ -128,4 +128,9 @@ public class MathTest {
         assertArrayEquals(new long[]{-9, -5}, Math.divide(-86, 9));
         assertArrayEquals(new long[]{-9, 5}, Math.divide(86, -9));
     }
+
+    @Test
+    public void exp_mod() {
+        assertEquals(Math.pow(5, 3) % 13, Math.exp_mod(5, 3, 13));
+    }
 }

@@ -231,4 +231,36 @@ public class Math {
         }
         return new int[]{old_s, old_t};
     }
+
+    public static long pow(long base, int exp) {
+        if (exp == 0) return 1;
+        else if (exp % 2 == 0) return pow(base * base, exp / 2);
+        else return pow(base * base, exp / 2) * base;
+    }
+
+    /*
+     * The operation of modular exponentiation calculates the remainder
+     * when an integer b (the base) raised to the eth power (the exponent),
+     * b^e, is divided by a positive integer m
+     */
+    public static long exp_mod(long base, long exp, long m) {
+        long result = 1;
+        // exponent e be converted to binary notation
+        // e = ∑ n-1, i=0 , ai*2^i; a∈{0,1}
+        // b^e = b ^ ∑n-1,i=0 = ∏ n-1, i=0, (b^2^i)^ai
+        // result_ = ∏ n-1, i=0 (b^2^i)^ai (mod m)
+        while (exp > 0) {
+            // if ai = 0; pass; because n^0 = 1
+            // if ai = 1; (b^2^i * (∏ i-1, j=0, (b^2^j)^aj mod m)) mod m
+            if ((exp & 0x1) != 0) {
+                // ab mod m ≡ (a * (b mod m)) mod m
+                result = (result * base) % m;
+            }
+            // a ≡ b mod m => a^2 ≡ b^2 mod m
+            // b^2^(i+1) ≡ (b^2^(i) * b^2^(i)) mod m
+            base = (base * base) % m;
+            exp >>= 1;
+        }
+        return result;
+    }
 }
