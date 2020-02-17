@@ -90,11 +90,13 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
 
     @Override
     public int indexOf(E element) {
-        for (int i = 0; i < this.size(); i++) {
-            if (this.elements[i].equals(element)) {
-                return i;
-            }
-        }
+        for (int i = 0; i < this.size(); i++) if (this.elements[i].equals(element)) return i;
+        return -1;
+    }
+
+    // Returns the index of the last occurrence of the specified element
+    public int lastIndexOf(E element) {
+        for (int i = this.size; i > 0; i--) if (this.elements[i].equals(element)) return i;
         return -1;
     }
 
@@ -158,5 +160,9 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
 
     public static <E extends Comparable<? super E>> int binarySearch(ArrayList<E> list, E key) {
         return Arrays.binarySearch(list.elements, key);
+    }
+
+    public static <E> void sort(ArrayList<E> list, Comparator<? super E> comparator) {
+        Arrays.quicksort(list.elements, 0, list.size() - 1, comparator);
     }
 }

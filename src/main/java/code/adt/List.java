@@ -10,4 +10,6 @@ public interface List<E> extends Enumerable<E>, RandomAccess<E> {
     E remove(int index);
 
     int indexOf(E element);
+
+    int lastIndexOf(E element);
 }
