@@ -20,30 +20,33 @@ public class MaximumBipartiteMatching {
         // flow from source to all M nodes
         for (int i = 1; i <= M; i++) graph[source].add(i);
 
-        // flow from N nodes to sink
+        // flow from all N nodes to sink
         for (int i = M + 1; i <= M + N; i++) graph[i].add(sink);
 
-        // build graph
+        // build graph connection from input
         for (int i = 0; i < M; i++) for (int j = 0; j < N; j++) if (matches[i][j]) graph[i + 1].add(j + M + 1);
 
         int max_flow = 0;
 
+        // Ford-Fulkerson, reference: Introduction to algorithm - pages 708~730
         int[] parent = new int[graph.length];
         Arrays.fill(parent, -1);
         Queue<Integer> q = new LinkedList<>();
         q.add(source);
-        // bfs search for all possible residual path
+        // bfs search for all possible residual paths
         while (!q.isEmpty()) {
             int u = q.remove();
             for (int v : graph[u]) {
                 if (v == sink) {
-                    // increase augmenting path
+                    // found augmenting path
                     while (v != source) {
+                        // remove the path and add the reverse direction
                         graph[u].remove(v);
                         graph[v].add(u);
                         v = u;
                         u = parent[u];
                     }
+                    // increase value
                     max_flow += 1;
                     Arrays.fill(parent, -1);
                     q.clear();
