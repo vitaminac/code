@@ -1,6 +1,6 @@
 package code;
 
-import code.codechef.LEAPY;
+import code.concurso.RepartoDeHabitaciones;
 import org.junit.Test;
 
 import java.io.*;
@@ -116,6 +116,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(LEAPY.class, null);
+        Judge.judge(RepartoDeHabitaciones.class, null);
     }
 }
