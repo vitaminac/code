@@ -23,12 +23,12 @@ public class MaximumBipartiteMatching {
         // flow from all N nodes to sink
         for (int i = M + 1; i <= M + N; i++) graph[i].add(sink);
 
-        // build graph connection from input
+        // build graph connections from input
         for (int i = 0; i < M; i++) for (int j = 0; j < N; j++) if (matches[i][j]) graph[i + 1].add(j + M + 1);
 
         int max_flow = 0;
 
-        // Ford-Fulkerson, reference: Introduction to algorithm - pages 708~730
+        // Ford-Fulkerson, see reference: Introduction to algorithm - pages 708~730
         int[] parent = new int[graph.length];
         Arrays.fill(parent, -1);
         Queue<Integer> q = new LinkedList<>();
@@ -48,6 +48,7 @@ public class MaximumBipartiteMatching {
                     }
                     // increase value
                     max_flow += 1;
+                    // reset open-set, close-set
                     Arrays.fill(parent, -1);
                     q.clear();
                     q.add(source);
