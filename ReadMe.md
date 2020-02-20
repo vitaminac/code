@@ -25,6 +25,7 @@ How to become a good developer?
 - [ ] [Structure and Interpretation of Computer Programs](https://web.mit.edu/alexmv/6.037/sicp.pdf)
 - [ ] [Numerical Recipes](http://numerical.recipes)
 - [ ] What is Mathematics
+- [x] 数学之美
 
 ### Algorithms
 
@@ -33,6 +34,8 @@ How to become a good developer?
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+- [ ] Programming Pearls
+- [ ] 编程之美
 
 ## Software Engineering
 
@@ -43,15 +46,6 @@ How to become a good developer?
 - [ ] Code Complete
 - [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
 - [ ] Agile Software Development, Principles, Patterns, and Practices
-- [ ] [The Architecture of Open Source Applications](http://aosabook.org/)
-
-## Inteviews
-
-- [x] 数学之美
-- [ ] Programming Pearls
-- [ ] 编程之美
-- [ ] [CRACKING the CODING INTERVIEW](http://www.crackingthecodinginterview.com/)
-- [ ] 剑指offer
 
 ## Courses
 
@@ -59,10 +53,6 @@ How to become a good developer?
 - [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
-- [ ] [Algorithms Specialization](https://www.coursera.org/specializations/algorithms)
-- [ ] [Data Structures and Algorithms Specialization](https://www.coursera.org/specializations/data-structures-algorithms)
-- [ ] [Functional Programming in Scala Specialization](https://www.coursera.org/specializations/scala)
-- [ ] [Coursera: Parallel, Concurrent, and Distributed Programming in Java Specialization](https://www.coursera.org/specializations/pcdp)
 
 ## Roadmap
 
@@ -89,20 +79,6 @@ How to become a good developer?
 * [Khan Academy](https://www.khanacademy.org/)
 * [Udacity](https://www.udacity.com/)
 * [MIT Open Courseware](https://ocw.mit.edu)
-* [Harvard Online Courses](https://online-learning.harvard.edu/)
-* [Udemy](https://www.udemy.com/)
-
-## Practices
-
-* [GitHub](https://github.com/)
-* [Stack Overflow](https://stackoverflow.com/)
-
-## Online Degree
-
-* [University of London Bachelor of Computer Science](https://www.coursera.org/degrees/bachelor-of-science-computer-science-london)
-* [Georgia Tech OMSCS](http://www.omscs.gatech.edu/)
-* [Illinois Master of Computer Science](https://www.coursera.org/degrees/master-of-computer-science-illinois)
-* [Texas at Austin Master of Computer Science](https://www.edx.org/masters/online-master-science-computer-science-utaustinx)
 
 ## Researches
 
