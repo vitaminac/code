@@ -2,13 +2,7 @@ package code.adt.dict;
 
 import java.util.function.Consumer;
 
-/**
- * https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-579.pdf
- * http://www.cse.chalmers.se/~tsigas/papers/SLIDES/Lock-free%20Skip%20Lists%20and%20Priority%20Queues.ppt
- * http://www.cs.tau.ac.il/~shanir/nir-pubs-web/Papers/OPODIS2006-BA.pdf
- * TODO: ConcurrentSkipListMap
- */
-public class ConcurrentSkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V> {
+public class SkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V> {
     private static class Node<E> {
         private E element;
         private Node<E> next;
@@ -22,10 +16,6 @@ public class ConcurrentSkipListMap<K extends Comparable<K>, V> implements Dictio
         public String toString() {
             return "Element:" + element + "; Next: " + (next == null ? null : next.element) + "; Down:" + (down == null ? null : down.element);
         }
-    }
-
-    private static class IndexNode<E> {
-
     }
 
     private final Vocabulary<K, V> MIN_SENTIMENTAL = new Vocabulary<>(null, null) {
