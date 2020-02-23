@@ -133,7 +133,7 @@ public class MathTest {
 
     @Test
     public void exp_mod() {
-        assertEquals(Math.pow(5, 3) % 13, Math.exp_mod(5, 3, 13));
+        assertEquals(Math.pow(5, 3) % 13, Math.pow_mod(5, 3, 13));
     }
 
     @Test

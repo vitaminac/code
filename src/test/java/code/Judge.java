@@ -1,6 +1,6 @@
 package code;
 
-import code.concurso.RepartoDeHabitaciones;
+import code.atcoder.abc42.IrohaAndGrid;
 import org.junit.Test;
 
 import java.io.*;
@@ -96,7 +96,8 @@ public class Judge {
                 "code.concurso",
                 "code.kickstart",
                 "code.onlinejudge",
-                "code.spoj"
+                "code.spoj",
+                "code.atcoder"
         };
         for (String pkg : packages) {
             for (Utils.Pair pair : Utils.getResources(pkg, "class")) {
@@ -116,6 +117,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(RepartoDeHabitaciones.class, null);
+        Judge.judge(IrohaAndGrid.class, null);
     }
 }

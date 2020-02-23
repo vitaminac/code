@@ -4,6 +4,22 @@ import java.math.BigInteger;
 import java.util.function.DoubleUnaryOperator;
 
 public class Math {
+    public static int abs(int n) {
+        return n < 0 ? -n : n;
+    }
+
+    public static double abs(double n) {
+        return n < 0 ? -n : n;
+    }
+
+    public static int min(int a, int b) {
+        return a < b ? a : b;
+    }
+
+    public static int max(int a, int b) {
+        return a > b ? a : b;
+    }
+
     public static final double PI = 3.14159265358979323846;
 
     public static double sin(double radian) {
@@ -26,24 +42,6 @@ public class Math {
             divisor *= -1 * (i + 1) * (i + 2);
         }
         return cos;
-    }
-
-    public static int abs(int n) {
-        return n < 0 ? -n : n;
-    }
-
-    public static double abs(double n) {
-        return n < 0 ? -n : n;
-    }
-
-    public static int min(int a, int b) {
-        if (a < b) return a;
-        else return b;
-    }
-
-    public static int max(int a, int b) {
-        if (a > b) return a;
-        else return b;
     }
 
     public static double sqrt(double n, double epsilon) {
@@ -251,23 +249,25 @@ public class Math {
      * The operation of modular exponentiation calculates the remainder
      * when an integer b (the base) raised to the eth power (the exponent),
      * b^e, is divided by a positive integer m
+     * the modular exponentiation c is c = b^e mod m
      */
-    public static long exp_mod(long base, long exp, long m) {
+    public static long pow_mod(long base, long exp, long modulo) {
         long result = 1;
+        base = base % modulo;
         // exponent e be converted to binary notation
-        // e = ∑ n-1, i=0 , ai*2^i; a∈{0,1}
-        // b^e = b ^ ∑n-1,i=0 = ∏ n-1, i=0, (b^2^i)^ai
-        // result_ = ∏ n-1, i=0 (b^2^i)^ai (mod m)
+        // exp = ∑_{i=0}^{n-1} exp_i*2^i; exp_i in {0, 1}
+        // base^e = base^{∑_{i=0}^{n-1} exp_i*2^i} = ∏_{i=0}^{n-1} base^2^i)^exp_i
+        // result = ∏_{i=0}^{n-1} (b^2^i)^exp_i (mod m)
         while (exp > 0) {
-            // if ai = 0; pass; because n^0 = 1
-            // if ai = 1; (b^2^i * (∏ i-1, j=0, (b^2^j)^aj mod m)) mod m
+            // if exp_i = 0; pass; because base^0 = 1
+            // if exp_i = 1; (b^2^i * (∏_{j=0}^{i-1} (b^2^j)^exp_j mod m)) mod m
             if ((exp & 0x1) != 0) {
                 // ab mod m ≡ (a * (b mod m)) mod m
-                result = (result * base) % m;
+                result = (result * base) % modulo;
             }
             // a ≡ b mod m => a^2 ≡ b^2 mod m
             // b^2^(i+1) ≡ (b^2^(i) * b^2^(i)) mod m
-            base = (base * base) % m;
+            base = (base * base) % modulo;
             exp >>= 1;
         }
         return result;
