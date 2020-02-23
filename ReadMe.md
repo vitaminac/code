@@ -35,7 +35,6 @@ How to become a good developer?
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] Programming Pearls
-- [ ] 编程之美
 
 ## Software Engineering
 
