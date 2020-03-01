@@ -1,6 +1,6 @@
 package code;
 
-import code.atcoder.abc42.IrohaAndGrid;
+import code.aceptaelreto.P451HuyendoDeLosZombis;
 import org.junit.Test;
 
 import java.io.*;
@@ -117,6 +117,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(IrohaAndGrid.class, null);
+        Judge.judge(P451HuyendoDeLosZombis.class, null);
     }
 }

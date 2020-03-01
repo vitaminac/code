@@ -15,6 +15,9 @@ public class DijkstraShortestPath {
         // Assign a distance value to all vertices in the input graph. Initialize all distance values as INFINITE.
         double[] distances = new double[g.size()];
         Arrays.fill(distances, Double.POSITIVE_INFINITY);
+        // keep path
+        int[] parent = new int[g.size()];
+        Arrays.fill(parent, -1);
         // Set distance from source to it self is zero
         distances[u] = 0.0;
         candidate.add(new SimpleWeightedEdge(u, u, 0.0));
@@ -24,7 +27,7 @@ public class DijkstraShortestPath {
             SimpleWeightedEdge nearest;
             do {
                 nearest = candidate.remove();
-            } while (!visited[nearest.getDestination()]);
+            } while (visited[nearest.getDestination()]);
             // Include v to visited.
             visited[nearest.getDestination()] = false;
             // Calculate the distance of next vertex
@@ -34,10 +37,12 @@ public class DijkstraShortestPath {
                 // Update distance value of all adjacent vertices of u
                 if (nextDistance < distances[edge.getDestination()]) {
                     distances[edge.getDestination()] = nextDistance;
+                    parent[edge.getDestination()] = nearest.getDestination();
                 }
                 candidate.add(new SimpleWeightedEdge(u, edge.getDestination(), nextDistance));
             }
         }
+        Arrays.stream(parent).forEach(System.out::println);
         return distances;
     }
 }
