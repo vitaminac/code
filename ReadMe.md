@@ -6,13 +6,6 @@ How to become a good developer?
 
 ### Programming
 
-- [x] C Primer Plus
-- [ ] C++ Primer Plus
-- [ ] C++ Primer
-- [ ] Inside the C++ Object Model
-- [ ] Modern C++ Design
-- [ ] Effective C++ Digital Collection: 140 Ways to Improve Your Programming
-- [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Design patterns implemented in Java](https://github.com/iluwatar/java-design-patterns)
@@ -22,7 +15,6 @@ How to become a good developer?
 
 - [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] Discrete Mathematics and Its Applications
-- [ ] [Structure and Interpretation of Computer Programs](https://web.mit.edu/alexmv/6.037/sicp.pdf)
 - [ ] [Numerical Recipes](http://numerical.recipes)
 - [ ] What is Mathematics
 - [x] 数学之美
@@ -68,7 +60,8 @@ How to become a good developer?
 
 ## Project
 
-* [Java Utils](https://github.com/openjdk/jdk/tree/master/src/java.base/share/classes/java/util)
+* [OpenJDK](http://openjdk.java.net/)
+* [Spring](https://github.com/spring-projects)
 * [C# Generic](https://github.com/dotnet/runtime/tree/master/src/libraries/System.Collections/src/System/Collections/Generic)
 
 ## Learn
