@@ -1,6 +1,8 @@
 package code.geeksforgeeks.concurrent;
 
-import java.util.Scanner;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 public class BakeryAlgorithmTest {
     private static class Agent implements Runnable {
@@ -24,9 +26,10 @@ public class BakeryAlgorithmTest {
         }
     }
 
-    public static void main(String[] args) throws Exception {
+    @Test
+    public void test() throws Exception {
         int NUM_THREAD = 10;
-        int iteration = new Scanner(System.in).nextInt();
+        int iteration = 1000;
 
         final BakeryAlgorithm<Integer> mutex = new BakeryAlgorithm<>(new BakeryAlgorithm.Resource<Integer>() {
             private volatile int resource = 0;
@@ -207,6 +210,6 @@ public class BakeryAlgorithmTest {
             threads[i].join();
         }
 
-        System.out.println(mutex.getResource().get());
+        assertEquals(10000, (long) mutex.getResource().get());
     }
 }
