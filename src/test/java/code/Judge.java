@@ -1,6 +1,6 @@
 package code;
 
-import code.poj.P1985CowMarathon;
+import code.aceptaelreto.P215DeReConstruccion;
 import org.junit.Test;
 
 import java.io.*;
@@ -118,6 +118,6 @@ public class Judge {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P1985CowMarathon.class, null);
+        Judge.judge(P215DeReConstruccion.class, null);
     }
 }
