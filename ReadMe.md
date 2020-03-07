@@ -11,20 +11,13 @@ How to become a good developer?
 - [ ] [Design patterns implemented in Java](https://github.com/iluwatar/java-design-patterns)
 - [ ] [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/a/2707195/9980245)
 
-### Computer Science
-
-- [ ] Concrete Mathematics: Foundation for Computer Science
-- [ ] Discrete Mathematics and Its Applications
-- [ ] [Numerical Recipes](http://numerical.recipes)
-- [ ] What is Mathematics
-- [x] 数学之美
-
 ### Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
+- [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] Programming Pearls
 
