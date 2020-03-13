@@ -1,4 +1,4 @@
-package code.onlinejudge;
+package code.uva;
 
 import java.io.PrintWriter;
 import java.util.Arrays;

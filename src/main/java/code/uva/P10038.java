@@ -1,4 +1,4 @@
-package code.onlinejudge;
+package code.uva;
 
 import java.util.Scanner;
 

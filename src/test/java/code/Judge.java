@@ -95,7 +95,7 @@ public class Judge {
                 "code.codeforces",
                 "code.concurso",
                 "code.kickstart",
-                "code.onlinejudge",
+                "code.uva",
                 "code.poj",
                 "code.spoj",
                 "code.atcoder"
