@@ -8,8 +8,11 @@ How to become a good developer?
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
-- [ ] [Design patterns implemented in Java](https://github.com/iluwatar/java-design-patterns)
+- [ ] [Design Patterns](https://github.com/iluwatar/java-design-patterns)
 - [ ] [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/a/2707195/9980245)
+- [ ] Clean Code
+- [ ] Code Complete
+- [ ] Refactoring: Improving the Design of Existing Code
 
 ### Algorithms
 
@@ -20,16 +23,6 @@ How to become a good developer?
 - [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] Programming Pearls
-
-## Software Engineering
-
-- [ ] Clean Code
-- [ ] Clean Architecture
-- [ ] Clean Coder
-- [ ] Refactoring: Improving the Design of Existing Code
-- [ ] Code Complete
-- [ ] Domain-Driven Design: Tackling Complexity in the Heart of Software
-- [ ] Agile Software Development, Principles, Patterns, and Practices
 
 ## Courses
 
