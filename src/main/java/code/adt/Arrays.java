@@ -1,8 +1,9 @@
 package code.adt;
 
 import java.util.Comparator;
+import java.util.function.Consumer;
 
-public class Arrays {
+public final class Arrays {
     @SuppressWarnings("unchecked")
     public static <E> E[] copyFrom(E[] arr, int from, int length) {
         E[] clone = (E[]) new Object[length];
@@ -114,5 +115,64 @@ public class Arrays {
 
     public static <E extends Comparable<? super E>> void mergesort(E[] arr) {
         mergesort(arr, E::compareTo);
+    }
+
+    public static <E> List<E> asList(final E[] elements) {
+        return new List<E>() {
+            @Override
+            public boolean isEmpty() {
+                return elements.length == 0;
+            }
+
+            @Override
+            public void clear() {
+                throw new RuntimeException();
+            }
+
+            @Override
+            public void insert(int index, E element) {
+                throw new RuntimeException();
+            }
+
+            @Override
+            public E remove(int index) {
+                throw new RuntimeException();
+            }
+
+            @Override
+            public int indexOf(E element) {
+                for (int i = 0; i < elements.length; i++) {
+                    if (elements[i].equals(element)) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            @Override
+            public int lastIndexOf(E element) {
+                for (int i = elements.length - 1; i >= 0; i--) {
+                    if (elements[i].equals(element)) {
+                        return i;
+                    }
+                }
+                return -1;
+            }
+
+            @Override
+            public void forEach(Consumer<? super E> consumer) {
+                for (var e : elements) consumer.accept(e);
+            }
+
+            @Override
+            public E get(int index) {
+                return elements[index];
+            }
+
+            @Override
+            public void set(int index, E element) {
+                throw new RuntimeException();
+            }
+        };
     }
 }
