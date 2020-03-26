@@ -413,7 +413,7 @@ ASALocalRun/
 .idea/*
 /.idea/
 /daa.iml
-/src/test/java/TestCode.java
+/proc-test/src/test/java/TestCode.java
 
 .classpath
 .project

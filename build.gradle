@@ -20,7 +20,6 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'scala'
 
     version = '1.0'
     group 'code'
@@ -28,6 +27,7 @@ subprojects {
 
     dependencies {
         compile group: 'commons-io', name: 'commons-io', version: '2.6'
+        testCompile group: 'junit', name: 'junit', version: "${junit4Version}"
     }
 
     compileJava.options.encoding = "UTF-8"

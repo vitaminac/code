@@ -1,3 +1,5 @@
+package proc;
+
 import com.google.auto.service.AutoService;
 
 import javax.annotation.processing.AbstractProcessor;
@@ -18,7 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@SupportedAnnotationTypes("BuilderProperty")
+@SupportedAnnotationTypes("proc.BuilderProperty")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @AutoService(Processor.class)
 public class BuilderProcessor extends AbstractProcessor {
@@ -35,7 +37,7 @@ public class BuilderProcessor extends AbstractProcessor {
             List<Element> setters = annotatedMethods.get(true);
             List<Element> otherMethods = annotatedMethods.get(false);
             otherMethods.forEach(element -> processingEnv.getMessager()
-                    .printMessage(Diagnostic.Kind.ERROR, "@BuilderProperty must be applied to a setXxx method " + "with a single argument", element));
+                    .printMessage(Diagnostic.Kind.ERROR, "@proc.BuilderProperty must be applied to a setXxx method " + "with a single argument", element));
             String className = ((TypeElement) setters.get(0).getEnclosingElement())
                     .getQualifiedName().toString();
             Map<String, String> setterMap = setters.stream().collect(Collectors

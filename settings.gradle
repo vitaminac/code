@@ -2,3 +2,5 @@ rootProject.name = 'code'
 
 include 'core'
 include 'judge'
+include 'proc'
+include 'proc-test'
