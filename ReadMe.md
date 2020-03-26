@@ -48,6 +48,7 @@ How to become a good developer?
 
 * [OpenJDK](http://openjdk.java.net/)
 * [Spring](https://github.com/spring-projects)
+* [Kotlin](https://github.com/JetBrains/kotlin)
 * [C# Generic](https://github.com/dotnet/runtime/tree/master/src/libraries/System.Collections/src/System/Collections/Generic)
 
 ## Learn

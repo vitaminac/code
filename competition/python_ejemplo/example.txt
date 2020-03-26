@@ -1,0 +1,4 @@
+1;Elena;Pérez;05/03/1990
+2;Manuel;Heredia;26/12/1972
+3;Rosa;Campos;12/06/1981
+4;David;García;25/07/2003
