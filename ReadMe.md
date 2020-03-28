@@ -13,12 +13,14 @@ How to become a good developer?
 - [ ] Clean Code
 - [ ] Code Complete
 - [ ] Refactoring: Improving the Design of Existing Code
+- [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 
 ### Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
+- [ ] [E-Maxx Algorithms](https://cp-algorithms.com/)
 - [ ] The Art of Multiprocessor Programming
 - [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)

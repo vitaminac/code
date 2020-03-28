@@ -238,11 +238,13 @@ public class Math {
 
     /*
      * Exponentiation by squaring
+     *
+     * https://cp-algorithms.com/algebra/binary-exp.html
      */
-    public static long pow(long base, int exp) {
+    public static long binpow(long base, int exp) {
         if (exp == 0) return 1;
-        else if (exp % 2 == 0) return pow(base * base, exp / 2);
-        else return pow(base, exp - 1) * base;
+        else if (exp % 2 == 0) return binpow(base * base, exp / 2);
+        else return binpow(base, exp - 1) * base;
     }
 
     /*
@@ -250,8 +252,10 @@ public class Math {
      * when an integer b (the base) raised to the eth power (the exponent),
      * b^e, is divided by a positive integer m
      * the modular exponentiation c is c = b^e mod m
+     *
+     * https://cp-algorithms.com/algebra/binary-exp.html
      */
-    public static long pow_mod(long base, long exp, long modulo) {
+    public static long bin_pow_mod(long base, long exp, long modulo) {
         long result = 1;
         base = base % modulo;
         // exponent e be converted to binary notation
