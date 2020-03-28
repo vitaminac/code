@@ -1,4 +1,4 @@
-package code.algs4.fundamentals.stacks;
+package algs4.fundamentals.stacks;
 
 import code.adt.SinglyLinkedList;
 import code.adt.Stack;

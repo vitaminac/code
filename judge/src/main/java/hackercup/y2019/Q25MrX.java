@@ -1,4 +1,4 @@
-package code.hackercup.y2019;
+package hackercup.y2019;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;

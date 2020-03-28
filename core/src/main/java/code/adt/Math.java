@@ -236,6 +236,28 @@ public class Math {
         return new int[]{old_s, old_t};
     }
 
+    public static long[] identity(int n) {
+        long[] mat = new long[n * n];
+        for (int i = 0; i < n; i++) mat[i * n + i] = 1;
+        return mat;
+    }
+
+    public static long[] mat_mul(long[] mat1, long[] mat2, int l, int m, int n) {
+        long[] result = new long[l * n];
+        for (int i = 0; i < l; i++) {
+            for (int j = 0; j < n; j++) {
+                for (int k = 0; k < m; k++) {
+                    result[i * l + j] += mat1[i * m + k] * mat2[k * n + j];
+                }
+            }
+        }
+        return result;
+    }
+
+    public static long permutation(long n, int k) {
+        return binpow(n, k);
+    }
+
     /*
      * Exponentiation by squaring
      *
@@ -243,7 +265,7 @@ public class Math {
      */
     public static long binpow(long base, int exp) {
         if (exp == 0) return 1;
-        else if (exp % 2 == 0) return binpow(base * base, exp / 2);
+        else if ((exp & 0x1) == 0) return binpow(base * base, exp >> 1);
         else return binpow(base, exp - 1) * base;
     }
 
@@ -273,6 +295,22 @@ public class Math {
             // b^2^(i+1) ≡ (b^2^(i) * b^2^(i)) mod m
             base = (base * base) % modulo;
             exp >>= 1;
+        }
+        return result;
+    }
+
+    public static long[] bin_pow_mat(long[] base, int n, long exp) {
+        if (exp == 0) return identity(n);
+        else if ((exp & 0x1) == 0) return bin_pow_mat(mat_mul(base, base, n, n, n), n, exp >> 1);
+        else return mat_mul(bin_pow_mat(base, n, exp - 1), base, n, n, n);
+    }
+
+    public static long[] transform(long[] transformation, long[] vec, int m, int n) {
+        long[] result = new long[m];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                result[i] += transformation[i * n + j] * vec[j];
+            }
         }
         return result;
     }

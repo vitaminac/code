@@ -2,20 +2,9 @@ package atcoder.abc42;
 
 import java.util.Scanner;
 
-public class IrohaAndGrid {
-    private static long pow_mod(long base, long exp, long modulo) {
-        long result = 1;
-        base = base % modulo;
-        while (exp > 0) {
-            if ((exp & 0x1) != 0) {
-                result = (result * base) % modulo;
-            }
-            base = (base * base) % modulo;
-            exp >>= 1;
-        }
-        return result;
-    }
+import static code.adt.Math.bin_pow_mod;
 
+public class IrohaAndGrid {
     private static final int MOD = 1000000007;
     private static final int MAX_N = 200005;
     private static final long[] MODULAR_INVERSE = new long[MAX_N];
@@ -26,7 +15,7 @@ public class IrohaAndGrid {
         for (int i = 1; i < MAX_N; i++) FACTORIAL[i] = FACTORIAL[i - 1] * i % MOD;
         // in the special case where m is a prime
         // a modular inverse is given by a^{-1} = a^{m-2} mod m
-        MODULAR_INVERSE[MAX_N - 1] = pow_mod(FACTORIAL[MAX_N - 1], MOD - 2, MOD);
+        MODULAR_INVERSE[MAX_N - 1] = bin_pow_mod(FACTORIAL[MAX_N - 1], MOD - 2, MOD);
         // same as divide FACTORIAL[0]
         MODULAR_INVERSE[0] = 1;
         // 1^{-1} = 1 mod p
