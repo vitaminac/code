@@ -1,11 +1,11 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.apache.commons.io.IOUtils;
 import org.h2.jdbc.JdbcSQLException;
 import org.junit.*;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.lang.reflect.Type;
 import java.sql.*;
@@ -52,6 +52,16 @@ public final class JudgeSQL {
                 return null;
             }
         }
+    }
+
+    private static String readAllString(Reader reader) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        char[] buffer = new char[1024];
+        int len;
+        while ((len = reader.read(buffer)) >= 0) {
+            sb.append(buffer, 0, len);
+        }
+        return sb.toString();
     }
 
     private static final Gson gson = new Gson();
@@ -116,18 +126,18 @@ public final class JudgeSQL {
 
             statement.execute("DROP ALL OBJECTS");
 
-            String testcaseConfig = IOUtils.toString(testCaseReader);
+            String testcaseConfig = readAllString(testCaseReader);
             final SQLSchema sqlTestCase = gson.fromJson(testcaseConfig, SQLSchema.class);
             statement.execute(sqlTestCase.toString());
 
             Type resultType = new TypeToken<ArrayList<SQLResult>>() {
             }.getType();
 
-            String outputConfig = IOUtils.toString(outputReader);
+            String outputConfig = readAllString(outputReader);
             ArrayList<SQLResult> expected = gson.fromJson(outputConfig, resultType);
 
 
-            String SQL = IOUtils.toString(sqlReader);
+            String SQL = readAllString(sqlReader);
             StringBuilder sb = new StringBuilder();
             sb.append('[');
             final Iterator<String> it = Arrays.asList(SQL.split("\n\n")).iterator();

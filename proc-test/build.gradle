@@ -1,0 +1,4 @@
+dependencies {
+    compileOnly project(':proc')
+    annotationProcessor project(':proc')
+}

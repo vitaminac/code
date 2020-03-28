@@ -1,13 +1,14 @@
 version 'studying'
-
 apply plugin: 'idea'
 
 buildscript {
     repositories {
+        mavenCentral()
         jcenter()
     }
 
-    dependencies {}
+    dependencies {
+    }
 }
 
 allprojects {
@@ -26,7 +27,7 @@ subprojects {
     ext.junit4Version = '4.12'
 
     dependencies {
-        compile group: 'commons-io', name: 'commons-io', version: '2.6'
+        compile "org.jetbrains:annotations:16.0.2"
         testCompile group: 'junit', name: 'junit', version: "${junit4Version}"
     }
 
@@ -37,11 +38,5 @@ subprojects {
         jvmArgs = ["-Djava.compiler=NONE", "-Dfile.encoding=UTF8", "-Dline.separator=\n", "-ea"]
         testLogging.showStandardStreams = true
         testLogging.exceptionFormat = 'full'
-    }
-}
-
-project(":judge") {
-    dependencies {
-        //implementation project(':core')
     }
 }
