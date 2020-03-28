@@ -2,7 +2,7 @@ package codeforces;
 
 import java.util.Scanner;
 
-public class P997 {
+public class P977A {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
             int N = sc.nextInt();
