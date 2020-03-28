@@ -1,8 +1,4 @@
-apply plugin: 'scala'
-
 dependencies {
     testCompile group: 'org.apache.commons', name: 'commons-math3', version: '3.2'
     compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    compile group: 'edu.rice.pcdp', name: 'pcdp-core', version: '0.0.4-SNAPSHOT'
-    compile "org.scala-lang:scala-library:2.12.10"
 }

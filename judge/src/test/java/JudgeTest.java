@@ -1,4 +1,4 @@
-import code.aceptaelreto.P288PetrolerosHundidos;
+import aceptaelreto.P288PetrolerosHundidos;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -7,15 +7,15 @@ public class JudgeTest {
         int n_all_tests = 0;
         int n_failed = 0;
         String[] packages = new String[]{
-                "code.aceptaelreto",
-                "code.atcoder",
-                "code.codechef",
-                "code.codeforces",
-                "code.concurso",
-                "code.kickstart",
-                "code.poj",
-                "code.spoj",
-                "code.uva",
+                "aceptaelreto",
+                "atcoder",
+                "codechef",
+                "codeforces",
+                "concurso",
+                "kickstart",
+                "poj",
+                "spoj",
+                "uva",
         };
 
         for (String pkg : packages) {

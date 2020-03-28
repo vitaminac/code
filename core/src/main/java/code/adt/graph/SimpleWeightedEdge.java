@@ -1,6 +1,13 @@
 package code.adt.graph;
 
+import java.util.Comparator;
+
 public class SimpleWeightedEdge extends SimpleEdge implements WeightedEdge<Integer, SimpleWeightedEdge> {
+    private static Comparator<SimpleWeightedEdge> comparator =
+            Comparator.comparingDouble(SimpleWeightedEdge::getWeight)
+                    .thenComparingInt(SimpleEdge::getSource)
+                    .thenComparingInt(SimpleEdge::getDestination);
+
     private double weight;
 
     public SimpleWeightedEdge(int source, int destination, double weight) {
@@ -14,7 +21,7 @@ public class SimpleWeightedEdge extends SimpleEdge implements WeightedEdge<Integ
 
     @Override
     public int compareTo(SimpleWeightedEdge o) {
-        return (this.weight - o.weight) > 0 ? 1 : -1;
+        return comparator.compare(this, o);
     }
 
     @Override
