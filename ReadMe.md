@@ -8,15 +8,16 @@ How to become a good developer?
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
+- [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] [Design Patterns](https://github.com/iluwatar/java-design-patterns)
 - [ ] [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/a/2707195/9980245)
 - [ ] Clean Code
 - [ ] Code Complete
 - [ ] Refactoring: Improving the Design of Existing Code
-- [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 
 ### Algorithms
 
+- [ ] [Grokking Algorithms: An illustrated guide for programmers and other curious people](https://livebook.manning.com/book/grokking-algorithms)
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
