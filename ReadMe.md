@@ -17,12 +17,11 @@ How to become a good developer?
 
 ### Algorithms
 
-- [ ] [Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People](https://livebook.manning.com/book/grokking-algorithms)
+- [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
-- [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] Programming Pearls
 
