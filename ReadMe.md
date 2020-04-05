@@ -27,7 +27,6 @@ How to become a good developer?
 
 ## Courses
 
-- [ ] [Learning How to Learn](https://www.coursera.org/learn/learning-how-to-learn)
 - [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
 - [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
