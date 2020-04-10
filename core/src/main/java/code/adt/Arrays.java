@@ -126,17 +126,17 @@ public final class Arrays {
 
             @Override
             public void clear() {
-                throw new RuntimeException();
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public void insert(int index, E element) {
-                throw new RuntimeException();
+                throw new UnsupportedOperationException();
             }
 
             @Override
             public E remove(int index) {
-                throw new RuntimeException();
+                throw new UnsupportedOperationException();
             }
 
             @Override

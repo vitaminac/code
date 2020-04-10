@@ -1,6 +1,5 @@
 package code.adt;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.function.Consumer;
 
@@ -124,6 +123,10 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
         };
     }
 
+    public E[] toArray() {
+        return Arrays.copyFrom(this.elements, 0, this.size);
+    }
+
     private void checkIndex(int index, int size) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);
@@ -144,25 +147,5 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
             spaces[i] = this.elements[i];
         }
         this.elements = spaces;
-    }
-
-    public static <E> int binarySearch(ArrayList<E> list, E key, int low, int high, Comparator<? super E> comparator) {
-        return Arrays.binarySearch(list.elements, key, low, high, comparator);
-    }
-
-    public static <E> int binarySearch(ArrayList<E> list, E key, Comparator<? super E> comparator) {
-        return Arrays.binarySearch(list.elements, key, comparator);
-    }
-
-    public static <E extends Comparable<? super E>> int binarySearch(ArrayList<E> list, E key, int low, int high) {
-        return Arrays.binarySearch(list.elements, key, low, high);
-    }
-
-    public static <E extends Comparable<? super E>> int binarySearch(ArrayList<E> list, E key) {
-        return Arrays.binarySearch(list.elements, key);
-    }
-
-    public static <E> void sort(ArrayList<E> list, Comparator<? super E> comparator) {
-        Arrays.quicksort(list.elements, 0, list.size() - 1, comparator);
     }
 }
