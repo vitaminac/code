@@ -2,50 +2,7 @@ package geeksforgeeks.concurrent;
 
 import java.util.Scanner;
 
-/**
- * https://www.geeksforgeeks.org/operating-system-dekkers-algorithm/
- * <p>
- * To obtain such a mutual exclusion, bounded waiting,
- * and progress there have been several algorithms implemented,
- * one of which is Dekker’s Algorithm.
- * <p>
- * Dekker’s algorithm was the first provably-correct solution to the critical section problem.
- * It allows two threads to share a single-use resource without conflict,
- * using only shared memory for communication.
- * <p>
- * It avoids the strict alternation of a naïve turn-taking algorithm,
- * and was one of the first mutual exclusion algorithms to be invented.
- * <p>
- * Although there are many versions of Dekker’s Solution,
- * the final or 5th version is the one that satisfies all of the above conditions
- * and is the most efficient of them all.
- * <p>
- * Dekker’s Solution, mentioned here,
- * ensures mutual exclusion between two processes only,
- * it could be extended to more than two processes with the proper use of arrays and variables.
- * <p>
- * var flag: array [0..1] of boolean;
- * turn: 0..1;
- * repeat
- * <p>
- * flag[i] := true;
- * while flag[j] do
- * if turn = j then
- * begin
- * flag[i] := false;
- * while turn = j do no-op;
- * flag[i] := true;
- * end;
- * <p>
- * critical section
- * <p>
- * turn := j;
- * flag[i] := false;
- * <p>
- * remainder section
- * <p>
- * until false;
- */
+// https://www.geeksforgeeks.org/operating-system-dekkers-algorithm/
 public class DekkerAlgorithm implements Runnable {
     private static Turn turn;
 
