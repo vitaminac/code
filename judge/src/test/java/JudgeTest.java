@@ -1,4 +1,4 @@
-import aceptaelreto.P288PetrolerosHundidos;
+import algs4.fundamentals.stacks.WebEx5StackMax;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -8,6 +8,7 @@ public class JudgeTest {
         int n_failed = 0;
         String[] packages = new String[]{
                 "aceptaelreto",
+                "algs4",
                 "atcoder",
                 "codechef",
                 "codeforces",
@@ -39,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P288PetrolerosHundidos.class, null);
+        Judge.judge(WebEx5StackMax.class, null);
     }
 }

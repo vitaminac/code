@@ -10,7 +10,7 @@ import java.util.Scanner;
  * 10. Write a program to convert an infix expression to postfix.
  * Scan the infix expression from left to right.
  */
-class Infix2Postfix {
+public class Ex10Infix2Postfix {
     private static final int precedence[] = new int[128];
 
     static {

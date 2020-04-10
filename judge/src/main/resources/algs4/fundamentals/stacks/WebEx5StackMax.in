@@ -1,0 +1,21 @@
+push 0
+max
+push -1
+max
+push 2
+max
+push 100
+max
+push 50
+max
+pop
+max
+pop
+max
+pop
+max
+pop
+max
+pop
+push -100
+max
