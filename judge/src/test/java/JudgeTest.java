@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.WebEx5StackMax;
+import clrs.ch2.S1InsertionSort;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(WebEx5StackMax.class, null);
+        Judge.judge(S1InsertionSort.class, null);
     }
 }

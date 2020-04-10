@@ -53,15 +53,16 @@ public final class Arrays {
     public static <E> void insertion_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
         // Initialization: arr[low...low] consist of just the single element, moreover the sub-array is sorted.
         for (int i = low + 1; i <= high; i++) {
+            final E key = arr[i];
             // Maintenance: arr[low...i-1] is sorted,
             // for arr[i] we move one by one position to the right
             // until it finds the proper position i >= j >= low
             // then the sub-array arr[low...i] is sorted
-            for (int j = i - 1; j >= low && comparator.compare(arr[i], arr[j]) < 0; j--) {
-                E tmp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = tmp;
+            int j = i - 1;
+            for (; j >= low && comparator.compare(key, arr[j]) < 0; j--) {
+                arr[j + 1] = arr[j];
             }
+            arr[j + 1] = key;
         }
         // Termination: when i = high + 1 then the array arr[low...high] is sorted
     }
@@ -122,7 +123,6 @@ public final class Arrays {
     public static <E> void merge_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
         merge_sort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
     }
-
 
     public static <E> void merge_sort(E[] arr, Comparator<? super E> comparator) {
         merge_sort(arr, 0, arr.length - 1, comparator);
@@ -193,5 +193,20 @@ public final class Arrays {
                 throw new RuntimeException();
             }
         };
+    }
+
+    public static <E> String toString(final E[] elements) {
+        if (elements == null) return "null";
+        if (elements.length == 0) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append('[');
+        sb.append(elements[0]);
+        for (int i = 1; i < elements.length; i++) {
+            sb.append(',');
+            sb.append(' ');
+            sb.append(elements[i]);
+        }
+        sb.append(']');
+        return sb.toString();
     }
 }
