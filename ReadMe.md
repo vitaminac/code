@@ -2,10 +2,18 @@
 
 How to become a good developer?
 
-## Book
+## Resources
+
+### Mathematics
+
+- [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
+- [X] 数学之美
+- [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
+- [ ] Concrete Mathematics: Foundation for Computer Science
 
 ### Programming
 
+- [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
@@ -17,7 +25,6 @@ How to become a good developer?
 
 ### Algorithms
 
-- [ ] Concrete Mathematics: Foundation for Computer Science
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
@@ -25,15 +32,10 @@ How to become a good developer?
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
 - [ ] Programming Pearls
 
-## Courses
-
-- [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
-- [ ] [Coursera: Algorithms, Part I](https://www.coursera.org/learn/algorithms-part1)
-- [ ] [Coursera: Algorithms, Part II](https://www.coursera.org/learn/algorithms-part2)
-
 ## Roadmap
 
-* [MIT Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
+* [MIT EECS Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
+* [MIT Mathematics Roadmaps](https://math.mit.edu/academics/undergrad/roadmaps.php)
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
 * [Stanford Undergraduate Programs in Electrical Engineering](https://exploredegrees.stanford.edu/schoolofengineering/electricalengineering)
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
