@@ -50,7 +50,23 @@ public final class Arrays {
         return binarySearch(arr, key, E::compareTo);
     }
 
-    public static <E> void quicksort(E[] arr, int low, int high, Comparator<? super E> comparator) {
+    public static <E> void insertion_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
+        // Initialization: arr[low...low] consist of just the single element, moreover the sub-array is sorted.
+        for (int i = low + 1; i <= high; i++) {
+            // Maintenance: arr[low...i-1] is sorted,
+            // for arr[i] we move one by one position to the right
+            // until it finds the proper position i >= j >= low
+            // then the sub-array arr[low...i] is sorted
+            for (int j = i - 1; j >= low && comparator.compare(arr[i], arr[j]) < 0; j--) {
+                E tmp = arr[j];
+                arr[j] = arr[i];
+                arr[i] = tmp;
+            }
+        }
+        // Termination: when i = high + 1 then the array arr[low...high] is sorted
+    }
+
+    public static <E> void quick_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
         if (low >= high) return;
         int left = low;
         int right = high - 1;
@@ -65,20 +81,20 @@ public final class Arrays {
         }
         arr[high] = arr[left];
         arr[left] = pivot;
-        quicksort(arr, low, right, comparator);
-        quicksort(arr, left, high, comparator);
+        quick_sort(arr, low, right, comparator);
+        quick_sort(arr, left, high, comparator);
     }
 
-    public static <E> void quicksort(E[] arr, Comparator<? super E> comparator) {
-        quicksort(arr, 0, arr.length - 1, comparator);
+    public static <E> void quick_sort(E[] arr, Comparator<? super E> comparator) {
+        quick_sort(arr, 0, arr.length - 1, comparator);
     }
 
-    public static <E extends Comparable<? super E>> void quicksort(E[] arr, int low, int high) {
-        quicksort(arr, low, high, E::compareTo);
+    public static <E extends Comparable<? super E>> void quick_sort(E[] arr, int low, int high) {
+        quick_sort(arr, low, high, E::compareTo);
     }
 
-    public static <E extends Comparable<? super E>> void quicksort(E[] arr) {
-        quicksort(arr, E::compareTo);
+    public static <E extends Comparable<? super E>> void quick_sort(E[] arr) {
+        quick_sort(arr, E::compareTo);
     }
 
     public static <E> void merge(E[] arr, E[] aux, int low, int mid, int high, Comparator<? super E> comparator) {
@@ -91,30 +107,33 @@ public final class Arrays {
         }
     }
 
-    public static <E> void mergesort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
+    public static <E> void merge_sort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
         if (low >= high) return;
-        int mid = low + (high - low) / 2;
-        mergesort(arr, aux, low, mid, comparator);
-        mergesort(arr, aux, mid + 1, high, comparator);
-        Arrays.copyTo(arr, aux, low, high);
-        merge(arr, aux, low, mid, high, comparator);
+        if (high - low <= 8) insertion_sort(arr, low, high, comparator);
+        else {
+            int mid = low + (high - low) / 2;
+            merge_sort(arr, aux, low, mid, comparator);
+            merge_sort(arr, aux, mid + 1, high, comparator);
+            Arrays.copyTo(arr, aux, low, high);
+            merge(arr, aux, low, mid, high, comparator);
+        }
     }
 
-    public static <E> void mergesort(E[] arr, int low, int high, Comparator<? super E> comparator) {
-        mergesort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
+    public static <E> void merge_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
+        merge_sort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
     }
 
 
-    public static <E> void mergesort(E[] arr, Comparator<? super E> comparator) {
-        mergesort(arr, 0, arr.length - 1, comparator);
+    public static <E> void merge_sort(E[] arr, Comparator<? super E> comparator) {
+        merge_sort(arr, 0, arr.length - 1, comparator);
     }
 
-    public static <E extends Comparable<? super E>> void mergesort(E[] arr, int low, int high) {
-        mergesort(arr, low, high, E::compareTo);
+    public static <E extends Comparable<? super E>> void merge_sort(E[] arr, int low, int high) {
+        merge_sort(arr, low, high, E::compareTo);
     }
 
-    public static <E extends Comparable<? super E>> void mergesort(E[] arr) {
-        mergesort(arr, E::compareTo);
+    public static <E extends Comparable<? super E>> void merge_sort(E[] arr) {
+        merge_sort(arr, E::compareTo);
     }
 
     public static <E> List<E> asList(final E[] elements) {

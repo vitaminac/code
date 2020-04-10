@@ -2,8 +2,7 @@ package code.adt;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class ArraysTest {
     @Test
@@ -19,22 +18,16 @@ public class ArraysTest {
     }
 
     @Test
-    public void quicksort() {
+    public void quick_sort() {
         Integer[] arr = {5, 0, 3, 4, 9, 19, 80, 1, 2, 6, 7, 8};
-        Arrays.quicksort(arr);
-        for (int i = 0; i < arr.length - 1; i++) {
-            int dff = arr[i].compareTo(arr[i + 1]);
-            assertTrue(dff < 0);
-        }
+        Arrays.quick_sort(arr);
+        assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 19, 80}, arr);
     }
 
     @Test
-    public void mergesort() {
+    public void merge_sort() {
         Integer[] arr = {5, 0, 3, 4, 9, 1, 2, 6, 7, 8};
-        Arrays.mergesort(arr);
-        for (int i = 0; i < arr.length - 1; i++) {
-            int dff = arr[i].compareTo(arr[i + 1]);
-            assertTrue(dff < 0);
-        }
+        Arrays.merge_sort(arr);
+        assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, arr);
     }
 }
