@@ -1,4 +1,4 @@
-import clrs.ch2.S1InsertionSort;
+import aceptaelreto.P358CaminoAlCole;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(S1InsertionSort.class, null);
+        Judge.judge(P358CaminoAlCole.class, null);
     }
 }
