@@ -1,4 +1,4 @@
-import aceptaelreto.P358CaminoAlCole;
+import concurso.CajasDeJuegosDesordenados;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P358CaminoAlCole.class, null);
+        Judge.judge(CajasDeJuegosDesordenados.class, null);
     }
 }

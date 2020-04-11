@@ -26,6 +26,7 @@ How to become a good developer?
 
 ### Algorithms
 
+- [ ] [Grokking Algorithms](https://livebook.manning.com/book/grokking-algorithms)
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
