@@ -100,7 +100,7 @@ public final class Arrays {
         }
     }
 
-    private static <E> void merge_sort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
+    public static <E> void merge_sort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
         if (low >= high) return;
         if (high - low <= 8) insertion_sort(arr, low, high, comparator);
         else {
@@ -110,14 +110,6 @@ public final class Arrays {
             Arrays.copyTo(arr, aux, low, high);
             merge(arr, aux, low, mid, high, comparator);
         }
-    }
-
-    public static <E> void merge_sort(E[] arr, int low, int high, Comparator<? super E> comparator) {
-        merge_sort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
-    }
-
-    public static <E extends Comparable<? super E>> void merge_sort(E[] arr, int low, int high) {
-        merge_sort(arr, low, high, E::compareTo);
     }
 
     public static <E> List<E> asList(final E[] elements) {

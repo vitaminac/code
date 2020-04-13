@@ -1,5 +1,9 @@
 package concurrente;
 
+import core.Arrays;
+
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.concurrent.Semaphore;
 
 public class Tema3 {
@@ -81,7 +85,81 @@ public class Tema3 {
         return count;
     }
 
-    public static void merge_sort(int[] arr, int low, int high, int[] aux, int proc) {
+    /**
+     * Implementa el algoritmo secuencial mergesort para ordenar un array de enteros.
+     * A continuación, paraleliza el método de forma que cada división se pueda
+     * ejecutar en un thread diferente. Para evitar la creación de un número de threads
+     * muy elevado, el caso base se dará cuando se hayan creado NPROC threads,
+     * siendo NPROC el número de procesadores disponibles. Una vez alcanzado ese
+     * número, se llevará a cabo la ordenación secuencial del sub-array
+     * correspondiente siguiendo el método que consideres oportuno
+     *
+     * @param arr
+     * @param aux
+     * @param low
+     * @param high
+     * @param proc
+     */
+    public static void merge_sort(Integer[] arr, Integer[] aux, int low, int high, Semaphore proc) {
         if (low >= high) return;
+        if (proc.tryAcquire()) {
+            int mid = low + (high - low) / 2;
+            merge_sort(arr, aux, low, mid, proc);
+            Thread thread = new Thread(() -> merge_sort(arr, aux, mid + 1, high, proc));
+            thread.start();
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            proc.release();
+            Arrays.copyTo(arr, aux, low, high);
+            Arrays.merge(arr, aux, low, mid, high, Integer::compareTo);
+        } else {
+            Arrays.merge_sort(arr, aux, low, high, Integer::compareTo);
+        }
+    }
+
+    /**
+     * Una conocida marca de grandes almacenes está comenzando con su campaña
+     * de rebajas y ha habilitado una fila única para realizar los cobros. Modela el
+     * sistema de asignación de clientes de forma que sea capaz de gestionar una lista
+     * de tamaño indefinido de clientes, y que cada cajero almacene cuántos clientes
+     * ha procesado. Al finalizar los clientes, se deberá imprimir por pantalla los clientes
+     * procesados por cada cajero, para saber qué comisión deberá cobrar.
+     *
+     * @param n_clients
+     * @param n
+     * @return
+     * @throws InterruptedException
+     */
+    public static int n_cajero(int n_clients, int n) throws InterruptedException {
+        Queue<Integer> q = new ArrayDeque<>(1000);
+        Semaphore sem = new Semaphore(1);
+        for (int i = 0; i < n_clients; i++) q.add((int) (Math.random() * 49 + 1));
+        Thread[] threads = new Thread[n];
+        int[] count = new int[n];
+        for (int i = 0; i < n; i++) {
+            final int id = i;
+            threads[i] = new Thread(() -> {
+                try {
+                    while (!q.isEmpty()) {
+                        sem.acquire();
+                        boolean flag = q.isEmpty();
+                        int t = q.remove();
+                        sem.release();
+                        if (!flag) {
+                            count[id] += 1;
+                            Thread.sleep(t);
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            threads[i].start();
+        }
+        for (int i = 0; i < n; i++) threads[i].join();
+        return java.util.Arrays.stream(count).sum();
     }
 }

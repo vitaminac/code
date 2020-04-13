@@ -27,7 +27,7 @@ public class ArraysTest {
     @Test
     public void merge_sort() {
         Integer[] arr = {5, 0, 3, 4, 9, 1, 2, 6, 7, 8};
-        Arrays.merge_sort(arr, 0, arr.length - 1);
+        Arrays.merge_sort(arr, new Integer[arr.length], 0, arr.length - 1, Integer::compareTo);
         assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, arr);
     }
 }
