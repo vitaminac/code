@@ -86,16 +86,8 @@ public final class Arrays {
         quick_sort(arr, left, high, comparator);
     }
 
-    public static <E> void quick_sort(E[] arr, Comparator<? super E> comparator) {
-        quick_sort(arr, 0, arr.length - 1, comparator);
-    }
-
     public static <E extends Comparable<? super E>> void quick_sort(E[] arr, int low, int high) {
         quick_sort(arr, low, high, E::compareTo);
-    }
-
-    public static <E extends Comparable<? super E>> void quick_sort(E[] arr) {
-        quick_sort(arr, E::compareTo);
     }
 
     public static <E> void merge(E[] arr, E[] aux, int low, int mid, int high, Comparator<? super E> comparator) {
@@ -108,7 +100,7 @@ public final class Arrays {
         }
     }
 
-    public static <E> void merge_sort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
+    private static <E> void merge_sort(E[] arr, E[] aux, int low, int high, Comparator<? super E> comparator) {
         if (low >= high) return;
         if (high - low <= 8) insertion_sort(arr, low, high, comparator);
         else {
@@ -124,16 +116,8 @@ public final class Arrays {
         merge_sort(arr, (E[]) new Object[high - low + 1], low, high, comparator);
     }
 
-    public static <E> void merge_sort(E[] arr, Comparator<? super E> comparator) {
-        merge_sort(arr, 0, arr.length - 1, comparator);
-    }
-
     public static <E extends Comparable<? super E>> void merge_sort(E[] arr, int low, int high) {
         merge_sort(arr, low, high, E::compareTo);
-    }
-
-    public static <E extends Comparable<? super E>> void merge_sort(E[] arr) {
-        merge_sort(arr, E::compareTo);
     }
 
     public static <E> List<E> asList(final E[] elements) {

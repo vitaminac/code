@@ -20,14 +20,14 @@ public class ArraysTest {
     @Test
     public void quick_sort() {
         Integer[] arr = {5, 0, 3, 4, 9, 19, 80, 1, 2, 6, 7, 8};
-        Arrays.quick_sort(arr);
+        Arrays.quick_sort(arr, 0, arr.length - 1);
         assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 19, 80}, arr);
     }
 
     @Test
     public void merge_sort() {
         Integer[] arr = {5, 0, 3, 4, 9, 1, 2, 6, 7, 8};
-        Arrays.merge_sort(arr);
+        Arrays.merge_sort(arr, 0, arr.length - 1);
         assertArrayEquals(new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}, arr);
     }
 }
