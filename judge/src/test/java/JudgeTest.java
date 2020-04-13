@@ -1,4 +1,4 @@
-import concurso.CajasDeJuegosDesordenados;
+import algs4.fundamentals.stacks.WebEx2BoundedStack;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(CajasDeJuegosDesordenados.class, null);
+        Judge.judge(WebEx2BoundedStack.class, null);
     }
 }

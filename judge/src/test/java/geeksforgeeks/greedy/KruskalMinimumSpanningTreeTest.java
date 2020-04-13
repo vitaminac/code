@@ -1,7 +1,7 @@
 package geeksforgeeks.greedy;
 
-import code.adt.graph.SimpleUndirectedWeightedGraph;
-import code.adt.graph.SimpleWeightedEdge;
+import core.graph.SimpleUndirectedWeightedGraph;
+import core.graph.SimpleWeightedEdge;
 import org.junit.Assert;
 import org.junit.Test;
 

@@ -1,8 +1,8 @@
 package geeksforgeeks.dfs;
 
-import code.adt.Enumerable;
-import code.adt.graph.SimpleDirectedGraph;
-import code.adt.graph.SimpleEdge;
+import core.Enumerable;
+import core.graph.SimpleDirectedGraph;
+import core.graph.SimpleEdge;
 import org.junit.Test;
 
 import java.util.HashSet;

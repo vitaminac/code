@@ -1,8 +1,8 @@
 package geeksforgeeks.greedy;
 
-import code.adt.DisjointSet;
-import code.adt.graph.SimpleUndirectedWeightedGraph;
-import code.adt.graph.SimpleWeightedEdge;
+import core.DisjointSet;
+import core.graph.SimpleUndirectedWeightedGraph;
+import core.graph.SimpleWeightedEdge;
 
 import java.util.HashSet;
 import java.util.Set;

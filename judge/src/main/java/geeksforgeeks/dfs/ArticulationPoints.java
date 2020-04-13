@@ -1,6 +1,6 @@
 package geeksforgeeks.dfs;
 
-import code.adt.graph.SimpleUndirectedGraph;
+import core.graph.SimpleUndirectedGraph;
 
 // https://www.geeksforgeeks.org/articulation-points-or-cut-vertices-in-a-graph/
 public class ArticulationPoints {

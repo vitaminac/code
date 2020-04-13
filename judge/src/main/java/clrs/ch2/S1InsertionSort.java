@@ -1,6 +1,6 @@
 package clrs.ch2;
 
-import code.adt.Arrays;
+import core.Arrays;
 
 import java.util.Scanner;
 

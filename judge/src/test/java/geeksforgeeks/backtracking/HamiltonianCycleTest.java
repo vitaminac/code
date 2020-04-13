@@ -1,7 +1,7 @@
 package geeksforgeeks.backtracking;
 
-import code.adt.graph.SimpleEdge;
-import code.adt.graph.SimpleUndirectedGraph;
+import core.graph.SimpleEdge;
+import core.graph.SimpleUndirectedGraph;
 import org.junit.Assert;
 import org.junit.Test;
 

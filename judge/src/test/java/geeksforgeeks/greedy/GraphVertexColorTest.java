@@ -1,6 +1,6 @@
 package geeksforgeeks.greedy;
 
-import code.adt.graph.SimpleUndirectedGraph;
+import core.graph.SimpleUndirectedGraph;
 import org.junit.Assert;
 import org.junit.Test;
 

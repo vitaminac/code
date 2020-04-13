@@ -1,7 +1,7 @@
 package geeksforgeeks.bfs;
 
-import code.adt.graph.SimpleDirectedWeightedGraph;
-import code.adt.graph.SimpleWeightedEdge;
+import core.graph.SimpleDirectedWeightedGraph;
+import core.graph.SimpleWeightedEdge;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

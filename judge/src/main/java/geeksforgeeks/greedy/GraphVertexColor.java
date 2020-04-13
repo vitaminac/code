@@ -1,8 +1,8 @@
 package geeksforgeeks.greedy;
 
-import code.adt.graph.SimpleUndirectedGraph;
-import code.adt.pq.ArrayHeap;
-import code.adt.pq.PriorityQueue;
+import core.graph.SimpleUndirectedGraph;
+import core.pq.ArrayHeap;
+import core.pq.PriorityQueue;
 
 import java.util.Arrays;
 

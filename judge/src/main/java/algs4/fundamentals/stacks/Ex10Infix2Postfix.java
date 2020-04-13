@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
-import code.adt.SinglyLinkedList;
-import code.adt.Stack;
+import core.SinglyLinkedList;
+import core.Stack;
 
 import java.util.PrimitiveIterator;
 import java.util.Scanner;
