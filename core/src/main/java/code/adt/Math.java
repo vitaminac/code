@@ -247,7 +247,7 @@ public class Math {
         for (int i = 0; i < l; i++) {
             for (int j = 0; j < n; j++) {
                 for (int k = 0; k < m; k++) {
-                    result[i * l + j] += mat1[i * m + k] * mat2[k * n + j];
+                    result[i * n + j] += mat1[i * m + k] * mat2[k * n + j];
                 }
             }
         }
