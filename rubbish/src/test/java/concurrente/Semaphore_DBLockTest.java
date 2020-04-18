@@ -11,8 +11,8 @@ public class Semaphore_DBLockTest {
 
     @Test
     public void test() throws InterruptedException {
-        final int nReader = 100;
-        final int nWriter = 10;
+        final int nReader = 1000;
+        final int nWriter = 100;
         final int nOperation = 100;
         Thread[] readers = new Thread[nReader];
         Thread[] writers = new Thread[nWriter];
@@ -23,7 +23,6 @@ public class Semaphore_DBLockTest {
                 for (int j = 0; j < nOperation; j++) {
                     try {
                         lock.acquireDBReadLock(id);
-                        System.out.println("Reader " + id + ": resource is " + this.resource);
                         lock.releaseDBReadLock(id);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
