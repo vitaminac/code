@@ -35,7 +35,13 @@ subprojects {
     compileTestJava.options.encoding = "UTF-8"
 
     test {
-        jvmArgs = ["-Djava.compiler=NONE", "-Dfile.encoding=UTF8", "-Dline.separator=\n", "-ea"]
+        jvmArgs = [
+                "-Djava.compiler=NONE",
+                "-Dfile.encoding=UTF8",
+                "-Dline.separator=\n", "-ea",
+                // https://stackoverflow.com/a/54280095/9980245
+                "-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2"
+        ]
         testLogging.showStandardStreams = true
         testLogging.exceptionFormat = 'full'
     }

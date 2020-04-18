@@ -21,7 +21,7 @@ public class Tema3Test {
     }
 
     @Test
-    public void count() throws InterruptedException {
+    public void count() throws Exception {
         String str = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
         assertEquals(str.length(), Tema3.count(str, 10));
     }
@@ -34,7 +34,17 @@ public class Tema3Test {
     }
 
     @Test
-    public void n_cajero() throws InterruptedException {
+    public void n_cajero() throws Exception {
         assertEquals(1000, Tema3.n_cajero(1000, 10));
+    }
+
+    @Test
+    public void ask_answer() throws Exception {
+        Tema3.ask_answer(10);
+    }
+
+    @Test
+    public void download() throws Exception {
+        Tema3.download("http://i.imgur.com/z4d4kWk.jpg", "C:\\Users\\vitam\\Downloads\\abc.jpg", 30);
     }
 }

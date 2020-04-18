@@ -1,10 +1,13 @@
 package concurrente;
 
 import core.Arrays;
+import core.Utils;
 
+import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Tema3 {
     /**
@@ -36,11 +39,11 @@ public class Tema3 {
                 threads[row * n + col].start();
             }
         }
-        for (Thread thread : threads) {
-            thread.join();
-        }
+        for (Thread thread : threads) thread.join();
         return result;
     }
+
+    private static volatile int count = 0;
 
     /**
      * Implementa un programa secuencial que cuente las vocales que aparecen en una
@@ -56,7 +59,7 @@ public class Tema3 {
      * @throws InterruptedException
      */
     public static long count(String str, int N) throws InterruptedException {
-        int[] result = new int[N];
+        count = 0;
         Thread[] threads = new Thread[N];
         int increment = str.length() / N + 1;
         Semaphore sem = new Semaphore(1);
@@ -72,7 +75,9 @@ public class Tema3 {
                         case 'i':
                         case 'o':
                         case 'u':
-                            result[index] += 1;
+                            sem.acquireUninterruptibly();
+                            count += 1;
+                            sem.release();
                         default:
                     }
                 }
@@ -80,8 +85,6 @@ public class Tema3 {
             threads[idx].start();
         }
         for (Thread t : threads) t.join();
-        long count = 0;
-        for (int n : result) count += n;
         return count;
     }
 
@@ -161,5 +164,89 @@ public class Tema3 {
         }
         for (int i = 0; i < n; i++) threads[i].join();
         return java.util.Arrays.stream(count).sum();
+    }
+
+    private static final Semaphore ask_sem = new Semaphore(0);
+    private static final Semaphore answered_sem = new Semaphore(0);
+
+    private static class Player implements Runnable {
+        private int score = 0;
+        private volatile int answer;
+        private final int N;
+
+        public Player(int n) {
+            N = n;
+        }
+
+        @Override
+        public void run() {
+            for (int i = 0; i < N; i++) {
+                ask_sem.acquireUninterruptibly();
+                this.answer = ThreadLocalRandom.current().nextInt(1, 5);
+                answered_sem.release();
+            }
+        }
+    }
+
+    /**
+     * Implementa un juego de preguntas y respuestas que siga la siguiente mecánica:
+     * a. Se formulará una pregunta (que se cargará de un fichero de texto).
+     * b. Cada pregunta tendrá un total de 4 posibles respuestas (que también se
+     * cargarán del mismo fichero), que se mostrarán por pantalla.
+     * c. A la pregunta responderán N jugadores de forma simultánea (para
+     * simular el comportamiento del jugador, se generará un número aleatorio
+     * entre 1 y 4 para elegir la respuesta correspondiente).
+     * d. Cuando todos los jugadores hayan respondido, se mostrará por pantalla
+     * la respuesta correcta y se sumará un punto a cada jugador que haya
+     * acertado.
+     * e. Al finalizar con todas las preguntas del fichero, la partida termina,
+     * imprimiendo por pantalla la puntuación de cada jugador
+     *
+     * @param N
+     * @throws InterruptedException
+     */
+    public static void ask_answer(int N) throws InterruptedException {
+        final int nQuestions = 1000;
+        Player[] players = new Player[N];
+        for (int i = 0; i < N; i++) players[i] = new Player(nQuestions);
+        Thread[] threads = new Thread[N];
+        for (int i = 0; i < N; i++) threads[i] = new Thread(players[i]);
+        for (int i = 0; i < N; i++) threads[i].start();
+        for (int k = 0; k < nQuestions; k++) {
+            int answer = ThreadLocalRandom.current().nextInt(1, 5);
+            ask_sem.release(N);
+            answered_sem.acquire(N);
+            for (int i = 0; i < N; i++) {
+                if (players[i].answer == answer) {
+                    players[i].score += 1;
+                }
+            }
+        }
+        for (int i = 0; i < N; i++) threads[i].join();
+        for (int i = 0; i < N; i++) {
+            System.out.println("Player " + i + " has got " + players[i].score);
+        }
+    }
+
+    /**
+     * Implementa un gestor de descarga de ficheros asíncrona. El gestor recibirá por
+     * parámetro el número de procesos (NPROC) que se encargaran de realizar la
+     * descarga y el tamaño del fichero a descargar (SIZE). Los fragmentos para
+     * descargar por cada proceso serán simulados mediante el método download que
+     * dado una longitud devuelve un array que representa un fragmento del fichero.
+     * Programación Concurrente
+     * Grado en Ingeniería del Software
+     * Una vez descargados todos los fragmentos, se implementará una función print
+     * que imprime el contenido del fichero por pantalla.
+     *
+     * @param download_url
+     * @param path
+     * @param N
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void download(final String download_url, final String path, int N)
+            throws IOException, InterruptedException {
+        Utils.multithreading_download(download_url, path, N);
     }
 }
