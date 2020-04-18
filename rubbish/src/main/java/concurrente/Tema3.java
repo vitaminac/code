@@ -2,6 +2,7 @@ package concurrente;
 
 import core.Arrays;
 import core.Utils;
+import core.concurrent.SemaphoreRingBuffer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -295,5 +296,75 @@ public class Tema3 {
         for (int i = 0; i < N; i++) threads[i].start();
         for (int i = 0; i < N; i++) threads[i].join();
         ImageIO.write(img, "png", file);
+    }
+
+    /**
+     * Simular la gestión de cuenta bancaria donde existen dos tipos de procesos, uno
+     * encargado de extraer 200 euros y otro que ingresa 200 euros. La cuenta bancaria
+     * nunca podrá exceder de 1000 euros ni tampoco puede encontrarse en números
+     * rojos. El número de cada tipo de proceso será configurado mediante dos
+     * parámetros del algoritmo.
+     *
+     * @param deposit
+     * @param withdraw
+     * @throws InterruptedException
+     */
+    public static void ges_account(final int deposit, final int withdraw) throws InterruptedException {
+        Semaphore funds = new Semaphore(0);
+        Semaphore exceed = new Semaphore(1000);
+        Thread deposit_thread = new Thread(() -> {
+            for (int i = 0; i < deposit; i++) {
+                funds.release(200);
+                exceed.acquireUninterruptibly(200);
+            }
+        });
+        Thread withdraw_thread = new Thread(() -> {
+            for (int i = 0; i < withdraw; i++) {
+                funds.acquireUninterruptibly(200);
+                exceed.release(200);
+            }
+        });
+        deposit_thread.start();
+        withdraw_thread.start();
+        deposit_thread.join();
+        withdraw_thread.join();
+    }
+
+    /**
+     * Simula el funcionamiento de una peluquería que tiene una silla utilizada por el
+     * peluquero para cortar el pelo y N sillas en la que esperan los clientes su turno. El
+     * funcionamiento será el siguiente: si no hay clientes, el peluquero se sienta en la
+     * silla a la espera que llegue el siguiente cliente. Cuando llega un cliente, si el
+     * peluquero está activo, es decir, se encuentra cortando el cabello a un cliente,
+     * tendrá que esperarse en las N sillas siempre y cuando una se encuentren vacías.
+     *
+     * @param N
+     * @param clients
+     * @throws InterruptedException
+     */
+    public static void barber(int N, int clients) throws InterruptedException {
+        SemaphoreRingBuffer<Integer> buffer = new SemaphoreRingBuffer<>(N);
+        Thread barber = new Thread(() -> {
+            try {
+                for (int i = 0; i < clients; i++) {
+                    Thread.sleep(buffer.remove());
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread generator = new Thread(() -> {
+            for (int i = 0; i < clients; i++) {
+                try {
+                    buffer.add(ThreadLocalRandom.current().nextInt(100));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        barber.start();
+        generator.start();
+        barber.join();
+        generator.join();
     }
 }

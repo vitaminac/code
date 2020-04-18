@@ -52,4 +52,14 @@ public class Tema3Test {
     public void to_grey() throws Exception {
         Tema3.to_grey("C:\\Users\\vitam\\Downloads\\abc.jpg", 10);
     }
+
+    @Test
+    public void ges_account() throws InterruptedException {
+        Tema3.ges_account(1000, 1000);
+    }
+
+    @Test
+    public void barber() throws Exception {
+        Tema3.barber(10, 100);
+    }
 }
