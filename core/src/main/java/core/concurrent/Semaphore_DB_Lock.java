@@ -1,19 +1,24 @@
-package concurrente;
+package core.concurrent;
 
 import java.util.concurrent.Semaphore;
 
 public class Semaphore_DB_Lock {
     private int waiting_reader = 0;
-    private Semaphore mutex_waiting_reader = new Semaphore(1); // exclusive access to waiting_reader
+    // exclusive access to waiting_reader
+    private Semaphore mutex_waiting_reader = new Semaphore(1);
 
     private int working_reader = 0;
-    private Semaphore mutex_working_reader = new Semaphore(1); // exclusive access to working_reader
+    // exclusive access to working_reader
+    private Semaphore mutex_working_reader = new Semaphore(1);
 
-    private int activate_writer = 0; // we can have multiple writer who wants access the db
-    private Semaphore mutex_active_writer = new Semaphore(1); // exclusive access to activate_writer
+    // we can have multiple writer who wants access the db
+    private int activate_writer = 0;
+    // exclusive access to activate_writer
+    private Semaphore mutex_active_writer = new Semaphore(1);
 
     private Semaphore waiting_semaphore = new Semaphore(0);
-    private Semaphore db_lock = new Semaphore(1); // controls access to the database, it is own by readers or writers
+    // controls access to the database, it is own by readers or writers
+    private Semaphore db_lock = new Semaphore(1);
 
     public void acquireDBReadLock(final int id) throws InterruptedException {
         // if there are some active writers then give them priority
@@ -32,7 +37,7 @@ public class Semaphore_DB_Lock {
 
             waiting_semaphore.acquire();
 
-            // add to the waiting list
+            // remove from the waiting list
             mutex_waiting_reader.acquire();
             waiting_reader -= 1;
             mutex_waiting_reader.release();

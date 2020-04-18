@@ -1,4 +1,4 @@
-package concurrente;
+package core.concurrent;
 
 import org.junit.Test;
 
