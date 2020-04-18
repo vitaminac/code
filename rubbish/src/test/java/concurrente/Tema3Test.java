@@ -47,4 +47,9 @@ public class Tema3Test {
     public void download() throws Exception {
         Tema3.download("http://i.imgur.com/z4d4kWk.jpg", "C:\\Users\\vitam\\Downloads\\abc.jpg", 30);
     }
+
+    @Test
+    public void to_grey() throws Exception {
+        Tema3.to_grey("C:\\Users\\vitam\\Downloads\\abc.jpg", 10);
+    }
 }

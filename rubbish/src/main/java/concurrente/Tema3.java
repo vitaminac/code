@@ -3,6 +3,9 @@ package concurrente;
 import core.Arrays;
 import core.Utils;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -248,5 +251,49 @@ public class Tema3 {
     public static void download(final String download_url, final String path, int N)
             throws IOException, InterruptedException {
         Utils.multithreading_download(download_url, path, N);
+    }
+
+    /**
+     * Implementa una herramienta para manipulación de imágenes capaz de cambiar
+     * a escala de grises una imagen dada. La herramienta definirá la variable NPROC y
+     * NxM que se corresponde con la dimensión de la imagen. La estructura de datos
+     * que se utilizará para representar la imagen es una matriz de objetos de orden
+     * NxM. El objeto que se almacenará en cada celda de la matriz será un objeto Pixel
+     * que tendrá tres atributos (R, G, B) simulando el color de cada pixel de la imagen.
+     * Una vez generada la matriz de manera aleatoria, se dividirá por conjuntos de filas
+     * la matriz y serán asignados a cada proceso que llevará a cabo el cambio de escala
+     * de color.
+     *
+     * @param path
+     * @param N
+     * @throws IOException
+     */
+    public static void to_grey(String path, int N) throws IOException, InterruptedException {
+        File file = new File(path);
+        BufferedImage img = ImageIO.read(file);
+        int width = img.getWidth();
+        int height = img.getHeight();
+        int chunk = height / N + 1;
+        Thread[] threads = new Thread[N];
+        for (int i = 0; i < N; i++) {
+            final int start = Math.max(0, Math.min(chunk * i, height - 1));
+            final int end = Math.min(chunk * (i + 1), height);
+            threads[i] = new Thread(() -> {
+                for (int y = start; y < end; y++) {
+                    for (int x = 0; x < width; x++) {
+                        int p = img.getRGB(x, y);
+                        int a = (p >> 24) & 0xff;
+                        int r = (p >> 16) & 0xff;
+                        int g = (p >> 8) & 0xff;
+                        int b = (p >> 0) & 0xff;
+                        int avg = (r + g + b) / 3;
+                        img.setRGB(x, y, (a << 24) | (avg << 16) | (avg << 8) | avg);
+                    }
+                }
+            });
+        }
+        for (int i = 0; i < N; i++) threads[i].start();
+        for (int i = 0; i < N; i++) threads[i].join();
+        ImageIO.write(img, "png", file);
     }
 }
