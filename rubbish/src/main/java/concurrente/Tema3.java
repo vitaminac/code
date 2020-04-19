@@ -8,10 +8,15 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayDeque;
 import java.util.Queue;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 public class Tema3 {
     /**
@@ -366,5 +371,178 @@ public class Tema3 {
         generator.start();
         barber.join();
         generator.join();
+    }
+
+    private enum OP {
+        ADD, SUB, MUL
+    }
+
+    /**
+     * Simular servidor de operaciones matemáticas con vectores remoto. En este
+     * ejercicio el objetivo es desarrollar un servidor que proporciona un servicio
+     * remoto de operaciones sobre vectores numéricos. El servidor debe poder sumar,
+     * restar vectores y realizar el producto escalar. Los clientes le enviaran solicitudes
+     * al servidor con vectores para que realice las operaciones y esperan a que éste las
+     * termine. Una vez obtenidos los resultados se imprimen por pantalla. El número
+     * de hilos será un parámetro de la aplicación concurrente.
+     *
+     * @param port
+     * @throws IOException
+     */
+    public static void operationServer(final int port) throws IOException {
+        ServerSocket ssc = new ServerSocket(port);
+        while (!ssc.isClosed()) {
+            final Socket sc = ssc.accept();
+            new Thread(() -> {
+                try {
+                    try (
+                            ObjectInputStream ois = new ObjectInputStream(sc.getInputStream());
+                            ObjectOutputStream oos = new ObjectOutputStream(sc.getOutputStream())
+                    ) {
+                        OP op = (OP) ois.readObject();
+                        int op1 = ois.readInt();
+                        int op2 = ois.readInt();
+                        switch (op) {
+                            case ADD:
+                                oos.writeInt(op1 + op2);
+                                break;
+                            case SUB:
+                                oos.writeInt(op1 - op2);
+                                break;
+                            case MUL:
+                                oos.writeInt(op1 * op2);
+                                break;
+                        }
+                    }
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+    }
+
+    /**
+     * Simular garaje gratuito de vehículos. Implementar un garaje con capacidad para
+     * N coches, cuyo acceso se realiza a través de E barreras automáticas de entrada y
+     * S de salida. Dichas barreras se encuentran numeradas, desde la barrera 0 hasta
+     * la E − 1 son de entrada y desde la barrera E hasta la E + S − 1 son de salida. Simular
+     * el uso de las barreras mandando a dormir durante 5 milisegundos al vehículo
+     * que está pasando. El número de vehículos será un parámetro de la aplicación
+     * concurrente.
+     *
+     * @param N
+     * @param EN
+     * @param EX
+     * @param nVehicles
+     * @throws InterruptedException
+     */
+    public static void parking(int N, int EN, int EX, int nVehicles) throws InterruptedException {
+        Semaphore lots = new Semaphore(N);
+        Semaphore entrances = new Semaphore(EN);
+        Semaphore exits = new Semaphore(EX);
+        Thread[] vehicles = new Thread[nVehicles];
+        for (int i = 0; i < nVehicles; i++) {
+            vehicles[i] = new Thread(() -> {
+                try {
+                    lots.acquire();
+                    entrances.acquire();
+                    Thread.sleep(5);
+                    entrances.release();
+                    Thread.sleep(100);
+                    exits.acquire();
+                    Thread.sleep(5);
+                    exits.release();
+                    lots.release();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        for (Thread vehicle : vehicles) vehicle.start();
+        for (Thread vehicle : vehicles) vehicle.join();
+    }
+
+    private static int station1_size;
+    private static Semaphore station1_size_sem = new Semaphore(1);
+    private static int station2_size;
+    private static Semaphore station2_size_sem = new Semaphore(1);
+
+    /**
+     * Simular un controlador para gestionar las vías de dos estaciones de trenes. El
+     * ejercicio se basa en diseñar un algoritmo que regule las salidas de dos estaciones
+     * de tren cuyas vías se cruzan. En ambas estaciones se cargan trenes de mercancías
+     * y se solicita la salida de un tren cuando está lleno. La forma de solicitar la salida
+     * es preguntándole al controlador si el semáforo que da acceso a la vía en la propia
+     * estación está en rojo y si la vía de la estación 2 no está siendo utilizada por otro
+     * tren. Para evitar el uso simultáneo de vías, cada estación ha ubicado un sensor
+     * de presencia que indica cuando un tren ha salido del cruce (ver Imagen 1).
+     * El número de trenes por cada estación serán establecidos como un parámetro del
+     * algoritmo.
+     *
+     * @param station1_max
+     * @param station2_max
+     * @param station1_in
+     * @param station2_in
+     * @throws Exception
+     */
+    public static void train(
+            final int station1_max,
+            final int station2_max,
+            int station1_in,
+            int station2_in
+    ) throws Exception {
+        station1_size = 0;
+        station2_size = 0;
+        Semaphore controller = new Semaphore(1);
+        Semaphore station1_drain = new Semaphore(0);
+        Semaphore station1_full = new Semaphore(station1_max);
+        Semaphore station2_drain = new Semaphore(0);
+        Semaphore station2_full = new Semaphore(station2_max);
+        Thread[] station1_trains = new Thread[station1_in];
+        Thread[] station2_trains = new Thread[station2_in];
+        for (int i = 0; i < station1_in; i++) {
+            station1_trains[i] = new Thread(() -> {
+                try {
+                    station1_full.acquire();
+                    station1_size_sem.acquire();
+                    station1_size += 1;
+                    if (station1_size == station1_max) station1_drain.release();
+                    station1_size_sem.release();
+                    station1_drain.tryAcquire(1, TimeUnit.SECONDS);
+                    controller.acquire();
+                    station1_size_sem.acquire();
+                    station1_size -= 1;
+                    station1_size_sem.release();
+                    controller.release();
+                    station1_full.release();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        for (int i = 0; i < station2_in; i++) {
+            station2_trains[i] = new Thread(() -> {
+                try {
+                    station2_full.acquire();
+                    station2_size_sem.acquire();
+                    station2_size += 1;
+                    if (station2_size == station2_max) station2_drain.release();
+                    station2_size_sem.release();
+                    station2_drain.tryAcquire(1, TimeUnit.SECONDS);
+                    controller.acquire();
+                    station2_size_sem.acquire();
+                    station2_size -= 1;
+                    station2_size_sem.release();
+                    controller.release();
+                    station2_full.release();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        for (Thread train : station1_trains) train.start();
+        for (Thread train : station2_trains) train.start();
+        for (Thread train : station1_trains) train.join();
+        for (Thread train : station2_trains) train.join();
     }
 }

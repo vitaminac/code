@@ -62,4 +62,15 @@ public class Tema3Test {
     public void barber() throws Exception {
         Tema3.barber(10, 100);
     }
+
+
+    @Test
+    public void parking() throws InterruptedException {
+        Tema3.parking(100, 20, 15, 1000);
+    }
+
+    @Test
+    public void train() throws Exception {
+        Tema3.train(10, 10, 1000, 1000);
+    }
 }
