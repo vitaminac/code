@@ -2,7 +2,7 @@ package core.concurrent;
 
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreBlockingQueue<E> {
+public class SemaphoreBlockingQueue<E> implements BlockingQueue<E> {
     private final int capacity;
     private final E[] elements;
 
@@ -22,6 +22,7 @@ public class SemaphoreBlockingQueue<E> {
         this.full = new Semaphore(capacity);
     }
 
+    @Override
     public void enqueue(final E element) throws InterruptedException {
         this.full.acquire();
 
@@ -33,6 +34,7 @@ public class SemaphoreBlockingQueue<E> {
         this.empty.release();
     }
 
+    @Override
     public E dequeue() throws InterruptedException {
         this.empty.acquire();
 
