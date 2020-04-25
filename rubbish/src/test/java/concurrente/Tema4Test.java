@@ -2,6 +2,8 @@ package concurrente;
 
 import org.junit.Test;
 
+import java.io.File;
+
 public class Tema4Test {
 
     @Test
@@ -17,5 +19,15 @@ public class Tema4Test {
     @Test
     public void server() throws InterruptedException {
         Tema4.server(100, 100);
+    }
+
+    @Test
+    public void findDuplicates() {
+        Tema4.findDuplicates(new File("C:\\Temp"));
+    }
+
+    @Test
+    public void pc() throws InterruptedException {
+        Tema4.pc(100, 10, 100);
     }
 }

@@ -1,8 +1,8 @@
 package concurrente;
 
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.concurrent.ThreadLocalRandom;
+import java.io.File;
+import java.util.*;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -173,5 +173,74 @@ public final class Tema4 {
         for (Thread worker : workers) worker.start();
         for (Thread request : requests) request.join();
         for (Thread worker : workers) worker.join();
+    }
+
+    private static void findDuplicates(File root, ConcurrentMap<String, File> paths) {
+        if (root.isDirectory()) {
+            Thread[] threads = Arrays.stream(root.listFiles()).map(file -> new Thread(() -> findDuplicates(file, paths))).toArray(Thread[]::new);
+            for (Thread thread : threads) thread.start();
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            paths.compute(root.getName(), (name, file) -> {
+                if (file == null) {
+                    return root;
+                } else {
+                    System.out.println(root.getAbsolutePath() + " duplicated with " + file.getAbsolutePath());
+                    return file;
+                }
+            });
+        }
+    }
+
+    public static void findDuplicates(File root) {
+        findDuplicates(root, new ConcurrentHashMap<>());
+    }
+
+    /**
+     * Implementa el problema del productor-consumidor utilizando
+     * colas bloqueantes
+     */
+    public static void pc(int N, int capacity, int n_product) throws InterruptedException {
+        BlockingQueue<String> bq = new ArrayBlockingQueue<>(capacity);
+        Thread[] producers = new Thread[N];
+        Thread[] consumers = new Thread[N];
+
+        for (int i = 0; i < N; i++) {
+            final int id = i;
+            producers[i] = new Thread(() -> {
+                for (int j = 0; j < n_product; j++) {
+                    String product = "product " + id + "_" + j;
+                    System.out.println("Producer " + id + " produces " + product);
+                    try {
+                        bq.put(product);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        for (int i = 0; i < N; i++) {
+            final int id = i;
+            consumers[i] = new Thread(() -> {
+                for (int j = 0; j < n_product; j++) {
+                    try {
+                        System.out.println("Consumer " + id + " consumes " + bq.take());
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        for (Thread producer : producers) producer.start();
+        for (Thread consumer : consumers) consumer.start();
+        for (Thread producer : producers) producer.join();
+        for (Thread consumer : consumers) consumer.join();
     }
 }
