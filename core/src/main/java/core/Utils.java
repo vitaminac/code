@@ -54,4 +54,10 @@ public final class Utils {
         for (int i = 0; i < n_threads; i++) threads[i].start();
         for (int i = 0; i < n_threads; i++) threads[i].join();
     }
+
+    public static String repeat(String str, int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) sb.append(str);
+        return sb.toString();
+    }
 }
