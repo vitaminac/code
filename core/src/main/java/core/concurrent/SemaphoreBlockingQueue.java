@@ -2,7 +2,7 @@ package core.concurrent;
 
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreRingBuffer<E> {
+public class SemaphoreBlockingQueue<E> {
     private final int capacity;
     private final E[] elements;
 
@@ -15,14 +15,14 @@ public class SemaphoreRingBuffer<E> {
     private final Semaphore headSemaphore = new Semaphore(1);
 
     @SuppressWarnings("unchecked")
-    public SemaphoreRingBuffer(final int capacity) {
+    public SemaphoreBlockingQueue(final int capacity) {
         this.capacity = capacity;
         this.elements = (E[]) new Object[capacity];
         this.empty = new Semaphore(0);
         this.full = new Semaphore(capacity);
     }
 
-    public void add(final E element) throws InterruptedException {
+    public void enqueue(final E element) throws InterruptedException {
         this.full.acquire();
 
         this.tailSemaphore.acquire();
@@ -33,7 +33,7 @@ public class SemaphoreRingBuffer<E> {
         this.empty.release();
     }
 
-    public E remove() throws InterruptedException {
+    public E dequeue() throws InterruptedException {
         this.empty.acquire();
 
         this.headSemaphore.acquire();

@@ -2,7 +2,7 @@ package concurrente;
 
 import core.Arrays;
 import core.Utils;
-import core.concurrent.SemaphoreRingBuffer;
+import core.concurrent.SemaphoreBlockingQueue;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -348,11 +348,11 @@ public class Tema3 {
      * @throws InterruptedException
      */
     public static void barber(int N, int clients) throws InterruptedException {
-        SemaphoreRingBuffer<Integer> buffer = new SemaphoreRingBuffer<>(N);
+        SemaphoreBlockingQueue<Integer> buffer = new SemaphoreBlockingQueue<>(N);
         Thread barber = new Thread(() -> {
             try {
                 for (int i = 0; i < clients; i++) {
-                    Thread.sleep(buffer.remove());
+                    Thread.sleep(buffer.dequeue());
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -361,7 +361,7 @@ public class Tema3 {
         Thread generator = new Thread(() -> {
             for (int i = 0; i < clients; i++) {
                 try {
-                    buffer.add(ThreadLocalRandom.current().nextInt(100));
+                    buffer.enqueue(ThreadLocalRandom.current().nextInt(100));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
