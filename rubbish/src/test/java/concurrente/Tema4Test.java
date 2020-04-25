@@ -30,4 +30,14 @@ public class Tema4Test {
     public void pc() throws InterruptedException {
         Tema4.pc(100, 10, 100);
     }
+
+    @Test
+    public void countdown() throws InterruptedException {
+        Tema4.countdown();
+    }
+
+    @Test
+    public void cyclic_barrier() throws InterruptedException {
+        Tema4.cyclic_barrier(10);
+    }
 }

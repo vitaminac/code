@@ -243,4 +243,92 @@ public final class Tema4 {
         for (Thread producer : producers) producer.join();
         for (Thread consumer : consumers) consumer.join();
     }
+
+    public static void countdown() throws InterruptedException {
+        CountDownLatch A = new CountDownLatch(1);
+        CountDownLatch B = new CountDownLatch(2);
+        CountDownLatch C = new CountDownLatch(2);
+        CountDownLatch D = new CountDownLatch(3);
+        CountDownLatch E = new CountDownLatch(3);
+        CountDownLatch F = new CountDownLatch(1);
+        CountDownLatch G = new CountDownLatch(2);
+        CountDownLatch H = new CountDownLatch(2);
+        Thread p1 = new Thread(() -> {
+            try {
+                A.countDown();
+                A.await();
+                System.out.println("A");
+                D.countDown();
+                B.countDown();
+                B.await();
+                System.out.println("B");
+                E.countDown();
+                H.countDown();
+                C.countDown();
+                C.await();
+                System.out.println("C");
+                System.out.println("p1 finishes");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread p2 = new Thread(() -> {
+            try {
+                D.countDown();
+                D.await();
+                System.out.println("D");
+                B.countDown();
+                G.countDown();
+                E.countDown();
+                E.await();
+                System.out.println("E");
+                C.countDown();
+                System.out.println("p2 finishes");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        Thread p3 = new Thread(() -> {
+            try {
+                F.countDown();
+                F.await();
+                System.out.println("F");
+                D.countDown();
+                G.countDown();
+                G.await();
+                System.out.println("G");
+                H.countDown();
+                H.await();
+                System.out.println("H");
+                E.countDown();
+                System.out.println("p3 finishes");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        p1.start();
+        p2.start();
+        p3.start();
+        p1.join();
+        p2.join();
+        p3.join();
+    }
+
+    public static void cyclic_barrier(int N) throws InterruptedException {
+        Thread[] threads = new Thread[N];
+        CyclicBarrier barrier = new CyclicBarrier(N);
+        for (int i = 0; i < N; i++) {
+            threads[i] = new Thread(() -> {
+                System.out.println(1);
+                try {
+                    barrier.await();
+                } catch (InterruptedException | BrokenBarrierException e) {
+                    e.printStackTrace();
+                }
+                System.out.println(2);
+            });
+        }
+        for (Thread thread : threads) thread.start();
+        for (Thread thread : threads) thread.join();
+    }
 }
