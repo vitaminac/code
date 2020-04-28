@@ -4,9 +4,9 @@ import java.util.Comparator;
 import java.util.function.Consumer;
 
 public final class Arrays {
-    @SuppressWarnings("unchecked")
+
     public static <E> E[] copyFrom(E[] arr, int from, int length) {
-        E[] clone = (E[]) new Object[length];
+        @SuppressWarnings("unchecked") E[] clone = (E[]) new Object[length];
         for (int i = from + length - 1; i >= from; i--) clone[i] = arr[i];
         return clone;
     }

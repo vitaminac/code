@@ -140,9 +140,8 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
         this.checkIndex(index, this.size + 1);
     }
 
-    @SuppressWarnings("unchecked")
     private void resize(int capacity) {
-        E[] spaces = (E[]) new Object[capacity];
+        @SuppressWarnings("unchecked") E[] spaces = (E[]) new Object[capacity];
         for (int i = 0; i < this.size; i++) {
             spaces[i] = this.elements[i];
         }
