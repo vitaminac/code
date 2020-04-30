@@ -26,7 +26,6 @@ How to become a good developer?
 
 ### Algorithms
 
-- [x] [Grokking Algorithms](https://livebook.manning.com/book/grokking-algorithms)
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] Introduction to Algorithms
@@ -52,8 +51,6 @@ How to become a good developer?
 
 * [OpenJDK](http://openjdk.java.net/)
 * [Spring](https://github.com/spring-projects)
-* [Kotlin](https://github.com/JetBrains/kotlin)
-* [C# Generic](https://github.com/dotnet/runtime/tree/master/src/libraries/System.Collections/src/System/Collections/Generic)
 
 ## Learn
 
