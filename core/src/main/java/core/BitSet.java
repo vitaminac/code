@@ -2,24 +2,11 @@ package core;
 
 import core.set.Set;
 
-import java.util.function.Consumer;
-
 public class BitSet implements Set<Integer> {
-    private int size = 0;
     private boolean[] set;
 
     public BitSet(int n) {
         this.set = new boolean[n];
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return this.size == 0;
-    }
-
-    @Override
-    public int size() {
-        return this.size;
     }
 
     @Override
@@ -29,18 +16,12 @@ public class BitSet implements Set<Integer> {
 
     @Override
     public void add(Integer n) {
-        if (!this.set[n]) {
-            this.size++;
-            this.set[n] = true;
-        }
+        this.set[n] = true;
     }
 
     @Override
     public void remove(Integer n) {
-        if (this.set[n]) {
-            this.size--;
-            this.set[n] = false;
-        }
+        this.set[n] = false;
     }
 
     public BitSet intersect(BitSet set) {
@@ -75,7 +56,13 @@ public class BitSet implements Set<Integer> {
     }
 
     public boolean isSubset(BitSet set) {
-        return set.all(this::contains);
+        for (int i = 0; i < this.set.length; i++) {
+            if (!this.set[i] && set.set[i]) return false;
+        }
+        for (int i = this.set.length; i < set.set.length; i++) {
+            if (set.set[i]) return false;
+        }
+        return true;
     }
 
     public boolean isSuperSet(BitSet set) {
@@ -83,21 +70,14 @@ public class BitSet implements Set<Integer> {
     }
 
     public boolean isDisjointFrom(BitSet set) {
-        return set.all(n -> !this.contains(n));
+        for (int i = 0; i < this.set.length; i++) {
+            if (this.set[i] && set.contains(i))
+                return false;
+        }
+        return true;
     }
 
-    @Override
     public void clear() {
         this.set = new boolean[this.set.length];
-        this.size = 0;
-    }
-
-    @Override
-    public void forEach(Consumer<? super Integer> consumer) {
-        for (int i = 0; i < this.set.length; i++) {
-            if (this.set[i]) {
-                consumer.accept(i);
-            }
-        }
     }
 }

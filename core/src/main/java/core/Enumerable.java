@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 
 @FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
+    // TODO: remove
     default int size() {
         int[] ref = new int[]{0};
         this.forEach(e -> ref[0]++);
@@ -81,9 +82,22 @@ public interface Enumerable<E> extends Iterable<E> {
         };
     }
 
-    static <E> Enumerable<E> from(E[] arr) {
+    static <E> Enumerable<E> from(final E[] arr) {
         return consumer -> {
             for (E e : arr) consumer.accept(e);
         };
+    }
+
+    @SafeVarargs
+    static <E> Enumerable<E> flatten(final Enumerable<? extends E>... enumerables) {
+        return consumer -> {
+            for (var enumerable : enumerables) {
+                enumerable.forEach(consumer);
+            }
+        };
+    }
+
+    static <E extends Comparable<? super E>> E max(Enumerable<E> enumerable) {
+        return enumerable.reduce(null, (e, ac) -> ac == null ? e : (ac.compareTo(e) < 0 ? e : ac));
     }
 }

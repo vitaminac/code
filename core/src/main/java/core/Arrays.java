@@ -165,7 +165,7 @@ public final class Arrays {
             }
 
             @Override
-            public void set(int index, E element) {
+            public E set(int index, E element) {
                 throw new RuntimeException();
             }
         };

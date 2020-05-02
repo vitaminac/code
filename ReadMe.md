@@ -68,5 +68,3 @@ How to become a good developer?
 ## Jobs
 
 * [Cracking the Coding Interview](http://www.crackingthecodinginterview.com/)
-* [Freelancer](https://www.freelancer.com/)
-* [Upwork](https://www.upwork.com/)

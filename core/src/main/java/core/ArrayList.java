@@ -14,6 +14,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
         this.size = size;
     }
 
+    @SafeVarargs
     public ArrayList(E... elements) {
         this(elements, elements.length);
     }
@@ -54,9 +55,11 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     @Override
-    public void set(int index, E element) {
+    public E set(int index, E element) {
         this.checkIndex(index);
+        E retVal = this.elements[index];
         this.elements[index] = element;
+        return retVal;
     }
 
     @Override

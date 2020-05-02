@@ -1,15 +1,15 @@
 package core.set;
 
+import core.Enumerable;
 import core.map.Map;
 
-import java.util.Iterator;
 import java.util.function.Consumer;
 
-public abstract class AbstractHashSet<E> implements Set<E> {
+public abstract class SimpleSet<E> implements Set<E>, Enumerable<E> {
     private transient Map<E, Object> map;
     private static final Object PRESENT = new Object();
 
-    protected AbstractHashSet(Map<E, Object> map) {
+    protected SimpleSet(Map<E, Object> map) {
         this.map = map;
     }
 
@@ -31,7 +31,6 @@ public abstract class AbstractHashSet<E> implements Set<E> {
         this.map.forEach(consumer);
     }
 
-    @Override
     public boolean isEmpty() {
         return this.map.isEmpty();
     }
@@ -50,27 +49,13 @@ public abstract class AbstractHashSet<E> implements Set<E> {
         if (o == this)
             return true;
 
-        if (!(o instanceof java.util.Set))
+        if (!(o instanceof SimpleSet))
             return false;
-        Set<E> s = (Set<E>) o;
-        if (s.size() != size())
-            return false;
-        for (E e : this) {
-            if (!s.contains(e)) {
-                return false;
-            }
-        }
-        return true;
+        SimpleSet<E> s = (SimpleSet<E>) o;
+        return this.map.equals(s.map);
     }
 
     public int hashCode() {
-        int h = 0;
-        Iterator<E> it = iterator();
-        while (it.hasNext()) {
-            E obj = it.next();
-            if (obj != null)
-                h += obj.hashCode();
-        }
-        return h;
+        return this.map.hashCode();
     }
 }
