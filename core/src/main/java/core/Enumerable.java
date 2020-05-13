@@ -97,6 +97,28 @@ public interface Enumerable<E> extends Iterable<E> {
         };
     }
 
+    @SafeVarargs
+    static <E> Iterator<E> flatten(final Iterator<? extends E>... iterators) {
+        return new Iterator<E>() {
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                for (; this.index < iterators.length; this.index++) {
+                    if (iterators[this.index].hasNext()) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public E next() {
+                return iterators[this.index].next();
+            }
+        };
+    }
+
     static <E extends Comparable<? super E>> E max(Enumerable<E> enumerable) {
         return enumerable.reduce(null, (e, ac) -> ac == null ? e : (ac.compareTo(e) < 0 ? e : ac));
     }
