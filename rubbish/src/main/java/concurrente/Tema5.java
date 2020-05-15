@@ -138,4 +138,55 @@ public class Tema5 {
     public static Double mean(String lines) {
         return Arrays.stream(lines.split("\n")).map(line -> Arrays.stream(line.split("\\s")).map(Integer::parseInt).mapToDouble(Double::valueOf).average()).mapToDouble(OptionalDouble::getAsDouble).max().getAsDouble();
     }
+
+    private static class FJCountRange extends RecursiveTask<Integer> {
+        private static final int THRESH_HOLD = 10;
+        private final int[] arr;
+        private final int lo;
+        private final int hi;
+        private final int min;
+        private final int max;
+
+        public FJCountRange(int[] arr, int lo, int hi, int min, int max) {
+            this.arr = arr;
+            this.lo = lo;
+            this.hi = hi;
+            this.min = min;
+            this.max = max;
+        }
+
+        @Override
+        protected Integer compute() {
+            if (hi - lo < THRESH_HOLD) {
+                int count = 0;
+                for (int i = lo; i <= hi; i++) if (arr[i] >= min && arr[i] <= max) count += 1;
+                return count;
+            } else {
+                int mid = this.lo + (this.hi - this.lo) / 2;
+                FJCountRange left = new FJCountRange(arr, lo, mid, min, max);
+                FJCountRange right = new FJCountRange(arr, mid + 1, hi, min, max);
+                right.fork();
+                return left.compute() + right.join();
+            }
+        }
+    }
+
+    /**
+     * Dado un array de enteros
+     * Contar el número de veces que un número está entre
+     * dos valores fijos (variables globales).
+     * Una vez el tamaño del array es inferior a 10 realizar
+     * esta acción.
+     * Por simplicidad, dividirlo a la mitad.
+     *
+     * @param min
+     * @param max
+     * @return
+     */
+    public static int fjCountRange(int[] nums, int min, int max) {
+        ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+        int result = pool.invoke(new FJCountRange(nums, 0, nums.length - 1, min, max));
+        pool.shutdown();
+        return result;
+    }
 }

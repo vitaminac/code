@@ -60,4 +60,15 @@ public class Tema5Test {
     public void mean() {
         assertEquals(Double.valueOf(15.0), Tema5.mean("1 2 3 4 5 6\n" + "3 4 5 6 7 8 9\n" + "10 11 12 13 14 15 16 17 18 19 20"));
     }
+
+    @Test
+    public void fjCountRange() {
+        assertEquals(29, Tema5.fjCountRange(new int[]{
+                54, 12, 36, 0, 2, 16, 34, 89, -56,
+                -8, 3, 7, 95, 10, 56, 498, 3, 2, 1,
+                56, 4789, 654, 321, 465, 789, 3120798,
+                53, 45, 13, 789, 46, 12, 4, 6, 5, 9, 789,
+                13, 2, 165, 1
+        }, 0, 100));
+    }
 }

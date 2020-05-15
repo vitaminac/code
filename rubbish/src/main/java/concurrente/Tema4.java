@@ -1,5 +1,7 @@
 package concurrente;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.util.*;
 import java.util.concurrent.*;
@@ -175,9 +177,55 @@ public final class Tema4 {
         for (Thread worker : workers) worker.join();
     }
 
-    private static void findDuplicates(File root, ConcurrentMap<String, File> paths) {
+    private static void findDuplicatesSequential(File root, HashMap<String, File> paths) {
         if (root.isDirectory()) {
-            Thread[] threads = Arrays.stream(root.listFiles()).map(file -> new Thread(() -> findDuplicates(file, paths))).toArray(Thread[]::new);
+            Optional.ofNullable(root.listFiles()).ifPresent(files -> {
+                for (File file : files) {
+                    findDuplicatesSequential(file, paths);
+                }
+            });
+        } else {
+            paths.compute(root.getName(), (name, file) -> {
+                if (file == null) {
+                    return root;
+                } else {
+                    System.out.println(root.getAbsolutePath() + " duplicated with " + file.getAbsolutePath());
+                    return file;
+                }
+            });
+        }
+    }
+
+    private static void findDuplicatesSynchronized(File root, HashMap<String, File> paths) {
+        if (root.isDirectory()) {
+            Thread[] threads = Arrays.stream(Objects.requireNonNull(root.listFiles()))
+                    .map(file -> new Thread(() -> findDuplicatesSynchronized(file, paths))).toArray(Thread[]::new);
+            for (Thread thread : threads) thread.start();
+            for (Thread thread : threads) {
+                try {
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            synchronized (paths) {
+                paths.compute(root.getName(), (name, file) -> {
+                    if (file == null) {
+                        return root;
+                    } else {
+                        System.out.println(root.getAbsolutePath() + " duplicated with " + file.getAbsolutePath());
+                        return file;
+                    }
+                });
+            }
+        }
+    }
+
+    private static void findDuplicatesConcurrentMap(File root, ConcurrentMap<String, File> paths) {
+        if (root.isDirectory()) {
+            Thread[] threads = Arrays.stream(Objects.requireNonNull(root.listFiles()))
+                    .map(file -> new Thread(() -> findDuplicatesConcurrentMap(file, paths))).toArray(Thread[]::new);
             for (Thread thread : threads) thread.start();
             for (Thread thread : threads) {
                 try {
@@ -198,8 +246,29 @@ public final class Tema4 {
         }
     }
 
+    /**
+     * Se desea implementar de forma concurrente un
+     * programa que busca ficheros con el mismo
+     * nombre dentro de una carpeta
+     * <p>
+     * La búsqueda se realiza recursivamente en una
+     * carpetas dentro de otras
+     *
+     * @param root
+     */
     public static void findDuplicates(File root) {
-        findDuplicates(root, new ConcurrentHashMap<>());
+        long startTime = System.nanoTime();
+        findDuplicatesSequential(root, new HashMap<>());
+        long sequentialTime = System.nanoTime() - startTime;
+        startTime = System.nanoTime();
+        findDuplicatesSynchronized(root, new HashMap<>());
+        long synchronizedTime = System.nanoTime() - startTime;
+        startTime = System.nanoTime();
+        findDuplicatesConcurrentMap(root, new ConcurrentHashMap<>());
+        long concurrentTime = System.nanoTime() - startTime;
+        System.out.println("Sequential : " + sequentialTime / 1000);
+        System.out.println("Synchronized : " + synchronizedTime / 1000);
+        System.out.println("Concurrent : " + concurrentTime / 1000);
     }
 
     /**

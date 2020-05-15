@@ -52,6 +52,7 @@ How to become a good developer?
 
 * [OpenJDK](http://openjdk.java.net/)
 * [Spring](https://github.com/spring-projects)
+* [RxJava](https://github.com/ReactiveX/RxJava)
 
 ## Learn
 
