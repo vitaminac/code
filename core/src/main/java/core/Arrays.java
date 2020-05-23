@@ -87,7 +87,7 @@ public final class Arrays {
     }
 
     public static <E extends Comparable<? super E>> void quick_sort(E[] arr, int low, int high) {
-        quick_sort(arr, low, high, E::compareTo);
+        quick_sort(arr, low, high, Comparator.naturalOrder());
     }
 
     public static <E> void merge(E[] arr, E[] aux, int low, int mid, int high, Comparator<? super E> comparator) {
