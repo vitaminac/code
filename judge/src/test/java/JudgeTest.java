@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.WebEx2BoundedStack;
+import aceptaelreto.P566LaAbuelitaCaperucita;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(WebEx2BoundedStack.class, null);
+        Judge.judge(P566LaAbuelitaCaperucita.class, null);
     }
 }

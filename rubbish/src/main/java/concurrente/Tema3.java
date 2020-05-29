@@ -254,9 +254,9 @@ public class Tema3 {
      * @throws IOException
      * @throws InterruptedException
      */
-    public static void download(final String download_url, final String path, int N)
-            throws IOException, InterruptedException {
-        Utils.multithreading_download(download_url, path, N);
+    public static void download(final String download_url, final String path)
+            throws IOException {
+        Utils.fetch(download_url, path);
     }
 
     /**

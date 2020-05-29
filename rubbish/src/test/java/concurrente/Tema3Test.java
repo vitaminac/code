@@ -45,7 +45,7 @@ public class Tema3Test {
 
     @Test
     public void download() throws Exception {
-        Tema3.download("http://i.imgur.com/z4d4kWk.jpg", "C:\\Users\\vitam\\Downloads\\abc.jpg", 30);
+        Tema3.download("http://down-update.qq.com/qqkart/autopatch/patch_16490_16595.exe", "C:\\Users\\vitam\\Downloads\\abc.exe");
     }
 
     @Test
