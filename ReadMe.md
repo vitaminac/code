@@ -34,7 +34,6 @@ How to become a good developer?
 - [ ] Introduction to Algorithms
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
-- [ ] Programming Pearls
 
 ## Roadmap
 
