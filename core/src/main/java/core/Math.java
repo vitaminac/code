@@ -362,6 +362,15 @@ public class Math {
         return a;
     }
 
+    public static int highestOneBit(int i) {
+        i |= (i >> 1);
+        i |= (i >> 2);
+        i |= (i >> 4);
+        i |= (i >> 8);
+        i |= (i >> 16);
+        return i - (i >>> 1);
+    }
+
     // http://homepage.divms.uiowa.edu/~jones/bcd/mod.shtml
     // we can compute a mod 3 as "a mod 3 = ((a/4) + (a mod 4)) mod 3"
     public static int mod3(int a) {
