@@ -3,8 +3,6 @@ package foobar.l4;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class EscapePodsTest {
 
     @Test
