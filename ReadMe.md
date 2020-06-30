@@ -18,7 +18,7 @@ How to become a good developer?
 
 - [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
-- [ ] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
+- [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] [Design Patterns](https://github.com/iluwatar/java-design-patterns)
@@ -67,7 +67,3 @@ How to become a good developer?
 
 * [arXiv](https://arxiv.org)
 * [Papers With Code](https://paperswithcode.com)
-
-## Jobs
-
-* [Cracking the Coding Interview](http://www.crackingthecodinginterview.com/)

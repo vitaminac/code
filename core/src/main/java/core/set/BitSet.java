@@ -1,8 +1,8 @@
-package core;
+package core.set;
 
-import core.set.Set;
+import core.Math;
 
-public class BitSet implements Set<Integer> {
+public class BitSet implements MutableSet<Integer> {
     private boolean[] set;
 
     public BitSet(int n) {

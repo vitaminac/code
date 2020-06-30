@@ -1,5 +1,6 @@
 package core;
 
+import core.set.BitSet;
 import org.junit.Before;
 import org.junit.Test;
 
