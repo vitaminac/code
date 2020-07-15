@@ -54,10 +54,14 @@ How to become a good developer?
 
 * [OpenJDK](http://openjdk.java.net/)
 * [Spring](https://github.com/spring-projects)
+* [Tomcat](https://github.com/apache/tomcat)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
+* [Guava](https://github.com/google/guava)
 * [Kotlin](https://github.com/JetBrains/kotlin/tree/master/libraries/stdlib/src/kotlin)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
+* [Netty](https://github.com/netty/netty)
+* [MyBatis](https://github.com/mybatis/mybatis-3)
 
 ## Learn
 

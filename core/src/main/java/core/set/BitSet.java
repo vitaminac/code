@@ -2,6 +2,8 @@ package core.set;
 
 import core.Math;
 
+import java.util.function.Consumer;
+
 public class BitSet implements MutableSet<Integer> {
     private boolean[] set;
 
@@ -79,5 +81,10 @@ public class BitSet implements MutableSet<Integer> {
 
     public void clear() {
         this.set = new boolean[this.set.length];
+    }
+
+    @Override
+    public void forEach(Consumer<? super Integer> consumer) {
+        for (int i = 0; i < this.set.length; i++) if (this.set[i]) consumer.accept(i);
     }
 }
