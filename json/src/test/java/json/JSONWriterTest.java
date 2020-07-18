@@ -1,8 +1,8 @@
 package json;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,6 +118,6 @@ public class JSONWriterTest {
 
     @Test
     public void inputstreamTest() {
-        assertEquals("\"aGVsbG8=\"", JSON.stringify(new ByteInputStream("hello".getBytes(), 5)));
+        assertEquals("\"aGVsbG8=\"", JSON.stringify(new ByteArrayInputStream("hello".getBytes())));
     }
 }
