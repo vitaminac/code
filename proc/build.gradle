@@ -1,3 +1,0 @@
-dependencies {
-    compile group: 'com.google.auto.service', name: 'auto-service', version: '1.0-rc6'
-}

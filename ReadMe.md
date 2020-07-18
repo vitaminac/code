@@ -53,6 +53,7 @@ How to become a good developer?
 ## Project
 
 * [OpenJDK](http://openjdk.java.net/)
+* [JSR-330: Dependency Injection for Java](https://github.com/javax-inject/javax-inject)
 * [Spring](https://github.com/spring-projects)
 * [Tomcat](https://github.com/apache/tomcat)
 * [RxJava](https://github.com/ReactiveX/RxJava)
@@ -62,6 +63,10 @@ How to become a good developer?
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [Netty](https://github.com/netty/netty)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
+* [OkHttp](https://github.com/square/okhttp/)
+* [Retrofit](https://github.com/square/retrofit)
+* [Dubbo](https://github.com/apache/dubbo)
+* [Auto](https://github.com/google/auto)
 
 ## Learn
 
