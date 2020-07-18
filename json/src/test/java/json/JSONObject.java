@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class JSONObject implements JSON {
+@JsonSerializable
+public class JSONObject {
     private final byte b;
     private final char c;
     private final double d;
     private final float f;
     private final int i;
     private final long l;
-    private final JSON o;
+    private final JSONObject o;
     private final List<JSONObject> os;
     private final short s;
     private final String str;
@@ -20,7 +21,7 @@ public class JSONObject implements JSON {
         this((byte) 'I', "love", 'u', 6.15, 8.6f, 520, 1314, null, (short) 5, new ArrayList<>());
     }
 
-    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSON o, short s, List<JSONObject> os) {
+    public JSONObject(byte b, String str, char c, double d, float f, int i, long l, JSONObject o, short s, List<JSONObject> os) {
         this.b = b;
         this.c = c;
         this.d = d;

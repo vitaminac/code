@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-public @interface JsonIgnore {
+@Target(ElementType.TYPE)
+public @interface JsonSerializable {
+    public Class<? extends JsonConverter<?>> value() default DefaultObjectJsonConverter.class;
 }

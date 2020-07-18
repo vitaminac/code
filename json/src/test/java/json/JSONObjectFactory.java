@@ -8,7 +8,7 @@ import java.util.List;
 
 public class JSONObjectFactory implements JSONRestoreFactory<JSONObject> {
     @Override
-    public JSONObject build(HashMap<String, JSONValue> members) throws MalformedJSONInput {
+    public JSONObject build(HashMap<String, JSONValue> members) {
         byte b = (byte) members.get("b").getNumber();
         String str = members.get("str").getString();
         char c = members.get("c").getString().charAt(0);

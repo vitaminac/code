@@ -1,8 +1,6 @@
 package json.reader;
 
-import json.JSON;
 import json.JSONRestoreFactory;
-import json.MalformedJSONInput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +13,7 @@ public class JSONReader {
         this.underlyingReader = underlyingReader;
     }
 
-    public <T extends JSON> T getObject(JSONRestoreFactory<T> factory) throws IOException, MalformedJSONInput {
+    public <T> T getObject(JSONRestoreFactory<T> factory) throws IOException {
         return this.readValue().getObject(factory);
     }
 

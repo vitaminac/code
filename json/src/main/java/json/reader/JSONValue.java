@@ -1,14 +1,9 @@
 package json.reader;
 
-import json.JSON;
 import json.JSONRestoreFactory;
-import json.MalformedJSONInput;
+import json.UnexpectedTokenException;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class JSONValue {
     private static final HashSet<Character> digit;
@@ -50,7 +45,7 @@ public class JSONValue {
         this.pos = 0;
     }
 
-    public boolean getBoolean() throws MalformedJSONInput {
+    public boolean getBoolean() {
         char c = this.next();
         if (c == 't') {
             if (this.matches('r')) {
@@ -75,10 +70,10 @@ public class JSONValue {
                 }
             }
         }
-        throw new MalformedJSONInput(this.value.charAt(this.pos - 1), this.pos - 1);
+        throw new UnexpectedTokenException(this.value.charAt(this.pos - 1), this.pos - 1);
     }
 
-    public List<JSONValue> getList() throws MalformedJSONInput {
+    public List<JSONValue> getList() {
         List<JSONValue> list = new ArrayList<>();
         char chr = this.next();
         if (chr == '[') {
@@ -102,13 +97,13 @@ public class JSONValue {
                             if (stack.peek().equals('{')) {
                                 stack.pop();
                             } else {
-                                throw new MalformedJSONInput(chr, this.pos - 1);
+                                throw new UnexpectedTokenException(chr, this.pos - 1);
                             }
                         } else if (chr == ']') {
                             if (stack.peek().equals('[')) {
                                 stack.pop();
                             } else {
-                                throw new MalformedJSONInput(chr, this.pos - 1);
+                                throw new UnexpectedTokenException(chr, this.pos - 1);
                             }
                         }
                     }
@@ -119,11 +114,11 @@ public class JSONValue {
             }
             return list;
         } else {
-            throw new MalformedJSONInput(chr, this.pos - 1);
+            throw new UnexpectedTokenException(chr, this.pos - 1);
         }
     }
 
-    public double getNumber() throws MalformedJSONInput {
+    public double getNumber() {
         StringBuilder sb = new StringBuilder();
         char chr = this.next();
         if (chr == '-') {
@@ -139,7 +134,7 @@ public class JSONValue {
             sb.append('0');
             chr = this.next();
         } else {
-            throw new MalformedJSONInput(chr, this.pos - 1);
+            throw new UnexpectedTokenException(chr, this.pos - 1);
         }
         if (chr == '.') {
             sb.append(chr);
@@ -159,7 +154,7 @@ public class JSONValue {
                         chr = this.next();
                     }
                 } else {
-                    throw new MalformedJSONInput(chr, this.pos);
+                    throw new UnexpectedTokenException(chr, this.pos);
                 }
             }
         }
@@ -167,7 +162,7 @@ public class JSONValue {
         return Double.parseDouble(sb.toString());
     }
 
-    public <T extends JSON> T getObject(JSONRestoreFactory<T> factory) throws MalformedJSONInput {
+    public <T> T getObject(JSONRestoreFactory<T> factory) {
         char chr = this.next();
         if (chr == '{') {
             HashMap<String, JSONValue> members = new HashMap<>();
@@ -205,13 +200,13 @@ public class JSONValue {
                                     if (stack.peek().equals('{')) {
                                         stack.pop();
                                     } else {
-                                        throw new MalformedJSONInput(chr, this.pos - 1);
+                                        throw new UnexpectedTokenException(chr, this.pos - 1);
                                     }
                                 } else if (chr == ']') {
                                     if (stack.peek().equals('[')) {
                                         stack.pop();
                                     } else {
-                                        throw new MalformedJSONInput(chr, this.pos - 1);
+                                        throw new UnexpectedTokenException(chr, this.pos - 1);
                                     }
                                 }
                             }
@@ -224,10 +219,10 @@ public class JSONValue {
                             chr = this.next();
                         }
                     } else {
-                        throw new MalformedJSONInput(chr, this.pos - 1);
+                        throw new UnexpectedTokenException(chr, this.pos - 1);
                     }
                 } else {
-                    throw new MalformedJSONInput(chr, this.pos - 1);
+                    throw new UnexpectedTokenException(chr, this.pos - 1);
                 }
             }
             return factory.build(members);
@@ -240,10 +235,10 @@ public class JSONValue {
                 }
             }
         }
-        throw new MalformedJSONInput(chr, this.pos - 1);
+        throw new UnexpectedTokenException(chr, this.pos - 1);
     }
 
-    public String getString() throws MalformedJSONInput {
+    public String getString() {
         char c = this.next();
         if (c == '"') {
             StringBuilder sb = new StringBuilder();
@@ -263,7 +258,7 @@ public class JSONValue {
             this.matches('l');
             return null;
         } else {
-            throw new MalformedJSONInput(c, this.pos - 1);
+            throw new UnexpectedTokenException(c, this.pos - 1);
         }
     }
 
