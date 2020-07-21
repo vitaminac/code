@@ -82,7 +82,7 @@ import java.math.BigInteger;
  * Output:
  * 19
  */
-class Solution {
+public class DodgeTheLasers {
     private static final BigInteger TWO = BigInteger.valueOf(2);
     private static final BigDecimal FACTOR =
             new BigDecimal("1.4142135623730950488016887242096980785696718753769480731766797379907324784621070388503875343276415727350138462309122970249248360558507372126441214971").subtract(BigDecimal.ONE);
