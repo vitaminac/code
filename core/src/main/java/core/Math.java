@@ -1,6 +1,8 @@
 package core;
 
 import java.math.BigInteger;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveTask;
 import java.util.function.DoubleUnaryOperator;
 
 public class Math {
@@ -388,5 +390,42 @@ public class Math {
 								 a <= 0x4 */
         if (a > 2) a = a - 3;
         return a;
+    }
+
+    private static class FJSum extends RecursiveTask<Long> {
+        private static final int THRESH_HOLD = 1024;
+        private final int[] arr;
+        private final int lo;
+        private final int hi;
+
+        public FJSum(int[] arr, int lo, int hi) {
+            this.arr = arr;
+            this.lo = lo;
+            this.hi = hi;
+        }
+
+        @Override
+        protected Long compute() {
+            if (this.hi - this.lo <= THRESH_HOLD) {
+                long sum = 0;
+                for (int i = this.lo; i <= this.hi; i++) {
+                    sum += this.arr[i];
+                }
+                return sum;
+            } else {
+                int mid = this.lo + (this.hi - this.lo) / 2;
+                FJSum left = new FJSum(arr, lo, mid);
+                FJSum right = new FJSum(arr, mid + 1, hi);
+                right.fork();
+                return left.compute() + right.join();
+            }
+        }
+    }
+
+    public static long sum(int[] nums) {
+        ForkJoinPool pool = new ForkJoinPool(Runtime.getRuntime().availableProcessors());
+        long result = pool.invoke(new FJSum(nums, 0, nums.length - 1));
+        pool.shutdown();
+        return result;
     }
 }

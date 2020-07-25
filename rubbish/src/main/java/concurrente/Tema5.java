@@ -189,40 +189,4 @@ public class Tema5 {
         pool.shutdown();
         return result;
     }
-
-    private static class FJSum extends RecursiveTask<Long> {
-        private static final int THRESH_HOLD = 16;
-        private final int[] arr;
-        private final int lo;
-        private final int hi;
-
-        public FJSum(int[] arr, int lo, int hi) {
-            this.arr = arr;
-            this.lo = lo;
-            this.hi = hi;
-        }
-
-        @Override
-        protected Long compute() {
-            if (this.hi - this.lo <= THRESH_HOLD) {
-                long sum = 0;
-                for (int i = this.lo; i <= this.hi; i++) {
-                    sum += this.arr[i];
-                }
-                return sum;
-            } else {
-                int mid = this.lo + (this.hi - this.lo) / 2;
-                FJSum left = new FJSum(arr, lo, mid);
-                FJSum right = new FJSum(arr, mid + 1, hi);
-                right.fork();
-                return left.compute() + right.join();
-            }
-        }
-    }
-
-    public static long fjSum(int[] arr) {
-        FJSum fjSum = new FJSum(arr, 0, arr.length - 1);
-        fjSum.fork();
-        return fjSum.join();
-    }
 }
