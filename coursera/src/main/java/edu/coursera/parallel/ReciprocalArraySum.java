@@ -32,14 +32,11 @@ public final class ReciprocalArraySum {
      * created to perform reciprocal array sum in parallel.
      */
     private static class FJReciprocalSum extends RecursiveTask<Double> {
-        private static int THRESH_HOLD = 1000;
-        private final int splitFactor;
         private final int lo;
         private final int hi;
         private final double[] arr;
 
-        private FJReciprocalSum(final int lo, final int hi, final double[] arr, final int splitFactor) {
-            this.splitFactor = splitFactor;
+        private FJReciprocalSum(final int lo, final int hi, final double[] arr) {
             this.lo = lo;
             this.hi = hi;
             this.arr = arr;
@@ -47,19 +44,16 @@ public final class ReciprocalArraySum {
 
         @Override
         protected Double compute() {
-            if (hi - lo < THRESH_HOLD) {
+            if (this.hi - this.lo < 10000) {
                 double sum = 0;
-                for (int i = this.lo; i < this.hi; i++) sum += 1 / arr[i];
+                for (int i = this.lo; i < this.hi; i++) sum += 1 / this.arr[i];
                 return sum;
             } else {
-                FJReciprocalSum[] tasks = new FJReciprocalSum[splitFactor];
-                for (int i = 0, chunk = (hi - lo + splitFactor) / splitFactor; this.lo + i * chunk < this.hi; i++) {
-                    tasks[i] = new FJReciprocalSum(this.lo + i * chunk, Math.min(this.hi, this.lo + (i + 1) * chunk), this.arr, this.splitFactor);
-                }
-                for (int i = 1; i < splitFactor; i++) tasks[i].fork();
-                double sum = tasks[0].compute();
-                for (int i = 1; i < this.splitFactor; i++) sum += tasks[i].join();
-                return sum;
+                int mid = this.lo + (this.hi - this.lo) / 2;
+                FJReciprocalSum left = new FJReciprocalSum(this.lo, mid, this.arr);
+                FJReciprocalSum right = new FJReciprocalSum(mid, this.hi, this.arr);
+                right.fork();
+                return left.compute() + right.join();
             }
         }
     }
@@ -74,7 +68,7 @@ public final class ReciprocalArraySum {
      * @return The sum of the reciprocals of the array input
      */
     protected static double parArraySum(final double[] input) {
-        return new FJReciprocalSum(0, input.length, input, 2).compute();
+        return parManyTaskArraySum(input, 2);
     }
 
     /**
@@ -89,7 +83,6 @@ public final class ReciprocalArraySum {
      */
     protected static double parManyTaskArraySum(final double[] input,
                                                 final int numTasks) {
-        ForkJoinPool pool = new ForkJoinPool(numTasks);
-        return pool.invoke(new FJReciprocalSum(0, input.length, input, numTasks));
+        return ForkJoinPool.commonPool().invoke(new FJReciprocalSum(0, input.length, input));
     }
 }
