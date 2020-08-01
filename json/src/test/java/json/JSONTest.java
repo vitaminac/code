@@ -167,7 +167,7 @@ public class JSONTest {
         assertEquals(BigDecimal.valueOf(123.9), JSON.parse("123.9", BigDecimal.class));
         assertEquals(BigDecimal.valueOf(123.9), JSON.parse("+123.9", BigDecimal.class));
         assertEquals(BigDecimal.valueOf(-123.9), JSON.parse("-123.9", BigDecimal.class));
-        assertEquals(0, BigDecimal.valueOf(0.001).compareTo((BigDecimal) JSON.parse("1e-3")));
+        assertEquals(0, BigDecimal.valueOf(0.001).compareTo((BigDecimal) JSON.parse("1e-3", BigDecimal.class)));
         assertEquals(0, BigDecimal.valueOf(12390000d).compareTo(JSON.parse("123.9E5", BigDecimal.class)));
         assertEquals(0, BigDecimal.valueOf(12390000d).compareTo(JSON.parse("+123.9E5", BigDecimal.class)));
         assertEquals(0, BigDecimal.valueOf(-12390000d).compareTo(JSON.parse("-123.9E5", BigDecimal.class)));
