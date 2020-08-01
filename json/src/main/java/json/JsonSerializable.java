@@ -8,5 +8,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface JsonSerializable {
-    public Class<? extends JsonConverter<?>> value() default DefaultObjectJsonConverter.class;
+    Class<? extends JsonConverter<?, ?>> value() default DefaultObjectJsonConverter.class;
 }

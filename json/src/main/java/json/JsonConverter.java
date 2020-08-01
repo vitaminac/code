@@ -1,5 +1,7 @@
 package json;
 
-public abstract class JsonConverter<T> {
-    public abstract String stringify(T obj);
+public interface JsonConverter<T, R> {
+    R stringify(T obj);
+
+    T parse(R from, Class<T> toClazz);
 }

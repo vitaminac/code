@@ -99,18 +99,22 @@ public class JSON {
             Class<?> clazz = obj.getClass();
             if (!CACHE.containsKey(obj.getClass())) {
                 JsonSerializable jsonSerializable = clazz.getAnnotation(JsonSerializable.class);
-                Class<? extends JsonConverter<?>> converterClazz = jsonSerializable.value();
-                var supportClass = (Class<?>) ((ParameterizedType) converterClazz.getGenericSuperclass()).getActualTypeArguments()[0];
-                if (!supportClass.isAssignableFrom(clazz)) {
-                    throw new RuntimeException("converter doesn't support " + converterClazz.getSimpleName());
-                }
-                try {
-                    CACHE.put(clazz, converterClazz.getConstructor().newInstance());
-                } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                    throw new RuntimeException("Error while creating the " + clazz.getSimpleName(), e);
+                Class<? extends JsonConverter<?, ?>> converterClazz = jsonSerializable.value();
+                for (var i : converterClazz.getGenericInterfaces()) {
+                    if (((ParameterizedType) i).getRawType().equals(JsonConverter.class)) {
+                        var supportClass = (Class<?>) ((ParameterizedType) i).getActualTypeArguments()[0];
+                        if (!supportClass.isAssignableFrom(clazz)) {
+                            throw new RuntimeException("converter doesn't support " + converterClazz.getSimpleName());
+                        }
+                        try {
+                            CACHE.put(clazz, converterClazz.getConstructor().newInstance());
+                        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                            throw new RuntimeException("Error while creating the " + clazz.getSimpleName(), e);
+                        }
+                    }
                 }
             }
-            sb.append(CACHE.get(clazz).stringify(obj));
+            sb.append(stringify(CACHE.get(clazz).stringify(obj)));
         } else {
             throw new UnsupportedJsonSerializationException(obj.getClass());
         }
