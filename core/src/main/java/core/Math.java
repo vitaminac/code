@@ -428,4 +428,18 @@ public class Math {
         pool.shutdown();
         return result;
     }
+
+    public static int luhn(long n) {
+        assert n > 0;
+        int sum = 0;
+        while (n > 0) {
+            int tmp = (int) (n % 100);
+            sum += tmp % 10;
+            int even = (tmp / 10) * 2;
+            sum += even % 10;
+            sum += even / 10;
+            n /= 100;
+        }
+        return sum;
+    }
 }

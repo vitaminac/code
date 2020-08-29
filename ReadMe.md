@@ -21,17 +21,16 @@ How to become a good developer?
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
-- [ ] [Design Patterns](https://github.com/iluwatar/java-design-patterns)
-- [ ] [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/a/2707195/9980245)
-- [ ] Clean Code
+- [ ] [Refactoring.Guru](https://refactoring.guru/)
+- [ ] [Clean Code](http://cleancoder.com)
 - [ ] Code Complete
-- [ ] Refactoring: Improving the Design of Existing Code
+- [ ] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
 
 ### Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
-- [ ] Introduction to Algorithms
+- [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-third-edition)
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
@@ -73,11 +72,13 @@ How to become a good developer?
 
 * [Coursera](https://www.coursera.org/)
 * [edX](https://www.edx.org/)
-* [Khan Academy](https://www.khanacademy.org/)
 * [Udacity](https://www.udacity.com/)
+* [Khan Academy](https://www.khanacademy.org/)
 * [MIT Open Courseware](https://ocw.mit.edu)
+* [Udemy](https://www.udemy.com/)
 
 ## Researches
 
 * [arXiv](https://arxiv.org)
 * [Papers With Code](https://paperswithcode.com)
+* [RFC](https://tools.ietf.org/rfc/index)
