@@ -1,4 +1,4 @@
-import aceptaelreto.P566LaAbuelitaCaperucita;
+import codeforces.P1405C;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P566LaAbuelitaCaperucita.class, null);
+        Judge.judge(P1405C.class, null);
     }
 }
