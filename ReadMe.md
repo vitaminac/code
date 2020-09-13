@@ -6,13 +6,9 @@ How to become a good developer?
 
 ### Mathematics
 
-- [ ] [Calculus: Early Transcendentals](https://math.libretexts.org/Bookshelves/Calculus/Map%3A_Calculus_-_Early_Transcendentals_\(Stewart\))
-- [ ] Linear Algebra Done Right
-- [ ] Discrete Mathematics and Its Applications
 - [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
 - [X] 数学之美
 - [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
-- [ ] Concrete Mathematics: Foundation for Computer Science
 
 ### Programming
 
