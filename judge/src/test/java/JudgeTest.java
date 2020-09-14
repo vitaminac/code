@@ -1,4 +1,4 @@
-import codeforces.P1400B;
+import codeforces.P1405D;
 import org.junit.Test;
 
 public class JudgeTest {
@@ -40,6 +40,6 @@ public class JudgeTest {
 
     @Test
     public void test() throws Exception {
-        Judge.judge(P1400B.class, null);
+        Judge.judge(P1405D.class, null);
     }
 }
