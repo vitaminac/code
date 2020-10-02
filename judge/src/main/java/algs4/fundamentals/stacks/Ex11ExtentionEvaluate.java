@@ -27,8 +27,8 @@ public class Ex11ExtentionEvaluate {
     }
 
     public static void main(String[] args) {
-        Stack<String> ops = new DoublyLinkedList<>();
-        Stack<Double> values = new DoublyLinkedList<>();
+        Stack<String> ops = Stack.fromDeque(new DoublyLinkedList<>());
+        Stack<Double> values = Stack.fromDeque(new DoublyLinkedList<>());
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
@@ -43,21 +43,21 @@ public class Ex11ExtentionEvaluate {
                         break;
                     case "+":
                     case "-":
-                        if (!ops.isEmpty() && (ops.top().equals("+") || ops.top().equals("-"))) {
+                        if (!ops.isEmpty() && (ops.peek().equals("+") || ops.peek().equals("-"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                         ops.push(token);
                         break;
                     case ")":
-                        if (!ops.top().equals("(")) values.push(apply(ops.pop(), values.pop(), values.pop()));
+                        if (!ops.peek().equals("(")) values.push(apply(ops.pop(), values.pop(), values.pop()));
                         ops.pop();
-                        if (!ops.isEmpty() && (ops.top().equals("*") || ops.top().equals("/"))) {
+                        if (!ops.isEmpty() && (ops.peek().equals("*") || ops.peek().equals("/"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                         break;
                     default:
                         values.push(Double.parseDouble(token));
-                        if (!ops.isEmpty() && (ops.top().equals("*") || ops.top().equals("/"))) {
+                        if (!ops.isEmpty() && (ops.peek().equals("*") || ops.peek().equals("/"))) {
                             values.push(apply(ops.pop(), values.pop(), values.pop()));
                         }
                 }

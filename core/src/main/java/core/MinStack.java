@@ -1,6 +1,7 @@
 package core;
 
 import java.util.Comparator;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class MinStack<E> implements Stack<E> {
@@ -25,17 +26,17 @@ public class MinStack<E> implements Stack<E> {
     }
 
     @Override
-    public E top() {
-        return this.stack.top();
+    public E peek() {
+        return this.stack.peek();
     }
 
     public E min() {
-        return this.minStack.top();
+        return this.minStack.peek();
     }
 
     @Override
     public void push(E e) {
-        if (this.minStack.isEmpty() || this.comparator.compare(e, this.minStack.top()) <= 0) {
+        if (this.minStack.isEmpty() || this.comparator.compare(e, this.minStack.peek()) <= 0) {
             this.minStack.push(e);
         }
         this.stack.push(e);
@@ -44,7 +45,12 @@ public class MinStack<E> implements Stack<E> {
     @Override
     public E pop() {
         E e = this.stack.pop();
-        if (this.comparator.compare(e, this.minStack.top()) == 0) this.minStack.pop();
+        if (this.comparator.compare(e, this.minStack.peek()) == 0) this.minStack.pop();
         return e;
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> consumer) {
+        this.stack.forEach(consumer);
     }
 }

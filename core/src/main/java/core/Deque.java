@@ -1,53 +1,19 @@
 package core;
 
-public interface Deque<E> extends Queue<E>, Stack<E> {
+public interface Deque<E> extends Enumerable<E> {
     int size();
 
-    void addFirst(E element);
-
-    void addLast(E element);
-
-    void removeFirst();
-
-    void removeLast();
+    boolean isEmpty();
 
     E first();
 
     E last();
 
-    boolean isEmpty();
+    void addFirst(E element);
 
-    @Override
-    default E head() {
-        return this.first();
-    }
+    void addLast(E element);
 
-    @Override
-    default E top() {
-        return this.first();
-    }
+    E removeFirst();
 
-    @Override
-    default void push(E element) {
-        this.addFirst(element);
-    }
-
-    @Override
-    default E pop() {
-        E ret = this.first();
-        this.removeFirst();
-        return ret;
-    }
-
-    @Override
-    default void enqueue(E element) {
-        this.addLast(element);
-    }
-
-    @Override
-    default E dequeue() {
-        E ret = this.first();
-        this.removeFirst();
-        return ret;
-    }
+    E removeLast();
 }

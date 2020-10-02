@@ -1,10 +1,10 @@
 package code.adt.queue.simulation;
 
-import core.DoublyLinkedList;
 import core.Queue;
+import core.SinglyLinkedList;
 
 public class InfiniteQueue extends Component {
-    private final Queue<Atom> queue = new DoublyLinkedList<>();
+    private final Queue<Atom> queue = new SinglyLinkedList<>();
 
     public InfiniteQueue(Clock clock, ChooseOut chooseOut) {
         super(chooseOut);
@@ -12,7 +12,7 @@ public class InfiniteQueue extends Component {
             @Override
             public void run() {
                 if (!InfiniteQueue.this.queue.isEmpty()) {
-                    if (InfiniteQueue.this.tryExit(InfiniteQueue.this.queue.head())) {
+                    if (InfiniteQueue.this.tryExit(InfiniteQueue.this.queue.peek())) {
                         InfiniteQueue.this.queue.dequeue();
                     }
                 }

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Parameterized.class)
 public class QueueTest {
     private Queue<String> queue;
-    private Supplier<Queue<String>> supplier;
+    private final Supplier<Queue<String>> supplier;
 
     public QueueTest(Supplier<Queue<String>> supplier) {
         this.supplier = supplier;
@@ -28,8 +28,9 @@ public class QueueTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
-                {(Supplier<DoublyLinkedList<String>>) DoublyLinkedList::new}
+                {(Supplier<SinglyLinkedList<String>>) SinglyLinkedList::new},
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(new ArrayDeque<>(5))},
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(new DoublyLinkedList<>())}
         });
     }
 

@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 @RunWith(Parameterized.class)
 public class MapTest {
     private Map<String, String> map;
-    private Supplier<Map<String, String>> supplier;
+    private final Supplier<Map<String, String>> supplier;
 
     public MapTest(Supplier<Map<String, String>> supplier) {
         this.supplier = supplier;

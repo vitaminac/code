@@ -1,6 +1,6 @@
 package algs4.fundamentals.stacks;
 
-import core.DoublyLinkedList;
+import core.SinglyLinkedList;
 import core.Stack;
 
 import java.util.Scanner;
@@ -11,8 +11,8 @@ public class ExampleEvaluate {
         try (Scanner sc = new Scanner(System.in)) {
             while (sc.hasNext()) {
                 StringTokenizer tk = new StringTokenizer(sc.nextLine());
-                Stack<String> ops = new DoublyLinkedList<>();
-                Stack<Double> values = new DoublyLinkedList<>();
+                Stack<String> ops = new SinglyLinkedList<>();
+                Stack<Double> values = new SinglyLinkedList<>();
                 while (tk.hasMoreTokens()) {
                     String token = tk.nextToken();
                     if (token.equals("(")) ;

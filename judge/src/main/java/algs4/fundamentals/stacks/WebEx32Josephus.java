@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
-import core.DoublyLinkedList;
 import core.Queue;
+import core.SinglyLinkedList;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class WebEx32Josephus {
         int n = scanner.nextInt();
 
         // initialize the queue
-        Queue<Integer> queue = new DoublyLinkedList<>();
+        Queue<Integer> queue = new SinglyLinkedList<>();
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
 

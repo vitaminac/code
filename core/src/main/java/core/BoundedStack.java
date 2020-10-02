@@ -1,9 +1,11 @@
 package core;
 
+import java.util.function.Consumer;
+
 public class BoundedStack<E> implements Stack<E> {
     private final E[] elements;
     private int size = 0;
-    private int index = 0;
+    private int top = 0;
 
     @SuppressWarnings("unchecked")
     public BoundedStack(int capacity) {
@@ -21,23 +23,30 @@ public class BoundedStack<E> implements Stack<E> {
     }
 
     @Override
-    public E top() {
-        return this.elements[this.index];
+    public E peek() {
+        return this.elements[this.top];
     }
 
     @Override
     public void push(E element) {
-        this.elements[this.index] = element;
-        this.index = (this.index + 1) % this.elements.length;
+        this.elements[this.top] = element;
+        this.top = (this.top + 1) % this.elements.length;
         this.size = Math.min(size + 1, this.elements.length);
     }
 
     @Override
     public E pop() {
-        this.index = (this.index - 1 + this.elements.length) % this.elements.length;
-        E result = this.elements[this.index];
-        this.elements[this.index] = null;
+        this.top = (this.top - 1 + this.elements.length) % this.elements.length;
+        E result = this.elements[this.top];
+        this.elements[this.top] = null;
         this.size -= 1;
         return result;
+    }
+
+    @Override
+    public void forEach(Consumer<? super E> consumer) {
+        for (int i = 0; i < this.size; i++) {
+            consumer.accept(this.elements[(top - i + this.elements.length) % this.elements.length]);
+        }
     }
 }

@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     private static class LinkedNode<E> {
-        private E element;
+        private final E element;
         private LinkedNode<E> next;
 
         private LinkedNode(E element) {
@@ -16,13 +16,6 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
 
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
-
-    public SinglyLinkedList() {
-    }
-
-    public SinglyLinkedList(Enumerable<E> enumerable) {
-        enumerable.forEach(this::push);
-    }
 
     @Override
     public int size() {
@@ -41,12 +34,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     }
 
     @Override
-    public E top() {
-        return this.head();
-    }
-
-    @Override
-    public E head() {
+    public E peek() {
         return this.head.element;
     }
 

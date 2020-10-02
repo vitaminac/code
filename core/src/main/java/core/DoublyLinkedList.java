@@ -80,9 +80,9 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     @Override
-    public void removeFirst() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
+    public E removeFirst() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        final E tmp = this.head.element;
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
@@ -90,12 +90,13 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
             this.head = this.head.next;
             this.head.prev = null;
         }
+        return tmp;
     }
 
     @Override
-    public void removeLast() {
-        if (this.isEmpty())
-            throw new NoSuchElementException();
+    public E removeLast() {
+        if (this.isEmpty()) throw new NoSuchElementException();
+        final E tmp = this.tail.element;
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
@@ -103,6 +104,7 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
             this.tail = this.tail.prev;
             this.tail.next = null;
         }
+        return tmp;
     }
 
     @Override
