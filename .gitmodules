@@ -1,6 +1,0 @@
-[submodule "json"]
-  path = json
-  url = https://github.com/vitaminac/JSONSerializer.git
-[submodule "async"]
-  path = async
-  url = https://github.com/vitaminac/scheduler.git
