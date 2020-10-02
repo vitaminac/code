@@ -12,10 +12,7 @@ import javax.tools.Diagnostic;
 import javax.tools.JavaFileObject;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 
 @SupportedAnnotationTypes("proc.BuilderProperty")
 @SupportedSourceVersion(SourceVersion.RELEASE_11)
@@ -23,26 +20,26 @@ public class BuilderProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         for (TypeElement annotation : annotations) {
-            Set<? extends Element> annotatedElements = roundEnv
-                    .getElementsAnnotatedWith(annotation);
-            Map<Boolean, List<Element>> annotatedMethods = annotatedElements.stream()
-                    .collect(Collectors
-                            .partitioningBy(element -> ((ExecutableType) element.asType())
-                                    .getParameterTypes().size() == 1 && element.getSimpleName()
-                                    .toString().startsWith("set")));
-            List<Element> setters = annotatedMethods.get(true);
-            List<Element> otherMethods = annotatedMethods.get(false);
-            otherMethods.forEach(element -> processingEnv.getMessager()
-                    .printMessage(Diagnostic.Kind.ERROR, "@proc.BuilderProperty must be applied to a setXxx method " + "with a single argument", element));
-            String className = ((TypeElement) setters.get(0).getEnclosingElement())
+            List<Element> annotatedElements = new ArrayList<>(roundEnv.getElementsAnnotatedWith(annotation));
+            String className = ((TypeElement) annotatedElements.get(0).getEnclosingElement())
                     .getQualifiedName().toString();
-            Map<String, String> setterMap = setters.stream().collect(Collectors
-                    .toMap(setter -> setter.getSimpleName()
-                            .toString(), setter -> ((ExecutableType) setter.asType())
-                            .getParameterTypes().get(0).toString()));
+
+            final Map<String, String> setterToTypeMap = new HashMap<>();
+            for (var element : annotatedElements) {
+                ExecutableType type = (ExecutableType) element.asType();
+                if (type.getParameterTypes().size() == 1 &&
+                        element.getSimpleName().toString().startsWith("set")) {
+                    final String setterMethodName = element.getSimpleName().toString();
+                    setterToTypeMap.put(setterMethodName, type.getParameterTypes().get(0).toString());
+                } else {
+                    processingEnv.getMessager().printMessage(
+                            Diagnostic.Kind.ERROR,
+                            "@proc.BuilderProperty must be applied to a setXxx method " + "with a single argument", element);
+                }
+            }
 
             try {
-                writeBuilderFile(className, setterMap);
+                writeBuilderSourceCode(className, setterToTypeMap);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -50,7 +47,7 @@ public class BuilderProcessor extends AbstractProcessor {
         return false;
     }
 
-    private void writeBuilderFile(String className, Map<String, String> setterMap) throws IOException {
+    private void writeBuilderSourceCode(String className, Map<String, String> setterMap) throws IOException {
         String packageName = null;
         int lastDot = className.lastIndexOf('.');
         if (lastDot > 0) {
@@ -87,11 +84,12 @@ public class BuilderProcessor extends AbstractProcessor {
             out.println(" build() {");
             out.println("        return object;");
             out.println("    }");
-            out.println();
 
             setterMap.entrySet().forEach(setter -> {
                 String methodName = setter.getKey();
                 String argumentType = setter.getValue();
+
+                out.println();
 
                 out.print("    public ");
                 out.print(builderSimpleClassName);
@@ -107,7 +105,6 @@ public class BuilderProcessor extends AbstractProcessor {
                 out.println("(value);");
                 out.println("        return this;");
                 out.println("    }");
-                out.println();
             });
 
             out.println("}");
