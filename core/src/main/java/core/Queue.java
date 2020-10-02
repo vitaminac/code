@@ -27,7 +27,7 @@ public interface Queue<E> extends Enumerable<E> {
 
             @Override
             public E peek() {
-                return deque.first();
+                return deque.getFirst();
             }
 
             @Override

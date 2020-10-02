@@ -5,9 +5,9 @@ public interface Deque<E> extends Enumerable<E> {
 
     boolean isEmpty();
 
-    E first();
+    E getFirst();
 
-    E last();
+    E getLast();
 
     void addFirst(E element);
 

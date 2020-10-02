@@ -28,13 +28,13 @@ public class ArrayDeque<E> extends AbstractOrderedCollection<E> implements Deque
     }
 
     @Override
-    public E first() {
+    public E getFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
         return this.elements[this.first];
     }
 
     @Override
-    public E last() {
+    public E getLast() {
         if (this.isEmpty()) throw new NoSuchElementException();
         return this.elements[(this.first + this.size - 1) % this.elements.length];
     }

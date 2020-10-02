@@ -42,14 +42,14 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     @Override
-    public E first() {
+    public E getFirst() {
         if (this.isEmpty())
             throw new NoSuchElementException();
         return this.head.element;
     }
 
     @Override
-    public E last() {
+    public E getLast() {
         if (this.isEmpty())
             throw new NoSuchElementException();
         return this.tail.element;
