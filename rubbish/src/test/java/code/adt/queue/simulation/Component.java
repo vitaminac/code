@@ -1,16 +1,16 @@
 package code.adt.queue.simulation;
 
 import core.ArrayList;
-import core.Bag;
-import core.DoublyLinkedList;
 import core.List;
+import core.map.SeparateChainingHashTableMap;
+import core.set.MutableSet;
 
 import java.util.function.Consumer;
 
 public abstract class Component {
     protected final List<Component> outs = new ArrayList<>();
-    private final Bag<Consumer<Atom>> consumersOnEnter = new DoublyLinkedList<>();
-    private final Bag<Consumer<Atom>> consumersOnExit = new DoublyLinkedList<>();
+    private final MutableSet<Consumer<Atom>> consumersOnEnter = MutableSet.fromMap(SeparateChainingHashTableMap::new);
+    private final MutableSet<Consumer<Atom>> consumersOnExit = MutableSet.fromMap(SeparateChainingHashTableMap::new);
     private final ChooseOut chooseOut;
 
     public Component(ChooseOut chooseOut) {

@@ -33,7 +33,7 @@ public class QueueSimulation {
         server.addOutput(consumer);
         this.clock.run(HOURS);
 
-        assertEquals(1, (double) consumer.getBag().size() / HOURS / 60 / 60, 0.1);
+        assertEquals(1, (double) consumer.getAtoms().size() / HOURS / 60 / 60, 0.1);
         assertEquals(1, consumer.mean("response_time"), 0.1);
         assertEquals(1.0 / 2, consumer.mean("process_time"), 0.01);
     }
@@ -128,7 +128,7 @@ public class QueueSimulation {
         server.addOutput(consumer);
         this.clock.run(HOURS);
 
-        assertEquals(0.25, (double) consumer.getBag().size() / HOURS / 60 / 60, 0.1);
+        assertEquals(0.25, (double) consumer.getAtoms().size() / HOURS / 60 / 60, 0.1);
         assertEquals(3, consumer.mean("process_time"), 0.01);
         assertEquals(6, consumer.mean("wait_time"), 0.3);
         assertEquals(9, consumer.mean("response_time"), 0.3);

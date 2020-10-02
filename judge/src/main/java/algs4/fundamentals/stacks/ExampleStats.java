@@ -1,14 +1,14 @@
 package algs4.fundamentals.stacks;
 
-import core.Bag;
-import core.DoublyLinkedList;
+import core.map.SeparateChainingHashTableMap;
+import core.set.MutableSet;
 
 import java.util.Scanner;
 
 public class ExampleStats {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            Bag<Double> numbers = new DoublyLinkedList<>();
+            MutableSet<Double> numbers = MutableSet.fromMap(SeparateChainingHashTableMap::new);
 
             while (sc.hasNextInt()) {
                 numbers.add(sc.nextDouble());

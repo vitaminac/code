@@ -12,7 +12,6 @@ How to become a good developer?
 
 ### Programming
 
-- [ ] [Edx HarvardX: CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-to-computer-science)
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
@@ -38,6 +37,7 @@ How to become a good developer?
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
 * [Stanford Undergraduate Programs in Computer Science](https://exploredegrees.stanford.edu/schoolofengineering/computerscience/#courseinventory)
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
+* [Harvard College Handbook for Students](https://handbook.fas.harvard.edu/book/computer-science)
 * [CMU CS Curriculum](https://www.csd.cs.cmu.edu/academics/undergraduate/requirements)
 * [CMU B.S. AI Curriculum](https://www.cs.cmu.edu/bs-in-artificial-intelligence/curriculum)
 * [Berkeley Undergraduate Computer Science Courses](http://guide.berkeley.edu/undergraduate/degree-programs/computer-science/#coursestext)

@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.Bag;
-import core.DoublyLinkedList;
+import core.map.SeparateChainingHashTableMap;
+import core.set.MutableSet;
 
 import java.util.PriorityQueue;
 
@@ -9,9 +9,9 @@ import java.util.PriorityQueue;
 public class Clock {
     private double time = 0;
     // private PriorityQueue<Event> events = ArrayHeap.create(); TODO
-    private PriorityQueue<Event> events = new PriorityQueue<>();
+    private final PriorityQueue<Event> events = new PriorityQueue<>();
 
-    private Bag<Runnable> listeners = new DoublyLinkedList<>();
+    private final MutableSet<Runnable> listeners = MutableSet.fromMap(SeparateChainingHashTableMap::new);
 
     public void run(int hours) {
         var until = hours * 60 * 60;

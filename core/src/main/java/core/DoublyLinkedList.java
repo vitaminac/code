@@ -4,9 +4,9 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E>, Bag<E> {
+public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E> {
     private static class LinkedNode<E> {
-        private E element;
+        private final E element;
         private LinkedNode<E> next;
         private LinkedNode<E> prev;
 
@@ -34,11 +34,6 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
             node = node.next;
         }
         return n;
-    }
-
-    @Override
-    public void add(E item) {
-        this.push(item);
     }
 
     @Override

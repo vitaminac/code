@@ -4,11 +4,11 @@ import java.util.Comparator;
 import java.util.function.Supplier;
 
 public class MinStack<E> implements Stack<E> {
-    private final Comparator<E> comparator;
-    private Stack<E> stack;
-    private Stack<E> minStack;
+    private final Comparator<? super E> comparator;
+    private final Stack<E> stack;
+    private final Stack<E> minStack;
 
-    public MinStack(Comparator<E> comparator, Supplier<Stack<E>> factory) {
+    public MinStack(Supplier<Stack<E>> factory, Comparator<? super E> comparator) {
         this.comparator = comparator;
         this.stack = factory.get();
         this.minStack = factory.get();

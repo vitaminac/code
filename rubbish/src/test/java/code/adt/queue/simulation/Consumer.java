@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.Bag;
-import core.DoublyLinkedList;
+import core.map.SeparateChainingHashTableMap;
+import core.set.MutableSet;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ public class Consumer extends Component {
         super(null);
     }
 
-    private Bag<Atom> bag = new DoublyLinkedList<>();
+    private final MutableSet<Atom> bag = MutableSet.fromMap(SeparateChainingHashTableMap::new);
 
     @Override
     public void enter(Atom atom) {
@@ -29,7 +29,7 @@ public class Consumer extends Component {
         throw new RuntimeException();
     }
 
-    public Bag<Atom> getBag() {
+    public MutableSet<Atom> getAtoms() {
         return this.bag;
     }
 

@@ -17,15 +17,19 @@ import java.util.Scanner;
 public class WebEx5StackMax {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            MinStack<Integer> maxStack = new MinStack<Integer>(Comparator.reverseOrder(), SinglyLinkedList::new);
+            MinStack<Integer> maxStack = new MinStack<>(SinglyLinkedList::new, Comparator.reverseOrder());
             while (sc.hasNext()) {
                 String op = sc.next();
-                if (op.equals("push")) {
-                    maxStack.push(sc.nextInt());
-                } else if (op.equals("pop")) {
-                    System.out.println(maxStack.pop());
-                } else if (op.equals("max")) {
-                    System.out.println(maxStack.min());
+                switch (op) {
+                    case "push":
+                        maxStack.push(sc.nextInt());
+                        break;
+                    case "pop":
+                        System.out.println(maxStack.pop());
+                        break;
+                    case "max":
+                        System.out.println(maxStack.min());
+                        break;
                 }
             }
         }
