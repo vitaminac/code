@@ -1,9 +1,8 @@
 rootProject.name = 'code'
 
-include 'core'
-include 'json'
-include 'judge'
-include 'proc'
-include 'proc-test'
+include 'core', 'json', 'judge'
+include 'proc', 'proc-test'
+include 'ioc'
+include 'web'
 include 'coursera'
 include 'rubbish'
