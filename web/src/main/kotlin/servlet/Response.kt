@@ -1,5 +1,0 @@
-package servlet
-
-interface Response {
-
-}
