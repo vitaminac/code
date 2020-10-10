@@ -4,6 +4,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Supplier;
 
+/**
+ * TODO: weak reference - prevent memory leak
+ * @param <E>
+ */
 public class ThreadLocal<E> {
     // TODO: change to my implementation
     private final ConcurrentMap<Long, E> map = new ConcurrentHashMap<>();

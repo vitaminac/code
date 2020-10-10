@@ -5,7 +5,7 @@ import ioc.injection.Scope;
 
 import java.util.Objects;
 
-@Dependency(scope = Scope.Prototype)
+@Dependency(scope = Scope.PROTOTYPE)
 public class TestPrototypeImpl implements TestPrototype {
     private int state;
 

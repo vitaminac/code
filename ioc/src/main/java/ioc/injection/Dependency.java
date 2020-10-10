@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 public @interface Dependency {
-    Scope scope() default Scope.Singleton;
+    Scope scope() default Scope.SINGLETON;
 
     String name() default "";
 }

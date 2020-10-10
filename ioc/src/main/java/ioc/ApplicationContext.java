@@ -6,10 +6,7 @@ import ioc.injection.ContextConfig;
 import ioc.injection.Dependency;
 import org.reflections.Reflections;
 import ioc.provider.Factory;
-import ioc.provider.PrototypeProvider;
 import ioc.provider.Provider;
-import ioc.provider.SingletonProvider;
-import ioc.provider.ThreadLocalProvider;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -29,7 +26,7 @@ public enum ApplicationContext implements Context {
 
     ApplicationContext(Locator locator) {
         this.locator = locator;
-        this.locator.register(ApplicationContext.class, new SingletonProvider<>(() -> this));
+        this.locator.register(ApplicationContext.class, () -> this);
 
         Reflections reflections = new Reflections("");
         Set<Class<? extends ContextConfig>> configs = reflections.getSubTypesOf(ContextConfig.class);
@@ -64,18 +61,7 @@ public enum ApplicationContext implements Context {
     }
 
     private <T> void addProviderFromAnnotation(Class<T> type, Factory<T> factory, Dependency annotation) {
-        Provider<T> provider = null;
-        switch (annotation.scope()) {
-            case Singleton:
-                provider = new SingletonProvider<T>(factory);
-                break;
-            case Prototype:
-                provider = new PrototypeProvider<>(factory);
-                break;
-            case Thread:
-                provider = new ThreadLocalProvider<T>(factory);
-                break;
-        }
+        Provider<T> provider = annotation.scope().getProvider(factory);
         this.locator.register(type, provider);
         if (!annotation.name().equals("")) {
             this.locator.register(annotation.name(), provider);

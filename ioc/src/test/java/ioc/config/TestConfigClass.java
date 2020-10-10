@@ -10,12 +10,12 @@ public class TestConfigClass implements ContextConfig {
         return new TestSingletonImpl();
     }
 
-    @Dependency(scope = Scope.Prototype)
+    @Dependency(scope = Scope.PROTOTYPE)
     private TestPrototype buildServicePrototype() {
         return new TestPrototypeImpl(99);
     }
 
-    @Dependency(scope = Scope.Thread)
+    @Dependency(scope = Scope.THREAD_LOCAL)
     private TestThreadLocal buildServiceThread() {
         return new TestThreadLocalImpl();
     }

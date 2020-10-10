@@ -3,7 +3,7 @@ package ioc.dependency;
 import ioc.injection.Dependency;
 import ioc.injection.Scope;
 
-@Dependency(scope = Scope.Thread)
+@Dependency(scope = Scope.THREAD_LOCAL)
 public class TestThreadLocalImpl implements TestThreadLocal {
     private final long id;
 
