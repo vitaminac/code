@@ -1,4 +1,5 @@
 dependencies {
     // remove this dependency
-    implementation group: 'org.reflections', name: 'reflections', version: '0.9.11'
+    implementation group: 'org.reflections', name: 'reflections', version: '0.9.12'
+    compile project(':core')
 }

@@ -3,11 +3,11 @@ package core;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
-public class CachedValue<E> {
+public class AtomicReferenceThreadSafeCachedValue<E> {
     private final Supplier<? extends E> supplier;
     private final AtomicReference<E> reference = new AtomicReference<>(null);
 
-    public CachedValue(Supplier<? extends E> supplier) {
+    public AtomicReferenceThreadSafeCachedValue(Supplier<? extends E> supplier) {
         this.supplier = supplier;
     }
 

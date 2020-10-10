@@ -1,19 +1,16 @@
 package ioc.provider;
 
+import core.AtomicReferenceThreadSafeCachedValue;
 
 public class SingletonProvider<T> implements Provider<T> {
-    private T instance;
-    private final Factory<T> factory;
+    private final AtomicReferenceThreadSafeCachedValue<T> cache;
 
-    public SingletonProvider(Factory<T> factory) {
-        this.factory = factory;
+    public SingletonProvider(final Factory<T> factory) {
+        this.cache = new AtomicReferenceThreadSafeCachedValue<>(factory::build);
     }
 
     @Override
     public T provide() {
-        if (this.instance == null) {
-            this.instance = factory.build();
-        }
-        return this.instance;
+        return this.cache.getValue();
     }
 }
