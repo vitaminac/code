@@ -6,7 +6,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
     private static final Relation SKIP = new Relation<>(null, null);
 
     @Override
-    public void link(Key key, Value value) {
+    public void put(Key key, Value value) {
         this.remove(key); // ensure that we can place at first SKIP position
         if (this.size > this.capacity * LOAD_FACTOR) this.resize(this.capacity * 2);
         int k = this.hash(key);
@@ -20,7 +20,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
     }
 
     @Override
-    public Value map(Key key) {
+    public Value get(Key key) {
         int k = this.hash(key);
         int hash = this.compress(k);
         int index = hash;
@@ -79,7 +79,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
         this.init(capacity);
         for (var relation : old) {
             if (relation != null && relation != SKIP) {
-                this.link(relation.getKey(), relation.getValue());
+                this.put(relation.getKey(), relation.getValue());
             }
         }
     }

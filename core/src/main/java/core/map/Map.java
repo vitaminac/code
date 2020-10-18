@@ -5,9 +5,9 @@ import core.Enumerable;
 public interface Map<Domain, CoDomain> extends Enumerable<Domain> {
     boolean isEmpty();
 
-    void link(Domain key, CoDomain value);
+    void put(Domain key, CoDomain value);
 
-    CoDomain map(Domain key);
+    CoDomain get(Domain key);
 
     CoDomain remove(Domain key);
 

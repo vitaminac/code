@@ -178,13 +178,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     }
 
     @Override
-    public void link(Key key, Value value) {
+    public void put(Key key, Value value) {
         root = put(root, key, value);
         root.color = BLACK; // The root is black
     }
 
     @Override
-    public Value map(Key key) {
+    public Value get(Key key) {
         var node = this.root;
         while (node != null) {
             int diff = key.compareTo(node.key);
@@ -197,7 +197,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
 
     @Override
     public Value remove(Key key) {
-        Value value = this.map(key);
+        Value value = this.get(key);
         if (key != null) {
             if (!isRed(root.left) && !isRed(root.right))
                 root.color = RED;

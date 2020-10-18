@@ -140,12 +140,12 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     }
 
     @Override
-    public void link(Key key, Value value) {
+    public void put(Key key, Value value) {
         this.root = this.insert(this.root, key, value);
     }
 
     @Override
-    public Value map(Key key) {
+    public Value get(Key key) {
         AVLNode<Key, Value> current = this.root;
         while (current != null) {
             int diff = key.compareTo(current.key);
@@ -197,7 +197,7 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
 
     @Override
     public Value remove(Key key) {
-        Value value = this.map(key);
+        Value value = this.get(key);
         this.delete(this.root, key);
         return value;
     }

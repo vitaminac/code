@@ -2,13 +2,16 @@ package core;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
 import java.net.URL;
+import java.util.Scanner;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public final class Utils {
     private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     private Utils() {
     }
@@ -62,5 +65,20 @@ public final class Utils {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) sb.append(str);
         return sb.toString();
+    }
+
+    public static String input(String message) {
+        System.out.print(message);
+        return SCANNER.next();
+    }
+
+    public static int inputInteger(String message) {
+        System.out.print(message);
+        return SCANNER.nextInt();
+    }
+
+    public static InetSocketAddress parseIpAddress(String address) {
+        int sepIndex = address.lastIndexOf(":");
+        return new InetSocketAddress(address.substring(0, sepIndex), Integer.parseInt(address.substring(sepIndex + 1)));
     }
 }

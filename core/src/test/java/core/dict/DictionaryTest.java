@@ -41,7 +41,7 @@ public class DictionaryTest {
     @Test
     public void findRange() {
         for (int i = 0; i < 1000; i++) {
-            this.dictionary.link(i, String.valueOf(i));
+            this.dictionary.put(i, String.valueOf(i));
         }
         final StringBuilder sb = new StringBuilder();
         this.dictionary.findRange((int) 'A', (int) 'z', new Consumer<Integer>() {

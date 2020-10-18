@@ -33,12 +33,12 @@ public interface MutableSet<E> extends Set<E>, Enumerable<E> {
 
             @Override
             public boolean contains(T element) {
-                return map.map(element) != null;
+                return map.get(element) != null;
             }
 
             @Override
             public void add(T element) {
-                map.link(element, Boolean.TRUE);
+                map.put(element, Boolean.TRUE);
             }
 
             @Override

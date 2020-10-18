@@ -61,7 +61,7 @@ public class SkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V>
     }
 
     @Override
-    public void link(K key, V value) {
+    public void put(K key, V value) {
         this.link(this.top, new Vocabulary<>(key, value));
         if (this.top.next != null) {
             var newTop = new Node<>(MIN_SENTIMENTAL);
@@ -71,7 +71,7 @@ public class SkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V>
     }
 
     @Override
-    public V map(K key) {
+    public V get(K key) {
         Node<Vocabulary<K, V>> current = this.top;
         while (current.down != null) {
             current = current.down;

@@ -25,27 +25,27 @@ public interface Bag<E> extends Enumerable<E> {
 
             @Override
             public int getCount(T element) {
-                return map.map(element);
+                return map.get(element);
             }
 
             @Override
             public void add(T element) {
-                Integer n = map.map(element);
+                Integer n = map.get(element);
                 if (n == null) {
-                    map.link(element, 1);
+                    map.put(element, 1);
                 } else {
-                    map.link(element, n + 1);
+                    map.put(element, n + 1);
                 }
             }
 
             @Override
             public void remove(T element) {
-                Integer n = map.map(element);
+                Integer n = map.get(element);
                 if (n != null) {
                     if (n == 0) {
                         map.remove(element);
                     } else {
-                        map.link(element, n - 1);
+                        map.put(element, n - 1);
                     }
                 }
             }

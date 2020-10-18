@@ -12,7 +12,7 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
     }
 
     @Override
-    public void link(Key key, Value value) {
+    public void put(Key key, Value value) {
         int index = this.compress(this.hash(key));
         var current = this.entries[index];
         while (current != null) {
@@ -30,7 +30,7 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
     }
 
     @Override
-    public Value map(Key key) {
+    public Value get(Key key) {
         int index = this.compress(this.hash(key));
         if (this.entries[index] != null) {
             var current = this.entries[index];
@@ -94,7 +94,7 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
         this.init(capacity);
         for (var current : old) {
             while (current != null) {
-                this.link(current.getKey(), current.getValue());
+                this.put(current.getKey(), current.getValue());
                 current = current.next;
             }
         }
