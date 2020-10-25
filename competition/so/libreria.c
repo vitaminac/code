@@ -36,7 +36,7 @@ extern int head(int N) {
 		while ((c = getchar()) != EOF) {
 			line[length++] = (char)c;
 
-			/* si el tamaño excede a la capacidad,
+			/* si el tamano excede a la capacidad,
 			   redimensiona el espacio asginado de forma dinamica
 			 */
 			if (length >= capacity) {

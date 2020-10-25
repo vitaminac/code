@@ -49,6 +49,7 @@ How to become a good developer?
 * [Illinois B.S. in Computer Science](https://cs.illinois.edu/academics/undergraduate/degree-program-options/bs-computer-science)
 * [Illinois Master in Computer Science](https://cs.illinois.edu/academics/graduate/ms-program)
 * [Oxford CS Courses](https://www.cs.ox.ac.uk/teaching/courses/)
+* [Online courses at PennState](https://online.stat.psu.edu/statprogram/graduate-programs)
 
 ## Project
 
