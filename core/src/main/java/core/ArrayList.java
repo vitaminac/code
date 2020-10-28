@@ -130,6 +130,10 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
         return Arrays.copyFrom(this.elements, 0, this.size);
     }
 
+    int getCapacity() {
+        return this.elements.length;
+    }
+
     private void checkIndex(int index, int size) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + size);

@@ -13,11 +13,7 @@ public interface List<E> extends Enumerable<E>, RandomAccess<E> {
 
     int lastIndexOf(E element);
 
-    private static <E> void swapHelper(List<E> list, int i, int j) {
-        list.set(i, list.set(j, list.get(i)));
-    }
-
-    static void swap(List<?> list, int i, int j) {
-        swapHelper(list, i, j);
+    default void swap(int i, int j) {
+        this.set(i, this.set(j, this.get(i)));
     }
 }
