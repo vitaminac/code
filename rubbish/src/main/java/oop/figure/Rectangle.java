@@ -1,45 +1,18 @@
 package oop.figure;
 
-import oop.coordinates.Point;
-import oop.coordinates.Vector;
-import oop.coordinates.DimensionNotCoincide;
+import oop.coordinates.Vector2D;
 
 public class Rectangle extends Parallelogram {
-
-    public Rectangle(Point lowerLeft, Point upperRight) {
-        super(lowerLeft, lowerLeft.move(new Vector(lowerLeft.displacement(upperRight).getCoordinateX())), upperRight);
+    public Rectangle(final double lowerLeftX, final double lowerLeftY, final double length, final double width) {
+        super(new Vector2D(lowerLeftX, length), new Vector2D(lowerLeftY, width));
     }
 
     public Rectangle(double length, double width) {
-        this(new Point(0, length), new Point(width, 0));
+        this(0, 0, length, width);
     }
 
     public Rectangle(Rectangle rectangle) {
         super(rectangle);
-    }
-
-    public Rectangle(Point p1, Point p2, Point p3, Point p4) {
-        super(p1, p2, p3);
-        Vector v12 = p1.displacement(p2);
-        Vector v13 = p1.displacement(p3);
-        Vector v14 = p1.displacement(p4);
-        // two of this vectors are orthogonal
-        try {
-            if (v12.orthogonal(v13)) {
-                this.setVectorA(v12);
-                this.setVectorB(v13);
-            } else if (v12.orthogonal(v14)) {
-                this.setVectorA(v12);
-                this.setVectorB(v14);
-            } else if (v13.orthogonal(v14)) {
-                this.setVectorA(v13);
-                this.setVectorB(v14);
-            } else {
-                throw new IllegalArgumentException();
-            }
-        } catch (DimensionNotCoincide e) {
-            throw new IllegalArgumentException(e);
-        }
     }
 
     public double getLength() {

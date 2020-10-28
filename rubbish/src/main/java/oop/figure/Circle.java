@@ -1,19 +1,21 @@
 package oop.figure;
 
 import oop.coordinates.Movable;
-import oop.coordinates.Point;
 import oop.coordinates.Vector;
 
 public class Circle extends Figure implements Movable {
-    public static final int RATIO_DIAMETER = 2;
-    private Point origin;
-    private double radius;
+    private final Vector origin;
+    private final double radius;
 
     public Circle(double radius) {
-        this(new Point(0, 0), radius);
+        this(0, 0, radius);
     }
 
-    public Circle(final Point origin, double radius) {
+    public Circle(final double x, final double y, double radius) {
+        this(new Vector(x, y), radius);
+    }
+
+    private Circle(final Vector origin, final double radius) {
         this.origin = origin;
         this.radius = radius;
     }
@@ -22,20 +24,12 @@ public class Circle extends Figure implements Movable {
         return this.radius;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-    public Point getOrigin() {
+    public Vector getOrigin() {
         return this.origin;
     }
 
-    public void setOrigin(Point origin) {
-        this.origin = origin;
-    }
-
     public double getDiameter() {
-        return this.getRadius() * this.RATIO_DIAMETER;
+        return this.getRadius() * 2;
     }
 
     @Override
@@ -52,15 +46,12 @@ public class Circle extends Figure implements Movable {
         return Math.PI * StrictMath.pow(this.getRadius(), 2);
     }
 
-
     @Override
     public Circle move(Vector v) {
-        this.setOrigin(this.getOrigin().move(v));
-        return this;
+        return new Circle(this.origin.add(v), this.radius);
     }
 
     public boolean greater(Circle other) {
         return this.getRadius() > other.getRadius();
     }
-
 }

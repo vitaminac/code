@@ -9,6 +9,7 @@ How to become a good developer?
 - [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
 - [X] 数学之美
 - [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
+- [ ] [SticiGui](https://www.stat.berkeley.edu/~stark/SticiGui/index.htm)
 
 ### Programming
 

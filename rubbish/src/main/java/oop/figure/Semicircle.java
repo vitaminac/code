@@ -7,6 +7,6 @@ public class Semicircle extends Circle {
 
     @Override
     public double area() {
-        return super.area() / Circle.RATIO_DIAMETER;
+        return super.area() / 2;
     }
 }

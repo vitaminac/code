@@ -1,17 +1,12 @@
 package oop.figure;
 
 import oop.coordinates.DimensionNotCoincide;
-import oop.coordinates.Point;
-import oop.coordinates.Vector;
+import oop.coordinates.Vector2D;
 
 public class Triangle extends Parallelogram {
 
     public Triangle(double base, double height) {
-        super(new Vector(base, 0), new Vector(0, height));
-    }
-
-    public Triangle(Point p1, Point p2, Point p3) {
-        super(p1, p2, p3);
+        super(new Vector2D(base, 0), new Vector2D(0, height));
     }
 
 
