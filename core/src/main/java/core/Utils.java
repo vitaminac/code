@@ -88,4 +88,8 @@ public final class Utils {
     public static void warn(String msg) {
         System.out.println(WARNING + msg + RESET_NORMAL);
     }
+
+    public static void info(String msg) {
+        System.out.println(msg);
+    }
 }

@@ -7,4 +7,5 @@ import java.lang.annotation.*;
 @Inherited
 @Documented
 public @interface TestSuite {
+    Class<? extends UnitTestRunner> runWith() default DefaultUnitTestRunner.class;
 }

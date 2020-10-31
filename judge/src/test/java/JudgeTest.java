@@ -1,11 +1,10 @@
 import codeforces.P1405D;
-import test.TestCase;
-import test.TestSuite;
-import test.UnitTest;
+import test.*;
 
-@TestSuite
+@TestSuite(runWith = ProfilerUnitTestRunner.class)
 public class JudgeTest extends TestCase {
     @UnitTest
+    @UnitTestProfile
     public void judgeAll() throws Exception {
         int n_all_tests = 0;
         int n_failed = 0;
