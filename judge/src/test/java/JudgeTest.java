@@ -4,14 +4,25 @@ import test.*;
 
 @TestSuite(runWith = ProfilerUnitTestRunner.class)
 public class JudgeTest extends TestCase {
+    @BeforeTestSuite
+    public static void setupClass() {
+        Utils.warn("--------------------before test suite-------------------------");
+
+    }
+
+    @AfterTestSuite
+    public static void teardownClass() {
+        Utils.warn("--------------------after test suite-------------------------");
+    }
+
     @BeforeEachUnitTest
     public void setup() {
-        Utils.warn("--------------------starting-------------------------");
+        Utils.warn("--------------------before unit test-------------------------");
     }
 
     @AfterEachUnitTest
     public void teardown() {
-        Utils.warn("-------------------finishing------------------------");
+        Utils.warn("-------------------after unit test------------------------");
     }
 
     @UnitTest

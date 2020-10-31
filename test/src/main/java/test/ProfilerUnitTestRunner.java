@@ -10,10 +10,10 @@ public class ProfilerUnitTestRunner extends DefaultUnitTestRunner {
     }
 
     @Override
-    protected void test(Method method, Object obj) throws Exception {
+    protected void test(Method method) throws Exception {
         if (method.isAnnotationPresent(UnitTestProfile.class)) {
             long startTime = System.nanoTime();
-            super.test(method, obj);
+            super.test(method);
             long endTime = System.nanoTime();
             long elapsedTime = endTime - startTime;
             var annotation = method.getAnnotation(UnitTestProfile.class);
@@ -23,7 +23,7 @@ public class ProfilerUnitTestRunner extends DefaultUnitTestRunner {
                 Utils.info("Time elapsed for " + this.getTestMethodId(method) + ": " + elapsedTime / 1000 + " microsecond");
             }
         } else {
-            super.test(method, obj);
+            super.test(method);
         }
     }
 }

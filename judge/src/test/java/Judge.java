@@ -23,6 +23,9 @@ public final class Judge {
         InputStream stdin = new ByteArrayInputStream(Files.readAllBytes(input));
         System.setIn(stdin);
 
+        // backup standard output stream
+        final PrintStream backup = System.out;
+
         // redirect stdout
         ByteArrayOutputStream stdout = new ByteArrayOutputStream();
         final PrintStream printStream = new PrintStream(stdout);
@@ -40,8 +43,10 @@ public final class Judge {
         printStream.close();
 
         // compare result
-        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
         assertEquals(Files.readString(output, StandardCharsets.UTF_8), new String(stdout.toByteArray(), StandardCharsets.UTF_8));
+
+        // restore standard output stream
+        System.setOut(backup);
 
         // report
         System.out.println("Time elapsed for " + clazz.getSimpleName() + " with input " + input.getFileName().toString() + ": " + elapsedTime / 1000 + " microsecond");
