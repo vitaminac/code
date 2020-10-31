@@ -20,7 +20,7 @@ public class JudgeTest {
         };
 
         for (String pkg : packages) {
-            for (var pair : Utils.getResources(pkg, "class")) {
+            for (var pair : JudgeUtils.getResources(pkg, "class")) {
                 Class<?> clazz = Class.forName(
                         pair.packageName + '.' + pair.file.getName().substring(0, pair.file.getName().length() - 6));
                 try {

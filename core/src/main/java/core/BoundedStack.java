@@ -32,7 +32,7 @@ public class BoundedStack<E> implements Stack<E> {
     @Override
     public void push(E element) {
         if (this.isFull()) throw new RuntimeException("Stack is full");
-        this.list.insert(this.list.size(), element);
+        this.list.add(this.list.size(), element);
     }
 
     @Override

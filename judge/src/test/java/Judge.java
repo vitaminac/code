@@ -1,3 +1,5 @@
+import core.Utils;
+
 import java.io.*;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -12,9 +14,6 @@ import java.util.stream.Collectors;
 import static org.junit.Assert.*;
 
 public final class Judge {
-    private static final String WARNING = "\u001B[33m";
-    private static final String NORMAL = "\033[0;30m";
-
     private static <T> void judge(Class<T> clazz, Method method, Object instance, Object params, Path input, Path output)
             throws Exception {
         // map rid of platform depend new line
@@ -51,11 +50,11 @@ public final class Judge {
     public static <T> void judge(Class<T> clazz, String[] params) throws Exception {
         if (clazz.getEnclosingClass() != null ||
                 Modifier.isStatic(clazz.getModifiers())) {
-            System.out.println(WARNING + clazz.getName() + " skipped, inner class or lambda" + NORMAL);
+            Utils.warn(clazz.getName() + " skipped, inner class or lambda");
         } else {
             Method main = clazz.getMethod("main", String[].class);
             if (main == null || Modifier.isPrivate(clazz.getModifiers())) {
-                System.out.println(WARNING + clazz.getName() + " skipped, no main exist or class is hidden!" + NORMAL);
+                Utils.warn(clazz.getName() + " skipped, no main exist or class is hidden!");
             } else {
                 int count = 0;
                 final URL testResource = clazz.getResource(clazz.getSimpleName());

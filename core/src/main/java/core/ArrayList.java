@@ -63,7 +63,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     @Override
-    public void insert(int index, E element) {
+    public void add(int index, E element) {
         this.checkIndexForAdd(index);
         // double size of array if necessary
         if (this.size == this.elements.length) {

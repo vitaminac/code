@@ -81,4 +81,11 @@ public final class Utils {
         int sepIndex = address.lastIndexOf(":");
         return new InetSocketAddress(address.substring(0, sepIndex), Integer.parseInt(address.substring(sepIndex + 1)));
     }
+
+    private static final String WARNING = "\u001B[33m";
+    private static final String RESET_NORMAL = "\033[0;30m";
+
+    public static void warn(String msg) {
+        System.out.println(WARNING + msg + RESET_NORMAL);
+    }
 }

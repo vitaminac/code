@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class Utils {
+public class JudgeUtils {
     public static class Pair {
         public File file;
         public String packageName;

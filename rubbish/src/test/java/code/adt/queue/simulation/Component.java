@@ -51,6 +51,6 @@ public abstract class Component {
     }
 
     public void addOutput(Component component) {
-        this.outs.insert(this.outs.size(), component);
+        this.outs.add(this.outs.size(), component);
     }
 }

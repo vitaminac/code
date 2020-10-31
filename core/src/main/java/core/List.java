@@ -5,7 +5,7 @@ public interface List<E> extends Enumerable<E>, RandomAccess<E> {
 
     void clear();
 
-    void insert(int index, E element);
+    void add(int index, E element);
 
     E remove(int index);
 

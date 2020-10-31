@@ -70,15 +70,15 @@ public final class JudgeSQL {
     @BeforeClass
     public static void setUpClass() throws Exception {
         Map<String, File> sql = new HashMap<>();
-        for (Utils.Pair pair : Utils.getResources(JudgeSQL.class, "sql")) {
+        for (JudgeUtils.Pair pair : JudgeUtils.getResources(JudgeSQL.class, "sql")) {
             sql.put(pair.file.getName().substring(0, pair.file.getName().length() - 4), pair.file);
         }
         Map<String, File> testcase = new HashMap<>();
-        for (Utils.Pair pair : Utils.getResources(JudgeSQL.class, "json")) {
+        for (JudgeUtils.Pair pair : JudgeUtils.getResources(JudgeSQL.class, "json")) {
             testcase.put(pair.file.getName().substring(0, pair.file.getName().length() - 5), pair.file);
         }
         Map<String, File> output = new HashMap<>();
-        for (Utils.Pair pair : Utils.getResources(JudgeSQL.class, "output.json")) {
+        for (JudgeUtils.Pair pair : JudgeUtils.getResources(JudgeSQL.class, "output.json")) {
             output.put(pair.file.getName().substring(0, pair.file.getName().length() - 12), pair.file);
         }
         SQLTestBuilder builder = new SQLTestBuilder();

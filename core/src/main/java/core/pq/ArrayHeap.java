@@ -34,7 +34,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     @Override
     public void add(E element) {
         int child = this.list.size();
-        this.list.insert(child, element);
+        this.list.add(child, element);
         while (child > 0) {
             int parent = (child - 1) / 2;
             if (this.comparator.compare(this.list.get(child), this.list.get(parent)) < 0) {

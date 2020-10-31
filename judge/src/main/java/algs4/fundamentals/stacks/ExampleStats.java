@@ -1,17 +1,17 @@
 package algs4.fundamentals.stacks;
 
-import core.map.SeparateChainingHashTableMap;
-import core.set.MutableSet;
+import core.ArrayList;
+import core.List;
 
 import java.util.Scanner;
 
 public class ExampleStats {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            MutableSet<Double> numbers = MutableSet.fromMap(SeparateChainingHashTableMap::new);
+            List<Double> numbers = new ArrayList<>();
 
             while (sc.hasNextInt()) {
-                numbers.add(sc.nextDouble());
+                numbers.add(numbers.size(), sc.nextDouble());
             }
 
             int n = numbers.size();

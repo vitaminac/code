@@ -125,7 +125,7 @@ public final class Arrays {
             }
 
             @Override
-            public void insert(int index, E element) {
+            public void add(int index, E element) {
                 throw new UnsupportedOperationException();
             }
 
