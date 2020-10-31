@@ -1,8 +1,11 @@
 import codeforces.P1405D;
-import org.junit.Test;
+import test.TestCase;
+import test.TestSuite;
+import test.UnitTest;
 
-public class JudgeTest {
-    @Test
+@TestSuite
+public class JudgeTest extends TestCase {
+    @UnitTest
     public void judgeAll() throws Exception {
         int n_all_tests = 0;
         int n_failed = 0;
@@ -38,7 +41,7 @@ public class JudgeTest {
                         " of them have failed!");
     }
 
-    @Test
+    @UnitTest(disabled = true)
     public void test() throws Exception {
         Judge.judge(P1405D.class, null);
     }

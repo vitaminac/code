@@ -6,3 +6,5 @@ include 'ioc'
 include 'web'
 include 'coursera'
 include 'rubbish'
+include 'test'
+
