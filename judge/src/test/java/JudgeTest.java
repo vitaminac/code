@@ -1,8 +1,19 @@
 import codeforces.P1405D;
+import core.Utils;
 import test.*;
 
 @TestSuite(runWith = ProfilerUnitTestRunner.class)
 public class JudgeTest extends TestCase {
+    @BeforeEachUnitTest
+    public void setup() {
+        Utils.warn("--------------------starting-------------------------");
+    }
+
+    @AfterEachUnitTest
+    public void teardown() {
+        Utils.warn("-------------------finishing------------------------");
+    }
+
     @UnitTest
     @UnitTestProfile
     public void judgeAll() throws Exception {
