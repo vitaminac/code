@@ -23,7 +23,6 @@ How to become a good developer?
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
-- [ ] [Refactoring.Guru](https://refactoring.guru/)
 - [ ] Code Complete
 
 ### Algorithms
