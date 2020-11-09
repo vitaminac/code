@@ -56,8 +56,43 @@ public class MathTest {
     }
 
     @Test
-    public void gcd() {
-        assertEquals(6, Math.gcd(270, 192));
+    public void testGCD_whenABArePositivesAIsGreaterThanB() {
+        assertEquals(2, Math.gcd(6, 4));
+    }
+
+    @Test
+    public void testGCD_whenABArePositivesBIsGreaterThanA() {
+        assertEquals(2, Math.gcd(4, 6));
+    }
+
+    @Test
+    public void testGCD_whenABAreNegativesAbsAIsGreaterThanAbsB() {
+        assertEquals(2, Math.gcd(-4, -6));
+    }
+
+    @Test
+    public void testGCD_whenABAreNegativesAbsBIsGreaterThanAbsA() {
+        assertEquals(2, Math.gcd(-6, -4));
+    }
+
+    @Test
+    public void testGCD_whenAIsPositiveBIsNegativeAbsAIsGreaterThanAbsB() {
+        assertEquals(2, Math.gcd(6, -4));
+    }
+
+    @Test
+    public void testGCD_whenAIsPositiveBIsNegativeAbsBIsGreaterThanAbsA() {
+        assertEquals(2, Math.gcd(4, -6));
+    }
+
+    @Test
+    public void testGCD_whenAIsNegativeBIsPositiveAbsAIsGreaterThanAbsB() {
+        assertEquals(2, Math.gcd(-6, 4));
+    }
+
+    @Test
+    public void testGCD_whenAIsNegativeBIsPositiveAbsBIsGreaterThanAbsA() {
+        assertEquals(2, Math.gcd(-4, 6));
     }
 
     @Test

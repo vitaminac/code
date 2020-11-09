@@ -57,10 +57,14 @@ public class Math {
         return mean;
     }
 
-    // The Euclidean Algorithm, assume a <= b
+    public static int euclidean_gcd(int a, int b) {
+        if (b == 0) return a;
+        return euclidean_gcd(b, a % b);
+    }
+
     public static int gcd(int a, int b) {
-        if (a == 0) return b;
-        return gcd(b % a, a);
+        // gcd(a, b) = gcd(|a|, b) == gcd(a, |b|) == gcd(|a|, |b|) <- https://math.stackexchange.com/a/1900775/698177
+        return euclidean_gcd(Math.abs(a), Math.abs(b));
     }
 
     public static double derivative(DoubleUnaryOperator f, double x, double epsilon) {
@@ -76,6 +80,10 @@ public class Math {
 
     public static long neg(long n) {
         return sum(~n, 1);
+    }
+
+    public static int sign(long n) {
+        return n < 0 ? -1 : 1;
     }
 
     public static long sub(long a, long b) {
