@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 @Dependency
 public class HttpBodyTextConverter implements HttpResponseBodyEncoder<String>, HttpRequestBodyDecoder<String> {
     @Override
-    public HttpResponse encode(String text) {
+    public HttpResponse convert(String text) {
         return HttpResponse.fromPlanText(text);
     }
 

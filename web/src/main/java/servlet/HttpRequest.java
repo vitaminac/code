@@ -10,15 +10,21 @@ public class HttpRequest extends HttpMessage {
         GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE
     }
 
+    private final String path;
     private final HttpRequestMethod method;
     private final Map<Object, Object> context = new HashMap<>();
 
-    public HttpRequest(HttpRequestMethod method, Map<String, String> headers, InputStream body) {
+    public HttpRequest(HttpRequestMethod method, String path, Map<String, String> headers, InputStream body) {
         super(headers, body);
+        this.path = path;
         this.method = method;
     }
 
     public HttpRequestMethod getMethod() {
-        return method;
+        return this.method;
+    }
+
+    public String getPath() {
+        return this.path;
     }
 }

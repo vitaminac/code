@@ -10,7 +10,7 @@ public class HttpBodyJsonConverter implements HttpResponseBodyEncoder<Object>, H
     }
 
     @Override
-    public HttpResponse encode(Object o) {
+    public HttpResponse convert(Object o) {
         throw new UnsupportedOperationException("TODO");
     }
 }

@@ -1,5 +1,7 @@
 package servlet;
 
-public interface HttpResponseBodyEncoder<DTO> {
-    HttpResponse encode(DTO dto);
+import converter.TypeSpecificConverter;
+
+public interface HttpResponseBodyEncoder<DTO> extends TypeSpecificConverter<DTO, HttpResponse> {
+    HttpResponse convert(DTO dto);
 }

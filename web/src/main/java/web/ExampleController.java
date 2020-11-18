@@ -1,4 +1,6 @@
-package servlet;
+package web;
+
+import servlet.*;
 
 public class ExampleController {
     @RequestMapping(path = "/greeting", supportedMethods = HttpRequest.HttpRequestMethod.GET)

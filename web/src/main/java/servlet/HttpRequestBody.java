@@ -6,5 +6,5 @@ import java.lang.annotation.*;
 @Target(ElementType.PARAMETER)
 @Documented
 public @interface HttpRequestBody {
-    Class<? extends HttpResponseBodyEncoder<?>> decoder();
+    Class<? extends HttpRequestBodyDecoder<?>> decoder();
 }

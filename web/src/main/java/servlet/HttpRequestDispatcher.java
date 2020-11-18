@@ -1,9 +1,11 @@
 package servlet;
 
+import ioc.injection.Dependency;
 import ioc.injection.Inject;
 
 import java.util.List;
 
+@Dependency
 public class HttpRequestDispatcher {
     private final HttpRequestHandlerResolver resolver;
     private final List<HttpRequestMiddleware> httpRequestMiddlewares;
