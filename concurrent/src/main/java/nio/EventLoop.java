@@ -1,10 +1,10 @@
 package nio;
 
-import promise.DeferredPromise;
+import core.concurrent.DeferredPromise;
 import scheduler.Job;
 import scheduler.ScheduledTask;
 import scheduler.Task;
-import util.Logger;
+import core.Logger;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;
@@ -296,7 +296,7 @@ public class EventLoop {
         final Future<T> future = this.executorService.submit(callable);
         return DeferredPromise.from(promise -> this.futures.put(future, () -> {
             if (future.isDone()) {
-                promise.resolve(future.get());
+                promise.fulfill(future.get());
             } else if (future.isCancelled()) {
                 promise.reject(new CancellationException());
             }
