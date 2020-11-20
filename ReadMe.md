@@ -55,7 +55,6 @@ How to become a good developer?
 ## Project
 
 * [OpenJDK](http://openjdk.java.net/)
-* [JSR-330: Dependency Injection for Java](https://github.com/javax-inject/javax-inject)
 * [Spring](https://github.com/spring-projects)
 * [Tomcat](https://github.com/apache/tomcat)
 * [RxJava](https://github.com/ReactiveX/RxJava)
@@ -72,12 +71,8 @@ How to become a good developer?
 
 ## Learn
 
-* [Coursera](https://www.coursera.org/)
-* [edX](https://www.edx.org/)
 * [Udacity](https://www.udacity.com/)
-* [Khan Academy](https://www.khanacademy.org/)
 * [MIT Open Courseware](https://ocw.mit.edu)
-* [Udemy](https://www.udemy.com/)
 
 ## Researches
 
