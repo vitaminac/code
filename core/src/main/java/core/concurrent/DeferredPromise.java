@@ -1,5 +1,6 @@
 package core.concurrent;
 
+import core.Function;
 import core.dp.Subject;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class DeferredPromise<T> implements Promise<T> {
             }
 
             @Override
-            public <T, R> Promise<R> map(Callback<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> map(Function<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
                 DeferredPromise<R> next = new DeferredPromise<>();
                 promise.subject.subscribe(result -> {
                     if (result.state == State.FULFILLED) {
@@ -42,7 +43,7 @@ public class DeferredPromise<T> implements Promise<T> {
             }
 
             @Override
-            public <T, R> Promise<R> then(Callback<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> then(Function<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
                 final DeferredPromise<R> next = new DeferredPromise<>();
                 promise.subject.subscribe(new Consumer<Result>() {
                     @Override
@@ -51,7 +52,7 @@ public class DeferredPromise<T> implements Promise<T> {
                             try {
                                 @SuppressWarnings("unchecked") final T value = (T) result.value;
                                 final Promise<R> nextPromise = callback.callback(Promise.success(value));
-                                nextPromise.then((Callback<R, Void, Exception>) nextResult -> {
+                                nextPromise.then((Function<R, Void, Exception>) nextResult -> {
                                     next.fulfilled(nextResult);
                                     return null;
                                 }, e -> {
@@ -82,7 +83,7 @@ public class DeferredPromise<T> implements Promise<T> {
             }
 
             @Override
-            public <T, R> Promise<R> map(Callback<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> map(Function<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
                 DeferredPromise<R> next = new DeferredPromise<>();
                 try {
                     next.fulfilled(callback.callback(promise.getResult()));
@@ -93,7 +94,7 @@ public class DeferredPromise<T> implements Promise<T> {
             }
 
             @Override
-            public <T, R> Promise<R> then(Callback<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> then(Function<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
                 try {
                     return callback.callback(Promise.success(promise.result.get()));
                 } catch (Exception e) {
@@ -116,14 +117,14 @@ public class DeferredPromise<T> implements Promise<T> {
             }
 
             @Override
-            public <T, R> Promise<R> map(Callback<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> map(Function<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise) {
                 final DeferredPromise<R> ret = new DeferredPromise<>();
                 ret.reject(promise.result.getReason());
                 return ret;
             }
 
             @Override
-            public <T, R> Promise<R> then(Callback<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
+            public <T, R> Promise<R> then(Function<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise) {
                 final DeferredPromise<R> ret = new DeferredPromise<>();
                 ret.reject(promise.result.getReason());
                 return ret;
@@ -134,9 +135,9 @@ public class DeferredPromise<T> implements Promise<T> {
 
         public abstract <T> void reject(Exception reason, DeferredPromise<T> promise);
 
-        public abstract <T, R> Promise<R> map(Callback<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise);
+        public abstract <T, R> Promise<R> map(Function<Promise.Result<T>, R, Exception> callback, DeferredPromise<T> promise);
 
-        public abstract <T, R> Promise<R> then(Callback<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise);
+        public abstract <T, R> Promise<R> then(Function<Promise.Result<T>, Promise<R>, Exception> callback, DeferredPromise<T> promise);
     }
 
     private void fulfilled(T result) {
@@ -186,17 +187,17 @@ public class DeferredPromise<T> implements Promise<T> {
     }
 
     @Override
-    public <R> Promise<R> map(Callback<Promise.Result<T>, R, Exception> callback) {
+    public <R> Promise<R> map(Function<Promise.Result<T>, R, Exception> callback) {
         return this.result.state.map(callback, this);
     }
 
     @Override
-    public <R> Promise<R> then(Callback<Promise.Result<T>, Promise<R>, Exception> callback) {
+    public <R> Promise<R> then(Function<Promise.Result<T>, Promise<R>, Exception> callback) {
         return this.result.state.then(callback, this);
     }
 
     @Override
-    public <R> Promise<R> then(Callback<? super T, R, Exception> fulfilledHandler, Callback<Exception, R, Exception> failureHandler) {
+    public <R> Promise<R> then(Function<? super T, R, Exception> fulfilledHandler, Function<Exception, R, Exception> failureHandler) {
         final DeferredPromise<R> ret = new DeferredPromise<>();
         switch (this.result.state) {
             case FULFILLED:
@@ -265,19 +266,19 @@ public class DeferredPromise<T> implements Promise<T> {
         this.then(result -> {
             task.run();
             return null;
-        }, (Callback<Exception, Void, Exception>) e -> {
+        }, (Function<Exception, Void, Exception>) e -> {
             task.run();
             return null;
         });
     }
 
     @Override
-    public <R> Promise<R> onFulfilled(Callback<? super T, R, Exception> handler) {
+    public <R> Promise<R> onFulfilled(Function<? super T, R, Exception> handler) {
         return this.then(handler, null);
     }
 
     @Override
-    public <R> Promise<R> onRejected(Callback<Exception, R, Exception> handler) {
+    public <R> Promise<R> onRejected(Function<Exception, R, Exception> handler) {
         return this.then(null, handler);
     }
 
