@@ -66,7 +66,6 @@ How to become a good developer?
 * [MyBatis](https://github.com/mybatis/mybatis-3)
 * [OkHttp](https://github.com/square/okhttp/)
 * [Retrofit](https://github.com/square/retrofit)
-* [Dubbo](https://github.com/apache/dubbo)
 * [Auto](https://github.com/google/auto)
 
 ## Learn
