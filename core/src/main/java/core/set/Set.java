@@ -9,7 +9,7 @@ public interface Set<E> {
     }
 
     @SuppressWarnings("unchecked")
-    static <E> Set<E> of(E... elements) {
+    static <E> Set<E> frozenSet(E... elements) {
         return predicate -> {
             for (var e : elements) {
                 if (predicate.test(e)) return true;
