@@ -27,8 +27,8 @@ public class Ex11ExtentionEvaluate {
     }
 
     public static void main(String[] args) {
-        Stack<String> ops = Stack.fromDeque(new DoublyLinkedList<>());
-        Stack<Double> values = Stack.fromDeque(new DoublyLinkedList<>());
+        Stack<String> ops = Stack.fromDeque(DoublyLinkedList::new);
+        Stack<Double> values = Stack.fromDeque(DoublyLinkedList::new);
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();

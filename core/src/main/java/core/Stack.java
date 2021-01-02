@@ -1,6 +1,7 @@
 package core;
 
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public interface Stack<E> extends Enumerable<E> {
     int size();
@@ -13,7 +14,8 @@ public interface Stack<E> extends Enumerable<E> {
 
     E pop();
 
-    static <E> Stack<E> fromDeque(final Deque<E> deque) {
+    static <E> Stack<E> fromDeque(final Supplier<Deque<E>> supplier) {
+        final var deque = supplier.get();
         return new Stack<E>() {
             @Override
             public int size() {

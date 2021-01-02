@@ -11,7 +11,7 @@ public class MinQueue<E> implements Queue<E> {
 
     public MinQueue(Supplier<Deque<E>> factory, Comparator<? super E> comparator) {
         this.comparator = comparator;
-        this.queue = Queue.fromDeque(factory.get());
+        this.queue = Queue.fromDeque(factory);
         this.minDeque = factory.get();
     }
 

@@ -29,8 +29,8 @@ public class QueueTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<SinglyLinkedList<String>>) SinglyLinkedList::new},
-                {(Supplier<Queue<String>>) () -> Queue.fromDeque(new ArrayDeque<>(5))},
-                {(Supplier<Queue<String>>) () -> Queue.fromDeque(new DoublyLinkedList<>())}
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(() -> new ArrayDeque<>(5))},
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(DoublyLinkedList::new)}
         });
     }
 
