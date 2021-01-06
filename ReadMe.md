@@ -9,12 +9,12 @@ How to become a good developer?
 - [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
 - [X] 数学之美
 - [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
-- [ ] [SticiGui](https://www.stat.berkeley.edu/~stark/SticiGui/index.htm)
 
 ### Programming
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
+- [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] [Clean Code](http://cleancoder.com)
 - [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
 - [ ] [Inside the Java Virtual Machine](https://www.artima.com/insidejvm/blurb.html)
@@ -50,7 +50,7 @@ How to become a good developer?
 * [Illinois Master in Computer Science](https://cs.illinois.edu/academics/graduate/ms-program)
 * [Oxford CS Courses](https://www.cs.ox.ac.uk/teaching/courses/)
 * [Cambridge CS Courses](https://www.cl.cam.ac.uk/teaching/2021/)
-* [Online courses at PennState](https://online.stat.psu.edu/statprogram/graduate-programs)
+* [Online courses at PennState](https://online.stat.psu.edu/statprogram/)
 
 ## Project
 
