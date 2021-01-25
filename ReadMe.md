@@ -72,9 +72,3 @@ How to become a good developer?
 
 * [Udacity](https://www.udacity.com/)
 * [MIT Open Courseware](https://ocw.mit.edu)
-
-## Researches
-
-* [arXiv](https://arxiv.org)
-* [Papers With Code](https://paperswithcode.com)
-* [RFC](https://tools.ietf.org/rfc/index)

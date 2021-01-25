@@ -1,4 +1,3 @@
-import codeforces.P1405D;
 import core.Utils;
 import test.*;
 
@@ -60,10 +59,5 @@ public class JudgeTest extends TestCase {
         System.out.println(
                 "Total " + n_all_tests + " unit tests and " + n_failed +
                         " of them have failed!");
-    }
-
-    @UnitTest(disabled = true)
-    public void test() throws Exception {
-        Judge.judge(P1405D.class, null);
     }
 }
