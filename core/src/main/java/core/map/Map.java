@@ -9,7 +9,7 @@ public interface Map<Domain, CoDomain> extends Enumerable<Domain> {
 
     CoDomain get(Domain key);
 
-    CoDomain remove(Domain key);
+    void remove(Domain key);
 
     void clear();
 }

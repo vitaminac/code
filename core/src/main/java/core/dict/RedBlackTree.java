@@ -196,8 +196,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     }
 
     @Override
-    public Value remove(Key key) {
-        Value value = this.get(key);
+    public void remove(Key key) {
         if (key != null) {
             if (!isRed(root.left) && !isRed(root.right))
                 root.color = RED;
@@ -205,7 +204,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
             root = delete(root, key);
             if (!this.isEmpty()) root.color = BLACK;
         }
-        return value;
     }
 
     @Override

@@ -45,19 +45,16 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
     }
 
     @Override
-    public Value remove(Key key) {
+    public void remove(Key key) {
         int index = this.compress(this.hash(key));
         var current = this.entries[index];
-        Value retVal = null;
         if (current != null) {
             if (current.getKey().equals(key)) {
-                retVal = current.getValue();
                 this.entries[index] = current.next;
                 this.size -= 1;
             } else {
                 while (current.next != null) {
                     if (current.next.getKey().equals(key)) {
-                        retVal = current.next.getValue();
                         current.next = current.next.next;
                         this.size -= 1;
                         break;
@@ -68,7 +65,6 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
         }
         if (this.size < this.capacity * LOAD_FACTOR * LOAD_FACTOR * LOAD_FACTOR && this.capacity > DEFAULT_INITIAL_CAPACITY)
             this.resize(this.capacity / 2);
-        return retVal;
     }
 
     @Override

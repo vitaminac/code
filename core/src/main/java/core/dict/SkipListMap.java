@@ -87,7 +87,7 @@ public class SkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V>
     }
 
     @Override
-    public V remove(K key) {
+    public void remove(K key) {
         Node<Vocabulary<K, V>> current = this.top;
         int diff = -1;
         V result = null;
@@ -97,11 +97,9 @@ public class SkipListMap<K extends Comparable<K>, V> implements Dictionary<K, V>
                 current = current.next;
             }
             if (diff == 0) {
-                result = current.next.element.getValue();
                 current.next = current.next.next;
             }
         }
-        return result;
     }
 
     @Override

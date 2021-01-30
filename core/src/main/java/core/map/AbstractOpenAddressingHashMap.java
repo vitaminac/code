@@ -36,22 +36,18 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
 
     @Override
     @SuppressWarnings("unchecked")
-    public Value remove(Key key) {
+    public void remove(Key key) {
         int k = this.hash(key);
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
         for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehash(hash, k, i++)), relation = this.entries[index])
             ;
-        if (this.entries[index] == null) {
-            return null;
-        } else {
-            Value value = this.entries[index].getValue();
+        if (this.entries[index] != null) {
             this.entries[index] = SKIP;
             --this.size;
             if (this.size < this.capacity * LOAD_FACTOR * LOAD_FACTOR * LOAD_FACTOR && this.capacity > DEFAULT_INITIAL_CAPACITY)
                 this.resize(this.capacity / 2);
-            return value;
         }
     }
 

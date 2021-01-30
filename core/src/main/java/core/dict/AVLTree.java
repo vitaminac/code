@@ -196,10 +196,8 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     }
 
     @Override
-    public Value remove(Key key) {
-        Value value = this.get(key);
+    public void remove(Key key) {
         this.delete(this.root, key);
-        return value;
     }
 
     @Override
