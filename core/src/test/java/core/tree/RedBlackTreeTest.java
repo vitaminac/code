@@ -1,6 +1,5 @@
-package core.dict;
+package core.tree;
 
-import core.tree.RedBlackTree;
 import org.junit.Test;
 
 public class RedBlackTreeTest {

@@ -15,6 +15,11 @@ public class TreeMap<Key extends Comparable<? super Key>, Value> implements Map<
     }
 
     @Override
+    public int size() {
+        return this.tree.size();
+    }
+
+    @Override
     public boolean isEmpty() {
         return this.tree.isEmpty();
     }

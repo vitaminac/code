@@ -1,5 +1,6 @@
 package core.dict;
 
+import core.tree.AVLTree;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -25,7 +26,6 @@ public class DictionaryTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<Dictionary<Integer, String>>) AVLTree::new},
                 {(Supplier<Dictionary<Integer, String>>) SkipListMap::new},
         });
     }

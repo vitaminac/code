@@ -1,9 +1,9 @@
-package core.dict;
-
+package core.tree;
 
 import java.util.function.Consumer;
 
-public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
+public class AVLTree<Key extends Comparable<Key>, Value>
+        implements SearchTree<Key, Value> {
     private static class AVLNode<Key extends Comparable<Key>, Value> {
         private Key key;
         private Value value;
@@ -140,12 +140,12 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     }
 
     @Override
-    public void put(Key key, Value value) {
+    public void insert(Key key, Value value) {
         this.root = this.insert(this.root, key, value);
     }
 
     @Override
-    public Value get(Key key) {
+    public Value search(Key key) {
         AVLNode<Key, Value> current = this.root;
         while (current != null) {
             int diff = key.compareTo(current.key);
@@ -198,11 +198,6 @@ public class AVLTree<Key extends Comparable<Key>, Value> implements Dictionary<K
     @Override
     public void remove(Key key) {
         this.delete(this.root, key);
-    }
-
-    @Override
-    public void clear() {
-        this.root = null;
     }
 
     public int getHeight() {

@@ -36,12 +36,12 @@ public class RedBlackTree<Key extends Comparable<? super Key>, Value>
 
     private Node<Key, Value> root;
 
-    private boolean isRed(Node x) {
+    private boolean isRed(final Node<Key, Value> x) {
         // All Leaves are black
         return x != null && x.color == RED;
     }
 
-    private int size(Node x) {
+    public int size(final Node<Key, Value> x) {
         return x == null ? 0 : x.size;
     }
 
@@ -168,6 +168,7 @@ public class RedBlackTree<Key extends Comparable<? super Key>, Value>
         return balance(h);
     }
 
+    @Override
     public int size() {
         return size(root);
     }
