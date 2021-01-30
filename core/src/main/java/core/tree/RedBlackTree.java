@@ -1,4 +1,4 @@
-package core.dict;
+package core.tree;
 
 import java.util.function.Consumer;
 
@@ -8,7 +8,8 @@ import java.util.function.Consumer;
  * @param <Key>
  * @param <Value>
  */
-public class RedBlackTree<Key extends Comparable<Key>, Value> implements Dictionary<Key, Value> {
+public class RedBlackTree<Key extends Comparable<? super Key>, Value>
+        implements SearchTree<Key, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
@@ -72,7 +73,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
         h.right.color = !h.right.color;
     }
 
-    private Node<Key, Value> put(Node<Key, Value> z, Key key, Value val) {
+    private Node<Key, Value> insert(Node<Key, Value> z, Key key, Value val) {
         /*
         Insert into a 2-node.
         To insert a new node in a 2-3 tree,
@@ -87,8 +88,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
         if (z == null) return new Node<>(key, val, RED, 1);
 
         int diff = key.compareTo(z.key);
-        if (diff < 0) z.left = put(z.left, key, val);
-        else if (diff > 0) z.right = put(z.right, key, val);
+        if (diff < 0) z.left = insert(z.left, key, val);
+        else if (diff > 0) z.right = insert(z.right, key, val);
         else z.val = val;
 
         if (isRed(z.right) && !isRed(z.left)) z = rotateLeft(z);
@@ -167,7 +168,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
         return balance(h);
     }
 
-    @Override
     public int size() {
         return size(root);
     }
@@ -178,13 +178,13 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
     }
 
     @Override
-    public void put(Key key, Value value) {
-        root = put(root, key, value);
+    public void insert(Key key, Value value) {
+        root = insert(root, key, value);
         root.color = BLACK; // The root is black
     }
 
     @Override
-    public Value get(Key key) {
+    public Value search(Key key) {
         var node = this.root;
         while (node != null) {
             int diff = key.compareTo(node.key);
@@ -206,16 +206,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
         }
     }
 
-    @Override
-    public void clear() {
-        this.root = null;
-    }
-
-    @Override
-    public void forEach(Consumer<? super Key> consumer) {
-        if (this.root != null) this.root.traversal(node -> consumer.accept(node.key));
-    }
-
     private void buildTree(StringBuilder sb, Node<Key, Value> node, int level) {
         sb.append(System.lineSeparator());
         if (!this.isRed(node)) level += 1;
@@ -226,6 +216,11 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Diction
         sb.append(node == null ? "*" : (this.isRed(node) ? "\u001B[31m" + node.key : String.valueOf(node.key)));
         if (node != null) this.buildTree(sb, node.left, level);
         sb.append(System.lineSeparator());
+    }
+
+    @Override
+    public void forEach(Consumer<? super Key> consumer) {
+        if (this.root != null) this.root.traversal(node -> consumer.accept(node.key));
     }
 
     @Override

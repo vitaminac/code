@@ -1,5 +1,6 @@
 package core.dict;
 
+import core.tree.RedBlackTree;
 import org.junit.Test;
 
 public class RedBlackTreeTest {
@@ -8,7 +9,7 @@ public class RedBlackTreeTest {
     public void testToString() {
         var tree = new RedBlackTree<Integer, String>();
         for (int i = 0; i < 10; i++) {
-            tree.put(i, String.valueOf(i));
+            tree.insert(i, String.valueOf(i));
             System.out.println(tree.toString());
         }
     }

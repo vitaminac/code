@@ -1,7 +1,7 @@
 package core.map;
 
 import core.dict.AVLTree;
-import core.dict.RedBlackTree;
+import core.tree.RedBlackTree;
 import core.dict.SkipListMap;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) OpenAddressingHashTableMapQP::new},
                 {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
                 {(Supplier<Map<String, String>>) AVLTree::new},
-                {(Supplier<Map<String, String>>) RedBlackTree::new},
+                {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},
                 {(Supplier<Map<String, String>>) SkipListMap::new},
         });
     }

@@ -1,6 +1,5 @@
 package core.dict;
 
-import core.map.Map;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +26,6 @@ public class DictionaryTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Dictionary<Integer, String>>) AVLTree::new},
-                {(Supplier<Map<Integer, String>>) RedBlackTree::new},
                 {(Supplier<Dictionary<Integer, String>>) SkipListMap::new},
         });
     }
