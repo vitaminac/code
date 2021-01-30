@@ -419,7 +419,6 @@ ASALocalRun/
 .project
 .settings/org.eclipse.buildship.core.prefs
 /roadmap.iml
-*.pdf
 !/libs/*.jar
 .gradle/
 .idea/

@@ -14,13 +14,14 @@ How to become a good developer?
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
+- [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
+- [ ] The Pragmatic Programmer: Your Journey To Mastery
 - [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] [Clean Code](http://cleancoder.com)
 - [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
 - [ ] [Inside the Java Virtual Machine](https://www.artima.com/insidejvm/blurb.html)
 - [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
 - [ ] [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html)
-- [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Code Complete

@@ -81,11 +81,13 @@ public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Ke
         }
     }
 
-    @SuppressWarnings("unchecked")
+
     @Override
     protected void init(int capacity) {
         this.capacity = capacity;
-        this.entries = new Entry[this.capacity];
+        @SuppressWarnings("unchecked")
+        Entry<Key, Value>[] entries = new Entry[this.capacity];
+        this.entries = entries;
         this.size = 0;
     }
 
