@@ -115,6 +115,11 @@ public final class Arrays {
     public static <E> List<E> asList(final E[] elements) {
         return new List<E>() {
             @Override
+            public int size() {
+                return elements.length;
+            }
+
+            @Override
             public boolean isEmpty() {
                 return elements.length == 0;
             }

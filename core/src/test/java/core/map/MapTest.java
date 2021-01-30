@@ -1,6 +1,6 @@
 package core.map;
 
-import core.dict.SkipListMap;
+import core.dict.SkipListDictionary;
 import core.tree.AVLTree;
 import core.tree.RedBlackTree;
 import org.junit.Before;
@@ -37,7 +37,7 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},
-                {(Supplier<Map<String, String>>) SkipListMap::new},
+                {(Supplier<Map<String, String>>) SkipListDictionary::new},
         });
     }
 

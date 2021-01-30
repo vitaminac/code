@@ -7,7 +7,10 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public interface MutableSet<E> extends Set<E>, Enumerable<E> {
+public interface MutableSet<E>
+        extends
+        Set<E>,
+        Enumerable<E> {
     void add(E element);
 
     void remove(E element);

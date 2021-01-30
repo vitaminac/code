@@ -1,9 +1,9 @@
 package core.tree;
 
-import core.Enumerable;
+import core.Collection;
 
 public interface SearchTree<Key extends Comparable<? super Key>, Value>
-        extends Enumerable<Key> {
+        extends Collection<Key> {
     boolean isEmpty();
 
     Value search(Key key);
@@ -11,4 +11,6 @@ public interface SearchTree<Key extends Comparable<? super Key>, Value>
     void insert(Key key, Value value);
 
     void remove(Key key);
+
+    int size();
 }

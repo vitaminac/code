@@ -1,6 +1,9 @@
 package core;
 
-public interface List<E> extends Enumerable<E>, RandomAccess<E> {
+public interface List<E>
+        extends
+        Collection<E>,
+        RandomAccess<E> {
     boolean isEmpty();
 
     void clear();

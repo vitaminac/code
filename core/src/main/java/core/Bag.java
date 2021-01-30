@@ -5,7 +5,7 @@ import core.map.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public interface Bag<E> extends Enumerable<E> {
+public interface Bag<E> extends Collection<E> {
     void add(E element);
 
     void remove(E element);
@@ -17,6 +17,11 @@ public interface Bag<E> extends Enumerable<E> {
     static <T> Bag<T> fromMap(Supplier<Map<T, Integer>> supplier) {
         return new Bag<T>() {
             final Map<T, Integer> map = supplier.get();
+
+            @Override
+            public int size() {
+                return this.map.size();
+            }
 
             @Override
             public void forEach(Consumer<? super T> consumer) {

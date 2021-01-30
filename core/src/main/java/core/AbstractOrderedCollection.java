@@ -2,7 +2,7 @@ package core;
 
 import java.util.Iterator;
 
-public abstract class AbstractOrderedCollection<E> implements Enumerable<E> {
+public abstract class AbstractOrderedCollection<E> implements Collection<E> {
     @Override
     @SuppressWarnings("unchecked")
     public boolean equals(Object o) {

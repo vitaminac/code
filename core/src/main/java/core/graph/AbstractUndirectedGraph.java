@@ -1,6 +1,6 @@
 package core.graph;
 
-import core.Enumerable;
+import core.Collection;
 
 public class AbstractUndirectedGraph<E extends Edge<Integer>> extends AbstractDirectedGraph<E> implements UndirectedGraph<Integer, E> {
     public AbstractUndirectedGraph(int n) {
@@ -14,7 +14,7 @@ public class AbstractUndirectedGraph<E extends Edge<Integer>> extends AbstractDi
     }
 
     @Override
-    public Enumerable<Integer> getAdjacentVertices(Integer vertex) {
+    public Collection<Integer> getAdjacentVertices(Integer vertex) {
         return UndirectedGraph.super.getAdjacentVertices(vertex);
     }
 }

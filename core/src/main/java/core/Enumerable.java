@@ -8,12 +8,6 @@ import java.util.function.Predicate;
 
 @FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
-    // TODO: remove
-    default int size() {
-        int[] ref = new int[]{0};
-        this.forEach(e -> ref[0]++);
-        return ref[0];
-    }
 
     default <R> Enumerable<R> map(Function<E, R> operator) {
         return consumer -> this.forEach(e -> consumer.accept(operator.apply(e)));
