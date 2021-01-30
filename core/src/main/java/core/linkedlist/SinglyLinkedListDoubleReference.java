@@ -1,10 +1,10 @@
-package core;
+package core.linkedlist;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
-public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
+public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     private static class LinkedNode<E> {
         private final E element;
         private LinkedNode<E> next;
@@ -17,7 +17,6 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
 
-    @Override
     public int size() {
         int n = 0;
         LinkedNode<E> node = this.head;
@@ -28,18 +27,15 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
         return n;
     }
 
-    @Override
     public boolean isEmpty() {
         return this.head == null;
     }
 
-    @Override
     public E peek() {
         return this.head.element;
     }
 
-    @Override
-    public void push(E element) {
+    public void prependHead(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
@@ -49,8 +45,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
         this.head = node;
     }
 
-    @Override
-    public void enqueue(E element) {
+    public void appendTail(E element) {
         LinkedNode<E> node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
@@ -60,8 +55,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
         this.tail = node;
     }
 
-    @Override
-    public E dequeue() {
+    public E removeHead() {
         if (this.isEmpty()) throw new NoSuchElementException();
         E retVal = this.head.element;
         if (this.head == this.tail) {
@@ -71,11 +65,6 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
             this.head = this.head.next;
         }
         return retVal;
-    }
-
-    @Override
-    public E pop() {
-        return this.dequeue();
     }
 
     @Override
@@ -90,7 +79,7 @@ public class SinglyLinkedList<E> implements Stack<E>, Queue<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = SinglyLinkedList.this.head;
+            private LinkedNode<E> next = SinglyLinkedListDoubleReference.this.head;
 
             @Override
             public boolean hasNext() {

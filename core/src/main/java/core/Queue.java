@@ -1,5 +1,8 @@
 package core;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
+
+import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -45,6 +48,46 @@ public interface Queue<E> extends Enumerable<E> {
             @Override
             public void forEach(Consumer<? super E> consumer) {
                 deque.forEach(consumer);
+            }
+        };
+    }
+
+    static <E> Queue<E> fromSinglyLinkedListDoubleReference() {
+        final SinglyLinkedListDoubleReference<E> list = new SinglyLinkedListDoubleReference<>();
+        return new Queue<E>() {
+            @Override
+            public int size() {
+                return list.size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return list.isEmpty();
+            }
+
+            @Override
+            public E peek() {
+                return list.peek();
+            }
+
+            @Override
+            public void enqueue(E element) {
+                list.appendTail(element);
+            }
+
+            @Override
+            public E dequeue() {
+                return list.removeHead();
+            }
+
+            @Override
+            public void forEach(Consumer<? super E> consumer) {
+                list.forEach(consumer);
+            }
+
+            @Override
+            public Iterator<E> iterator() {
+                return list.iterator();
             }
         };
     }

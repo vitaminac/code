@@ -1,6 +1,5 @@
 package algs4.fundamentals.stacks;
 
-import core.SinglyLinkedList;
 import core.Stack;
 
 import java.util.PrimitiveIterator;
@@ -25,7 +24,7 @@ public class Ex10Infix2Postfix {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 PrimitiveIterator.OfInt it = line.chars().iterator();
-                Stack<Character> stack = new SinglyLinkedList<>();
+                Stack<Character> stack = Stack.fromSinglyLinkedListDoubleReference();
                 StringBuilder sb = new StringBuilder();
                 while (it.hasNext()) {
                     char c = (char) (int) it.next();

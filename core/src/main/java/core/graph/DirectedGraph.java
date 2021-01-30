@@ -2,7 +2,6 @@ package core.graph;
 
 import core.Enumerable;
 import core.Queue;
-import core.SinglyLinkedList;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,7 +25,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     default Enumerable<Vertex> bfs(Vertex u) {
         return consumer -> {
             Set<Vertex> visited = new HashSet<>();
-            Queue<Vertex> q = new SinglyLinkedList<>();
+            Queue<Vertex> q = Queue.fromSinglyLinkedListDoubleReference();
             q.enqueue(u);
             while (!q.isEmpty()) {
                 var vertex = q.dequeue();

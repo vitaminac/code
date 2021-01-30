@@ -1,8 +1,5 @@
-package code;
+package core;
 
-import core.ArrayDeque;
-import core.DoublyLinkedList;
-import core.Stack;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,8 +29,9 @@ public class StackTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<ArrayDeque<String>>) () -> new ArrayDeque<>(5)},
-                {(Supplier<DoublyLinkedList<String>>) DoublyLinkedList::new}
+                {(Supplier<Stack<String>>) () -> Stack.fromDeque(() -> new ArrayDeque<>(5))},
+                {(Supplier<Stack<String>>) () -> Stack.fromDeque(DoublyLinkedList::new)},
+                {(Supplier<Stack<String>>) Stack::fromSinglyLinkedListDoubleReference},
         });
     }
 

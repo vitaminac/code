@@ -2,7 +2,6 @@ package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
 import core.Queue;
-import core.SinglyLinkedList;
 
 public class Labyrinth implements SolutionNode<Labyrinth> {
     private final int[][] labyrinth;
@@ -35,7 +34,7 @@ public class Labyrinth implements SolutionNode<Labyrinth> {
     @Override
     public Queue<Labyrinth> branch() {
         this.labyrinth[this.x][this.y] = this.step;
-        Queue<Labyrinth> queue = new SinglyLinkedList<>();
+        Queue<Labyrinth> queue = Queue.fromSinglyLinkedListDoubleReference();
         if (x - 1 >= 0 && this.labyrinth[x - 1][this.y] == 0) {
             queue.enqueue(new Labyrinth(this.labyrinth, step + 1, x - 1, y));
         }

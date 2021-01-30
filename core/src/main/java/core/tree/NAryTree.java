@@ -2,7 +2,6 @@ package core.tree;
 
 import core.Enumerable;
 import core.Queue;
-import core.SinglyLinkedList;
 
 public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tree<E, SelfType> {
     void addChild(SelfType tree);
@@ -37,7 +36,7 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
 
     default Enumerable<SelfType> bfs() {
         return consumer -> {
-            Queue<SelfType> unvisited = new SinglyLinkedList<>();
+            Queue<SelfType> unvisited = Queue.fromSinglyLinkedListDoubleReference();
             unvisited.enqueue((SelfType) this);
             while (!unvisited.isEmpty()) {
                 var node = unvisited.dequeue();

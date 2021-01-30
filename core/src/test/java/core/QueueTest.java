@@ -1,5 +1,6 @@
 package core;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +29,9 @@ public class QueueTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<SinglyLinkedList<String>>) SinglyLinkedList::new},
                 {(Supplier<Queue<String>>) () -> Queue.fromDeque(() -> new ArrayDeque<>(5))},
-                {(Supplier<Queue<String>>) () -> Queue.fromDeque(DoublyLinkedList::new)}
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(DoublyLinkedList::new)},
+                {(Supplier<Queue<String>>) Queue::fromSinglyLinkedListDoubleReference}
         });
     }
 

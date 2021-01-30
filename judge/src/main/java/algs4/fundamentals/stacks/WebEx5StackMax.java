@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
 import core.MinStack;
-import core.SinglyLinkedList;
+import core.Stack;
 
 import java.util.Comparator;
 import java.util.Scanner;
@@ -17,7 +17,7 @@ import java.util.Scanner;
 public class WebEx5StackMax {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            MinStack<Integer> maxStack = new MinStack<>(SinglyLinkedList::new, Comparator.reverseOrder());
+            MinStack<Integer> maxStack = new MinStack<>(Stack::fromSinglyLinkedListDoubleReference, Comparator.reverseOrder());
             while (sc.hasNext()) {
                 String op = sc.next();
                 switch (op) {
