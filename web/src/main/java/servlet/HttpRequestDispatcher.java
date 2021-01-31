@@ -1,40 +1,34 @@
 package servlet;
 
-import ioc.injection.Dependency;
-import ioc.injection.Inject;
-
+import java.lang.reflect.Method;
 import java.util.List;
 
-@Dependency
 public class HttpRequestDispatcher {
     private final HttpRequestHandlerResolver resolver;
     private final List<HttpRequestMiddleware> httpRequestMiddlewares;
 
-    @Inject
-    public HttpRequestDispatcher(HttpRequestHandlerResolver resolver, List<HttpRequestMiddleware> httpRequestMiddlewares) {
+    public HttpRequestDispatcher(HttpRequestHandlerResolver resolver,
+                                 HttpRequestMiddlewaresResolver httpRequestMiddlewaresResolver) {
         this.resolver = resolver;
-        this.httpRequestMiddlewares = httpRequestMiddlewares;
+        this.httpRequestMiddlewares = httpRequestMiddlewaresResolver.resolve();
     }
 
-    private static class MiddlewareHttpRequestHandler implements HttpRequestHandler {
-        private final HttpRequestMiddleware httpRequestMiddleware;
-        private final HttpRequestHandler handler;
+    public HttpResponse dispatch(final HttpRequest request) {
+        final var initialHandler = resolver.resolve(request);
+        var handler = initialHandler;
+        for (final var middleware : httpRequestMiddlewares) {
+            final var nextHandler = handler;
+            handler = new HttpRequestHandler() {
+                @Override
+                public Method getHandlerMethod() {
+                    return initialHandler.getHandlerMethod();
+                }
 
-        private MiddlewareHttpRequestHandler(HttpRequestMiddleware httpRequestMiddleware, HttpRequestHandler handler) {
-            this.httpRequestMiddleware = httpRequestMiddleware;
-            this.handler = handler;
-        }
-
-        @Override
-        public HttpResponse handle(HttpRequest request) {
-            return this.httpRequestMiddleware.intercept(request, this.handler);
-        }
-    }
-
-    public HttpResponse dispatch(HttpRequest request) {
-        var handler = resolver.resolve(request);
-        for (var middleware : httpRequestMiddlewares) {
-            handler = new MiddlewareHttpRequestHandler(middleware, handler);
+                @Override
+                public HttpResponse handle(final HttpRequest request) {
+                    return middleware.intercept(request, nextHandler);
+                }
+            };
         }
         return handler.handle(request);
     }

@@ -12,7 +12,7 @@ public class HttpRequest extends HttpMessage {
 
     private final String path;
     private final HttpRequestMethod method;
-    private final Map<Object, Object> context = new HashMap<>();
+    private final Map<String, Object> context = new HashMap<>();
 
     public HttpRequest(HttpRequestMethod method, String path, Map<String, String> headers, InputStream body) {
         super(headers, body);
@@ -26,5 +26,13 @@ public class HttpRequest extends HttpMessage {
 
     public String getPath() {
         return this.path;
+    }
+
+    public Object getContextParam(String parameterName) {
+        return this.context.get(parameterName);
+    }
+
+    public void putContextParam(String parameterName, Object parameterValue) {
+        this.context.put(parameterName, parameterValue);
     }
 }

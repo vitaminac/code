@@ -1,6 +1,7 @@
 package core;
 
 import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public final class Reflections {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> T defaultValueOf(Class<T> clazz) {
+    public static <T> T defaultValueOf(final Class<T> clazz) {
         if (clazz.equals(boolean.class) || clazz.equals(Boolean.class)) {
             return (T) Boolean.FALSE;
         } else if (clazz.equals(byte.class) || clazz.equals(Byte.class)) {
@@ -40,6 +41,15 @@ public final class Reflections {
             return (T) Double.valueOf(0.0);
         } else {
             return null;
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T invoke(final Object instance, final Method method, final Object... arguments) {
+        try {
+            return (T) method.invoke(instance, arguments);
+        } catch (IllegalAccessException | InvocationTargetException e) {
+            throw new RuntimeException("can not invoke " + instance.getClass().getCanonicalName() + "#" + method.getName());
         }
     }
 }
