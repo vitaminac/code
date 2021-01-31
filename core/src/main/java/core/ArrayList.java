@@ -130,7 +130,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
         return Arrays.copyFrom(this.elements, 0, this.size);
     }
 
-    int getCapacity() {
+    private int getCapacity() {
         return this.elements.length;
     }
 

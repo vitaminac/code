@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
-import core.UndoStack;
-import core.Stack;
+import core.stack.UndoStack;
+import core.stack.Stack;
 
 import java.util.Scanner;
 

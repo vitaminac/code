@@ -1,6 +1,6 @@
 package algs4.fundamentals.stacks;
 
-import core.Stack;
+import core.stack.Stack;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;

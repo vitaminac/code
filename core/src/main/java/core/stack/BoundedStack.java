@@ -1,12 +1,14 @@
-package core;
+package core.stack;
 
-import java.util.function.Consumer;
+import core.ArrayList;
 
 public class BoundedStack<E> implements Stack<E> {
     private final ArrayList<E> list;
+    private final int capacity;
 
     public BoundedStack(int capacity) {
-        this.list = new ArrayList<>(capacity);
+        this.capacity = capacity;
+        this.list = new ArrayList<>(this.capacity);
     }
 
     @Override
@@ -20,7 +22,7 @@ public class BoundedStack<E> implements Stack<E> {
     }
 
     public boolean isFull() {
-        return this.list.size() == this.list.getCapacity();
+        return this.list.size() == this.capacity;
     }
 
     @Override
@@ -39,10 +41,5 @@ public class BoundedStack<E> implements Stack<E> {
     public E pop() {
         if (this.isEmpty()) throw new RuntimeException("Stack is empty");
         return this.list.remove(this.list.size() - 1);
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> consumer) {
-        this.list.forEach(consumer);
     }
 }

@@ -1,12 +1,11 @@
-package core;
+package core.stack;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-
-import java.util.Iterator;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public interface Stack<E> extends Enumerable<E> {
+import core.Deque;
+import core.linkedlist.SinglyLinkedListDoubleReference;
+
+public interface Stack<E> {
     int size();
 
     boolean isEmpty();
@@ -44,11 +43,6 @@ public interface Stack<E> extends Enumerable<E> {
             public E pop() {
                 return deque.removeFirst();
             }
-
-            @Override
-            public void forEach(Consumer<? super E> consumer) {
-                deque.forEach(consumer);
-            }
         };
     }
 
@@ -78,16 +72,6 @@ public interface Stack<E> extends Enumerable<E> {
             @Override
             public E pop() {
                 return list.removeHead();
-            }
-
-            @Override
-            public void forEach(Consumer<? super E> consumer) {
-                list.forEach(consumer);
-            }
-
-            @Override
-            public Iterator<E> iterator() {
-                return list.iterator();
             }
         };
     }

@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
-import core.MinStack;
-import core.Stack;
+import core.stack.MinStack;
+import core.stack.Stack;
 
 import java.util.Comparator;
 import java.util.Scanner;

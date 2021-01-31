@@ -1,6 +1,6 @@
-package core;
+package core.stack;
 
-import java.util.function.Consumer;
+import core.Math;
 
 public class UndoStack<E> implements Stack<E> {
     private final E[] elements;
@@ -45,12 +45,5 @@ public class UndoStack<E> implements Stack<E> {
         this.top = (this.top - 1 + this.elements.length) % this.elements.length;
         this.size -= 1;
         return result;
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> consumer) {
-        for (int i = 0; i < this.size; i++) {
-            consumer.accept(this.elements[(top - i + this.elements.length) % this.elements.length]);
-        }
     }
 }
