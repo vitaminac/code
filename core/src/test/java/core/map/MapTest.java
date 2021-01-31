@@ -1,6 +1,5 @@
 package core.map;
 
-import core.dict.SkipListDictionary;
 import core.tree.AVLTree;
 import core.tree.RedBlackTree;
 import org.junit.Before;

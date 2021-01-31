@@ -1,5 +1,6 @@
-package core.dict;
+package core.map;
 
+import core.map.SkipListDictionary;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,11 +1,9 @@
-package core.dict;
-
-import core.map.Map;
+package core.map;
 
 import java.util.function.Consumer;
 
-public class SkipListDictionary<Key extends Comparable<Key>, Value>
-        implements Map<Key, Value> {
+public class SkipListDictionary<Key extends Comparable<? super Key>, Value>
+        implements OrderedMap<Key, Value> {
     private static class Node<E> {
         private E element;
         private Node<E> next;
@@ -20,6 +18,20 @@ public class SkipListDictionary<Key extends Comparable<Key>, Value>
             return "Element:" + element + "; Next: " + (next == null ? null : next.element) + "; Down:" + (down == null ? null : down.element);
         }
     }
+
+    private static class Vocabulary<Key extends Comparable<? super Key>, Value>
+            extends Relation<Key, Value>
+            implements Comparable<Key> {
+        public Vocabulary(Key key, Value value) {
+            super(key, value);
+        }
+
+        @Override
+        public int compareTo(final Key key) {
+            return this.getKey().compareTo(key);
+        }
+    }
+
 
     private final Vocabulary<Key, Value> MIN_SENTIMENTAL = new Vocabulary<>(null, null) {
         @Override
