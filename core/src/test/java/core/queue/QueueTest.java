@@ -1,14 +1,15 @@
-package core;
-
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+package core.queue;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Supplier;
+
+import core.ArrayDeque;
+import core.DoublyLinkedList;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,6 +1,6 @@
 package code.adt.queue.simulation;
 
-import core.Queue;
+import core.queue.Queue;
 
 public class InfiniteQueue extends Component {
     private final Queue<Atom> queue = Queue.fromSinglyLinkedListDoubleReference();

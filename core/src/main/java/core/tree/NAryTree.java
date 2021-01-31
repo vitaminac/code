@@ -1,7 +1,7 @@
 package core.tree;
 
 import core.Enumerable;
-import core.Queue;
+import core.queue.Queue;
 
 public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tree<E, SelfType> {
     void addChild(SelfType tree);

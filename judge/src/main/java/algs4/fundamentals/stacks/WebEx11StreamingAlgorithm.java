@@ -1,6 +1,6 @@
 package algs4.fundamentals.stacks;
 
-import core.Queue;
+import core.queue.Queue;
 
 import java.util.Scanner;
 
@@ -16,8 +16,8 @@ public class WebEx11StreamingAlgorithm {
             }
         }
 
-        for (int i : queue) {
-            System.out.println(i);
+        while (!queue.isEmpty()) {
+            System.out.println(queue.dequeue());
         }
     }
 }

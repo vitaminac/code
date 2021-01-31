@@ -1,6 +1,6 @@
 package algs4.fundamentals.stacks;
 
-import core.Queue;
+import core.queue.Queue;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package core.graph;
 
 import core.Enumerable;
-import core.Queue;
+import core.queue.Queue;
 
 import java.util.HashSet;
 import java.util.Set;

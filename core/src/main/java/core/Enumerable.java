@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
+
 @FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
 
@@ -51,9 +53,9 @@ public interface Enumerable<E> extends Iterable<E> {
 
     @Override
     default Iterator<E> iterator() {
-        Queue<E> queue = Queue.fromSinglyLinkedListDoubleReference();
-        this.forEach(queue::enqueue);
-        return queue.iterator();
+        final SinglyLinkedListDoubleReference<E> linkedList = new SinglyLinkedListDoubleReference<>();
+        this.forEach(linkedList::appendTail);
+        return linkedList.iterator();
     }
 
     @Override

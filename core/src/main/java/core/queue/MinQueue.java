@@ -1,8 +1,9 @@
-package core;
+package core.queue;
 
 import java.util.Comparator;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import core.Deque;
 
 public class MinQueue<E> implements Queue<E> {
     private final Comparator<? super E> comparator;
@@ -47,10 +48,5 @@ public class MinQueue<E> implements Queue<E> {
         final E tmp = this.queue.dequeue();
         if (tmp == this.minDeque.getFirst()) this.minDeque.removeFirst();
         return tmp;
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> consumer) {
-        this.queue.forEach(consumer);
     }
 }

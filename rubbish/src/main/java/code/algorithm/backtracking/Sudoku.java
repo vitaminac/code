@@ -1,7 +1,7 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
-import core.Queue;
+import core.queue.Queue;
 
 public class Sudoku implements SolutionNode<Sudoku> {
     private final int table[][];

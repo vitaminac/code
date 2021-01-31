@@ -1,12 +1,14 @@
-package core;
+package core.queue;
 
+import core.Deque;
+import core.Enumerable;
 import core.linkedlist.SinglyLinkedListDoubleReference;
 
 import java.util.Iterator;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public interface Queue<E> extends Enumerable<E> {
+public interface Queue<E> {
     int size();
 
     boolean isEmpty();
@@ -44,11 +46,6 @@ public interface Queue<E> extends Enumerable<E> {
             public E dequeue() {
                 return deque.removeFirst();
             }
-
-            @Override
-            public void forEach(Consumer<? super E> consumer) {
-                deque.forEach(consumer);
-            }
         };
     }
 
@@ -78,16 +75,6 @@ public interface Queue<E> extends Enumerable<E> {
             @Override
             public E dequeue() {
                 return list.removeHead();
-            }
-
-            @Override
-            public void forEach(Consumer<? super E> consumer) {
-                list.forEach(consumer);
-            }
-
-            @Override
-            public Iterator<E> iterator() {
-                return list.iterator();
             }
         };
     }

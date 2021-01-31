@@ -1,6 +1,6 @@
 package code.algorithm.common;
 
-import core.Queue;
+import core.queue.Queue;
 
 public interface SolutionNode<Solution extends SolutionNode<Solution>> {
     boolean isSolution();

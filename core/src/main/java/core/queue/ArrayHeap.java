@@ -1,4 +1,4 @@
-package core.pq;
+package core.queue;
 
 import core.ArrayList;
 
@@ -32,7 +32,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public void add(E element) {
+    public void enqueue(E element) {
         int child = this.list.size();
         this.list.add(child, element);
         while (child > 0) {
@@ -45,7 +45,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public E min() {
+    public E peek() {
         return this.list.get(0);
     }
 
@@ -60,7 +60,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public E remove() {
+    public E dequeue() {
         this.swap(0, this.list.size() - 1);
         E retVal = this.list.remove(this.list.size() - 1);
         int parent = 0;
@@ -75,10 +75,5 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
             } else break;
         }
         return retVal;
-    }
-
-    @Override
-    public void clear() {
-        this.list.clear();
     }
 }
