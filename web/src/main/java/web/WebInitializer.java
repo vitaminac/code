@@ -18,6 +18,7 @@ import servlet.auth.HttpBasicAuthenticationMiddleware;
 import servlet.auth.PrincipleResolver;
 import servlet.exception.HttpRequestExceptionMiddleware;
 import servlet.exception.HttpRequestExceptionResolver;
+import servlet.log.HttpRequestLogMiddleware;
 
 public class WebInitializer {
     @Dependency
@@ -43,15 +44,22 @@ public class WebInitializer {
     }
 
     @Dependency
+    public HttpRequestLogMiddleware httpRequestLogMiddleware() {
+        return new HttpRequestLogMiddleware();
+    }
+
+    @Dependency
     public HttpRequestMiddlewaresResolver httpMiddlewaresResolver(
             final HttpBasicAuthenticationMiddleware httpBasicAuthenticationMiddleware,
-            final HttpRequestExceptionMiddleware httpRequestExceptionMiddleware) {
+            final HttpRequestExceptionMiddleware httpRequestExceptionMiddleware,
+            final HttpRequestLogMiddleware httpRequestLogMiddleware) {
         return new HttpRequestMiddlewaresResolver() {
             @Override
             public List<HttpRequestMiddleware> resolve() {
                 return Arrays.asList(
-                        httpRequestExceptionMiddleware,
-                        httpBasicAuthenticationMiddleware
+                        httpRequestLogMiddleware,
+                        httpBasicAuthenticationMiddleware,
+                        httpRequestExceptionMiddleware
                 );
             }
         };
