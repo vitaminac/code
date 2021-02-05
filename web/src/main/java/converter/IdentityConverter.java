@@ -1,9 +1,9 @@
 package converter;
 
-public class IdentityConverter implements RawConverter {
+public class IdentityConverter implements Converter {
 
     @Override
-    public boolean isSupported(Class<?> sourceType, Class<?> destinationType) {
+    public boolean canSupport(Class<?> sourceType, Class<?> destinationType) {
         return sourceType.equals(destinationType);
     }
 

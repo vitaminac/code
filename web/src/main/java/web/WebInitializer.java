@@ -3,7 +3,7 @@ package web;
 import java.util.Arrays;
 import java.util.List;
 
-import converter.ConversionService;
+import converter.CompositeConverter;
 import converter.IdentityConverter;
 import converter.ObjectToJsonConverter;
 import ioc.injection.Dependency;
@@ -22,11 +22,11 @@ import servlet.log.HttpRequestLogMiddleware;
 
 public class WebInitializer {
     @Dependency
-    public ConversionService conversionService() {
-        return new ConversionService(
-                new ObjectToJsonConverter(),
-                new IdentityConverter()
-        );
+    public CompositeConverter conversionService() {
+        final var compositeConverter = new CompositeConverter();
+        compositeConverter.addConverter(new ObjectToJsonConverter());
+        compositeConverter.addConverter(new IdentityConverter());
+        return compositeConverter;
     }
 
     @Dependency
