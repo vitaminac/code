@@ -69,6 +69,12 @@ How to become a good developer?
 * [Retrofit](https://github.com/square/retrofit)
 * [Auto](https://github.com/google/auto)
 
+## RFC
+
+- [ ] [HTTP/1.1](https://tools.ietf.org/html/rfc2616)
+- [ ] [UDP](https://tools.ietf.org/html/rfc768)
+- [ ] [TCP](https://tools.ietf.org/html/rfc793)
+
 ## Learn
 
 * [Udacity](https://www.udacity.com/)
