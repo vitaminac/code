@@ -25,6 +25,7 @@ How to become a good developer?
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Code Complete
+- [ ] [The Architecture of Open Source Applications](http://aosabook.org/en/index.html)
 
 ### Algorithms
 
