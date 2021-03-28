@@ -16,15 +16,19 @@ How to become a good developer?
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] The Pragmatic Programmer: Your Journey To Mastery
-- [ ] Agile Software Development, Principles, Patterns, and Practice
-- [ ] [Clean Code](http://cleancoder.com)
-- [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
 - [ ] [Inside the Java Virtual Machine](https://www.artima.com/insidejvm/blurb.html)
 - [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
 - [ ] [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
-- [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Code Complete
+
+### Software Engineering
+
+- [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
+- [ ] [Clean Code](http://cleancoder.com)
+- [ ] Agile Software Development, Principles, Patterns, and Practice
+- [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
+- [ ] Domain-Driven Design
 - [ ] [The Architecture of Open Source Applications](http://aosabook.org/en/index.html)
 
 ### Algorithms
@@ -75,6 +79,8 @@ How to become a good developer?
 - [ ] [HTTP/1.1](https://tools.ietf.org/html/rfc2616)
 - [ ] [UDP](https://tools.ietf.org/html/rfc768)
 - [ ] [TCP](https://tools.ietf.org/html/rfc793)
+- [ ] [IPv4](https://tools.ietf.org/html/rfc791)
+- [ ] [IPv6](https://tools.ietf.org/html/rfc2460)
 
 ## Learn
 
