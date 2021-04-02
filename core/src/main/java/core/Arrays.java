@@ -4,19 +4,29 @@ import java.util.Comparator;
 import java.util.function.Consumer;
 
 public final class Arrays {
+    public static <E> void copyTo(E[] source, E[] destination, int from, int to, int offset) {
+        for (int i = from; i <= to; i++) destination[offset + i] = source[i];
+    }
 
-    public static <E> E[] copyFrom(E[] arr, int from, int length) {
-        @SuppressWarnings("unchecked") E[] clone = (E[]) new Object[length];
-        for (int i = from + length - 1; i >= from; i--) clone[i] = arr[i];
+    public static <E> void copyTo(E[] source, E[] destination, int from, int to) {
+        copyTo(source, destination, from, to, 0);
+    }
+
+    public static <E> E[] copyFrom(E[] source, int from, int length) {
+        @SuppressWarnings("unchecked") final E[] clone = (E[]) new Object[length];
+        copyTo(source, clone, from, from + length - 1);
         return clone;
+    }
+
+    public static <E> E[] prepend(final E first, final E[] rest) {
+        @SuppressWarnings("uncheckd") final E[] newArray = (E[]) new Object[rest.length + 1];
+        newArray[0] = first;
+        copyTo(rest, newArray, 0, rest.length - 1, 1);
+        return newArray;
     }
 
     public static <E> void fill(E[] arr, E value) {
         for (int i = 0; i < arr.length; i++) arr[i] = value;
-    }
-
-    public static <E> void copyTo(E[] source, E[] destination, int from, int to) {
-        for (int i = from; i <= to; i++) destination[i] = source[i];
     }
 
     /**

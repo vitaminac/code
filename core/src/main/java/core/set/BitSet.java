@@ -53,10 +53,6 @@ public class BitSet implements MutableSet<Integer> {
         return r;
     }
 
-    public BitSet symmetricDifference(BitSet set) {
-        return this.difference(set).union(set.difference(this));
-    }
-
     public boolean isSubset(BitSet set) {
         for (int i = 0; i < this.set.length; i++) {
             if (!this.set[i] && set.set[i]) return false;

@@ -1,50 +1,43 @@
 package core.set;
 
-import java.util.function.Function;
-import java.util.function.Predicate;
-
 public interface Set<E> {
     static <E> Set<E> emptySet() {
         return element -> false;
     }
 
-    @SuppressWarnings("unchecked")
-    static <E> Set<E> frozenSet(E... elements) {
-        return predicate -> {
-            for (var e : elements) {
-                if (predicate.test(e)) return true;
+    @SafeVarargs
+    static <E> Set<E> frozenSetOf(final E... elements) {
+        return e -> {
+            for (final var element : elements) {
+                if (e.equals(element)) return true;
             }
             return false;
         };
     }
 
-    static <E> Set<E> include(Set<E> set, E newElement) {
-        return predicate -> predicate.test(newElement) || set.match(predicate);
+    boolean contains(E element);
+
+    default Set<E> include(E newElement) {
+        return e -> e.equals(newElement) || this.contains(e);
     }
 
-    static <E> Set<E> union(Set<E> s1, Set<E> s2) {
-        return predicate -> s1.match(predicate) || s2.match(predicate);
+    default Set<E> complement() {
+        return e -> !this.contains(e);
     }
 
-    static <E> Set<E> intersect(Set<E> s1, Set<E> s2) {
-        return predicate -> s1.match(predicate) && s2.match(predicate);
+    default Set<E> union(Set<E> other) {
+        return e -> this.contains(e) || other.contains(e);
     }
 
-    static <E> Set<E> diff(Set<E> s1, Set<E> s2) {
-        return predicate -> s1.match(predicate) && !s2.match(predicate);
+    default Set<E> intersect(Set<E> other) {
+        return e -> this.contains(e) && other.contains(e);
     }
 
-    static <E> Set<E> filter(Set<E> set, Predicate<E> filter) {
-        return predicate -> set.match(e -> filter.test(e) && predicate.test(e));
+    default Set<E> difference(Set<E> other) {
+        return e -> this.contains(e) && !other.contains(e);
     }
 
-    static <E, R> Set<R> map(Set<E> set, Function<E, R> f) {
-        return predicate -> set.match(e -> predicate.test(f.apply(e)));
-    }
-
-    boolean match(Predicate<E> predicate);
-
-    default boolean contains(E element) {
-        return match(e -> e == element);
+    default Set<E> symmetricDifference(Set<E> other) {
+        return this.difference(other).union(other.difference(this));
     }
 }

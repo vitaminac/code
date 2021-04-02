@@ -1,6 +1,7 @@
 package core;
 
 import core.set.BitSet;
+import core.set.Set;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -100,13 +101,13 @@ public class BitSetTest {
         set2.add(39);
         set2.add(75);
         set2.add(99);
-        this.set = set1.symmetricDifference(set2);
-        assertTrue(this.set.contains(18));
-        assertFalse(this.set.contains(39));
-        assertTrue(this.set.contains(76));
-        assertTrue(this.set.contains(14));
-        assertTrue(this.set.contains(75));
-        assertTrue(this.set.contains(99));
+        final Set<Integer> set = set1.symmetricDifference(set2);
+        assertTrue(set.contains(18));
+        assertFalse(set.contains(39));
+        assertTrue(set.contains(76));
+        assertTrue(set.contains(14));
+        assertTrue(set.contains(75));
+        assertTrue(set.contains(99));
     }
 
     @Test
