@@ -3,5 +3,5 @@ package servlet.exception;
 import servlet.HttpResponse;
 
 public interface HttpRequestExceptionResolver {
-    HttpResponse resolve(Exception e);
+    HttpResponse resolve(final Exception e);
 }

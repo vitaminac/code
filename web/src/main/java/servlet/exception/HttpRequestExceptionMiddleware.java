@@ -8,7 +8,8 @@ import servlet.HttpResponse;
 public class HttpRequestExceptionMiddleware implements HttpRequestMiddleware {
     private final HttpRequestExceptionResolver httpRequestExceptionResolver;
 
-    public HttpRequestExceptionMiddleware(HttpRequestExceptionResolver httpRequestExceptionResolver) {
+    public HttpRequestExceptionMiddleware(
+            final HttpRequestExceptionResolver httpRequestExceptionResolver) {
         this.httpRequestExceptionResolver = httpRequestExceptionResolver;
     }
 

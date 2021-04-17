@@ -6,6 +6,7 @@ import java.util.List;
 import converter.CompositeConverter;
 import converter.IdentityConverter;
 import converter.ObjectToJsonConverter;
+import ioc.injection.ContextConfig;
 import ioc.injection.Dependency;
 import servlet.HttpControllerResolver;
 import servlet.HttpRequestDispatcher;
@@ -16,11 +17,12 @@ import servlet.HttpRequestMiddlewaresResolver;
 import servlet.HttpResponseBodyEncodeService;
 import servlet.auth.HttpBasicAuthenticationMiddleware;
 import servlet.auth.PrincipleResolver;
+import servlet.exception.HttpRequestExceptionCompositeResolver;
 import servlet.exception.HttpRequestExceptionMiddleware;
 import servlet.exception.HttpRequestExceptionResolver;
 import servlet.log.HttpRequestLogMiddleware;
 
-public class WebInitializer {
+public class WebInitializer implements ContextConfig {
     @Dependency
     public CompositeConverter conversionService() {
         final var compositeConverter = new CompositeConverter();
@@ -41,6 +43,11 @@ public class WebInitializer {
             final HttpRequestExceptionResolver httpRequestExceptionResolver
     ) {
         return new HttpRequestExceptionMiddleware(httpRequestExceptionResolver);
+    }
+
+    @Dependency
+    public HttpRequestExceptionResolver HttpRequestExceptionResolver() {
+        return new HttpRequestExceptionCompositeResolver();
     }
 
     @Dependency
