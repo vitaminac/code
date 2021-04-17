@@ -1,6 +1,6 @@
 package core.tree;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 
 public interface Tree<E, SelfType extends Tree<E, SelfType>> {
     int height();

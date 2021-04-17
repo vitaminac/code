@@ -3,7 +3,7 @@ package core.set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 import core.map.Map;
 
 public interface MutableSet<E>

@@ -1,6 +1,6 @@
 package geeksforgeeks.dfs;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 import core.graph.SimpleDirectedGraph;
 import core.graph.SimpleEdge;
 import org.junit.Test;

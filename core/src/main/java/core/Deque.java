@@ -1,5 +1,7 @@
 package core;
 
+import core.functional.Enumerable;
+
 public interface Deque<E> extends Enumerable<E> {
     int size();
 

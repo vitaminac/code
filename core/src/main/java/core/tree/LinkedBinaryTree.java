@@ -1,6 +1,6 @@
 package core.tree;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 
 public class LinkedBinaryTree<E> implements Tree<E, LinkedBinaryTree<E>> {
     private E element;

@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
+import core.functional.Enumerable;
+
 public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E> {
     private static class LinkedNode<E> {
         private final E element;

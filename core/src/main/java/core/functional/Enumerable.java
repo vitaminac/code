@@ -1,4 +1,4 @@
-package core;
+package core.functional;
 
 import java.util.Iterator;
 import java.util.function.BiFunction;
@@ -10,16 +10,14 @@ import core.linkedlist.SinglyLinkedListDoubleReference;
 
 @FunctionalInterface
 public interface Enumerable<E> extends Iterable<E> {
-
     default <R> Enumerable<R> map(Function<E, R> operator) {
         return consumer -> this.forEach(e -> consumer.accept(operator.apply(e)));
     }
 
-    @SuppressWarnings("unchecked")
     default <R> R reduce(R identity, BiFunction<E, R, R> accumulator) {
-        R[] ref = (R[]) new Object[]{identity};
-        this.forEach(e -> ref[0] = accumulator.apply(e, ref[0]));
-        return ref[0];
+        final Reducer<E, R> reducer = new Reducer<>(identity, accumulator);
+        this.forEach(reducer);
+        return reducer.getAccumulated();
     }
 
     default Enumerable<E> filter(Predicate<E> predicate) {

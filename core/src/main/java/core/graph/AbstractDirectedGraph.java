@@ -1,6 +1,6 @@
 package core.graph;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 
 import java.util.HashSet;
 import java.util.Set;

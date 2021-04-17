@@ -1,6 +1,6 @@
 package core.graph;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 import core.queue.Queue;
 
 import java.util.HashSet;

@@ -1,6 +1,6 @@
 package core.tree;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 
 public class LCRSTree<E> implements NAryTree<E, LCRSTree<E>> {
     private E element;

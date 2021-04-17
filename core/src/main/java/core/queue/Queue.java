@@ -1,11 +1,8 @@
 package core.queue;
 
 import core.Deque;
-import core.Enumerable;
 import core.linkedlist.SinglyLinkedListDoubleReference;
 
-import java.util.Iterator;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface Queue<E> {

@@ -1,6 +1,6 @@
 package core.tree;
 
-import core.Enumerable;
+import core.functional.Enumerable;
 
 public interface BinarySearchTree<E extends Comparable<? super E>, SelfType extends BinarySearchTree<E, SelfType>> extends Tree<E, SelfType> {
     default SelfType search(E key) {
