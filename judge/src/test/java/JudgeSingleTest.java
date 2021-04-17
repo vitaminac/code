@@ -1,10 +1,12 @@
-import codeforces.P1418C;
-import test.*;
+import poj.P1050ToTheMax;
+import test.TestCase;
+import test.TestSuite;
+import test.UnitTest;
 
 @TestSuite
 public class JudgeSingleTest extends TestCase {
-    @UnitTest(disabled = true)
+    @UnitTest
     public void test() throws Exception {
-        Judge.judge(P1418C.class, null);
+        Judge.judge(P1050ToTheMax.class, null);
     }
 }
