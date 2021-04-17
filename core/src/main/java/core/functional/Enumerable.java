@@ -112,8 +112,4 @@ public interface Enumerable<E> extends Iterable<E> {
             }
         };
     }
-
-    static <E extends Comparable<? super E>> E max(Enumerable<E> enumerable) {
-        return enumerable.reduce(null, (e, ac) -> ac == null ? e : (ac.compareTo(e) < 0 ? e : ac));
-    }
 }
