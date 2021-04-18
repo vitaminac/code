@@ -1,22 +1,8 @@
-package core.concurrent;
-
-import core.Function;
+package core.concurrent.promise;
 
 import java.util.NoSuchElementException;
 
-public interface Promise<T> {
-    interface Result<T> {
-        T get();
-
-        Exception getReason();
-
-        boolean isFulfilled();
-
-        boolean isFailed();
-
-        boolean isPending();
-    }
-
+public interface Result<T> {
     static <T> Result<T> pending() {
         return new Result<T>() {
             @Override
@@ -104,17 +90,13 @@ public interface Promise<T> {
         };
     }
 
-    Result<T> getResult();
+    T get();
 
-    <R> Promise<R> onFulfilled(Function<? super T, R, Exception> handler);
+    Exception getReason();
 
-    <R> Promise<R> onRejected(Function<Exception, R, Exception> handler);
+    boolean isFulfilled();
 
-    <R> Promise<R> then(Function<? super T, R, Exception> fulfilledHandler, Function<Exception, R, Exception> failureHandler);
+    boolean isFailed();
 
-    <R> Promise<R> then(Function<Result<T>, Promise<R>, Exception> callback);
-
-    <R> Promise<R> map(Function<Result<T>, R, Exception> callback);
-
-    void onFinally(Runnable task);
+    boolean isPending();
 }

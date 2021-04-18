@@ -3,7 +3,7 @@ package nio;
 import org.junit.Before;
 import org.junit.Test;
 import core.concurrent.DeferredPromise;
-import core.concurrent.Promise;
+import core.concurrent.promise.Promise;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
