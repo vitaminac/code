@@ -1,5 +1,7 @@
 package core;
 
+import core.behaviour.RandomAccess;
+
 public interface List<E>
         extends
         Collection<E>,

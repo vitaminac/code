@@ -1,4 +1,4 @@
-package core;
+package core.behaviour;
 
 public interface RandomAccess<E> {
     E get(int index);
