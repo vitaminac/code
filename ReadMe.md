@@ -25,7 +25,7 @@ How to become a good developer?
 ### Software Engineering
 
 - [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
-- [ ] [Clean Code](http://cleancoder.com)
+- [x] [Clean Code](http://cleancoder.com)
 - [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Domain-Driven Design
