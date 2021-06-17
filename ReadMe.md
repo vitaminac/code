@@ -16,7 +16,6 @@ How to become a good developer?
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] The Pragmatic Programmer: Your Journey To Mastery
-- [ ] [Inside the Java Virtual Machine](https://www.artima.com/insidejvm/blurb.html)
 - [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
 - [ ] [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html)
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
