@@ -1,6 +1,6 @@
 package nio;
 
-import core.concurrent.DeferredPromise;
+import core.concurrent.Promise;
 import scheduler.Job;
 import scheduler.ScheduledTask;
 import scheduler.Task;
@@ -292,13 +292,13 @@ public class EventLoop {
         return task;
     }
 
-    public synchronized <T> DeferredPromise<T> await(Callable<T> callable) {
+    public synchronized <T> Promise<T> await(Callable<T> callable) {
         final Future<T> future = this.executorService.submit(callable);
-        return DeferredPromise.from(promise -> this.futures.put(future, () -> {
+        return new Promise<>((resolve, reject) -> this.futures.put(future, () -> {
             if (future.isDone()) {
-                promise.fulfill(future.get());
+                resolve.accept(future.get());
             } else if (future.isCancelled()) {
-                promise.reject(new CancellationException());
+                reject.accept(new CancellationException());
             }
         }));
     }

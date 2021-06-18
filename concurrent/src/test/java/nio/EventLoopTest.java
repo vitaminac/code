@@ -2,8 +2,7 @@ package nio;
 
 import org.junit.Before;
 import org.junit.Test;
-import core.concurrent.DeferredPromise;
-import core.concurrent.promise.Promise;
+import core.concurrent.Promise;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -55,7 +54,7 @@ public class EventLoopTest {
 
     @Test
     public void promiseTest() {
-        DeferredPromise<Integer> promise = DeferredPromise.from(p -> EVENT_LOOP.arrange(() -> p.fulfill(1)));
+        Promise<Integer> promise = new Promise<>((resolve, reject) -> EVENT_LOOP.arrange(() -> resolve.accept(1)));
         final int[] refResult = new int[]{0};
         final boolean[] refNotCalled = new boolean[1];
         promise.then(n -> {
@@ -71,10 +70,10 @@ public class EventLoopTest {
     @Test
     public void promiseAllTest() {
         assertNotNull(EVENT_LOOP);
-        final Promise<Integer> p1 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.fulfill(101), 1000));
-        final Promise<Integer> p2 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.fulfill(102), 800));
-        final Promise<Integer> p3 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.fulfill(103), 100));
-        final Promise<List<Integer>> all = DeferredPromise.all(Arrays.asList(p1, p2, p3));
+        final Promise<Integer> p1 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> resolve.accept(101), 1000));
+        final Promise<Integer> p2 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> resolve.accept(102), 800));
+        final Promise<Integer> p3 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> resolve.accept(103), 100));
+        final Promise<List<Integer>> all = Promise.all(Arrays.asList(p1, p2, p3));
         final List<Integer> results = new ArrayList<>();
         all.onFulfilled(integers -> {
             results.addAll(integers);
@@ -89,10 +88,10 @@ public class EventLoopTest {
     @Test
     public void allPromisesAndThrow() {
         assertNotNull(EVENT_LOOP);
-        final Promise<Integer> p1 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.fulfill(104), 1100));
-        final Promise<Integer> p2 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.reject(new RuntimeException("105")), 900));
-        final Promise<Integer> p3 = DeferredPromise.from(p -> EVENT_LOOP.defer(() -> p.fulfill(106), 200));
-        final Promise<List<Integer>> all = DeferredPromise.all(Arrays.asList(p1, p2, p3));
+        final Promise<Integer> p1 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> resolve.accept(104), 1100));
+        final Promise<Integer> p2 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> reject.accept(new RuntimeException("105")), 900));
+        final Promise<Integer> p3 = new Promise<>((resolve, reject) -> EVENT_LOOP.defer(() -> resolve.accept(106), 200));
+        final Promise<List<Integer>> all = Promise.all(Arrays.asList(p1, p2, p3));
         final List<Object> results = new ArrayList<>();
         final boolean[] refCalled = new boolean[1];
         all.then(integers -> {
