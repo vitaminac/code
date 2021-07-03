@@ -4,10 +4,15 @@ How to become a good developer?
 
 ## Resources
 
+### Introduction
+
+- [ ] Code: The Hidden Language of Computer Hardware and Software
+- [X] 数学之美
+- [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
+
 ### Mathematics
 
 - [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
-- [X] 数学之美
 - [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
 
 ### Programming
