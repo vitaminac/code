@@ -1,4 +1,4 @@
 dependencies {
-    compile project(':ioc')
-    compile project(':json')
+    implementation project(':core')
+    implementation project(':json')
 }

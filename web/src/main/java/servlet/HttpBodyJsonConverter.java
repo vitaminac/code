@@ -1,8 +1,5 @@
 package servlet;
 
-import ioc.injection.Dependency;
-
-@Dependency
 public class HttpBodyJsonConverter implements HttpResponseBodyEncoder<Object>, HttpRequestBodyDecoder<Object> {
     @Override
     public Object decode(HttpRequest request) {

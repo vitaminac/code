@@ -6,8 +6,7 @@ import java.util.List;
 import converter.CompositeConverter;
 import converter.IdentityConverter;
 import converter.ObjectToJsonConverter;
-import ioc.injection.ContextConfig;
-import ioc.injection.Dependency;
+import core.ioc.Provide;
 import servlet.HttpControllerResolver;
 import servlet.HttpRequestDispatcher;
 import servlet.HttpRequestHandlerArgumentsResolver;
@@ -22,8 +21,8 @@ import servlet.exception.HttpRequestExceptionMiddleware;
 import servlet.exception.HttpRequestExceptionResolver;
 import servlet.log.HttpRequestLogMiddleware;
 
-public class WebInitializer implements ContextConfig {
-    @Dependency
+public class WebInitializer {
+    @Provide
     public CompositeConverter conversionService() {
         final var compositeConverter = new CompositeConverter();
         compositeConverter.addConverter(new ObjectToJsonConverter());
@@ -31,31 +30,31 @@ public class WebInitializer implements ContextConfig {
         return compositeConverter;
     }
 
-    @Dependency
+    @Provide
     public HttpBasicAuthenticationMiddleware httpBasicAuthenticationMiddleware(
             PrincipleResolver principleResolver
     ) {
         return new HttpBasicAuthenticationMiddleware(principleResolver);
     }
 
-    @Dependency
+    @Provide
     public HttpRequestExceptionMiddleware httpRequestExceptionMiddleware(
             final HttpRequestExceptionResolver httpRequestExceptionResolver
     ) {
         return new HttpRequestExceptionMiddleware(httpRequestExceptionResolver);
     }
 
-    @Dependency
+    @Provide
     public HttpRequestExceptionResolver HttpRequestExceptionResolver() {
         return new HttpRequestExceptionCompositeResolver();
     }
 
-    @Dependency
+    @Provide
     public HttpRequestLogMiddleware httpRequestLogMiddleware() {
         return new HttpRequestLogMiddleware();
     }
 
-    @Dependency
+    @Provide
     public HttpRequestMiddlewaresResolver httpMiddlewaresResolver(
             final HttpBasicAuthenticationMiddleware httpBasicAuthenticationMiddleware,
             final HttpRequestExceptionMiddleware httpRequestExceptionMiddleware,
@@ -72,7 +71,7 @@ public class WebInitializer implements ContextConfig {
         };
     }
 
-    @Dependency
+    @Provide
     public HttpRequestHandlerResolver httpRequestHandlerResolver(
             final HttpRequestHandlerArgumentsResolver argumentsResolver,
             final HttpResponseBodyEncodeService httpResponseBodyEncodeService,
@@ -81,7 +80,7 @@ public class WebInitializer implements ContextConfig {
         return new HttpRequestHandlerResolver(argumentsResolver, httpResponseBodyEncodeService, httpControllerResolver);
     }
 
-    @Dependency
+    @Provide
     public HttpRequestDispatcher httpRequestDispatcher(
             final HttpRequestHandlerResolver httpRequestHandlerResolver,
             final HttpRequestMiddlewaresResolver httpRequestMiddlewaresResolver

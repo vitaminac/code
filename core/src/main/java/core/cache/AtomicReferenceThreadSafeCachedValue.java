@@ -1,9 +1,9 @@
-package core;
+package core.cache;
 
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
-public class AtomicReferenceThreadSafeCachedValue<E> {
+public class AtomicReferenceThreadSafeCachedValue<E> implements Cache<E> {
     private final Supplier<? extends E> supplier;
     private final AtomicReference<E> reference = new AtomicReference<>(null);
 

@@ -1,5 +1,5 @@
 dependencies {
-    testCompile group: 'org.apache.commons', name: 'commons-math3', version: '3.2'
-    compile group: 'commons-io', name: 'commons-io', version: '2.6'
-    compile project(':core')
+    testImplementation group: 'org.apache.commons', name: 'commons-math3', version: '3.2'
+    implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+    implementation project(':core')
 }

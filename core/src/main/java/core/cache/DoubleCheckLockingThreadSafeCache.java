@@ -1,4 +1,4 @@
-package core;
+package core.cache;
 
 import java.util.function.Supplier;
 

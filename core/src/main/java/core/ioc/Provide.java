@@ -1,4 +1,4 @@
-package ioc.injection;
+package core.ioc;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
 @Documented
-public @interface Dependency {
+public @interface Provide {
     Scope scope() default Scope.SINGLETON;
 
     String name() default "";

@@ -27,8 +27,8 @@ subprojects {
     ext.junit4Version = '4.12'
 
     dependencies {
-        compile "org.jetbrains:annotations:16.0.2"
-        testCompile group: 'junit', name: 'junit', version: "${junit4Version}"
+        implementation "org.jetbrains:annotations:16.0.2"
+        testImplementation group: 'junit', name: 'junit', version: "${junit4Version}"
     }
 
     compileJava.options.encoding = "UTF-8"
