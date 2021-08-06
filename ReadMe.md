@@ -89,5 +89,9 @@ How to become a good developer?
 
 ## Learn
 
+* [Coursera](https://www.coursera.org/)
+* [edX](https://www.edx.org/)
 * [Udacity](https://www.udacity.com/)
 * [MIT Open Courseware](https://ocw.mit.edu)
+* [Khan Academy](https://www.khanacademy.org/)
+* [Udemy](https://www.udemy.com/)
