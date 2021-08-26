@@ -29,7 +29,8 @@ How to become a good developer?
 ### Software Engineering
 
 - [x] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
-- [x] [Clean Code](http://cleancoder.com)
+- [x] [Clean Code: A Handbook of Agile Software Craftsmanship](http://cleancoder.com)
+- [ ] Clean Architecture: A Craftsman's Guide to Software Structure and Design
 - [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
 - [ ] Domain-Driven Design
