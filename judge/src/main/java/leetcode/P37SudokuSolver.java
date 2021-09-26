@@ -1,9 +1,6 @@
 package leetcode;
 
 public class P37SudokuSolver {
-}
-
-class Solution {
     private boolean isValid(char[][] sudoku, int i, int j) {
         boolean[] bitmapH = new boolean[9];
         boolean[] bitmapV = new boolean[9];
