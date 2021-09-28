@@ -6,7 +6,6 @@ How to become a good developer?
 
 ### Introduction
 
-- [X] Code: The Hidden Language of Computer Hardware and Software
 - [X] 数学之美
 - [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
 
@@ -38,7 +37,6 @@ How to become a good developer?
 
 ### Algorithms
 
-- [X] Grokking Algorithms: An Illustrated Guide for Programmers and Other Curious People
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-third-edition)
