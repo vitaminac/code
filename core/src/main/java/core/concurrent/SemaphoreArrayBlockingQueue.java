@@ -2,22 +2,22 @@ package core.concurrent;
 
 import java.util.concurrent.Semaphore;
 
-public class SemaphoreBlockingQueue<E> implements BlockingQueue<E> {
+public class SemaphoreArrayBlockingQueue<E> implements BlockingQueue<E> {
     private final int capacity;
     private final E[] elements;
 
-    private volatile int head = 0;
-    private volatile int tail = 0;
+    private int head = 0;
+    private int tail = 0;
 
     private final Semaphore empty;
     private final Semaphore full;
     private final Semaphore tailSemaphore = new Semaphore(1);
     private final Semaphore headSemaphore = new Semaphore(1);
 
-    @SuppressWarnings("unchecked")
-    public SemaphoreBlockingQueue(final int capacity) {
+    public SemaphoreArrayBlockingQueue(final int capacity) {
         this.capacity = capacity;
-        this.elements = (E[]) new Object[capacity];
+        @SuppressWarnings("unchecked") final var elements = (E[]) new Object[capacity];
+        this.elements = elements;
         this.empty = new Semaphore(0);
         this.full = new Semaphore(capacity);
     }
