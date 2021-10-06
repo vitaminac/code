@@ -22,7 +22,7 @@ public class SimpleDirectedGraphTest {
         List<Integer> list = new ArrayList<>();
         g3.dfs(2).forEach(list::add);
         // TODO: compare two tree
-        assertEquals(Arrays.asList(2, 3, 0, 1), list);
+        assertEquals(Arrays.asList(2, 0, 1, 3), list);
     }
 
     @Test
@@ -37,6 +37,6 @@ public class SimpleDirectedGraphTest {
 
         List<Integer> list = new ArrayList<>();
         g3.bfs(2).forEach(list::add);
-        assertEquals(Arrays.asList(2, 3, 0, 1), list);
+        assertEquals(Arrays.asList(2, 0, 3, 1), list);
     }
 }

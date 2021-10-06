@@ -6,6 +6,7 @@ import core.Math;
 
 public class BitSet implements MutableSet<Integer> {
     private boolean[] set;
+    private int size;
 
     public BitSet(int n) {
         this.set = new boolean[n];
@@ -18,12 +19,18 @@ public class BitSet implements MutableSet<Integer> {
 
     @Override
     public void add(Integer n) {
-        this.set[n] = true;
+        if (!this.set[n]) {
+            this.set[n] = true;
+            this.size += 1;
+        }
     }
 
     @Override
     public void remove(Integer n) {
-        this.set[n] = false;
+        if (this.set[n]) {
+            this.set[n] = false;
+            this.size -= 1;
+        }
     }
 
     public BitSet intersect(BitSet set) {
@@ -77,10 +84,16 @@ public class BitSet implements MutableSet<Integer> {
 
     public void clear() {
         this.set = new boolean[this.set.length];
+        this.size = 0;
     }
 
     @Override
     public void enumerate(Consumer<? super Integer> consumer) {
         for (int i = 0; i < this.set.length; i++) if (this.set[i]) consumer.accept(i);
+    }
+
+    @Override
+    public int size() {
+        return this.size;
     }
 }

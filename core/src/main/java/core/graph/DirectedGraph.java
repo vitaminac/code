@@ -1,11 +1,12 @@
 package core.graph;
 
-import core.functional.Enumerable;
-import core.queue.Queue;
-
-import java.util.HashSet;
-import java.util.Set;
 import java.util.function.Consumer;
+
+import core.functional.Enumerable;
+import core.map.SeparateChainingHashTableMap;
+import core.queue.Queue;
+import core.set.MutableSet;
+import core.set.NavigableSet;
 
 public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     Enumerable<Vertex> getVertices();
@@ -14,8 +15,10 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
 
     boolean isAdjacent(Vertex u, Vertex v);
 
-    default Enumerable<Vertex> getAdjacentVertices(Vertex vertex) {
-        return consumer -> this.getEdges(vertex).forEach(edge -> consumer.accept(edge.getDestination()));
+    default NavigableSet<Vertex> getAdjacentVertices(Vertex vertex) {
+        final var set = MutableSet.<Vertex>fromMap(SeparateChainingHashTableMap::new);
+        this.getEdges(vertex).forEach(edge -> set.add(edge.getDestination()));
+        return set;
     }
 
     Enumerable<E> getEdges(Vertex vertex);
@@ -24,7 +27,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
 
     default Enumerable<Vertex> bfs(Vertex u) {
         return consumer -> {
-            Set<Vertex> visited = new HashSet<>();
+            final var visited = MutableSet.<Vertex>fromMap(SeparateChainingHashTableMap::new);
             Queue<Vertex> q = Queue.fromSinglyLinkedListDoubleReference();
             q.enqueue(u);
             while (!q.isEmpty()) {
@@ -38,7 +41,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
         };
     }
 
-    private void dfs(Vertex vertex, Set<Vertex> visited, Consumer<? super Vertex> consumer) {
+    private void dfs(Vertex vertex, MutableSet<Vertex> visited, Consumer<? super Vertex> consumer) {
         if (!visited.contains(vertex)) {
             consumer.accept(vertex);
             visited.add(vertex);
@@ -47,6 +50,6 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     }
 
     default Enumerable<Vertex> dfs(Vertex u) {
-        return consumer -> this.dfs(u, new HashSet<>(), consumer);
+        return consumer -> this.dfs(u, MutableSet.fromMap(SeparateChainingHashTableMap::new), consumer);
     }
 }
