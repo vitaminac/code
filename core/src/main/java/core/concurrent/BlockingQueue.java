@@ -1,7 +1,7 @@
 package core.concurrent;
 
 public interface BlockingQueue<E> {
-    void enqueue(E e) throws InterruptedException;
+    void enqueue(E element) throws InterruptedException;
 
     E dequeue() throws InterruptedException;
 }

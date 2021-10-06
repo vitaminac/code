@@ -3,7 +3,6 @@ package core.concurrent;
 import java.util.concurrent.Semaphore;
 
 public class SemaphoreArrayBlockingQueue<E> implements BlockingQueue<E> {
-    private final int capacity;
     private final E[] elements;
 
     private int head = 0;
@@ -15,7 +14,6 @@ public class SemaphoreArrayBlockingQueue<E> implements BlockingQueue<E> {
     private final Semaphore headSemaphore = new Semaphore(1);
 
     public SemaphoreArrayBlockingQueue(final int capacity) {
-        this.capacity = capacity;
         @SuppressWarnings("unchecked") final var elements = (E[]) new Object[capacity];
         this.elements = elements;
         this.empty = new Semaphore(0);
@@ -28,7 +26,7 @@ public class SemaphoreArrayBlockingQueue<E> implements BlockingQueue<E> {
 
         this.tailSemaphore.acquire();
         this.elements[this.tail] = element;
-        this.tail = (this.tail + 1) % this.capacity;
+        this.tail = (this.tail + 1) % this.elements.length;
         this.tailSemaphore.release();
 
         this.empty.release();
@@ -40,7 +38,7 @@ public class SemaphoreArrayBlockingQueue<E> implements BlockingQueue<E> {
 
         this.headSemaphore.acquire();
         final E result = this.elements[this.head];
-        this.head = (this.head + 1) % this.capacity;
+        this.head = (this.head + 1) % this.elements.length;
         this.headSemaphore.release();
 
         this.full.release();
