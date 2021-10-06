@@ -1,17 +1,16 @@
 package geeksforgeeks.dfs;
 
-import core.functional.Enumerable;
+import java.util.HashSet;
+import java.util.Set;
+
+import core.functional.Iterable;
 import core.graph.SimpleDirectedGraph;
 import core.graph.SimpleEdge;
 import org.junit.Test;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import static org.junit.Assert.assertTrue;
 
 public class TopologicalSortingTest {
-
     @Test
     public void sort() {
         SimpleDirectedGraph g = new SimpleDirectedGraph(6);
@@ -23,7 +22,7 @@ public class TopologicalSortingTest {
         g.addEdge(new SimpleEdge(3, 1));
         var result = new TopologicalSorting().getTopologicalSorting(g);
         Set<Integer> candidates = new HashSet<>();
-        Enumerable.range(0, 6, 1).forEach(candidates::add);
+        Iterable.range(0, 6, 1).forEach(candidates::add);
         while (!result.isEmpty()) {
             int u = result.pop();
             candidates.remove(u);

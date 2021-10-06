@@ -46,7 +46,7 @@ public class TreeMap<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void forEach(Consumer<? super Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         this.tree.forEach(consumer);
     }
 }

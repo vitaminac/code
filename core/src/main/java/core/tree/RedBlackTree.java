@@ -220,7 +220,7 @@ public class RedBlackTree<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void forEach(Consumer<? super Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         if (this.root != null) this.root.traversal(node -> consumer.accept(node.key));
     }
 

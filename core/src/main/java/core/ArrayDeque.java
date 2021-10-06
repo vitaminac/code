@@ -73,7 +73,7 @@ public class ArrayDeque<E> extends AbstractOrderedCollection<E> implements Deque
     }
 
     @Override
-    public void forEach(Consumer<? super E> consumer) {
+    public void enumerate(Consumer<? super E> consumer) {
         for (int i = 0; i < this.size; i++) {
             consumer.accept(this.elements[(this.first + i) % this.elements.length]);
         }

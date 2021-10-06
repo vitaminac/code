@@ -1,10 +1,10 @@
 package core;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 import core.functional.Enumerable;
+import core.functional.Iterator;
 
 public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E> {
     private static class LinkedNode<E> {
@@ -110,7 +110,7 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
     }
 
     @Override
-    public void forEach(Consumer<? super E> consumer) {
+    public void enumerate(Consumer<? super E> consumer) {
         LinkedNode<E> node = this.head;
         while (node != null) {
             consumer.accept(node.element);
@@ -125,13 +125,14 @@ public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements
 
             @Override
             public boolean hasNext() {
-                return next != null;
+                return this.next != null;
             }
 
             @Override
             public E next() {
-                E item = next.element;
-                this.next = next.next;
+                if (this.next == null) throw new NoSuchElementException();
+                final var item = this.next.element;
+                this.next = this.next.next;
                 return item;
             }
         };

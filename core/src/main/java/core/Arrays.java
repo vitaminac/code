@@ -123,7 +123,7 @@ public final class Arrays {
     }
 
     public static <E> List<E> asList(final E[] elements) {
-        return new List<E>() {
+        return new List<>() {
             @Override
             public int size() {
                 return elements.length;
@@ -170,7 +170,7 @@ public final class Arrays {
             }
 
             @Override
-            public void forEach(Consumer<? super E> consumer) {
+            public void enumerate(Consumer<? super E> consumer) {
                 for (var e : elements) consumer.accept(e);
             }
 

@@ -20,8 +20,8 @@ public interface MutableSet<E>
         final Map<T, Boolean> map = supplier.get();
         return new MutableSet<T>() {
             @Override
-            public void forEach(Consumer<? super T> consumer) {
-                map.forEach(consumer);
+            public void enumerate(Consumer<? super T> consumer) {
+                map.enumerate(consumer);
             }
 
             @Override

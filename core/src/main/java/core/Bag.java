@@ -1,10 +1,10 @@
 package core;
 
-import core.map.Map;
-
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import core.map.Map;
 
 public interface Bag<E> extends Collection<E> {
     void add(E element);
@@ -30,8 +30,8 @@ public interface Bag<E> extends Collection<E> {
             }
 
             @Override
-            public void forEach(Consumer<? super T> consumer) {
-                map.forEach(consumer);
+            public void enumerate(Consumer<? super T> consumer) {
+                map.enumerate(consumer);
             }
 
             @Override

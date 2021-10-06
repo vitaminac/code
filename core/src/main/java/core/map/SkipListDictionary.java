@@ -135,7 +135,7 @@ public class SkipListDictionary<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void forEach(Consumer<? super Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         Node<Vocabulary<Key, Value>> current = this.top;
         while (current.down != null) current = current.down;
         current = current.next;

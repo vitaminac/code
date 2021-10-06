@@ -1,7 +1,9 @@
 package core;
 
-import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+
+import core.functional.Iterator;
 
 public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;
@@ -103,7 +105,7 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     }
 
     @Override
-    public void forEach(Consumer<? super E> consumer) {
+    public void enumerate(Consumer<? super E> consumer) {
         for (int i = 0; i < this.size(); i++) {
             consumer.accept(this.get(i));
         }
@@ -112,16 +114,17 @@ public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private int n = 0;
+            private int index = 0;
 
             @Override
             public boolean hasNext() {
-                return this.n < ArrayList.this.size();
+                return this.index < ArrayList.this.size();
             }
 
             @Override
             public E next() {
-                return ArrayList.this.get(this.n++);
+                if (this.index >= ArrayList.this.size()) throw new NoSuchElementException();
+                return ArrayList.this.get(this.index++);
             }
         };
     }

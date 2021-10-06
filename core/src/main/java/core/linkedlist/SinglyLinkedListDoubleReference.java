@@ -1,8 +1,9 @@
 package core.linkedlist;
 
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
+
+import core.functional.Iterator;
 
 public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     private static class LinkedNode<E> {
@@ -83,13 +84,14 @@ public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
 
             @Override
             public boolean hasNext() {
-                return next != null;
+                return this.next != null;
             }
 
             @Override
             public E next() {
-                E item = next.element;
-                this.next = next.next;
+                if (this.next == null) throw new NoSuchElementException();
+                final var item = this.next.element;
+                this.next = this.next.next;
                 return item;
             }
         };

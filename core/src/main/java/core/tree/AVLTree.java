@@ -63,7 +63,7 @@ public class AVLTree<Key extends Comparable<Key>, Value>
     }
 
     @Override
-    public void forEach(Consumer<? super Key> consumer) {
+    public void enumerate(Consumer<? super Key> consumer) {
         this.root.traversal(consumer);
     }
 
