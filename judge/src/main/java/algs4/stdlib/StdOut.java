@@ -12,6 +12,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
+import java.util.Scanner;
 
 /**
  * This class provides methods for printing strings and numbers to standard output.
@@ -57,6 +58,7 @@ import java.util.Locale;
  * <em>Computer Science: An Interdisciplinary Approach</em>
  * by Robert Sedgewick and Kevin Wayne.
  * <p>
+ *
  * @author Robert Sedgewick
  * @author Kevin Wayne
  */
@@ -69,26 +71,34 @@ public final class StdOut {
     private static final Locale LOCALE = Locale.US;
 
     // send output here
-    private static PrintWriter out;
+    private static PrintWriter printWriter;
 
     // this is called before invoking any methods
     static {
-        try {
-            out = new PrintWriter(new OutputStreamWriter(System.out, CHARSET_NAME), true);
-        } catch (UnsupportedEncodingException e) {
-            System.out.println(e);
-        }
+        resync();
     }
 
     // don't instantiate
     private StdOut() {
     }
 
+    public static void resync() {
+        try {
+            printWriter = new PrintWriter(new OutputStreamWriter(System.out, CHARSET_NAME), true);
+        } catch (UnsupportedEncodingException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void setPrintWriter(final PrintWriter printWriter) {
+        StdOut.printWriter = printWriter;
+    }
+
     /**
      * Terminates the current line by printing the line-separator string.
      */
     public static void println() {
-        out.println();
+        printWriter.println();
     }
 
     /**
@@ -97,7 +107,7 @@ public final class StdOut {
      * @param x the object to print
      */
     public static void println(Object x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -106,7 +116,7 @@ public final class StdOut {
      * @param x the boolean to print
      */
     public static void println(boolean x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -115,7 +125,7 @@ public final class StdOut {
      * @param x the character to print
      */
     public static void println(char x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -124,7 +134,7 @@ public final class StdOut {
      * @param x the double to print
      */
     public static void println(double x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -133,7 +143,7 @@ public final class StdOut {
      * @param x the integer to print
      */
     public static void println(float x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -142,7 +152,7 @@ public final class StdOut {
      * @param x the integer to print
      */
     public static void println(int x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -151,7 +161,7 @@ public final class StdOut {
      * @param x the long to print
      */
     public static void println(long x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -160,7 +170,7 @@ public final class StdOut {
      * @param x the short to print
      */
     public static void println(short x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
@@ -171,14 +181,14 @@ public final class StdOut {
      * @param x the byte to print
      */
     public static void println(byte x) {
-        out.println(x);
+        printWriter.println(x);
     }
 
     /**
      * Flushes standard output.
      */
     public static void print() {
-        out.flush();
+        printWriter.flush();
     }
 
     /**
@@ -187,8 +197,8 @@ public final class StdOut {
      * @param x the object to print
      */
     public static void print(Object x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -197,8 +207,8 @@ public final class StdOut {
      * @param x the boolean to print
      */
     public static void print(boolean x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -207,8 +217,8 @@ public final class StdOut {
      * @param x the character to print
      */
     public static void print(char x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -217,8 +227,8 @@ public final class StdOut {
      * @param x the double to print
      */
     public static void print(double x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -227,8 +237,8 @@ public final class StdOut {
      * @param x the float to print
      */
     public static void print(float x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -237,8 +247,8 @@ public final class StdOut {
      * @param x the integer to print
      */
     public static void print(int x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -247,8 +257,8 @@ public final class StdOut {
      * @param x the long integer to print
      */
     public static void print(long x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -257,8 +267,8 @@ public final class StdOut {
      * @param x the short integer to print
      */
     public static void print(short x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -267,8 +277,8 @@ public final class StdOut {
      * @param x the byte to print
      */
     public static void print(byte x) {
-        out.print(x);
-        out.flush();
+        printWriter.print(x);
+        printWriter.flush();
     }
 
     /**
@@ -279,8 +289,8 @@ public final class StdOut {
      * @param args   the arguments accompanying the format string
      */
     public static void printf(String format, Object... args) {
-        out.printf(LOCALE, format, args);
-        out.flush();
+        printWriter.printf(LOCALE, format, args);
+        printWriter.flush();
     }
 
     /**
@@ -292,8 +302,8 @@ public final class StdOut {
      * @param args   the arguments accompanying the format string
      */
     public static void printf(Locale locale, String format, Object... args) {
-        out.printf(locale, format, args);
-        out.flush();
+        printWriter.printf(locale, format, args);
+        printWriter.flush();
     }
 
     /**

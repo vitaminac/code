@@ -1,3 +1,5 @@
+import algs4.stdlib.StdIn;
+import algs4.stdlib.StdOut;
 import core.util.Utils;
 
 import java.io.*;
@@ -22,6 +24,7 @@ public final class Judge {
         // redirect stdin
         InputStream stdin = new ByteArrayInputStream(Files.readAllBytes(input));
         System.setIn(stdin);
+        StdIn.resync();
 
         // backup standard output stream
         final PrintStream backup = System.out;
@@ -30,6 +33,7 @@ public final class Judge {
         ByteArrayOutputStream stdout = new ByteArrayOutputStream();
         final PrintStream printStream = new PrintStream(stdout);
         System.setOut(printStream);
+        StdOut.resync();
 
         // call main
         long startTime = System.nanoTime();
