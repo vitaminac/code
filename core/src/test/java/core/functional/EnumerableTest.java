@@ -1,12 +1,14 @@
 package core.functional;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class EnumerableTest {
     @Test
-    public void testIterator() {
+    public void testIterator_happyPath() {
         final Enumerable<Integer> enumerable = consumer -> {
             consumer.accept(1);
             consumer.accept(2);
@@ -24,5 +26,15 @@ public class EnumerableTest {
         assertEquals(4, (int) it.next());
         assertEquals(5, (int) it.next());
         assertFalse(it.hasNext());
+        assertThrows(NoSuchElementException.class, it::next);
+    }
+
+    @Test
+    public void testIterator_whenIsEmpty_returnsFalseForHasNextAndThrowsNoSuchElementExceptionForNext() {
+        final Enumerable<Integer> enumerable = consumer -> {
+        };
+        final var it = enumerable.iterator();
+        assertFalse(it.hasNext());
+        assertThrows(NoSuchElementException.class, it::next);
     }
 }

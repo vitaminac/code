@@ -8,7 +8,7 @@ public interface Enumerable<E> extends Iterable<E> {
 
     @Override
     default Iterator<E> iterator() {
-        return new Generator<E>() {
+        return new Generator<>() {
             @Override
             public void generate() {
                 Enumerable.this.enumerate(this::yieldValue);

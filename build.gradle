@@ -22,7 +22,7 @@ subprojects {
 
     version = '1.0'
     group 'code'
-    ext.junit4Version = '4.12'
+    ext.junit4Version = '4.13'
 
     dependencies {
         implementation "org.jetbrains:annotations:16.0.2"
