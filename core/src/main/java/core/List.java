@@ -10,6 +10,7 @@ public interface List<E>
 
     void clear();
 
+    // TODO: rename to insert
     void add(int index, E element);
 
     E remove(int index);

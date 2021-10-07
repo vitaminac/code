@@ -1,4 +1,4 @@
-import poj.P1050ToTheMax;
+import algs4.fundamentals.stacks.example.Stats;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(P1050ToTheMax.class, null);
+        Judge.judge(Stats.class, null);
     }
 }
