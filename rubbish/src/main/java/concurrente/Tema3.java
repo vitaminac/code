@@ -1,7 +1,7 @@
 package concurrente;
 
 import core.Arrays;
-import core.Utils;
+import core.util.Utils;
 import core.concurrent.SemaphoreArrayBlockingQueue;
 
 import javax.imageio.ImageIO;

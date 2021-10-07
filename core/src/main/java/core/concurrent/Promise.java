@@ -1,6 +1,6 @@
 package core.concurrent;
 
-import core.Function;
+import core.functional.Function;
 import core.dp.Subject;
 
 import java.util.ArrayList;

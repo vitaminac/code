@@ -1,4 +1,4 @@
-package core;
+package core.util;
 
 import java.math.BigInteger;
 import java.util.concurrent.ForkJoinPool;

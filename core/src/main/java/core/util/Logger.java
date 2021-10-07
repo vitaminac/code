@@ -1,4 +1,4 @@
-package core;
+package core.util;
 
 public class Logger {
     private final Class<?> clazz;

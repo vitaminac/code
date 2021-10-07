@@ -1,9 +1,9 @@
-package core;
+package core.util;
 
 import java.util.Objects;
 
-import static core.Math.gcd;
-import static core.Math.sign;
+import static core.util.Math.gcd;
+import static core.util.Math.sign;
 
 public class Rational {
     //region member

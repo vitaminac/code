@@ -3,7 +3,7 @@ package servlet;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import core.Reflections;
+import core.util.Reflections;
 
 public class HttpRequestHandlerResolver {
     private final HttpRequestHandlerArgumentsResolver argumentsResolver;

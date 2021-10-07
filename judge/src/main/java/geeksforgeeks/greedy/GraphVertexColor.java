@@ -2,7 +2,7 @@ package geeksforgeeks.greedy;
 
 import java.util.Arrays;
 
-import core.Reference;
+import core.util.Reference;
 import core.graph.SimpleUndirectedGraph;
 import core.queue.ArrayHeap;
 import core.queue.PriorityQueue;

@@ -1,6 +1,6 @@
 package test;
 
-import core.Function;
+import core.functional.Function;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 import java.util.*;
 import java.util.function.Supplier;
 
-import static core.Reflections.defaultValueOf;
+import static core.util.Reflections.defaultValueOf;
 import static test.Asserts.assertEquals;
 
 public class Mock {

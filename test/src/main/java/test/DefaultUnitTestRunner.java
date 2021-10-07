@@ -1,6 +1,6 @@
 package test;
 
-import core.Utils;
+import core.util.Utils;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

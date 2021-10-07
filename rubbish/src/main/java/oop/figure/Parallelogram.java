@@ -1,6 +1,6 @@
 package oop.figure;
 
-import core.Math;
+import core.util.Math;
 import oop.coordinates.Vector2D;
 
 public class Parallelogram extends Figure {

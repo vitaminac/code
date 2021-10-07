@@ -2,7 +2,7 @@ package atcoder.abc42;
 
 import java.util.Scanner;
 
-import static core.Math.bin_pow_mod;
+import static core.util.Math.bin_pow_mod;
 
 public class IrohaAndGrid {
     private static final int MOD = 1000000007;

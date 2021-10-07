@@ -1,5 +1,6 @@
 package core;
 
+import core.util.Math;
 import org.junit.Test;
 
 import java.math.BigInteger;

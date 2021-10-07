@@ -2,7 +2,7 @@ package core.set;
 
 import java.util.function.Consumer;
 
-import core.Math;
+import core.util.Math;
 
 public class BitSet implements MutableSet<Integer> {
     private boolean[] set;

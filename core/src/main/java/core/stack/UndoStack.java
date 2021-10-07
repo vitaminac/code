@@ -1,6 +1,6 @@
 package core.stack;
 
-import core.Math;
+import core.util.Math;
 
 public class UndoStack<E> implements Stack<E> {
     private final E[] elements;

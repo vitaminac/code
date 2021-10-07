@@ -1,6 +1,6 @@
 package cp_algorithms.algebra;
 
-import core.Math;
+import core.util.Math;
 
 // https://cp-algorithms.com/algebra/binary-exp.html
 public class BinaryExponentiation {

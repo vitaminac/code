@@ -1,4 +1,4 @@
-package core;
+package core.util;
 
 public class Reference<T> {
     private T reference;

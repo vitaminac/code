@@ -1,6 +1,6 @@
 package lintcode;
 
-import core.Math;
+import core.util.Math;
 
 public class P1APlusB {
     /**

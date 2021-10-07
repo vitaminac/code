@@ -1,4 +1,4 @@
-import core.Utils;
+import core.util.Utils;
 import test.*;
 
 @TestSuite(runWith = ProfilerUnitTestRunner.class)

@@ -4,7 +4,7 @@ import core.concurrent.Promise;
 import scheduler.Job;
 import scheduler.ScheduledTask;
 import scheduler.Task;
-import core.Logger;
+import core.util.Logger;
 
 import java.io.IOException;
 import java.lang.management.ManagementFactory;

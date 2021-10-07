@@ -1,4 +1,4 @@
-package core;
+package core.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;

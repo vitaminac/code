@@ -1,6 +1,6 @@
 package core.concurrent;
 
-import core.Utils;
+import core.util.Utils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
