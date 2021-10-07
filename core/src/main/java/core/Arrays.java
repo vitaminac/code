@@ -1,7 +1,8 @@
 package core;
 
 import java.util.Comparator;
-import java.util.function.Consumer;
+
+import core.functional.Iterator;
 
 public final class Arrays {
     public static <E> void copyTo(E[] source, E[] destination, int from, int to, int offset) {
@@ -170,11 +171,6 @@ public final class Arrays {
             }
 
             @Override
-            public void enumerate(Consumer<? super E> consumer) {
-                for (var e : elements) consumer.accept(e);
-            }
-
-            @Override
             public E get(int index) {
                 return elements[index];
             }
@@ -182,6 +178,11 @@ public final class Arrays {
             @Override
             public E set(int index, E element) {
                 throw new RuntimeException();
+            }
+
+            @Override
+            public Iterator<E> iterator() {
+                return Iterator.wrap(java.util.Arrays.stream(elements).iterator());
             }
         };
     }

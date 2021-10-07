@@ -22,7 +22,9 @@ public interface MutableSet<E> extends NavigableSet<E> {
 
             @Override
             public void enumerate(Consumer<? super T> consumer) {
-                map.enumerate(consumer);
+                for (final var key : map) {
+                    consumer.accept(key);
+                }
             }
 
             @Override

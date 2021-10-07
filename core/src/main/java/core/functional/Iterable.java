@@ -8,6 +8,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 @FunctionalInterface
+// rename this to Iterables and only keep static method and remove extra interface wrapper, same for Iterator
 public interface Iterable<E> extends java.lang.Iterable<E> {
     @Override
     Iterator<E> iterator();

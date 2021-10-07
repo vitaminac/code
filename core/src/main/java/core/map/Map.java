@@ -1,10 +1,12 @@
 package core.map;
 
-import core.Collection;
+import core.functional.Enumerable;
 
 public interface Map<Domain, CoDomain>
-        extends Collection<Domain> {
+        extends Enumerable<Domain> {
     boolean isEmpty();
+
+    int size();
 
     void put(Domain key, CoDomain value);
 

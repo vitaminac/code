@@ -3,6 +3,20 @@ package core.functional;
 import java.util.NoSuchElementException;
 
 public interface Iterator<E> extends java.util.Iterator<E> {
+    static <E> Iterator<E> wrap(final java.util.Iterator<E> it) {
+        return new Iterator<>() {
+            @Override
+            public boolean hasNext() {
+                return it.hasNext();
+            }
+
+            @Override
+            public E next() {
+                return it.next();
+            }
+        };
+    }
+
     static <E> Iterator<E> from(final E[] arr) {
         return new Iterator<E>() {
             private int index = 0;

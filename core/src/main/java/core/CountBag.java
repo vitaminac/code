@@ -1,9 +1,9 @@
 package core;
 
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+import core.functional.Iterator;
 import core.map.Map;
 
 public interface CountBag<E> extends Collection<E> {
@@ -30,8 +30,8 @@ public interface CountBag<E> extends Collection<E> {
             }
 
             @Override
-            public void enumerate(Consumer<? super T> consumer) {
-                map.enumerate(consumer);
+            public Iterator<T> iterator() {
+                return this.map.iterator();
             }
 
             @Override

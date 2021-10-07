@@ -1,7 +1,7 @@
 package core;
 
-import core.functional.Enumerable;
+import core.functional.Iterable;
 
-public interface Collection<E> extends Enumerable<E> {
+public interface Collection<E> extends Iterable<E> {
     int size();
 }
