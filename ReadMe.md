@@ -72,7 +72,7 @@ How to become a good developer?
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Guava](https://github.com/google/guava)
-* [Kotlin](https://github.com/JetBrains/kotlin/tree/master/kotlin-native/runtime/src/main/kotlin/kotlin/collections)
+* [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [Netty](https://github.com/netty/netty)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
