@@ -47,6 +47,19 @@ public class SkipListDictionary<Key extends Comparable<? super Key>, Value>
         return this.top.down == null;
     }
 
+    @Override
+    public int size() {
+        int result = 0;
+        var current = this.top;
+        while (current.down != null) current = current.down;
+        current = current.next;
+        while (current != null) {
+            result += 1;
+            current = current.next;
+        }
+        return result;
+    }
+
     private Node<Vocabulary<Key, Value>> link(Node<Vocabulary<Key, Value>> node, Vocabulary<Key, Value> vocabulary) {
         if (node == null) return new Node<>(vocabulary);
         var current = node;
