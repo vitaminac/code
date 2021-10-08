@@ -1,4 +1,4 @@
-package core;
+package core.deque;
 
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;

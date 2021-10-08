@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.function.Supplier;
 
-import core.ArrayDeque;
+import core.deque.ArrayDeque;
 import core.deque.DoublyLinkedList;
 import org.junit.Before;
 import org.junit.Test;
