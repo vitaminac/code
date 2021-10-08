@@ -5,6 +5,9 @@ import java.util.StringTokenizer;
 import algs4.stdlib.StdIn;
 import core.stack.Stack;
 
+/**
+ * https://algs4.cs.princeton.edu/13stacks/Evaluate.java.html
+ */
 public class Evaluate {
     public static void main(String[] args) {
         while (!StdIn.isEmpty()) {

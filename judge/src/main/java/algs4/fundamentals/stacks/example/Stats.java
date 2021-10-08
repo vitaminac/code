@@ -4,6 +4,9 @@ import algs4.stdlib.StdIn;
 import core.behaviour.Bag;
 import core.map.SeparateChainingHashTableMap;
 
+/**
+ * https://algs4.cs.princeton.edu/13stacks/Stats.java.html
+ */
 public class Stats {
     public static void main(String[] args) {
         // read in numbers
