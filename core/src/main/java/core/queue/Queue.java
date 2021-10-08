@@ -1,6 +1,6 @@
 package core.queue;
 
-import core.Deque;
+import core.deque.Deque;
 import core.linkedlist.SinglyLinkedListDoubleReference;
 
 import java.util.function.Supplier;

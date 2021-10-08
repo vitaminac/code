@@ -3,7 +3,7 @@ package core.queue;
 import java.util.Comparator;
 import java.util.function.Supplier;
 
-import core.Deque;
+import core.deque.Deque;
 
 public class MinQueue<E> implements Queue<E> {
     private final Comparator<? super E> comparator;

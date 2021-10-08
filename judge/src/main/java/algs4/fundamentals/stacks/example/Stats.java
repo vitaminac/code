@@ -1,8 +1,8 @@
 package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
-import core.ArrayList;
-import core.Bag;
+import core.list.ArrayList;
+import core.behaviour.Bag;
 
 public class Stats {
     public static void main(String[] args) {

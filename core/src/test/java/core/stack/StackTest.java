@@ -1,8 +1,7 @@
 package core.stack;
 
 import core.ArrayDeque;
-import core.DoublyLinkedList;
-import core.stack.Stack;
+import core.deque.DoublyLinkedList;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

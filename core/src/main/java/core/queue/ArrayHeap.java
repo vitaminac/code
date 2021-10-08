@@ -1,6 +1,6 @@
 package core.queue;
 
-import core.ArrayList;
+import core.list.ArrayList;
 
 import java.util.Comparator;
 

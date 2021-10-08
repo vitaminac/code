@@ -1,4 +1,4 @@
-package core;
+package core.behaviour;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -23,6 +23,11 @@ public interface CountBag<E> extends Collection<E> {
         return new CountBag<T>() {
             private final Map<T, Integer> map = supplier.get();
             private int size = 0;
+
+            @Override
+            public boolean isEmpty() {
+                return this.size == 0;
+            }
 
             @Override
             public int size() {

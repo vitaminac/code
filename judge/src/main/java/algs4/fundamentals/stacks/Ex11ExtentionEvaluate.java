@@ -1,6 +1,6 @@
 package algs4.fundamentals.stacks;
 
-import core.DoublyLinkedList;
+import core.deque.DoublyLinkedList;
 import core.stack.Stack;
 
 import java.util.Scanner;

@@ -1,13 +1,9 @@
-package core;
+package core.list;
 
+import core.behaviour.OrderedCollection;
 import core.behaviour.RandomAccess;
-import core.functional.Iterable;
 
-public interface List<E> extends Iterable<E>, RandomAccess<E> {
-    boolean isEmpty();
-
-    int size();
-
+public interface List<E> extends OrderedCollection<E>, RandomAccess<E> {
     void clear();
 
     // TODO: rename to insert

@@ -1,15 +1,12 @@
-package core;
+package core.behaviour;
 
 import java.util.Iterator;
 import java.util.function.Supplier;
 
-// TODO: rename to collection
-public interface Bag<E> extends Iterable<E> {
+import core.list.List;
+
+public interface Bag<E> extends Collection<E> {
     void add(E element);
-
-    boolean isEmpty();
-
-    int size();
 
     static <E> Bag<E> fromList(final Supplier<List<E>> listSupplier) {
         final var list = listSupplier.get();

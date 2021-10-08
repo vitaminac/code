@@ -2,7 +2,7 @@ package core.stack;
 
 import java.util.function.Supplier;
 
-import core.Deque;
+import core.deque.Deque;
 import core.linkedlist.SinglyLinkedListDoubleReference;
 
 public interface Stack<E> {

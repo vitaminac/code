@@ -1,7 +1,9 @@
-package core;
+package core.list;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+
+import core.Arrays;
 
 public class ArrayList<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;

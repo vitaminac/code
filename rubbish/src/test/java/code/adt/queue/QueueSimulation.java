@@ -1,7 +1,7 @@
 package code.adt.queue;
 
 import code.adt.queue.simulation.*;
-import core.List;
+import core.list.List;
 import org.apache.commons.math3.distribution.GammaDistribution;
 import org.junit.Before;
 import org.junit.Test;

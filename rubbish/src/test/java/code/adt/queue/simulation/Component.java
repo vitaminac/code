@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.ArrayList;
-import core.List;
+import core.list.ArrayList;
+import core.list.List;
 import core.map.SeparateChainingHashTableMap;
 import core.set.MutableSet;
 

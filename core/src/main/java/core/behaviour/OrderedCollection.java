@@ -1,4 +1,4 @@
-package core;
+package core.behaviour;
 
 public interface OrderedCollection<E> extends Collection<E> {
     static <E> boolean equals(final OrderedCollection<E> left, final OrderedCollection<E> right) {

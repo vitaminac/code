@@ -3,6 +3,8 @@ package core;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
+import core.deque.Deque;
+
 public class ArrayDeque<E> implements Deque<E> {
     private final E[] elements;
     private int first = 0;

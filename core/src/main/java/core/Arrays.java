@@ -3,6 +3,8 @@ package core;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import core.list.List;
+
 public final class Arrays {
     public static <E> void copyTo(E[] source, E[] destination, int from, int to, int offset) {
         for (int i = from; i <= to; i++) destination[offset + i] = source[i];

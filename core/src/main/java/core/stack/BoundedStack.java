@@ -1,6 +1,6 @@
 package core.stack;
 
-import core.ArrayList;
+import core.list.ArrayList;
 
 public class BoundedStack<E> implements Stack<E> {
     private final ArrayList<E> list;
