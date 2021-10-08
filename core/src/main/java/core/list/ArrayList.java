@@ -7,7 +7,6 @@ import core.Arrays;
 
 public class ArrayList<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;
-
     private E[] elements;
     private int size;
 
@@ -87,8 +86,9 @@ public class ArrayList<E> implements List<E> {
         }
         this.elements[this.size] = null; // fix obsolete reference
         // shrink size of array if necessary
-        if (this.size > 0 && this.size == this.elements.length / 4)
+        if (this.size > 0 && this.size == this.elements.length / 4) {
             resize(this.elements.length / 2);
+        }
         return returnVal;
     }
 
@@ -124,10 +124,6 @@ public class ArrayList<E> implements List<E> {
 
     public E[] toArray() {
         return Arrays.copyFrom(this.elements, 0, this.size);
-    }
-
-    private int getCapacity() {
-        return this.elements.length;
     }
 
     private void checkIndex(int index, int size) {

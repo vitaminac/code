@@ -2,7 +2,6 @@ package core.deque;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 
 import core.functional.Enumerable;
 
@@ -107,15 +106,6 @@ public class DoublyLinkedList<E> implements Deque<E> {
             this.tail.next = null;
         }
         return tmp;
-    }
-
-    @Override
-    public void enumerate(Consumer<? super E> consumer) {
-        LinkedNode<E> node = this.head;
-        while (node != null) {
-            consumer.accept(node.element);
-            node = node.next;
-        }
     }
 
     @Override

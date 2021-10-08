@@ -2,7 +2,7 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
-import core.list.ArrayList;
+import core.deque.ArrayDeque;
 import core.stack.Stack;
 
 /**
@@ -10,7 +10,7 @@ import core.stack.Stack;
  */
 public class ResizingArrayStack {
     public static void main(String[] args) {
-        Stack<String> stack = Stack.fromList(ArrayList::new);
+        final Stack<String> stack = Stack.fromDeque(ArrayDeque::new);
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-")) stack.push(item);

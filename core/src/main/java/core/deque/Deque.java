@@ -1,9 +1,8 @@
 package core.deque;
 
 import core.behaviour.OrderedCollection;
-import core.functional.Enumerable;
 
-public interface Deque<E> extends OrderedCollection<E>, Enumerable<E> {
+public interface Deque<E> extends OrderedCollection<E> {
     E getFirst();
 
     E getLast();
