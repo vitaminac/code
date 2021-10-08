@@ -1,10 +1,8 @@
 package core.tree;
 
-import core.Collection;
 import core.functional.Enumerable;
 
-public interface SearchTree<Key extends Comparable<? super Key>, Value>
-        extends Collection<Key>, Enumerable<Key> {
+public interface SearchTree<Key extends Comparable<? super Key>, Value> extends Enumerable<Key> {
     boolean isEmpty();
 
     int size();

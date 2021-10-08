@@ -1,12 +1,12 @@
 package core;
 
 import core.behaviour.RandomAccess;
+import core.functional.Iterable;
 
-public interface List<E>
-        extends
-        Collection<E>,
-        RandomAccess<E> {
+public interface List<E> extends Iterable<E>, RandomAccess<E> {
     boolean isEmpty();
+
+    int size();
 
     void clear();
 

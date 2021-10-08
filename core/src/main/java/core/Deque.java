@@ -2,7 +2,7 @@ package core;
 
 import core.functional.Enumerable;
 
-public interface Deque<E> extends Enumerable<E> {
+public interface Deque<E> extends OrderedCollection<E>, Enumerable<E> {
     int size();
 
     boolean isEmpty();

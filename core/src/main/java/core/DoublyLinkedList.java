@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 
 import core.functional.Enumerable;
 
-public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E> {
+public class DoublyLinkedList<E> implements Deque<E> {
     private static class LinkedNode<E> {
         private final E element;
         private LinkedNode<E> next;
