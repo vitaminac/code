@@ -1,15 +1,13 @@
 package core.stack;
 
+import java.util.Iterator;
 import java.util.function.Supplier;
 
+import core.behaviour.Collection;
 import core.deque.Deque;
 import core.linkedlist.SinglyLinkedListDoubleReference;
 
-public interface Stack<E> {
-    int size();
-
-    boolean isEmpty();
-
+public interface Stack<E> extends Collection<E> {
     E peek();
 
     void push(E element);
@@ -43,6 +41,11 @@ public interface Stack<E> {
             public E pop() {
                 return deque.removeFirst();
             }
+
+            @Override
+            public Iterator<E> iterator() {
+                return deque.iterator();
+            }
         };
     }
 
@@ -72,6 +75,11 @@ public interface Stack<E> {
             @Override
             public E pop() {
                 return list.removeHead();
+            }
+
+            @Override
+            public Iterator<E> iterator() {
+                return list.iterator();
             }
         };
     }

@@ -1,5 +1,8 @@
 package core.stack;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 import core.list.ArrayList;
 
 public class BoundedStack<E> implements Stack<E> {
@@ -41,5 +44,23 @@ public class BoundedStack<E> implements Stack<E> {
     public E pop() {
         if (this.isEmpty()) throw new RuntimeException("Stack is empty");
         return this.list.remove(this.list.size() - 1);
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<>() {
+            private int index = BoundedStack.this.size() - 1;
+
+            @Override
+            public boolean hasNext() {
+                return this.index >= 0;
+            }
+
+            @Override
+            public E next() {
+                if (this.index < 0) throw new NoSuchElementException();
+                return BoundedStack.this.list.get(this.index--);
+            }
+        };
     }
 }

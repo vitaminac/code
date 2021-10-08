@@ -1,6 +1,7 @@
 package core.stack;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Supplier;
 
 public class MinStack<E> implements Stack<E> {
@@ -46,5 +47,10 @@ public class MinStack<E> implements Stack<E> {
         E e = this.stack.pop();
         if (this.comparator.compare(e, this.minStack.peek()) == 0) this.minStack.pop();
         return e;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return this.stack.iterator();
     }
 }
