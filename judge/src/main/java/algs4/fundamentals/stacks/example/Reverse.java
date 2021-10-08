@@ -13,8 +13,8 @@ public class Reverse {
         while (!StdIn.isEmpty()) {
             stack.push(StdIn.readInt());
         }
-        while (!stack.isEmpty()) {
-            StdOut.println(stack.pop());
+        for (int i : stack) {
+            StdOut.println(i);
         }
     }
 }
