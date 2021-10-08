@@ -47,13 +47,17 @@ public final class Judge {
         printStream.close();
 
         // compare result
-        assertEquals(Files.readString(output, StandardCharsets.UTF_8), new String(stdout.toByteArray(), StandardCharsets.UTF_8));
+        assertEquals(Files.readString(output, StandardCharsets.UTF_8), stdout.toString(StandardCharsets.UTF_8));
 
         // restore standard output stream
         System.setOut(backup);
 
         // report
-        System.out.println("Time elapsed for " + clazz.getSimpleName() + " with input " + input.getFileName().toString() + ": " + elapsedTime / 1000 + " microsecond");
+        System.out.printf("Time elapsed for %s with input %s and output %s : %d microsecond\n",
+                clazz.getSimpleName(),
+                input.getFileName(),
+                output.getFileName().toString(),
+                elapsedTime / 1000);
     }
 
     public static <T> void judge(Class<T> clazz, String[] params) throws Exception {
@@ -62,7 +66,7 @@ public final class Judge {
             Utils.warn(clazz.getName() + " skipped, inner class or lambda");
         } else {
             Method main = clazz.getMethod("main", String[].class);
-            if (main == null || Modifier.isPrivate(clazz.getModifiers())) {
+            if (Modifier.isPrivate(clazz.getModifiers())) {
                 Utils.warn(clazz.getName() + " skipped, no main exist or class is hidden!");
             } else {
                 int count = 0;
