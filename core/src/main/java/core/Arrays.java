@@ -1,8 +1,7 @@
 package core;
 
 import java.util.Comparator;
-
-import core.functional.Iterator;
+import java.util.Iterator;
 
 public final class Arrays {
     public static <E> void copyTo(E[] source, E[] destination, int from, int to, int offset) {
@@ -182,7 +181,7 @@ public final class Arrays {
 
             @Override
             public Iterator<E> iterator() {
-                return Iterator.wrap(java.util.Arrays.stream(elements).iterator());
+                return java.util.Arrays.stream(elements).iterator();
             }
         };
     }

@@ -1,24 +1,14 @@
-package core.functional;
+package core.util;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public interface Iterator<E> extends java.util.Iterator<E> {
-    static <E> Iterator<E> wrap(final java.util.Iterator<E> it) {
-        return new Iterator<>() {
-            @Override
-            public boolean hasNext() {
-                return it.hasNext();
-            }
-
-            @Override
-            public E next() {
-                return it.next();
-            }
-        };
+public final class Iterators {
+    private Iterators() {
     }
 
-    static <E> Iterator<E> from(final E[] arr) {
-        return new Iterator<E>() {
+    public static <E> Iterator<E> from(final E[] arr) {
+        return new Iterator<>() {
             private int index = 0;
 
             @Override
@@ -35,8 +25,8 @@ public interface Iterator<E> extends java.util.Iterator<E> {
     }
 
     @SafeVarargs
-    static <E> Iterator<E> flatten(final Iterator<? extends E>... iterators) {
-        return new Iterator<E>() {
+    public static <E> Iterator<E> flatten(final Iterator<? extends E>... iterators) {
+        return new Iterator<>() {
             private int index = 0;
 
             private Iterator<? extends E> nextIt() {

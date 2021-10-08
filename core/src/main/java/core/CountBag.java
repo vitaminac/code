@@ -1,9 +1,9 @@
 package core;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Supplier;
 
-import core.functional.Iterator;
 import core.map.Map;
 
 public interface CountBag<E> extends Collection<E> {

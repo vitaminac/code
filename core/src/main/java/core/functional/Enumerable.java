@@ -1,5 +1,6 @@
 package core.functional;
 
+import java.util.Iterator;
 import java.util.function.Consumer;
 
 @FunctionalInterface

@@ -1,9 +1,7 @@
 package core;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
-
-import core.functional.Iterator;
 
 public class ArrayList<E> extends AbstractOrderedCollection<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;

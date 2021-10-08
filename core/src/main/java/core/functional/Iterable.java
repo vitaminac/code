@@ -1,14 +1,16 @@
 package core.functional;
 
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import core.util.Iterators;
+
 @FunctionalInterface
-// rename this to Iterables and only keep static method and remove extra interface wrapper, same for Iterator
 public interface Iterable<E> extends java.lang.Iterable<E> {
     @Override
     Iterator<E> iterator();
@@ -132,13 +134,13 @@ public interface Iterable<E> extends java.lang.Iterable<E> {
     }
 
     static <E> Iterable<E> from(final E[] arr) {
-        return () -> Iterator.from(arr);
+        return () -> Iterators.from(arr);
     }
 
     @SafeVarargs
     static <E> Iterable<E> flatten(final Enumerable<? extends E>... enumerables) {
         return () -> {
-            @SuppressWarnings("unchecked") final var it = (Iterator<E>) Iterator.flatten(Arrays.stream(enumerables)
+            @SuppressWarnings("unchecked") final var it = (Iterator<E>) Iterators.flatten(Arrays.stream(enumerables)
                     .map(Iterable::iterator)
                     .toArray(Iterator[]::new));
             return it;

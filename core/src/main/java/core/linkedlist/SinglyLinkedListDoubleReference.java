@@ -1,9 +1,8 @@
 package core.linkedlist;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
-
-import core.functional.Iterator;
 
 public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     private static class LinkedNode<E> {

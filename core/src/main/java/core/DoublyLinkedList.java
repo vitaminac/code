@@ -1,10 +1,10 @@
 package core;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 
 import core.functional.Enumerable;
-import core.functional.Iterator;
 
 public class DoublyLinkedList<E> extends AbstractOrderedCollection<E> implements Deque<E> {
     private static class LinkedNode<E> {
