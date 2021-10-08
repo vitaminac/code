@@ -144,7 +144,7 @@ public class ArrayList<E> implements List<E> {
     }
 
     private void resize(int capacity) {
-        @SuppressWarnings("unchecked") E[] spaces = (E[]) new Object[capacity];
+        @SuppressWarnings("unchecked") final var spaces = (E[]) new Object[capacity];
         for (int i = 0; i < this.size; i++) {
             spaces[i] = this.elements[i];
         }

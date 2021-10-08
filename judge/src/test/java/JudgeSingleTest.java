@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.example.FixedCapacityStack;
+import algs4.fundamentals.stacks.example.ResizingArrayStack;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(FixedCapacityStack.class, null);
+        Judge.judge(ResizingArrayStack.class, null);
     }
 }

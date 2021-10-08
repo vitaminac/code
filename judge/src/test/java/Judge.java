@@ -53,7 +53,7 @@ public final class Judge {
         System.setOut(backup);
 
         // report
-        System.out.printf("Time elapsed for %s with input %s and output %s : %d microsecond\n",
+        System.out.printf("Time elapsed for %s with input %s and output %s: %d microsecond\n",
                 clazz.getSimpleName(),
                 input.getFileName(),
                 output.getFileName().toString(),
