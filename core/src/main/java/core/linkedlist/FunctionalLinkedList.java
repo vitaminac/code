@@ -5,21 +5,21 @@ import java.util.NoSuchElementException;
 
 import core.behaviour.OrderedCollection;
 
-public interface SinglyLinkedList<E> extends OrderedCollection<E> {
-    E first();
+public interface FunctionalLinkedList<E> extends OrderedCollection<E> {
+    E peek();
 
-    SinglyLinkedList<E> rest();
+    FunctionalLinkedList<E> rest();
 
-    default SinglyLinkedList<E> construct(final E first) {
-        return new SinglyLinkedList<E>() {
+    default FunctionalLinkedList<E> construct(final E first) {
+        return new FunctionalLinkedList<E>() {
             @Override
-            public E first() {
+            public E peek() {
                 return first;
             }
 
             @Override
-            public SinglyLinkedList<E> rest() {
-                return SinglyLinkedList.this;
+            public FunctionalLinkedList<E> rest() {
+                return FunctionalLinkedList.this;
             }
 
             @Override
@@ -61,16 +61,16 @@ public interface SinglyLinkedList<E> extends OrderedCollection<E> {
         };
     }
 
-    static <E> SinglyLinkedList<E> emptyList() {
-        return new SinglyLinkedList<E>() {
+    static <E> FunctionalLinkedList<E> emptyList() {
+        return new FunctionalLinkedList<E>() {
             @Override
-            public E first() {
+            public E peek() {
                 throw new NoSuchElementException();
             }
 
             @Override
-            public SinglyLinkedList<E> rest() {
-                return this;
+            public FunctionalLinkedList<E> rest() {
+                throw new NoSuchElementException();
             }
 
             @Override

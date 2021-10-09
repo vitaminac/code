@@ -2,9 +2,10 @@ package core.linkedlist;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.function.Consumer;
 
-public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
+import core.behaviour.OrderedCollection;
+
+public class SinglyLinkedListDoubleReference<E> implements OrderedCollection<E> {
     private static class LinkedNode<E> {
         private final E element;
         private LinkedNode<E> next;
@@ -17,18 +18,23 @@ public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     private LinkedNode<E> head;
     private LinkedNode<E> tail;
 
-    public int size() {
-        int n = 0;
-        LinkedNode<E> node = this.head;
-        while (node != null) {
-            n++;
-            node = node.next;
-        }
-        return n;
+    public SinglyLinkedListDoubleReference() {
     }
 
+    @Override
     public boolean isEmpty() {
         return this.head == null;
+    }
+
+    @Override
+    public int size() {
+        int n = 0;
+        var current = this.head;
+        while (current != null) {
+            current = current.next;
+            n += 1;
+        }
+        return n;
     }
 
     public E peek() {
@@ -36,7 +42,7 @@ public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     }
 
     public void prependHead(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
+        final var node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
         } else {
@@ -46,7 +52,7 @@ public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
     }
 
     public void appendTail(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
+        final var node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
         } else {
@@ -57,23 +63,14 @@ public class SinglyLinkedListDoubleReference<E> implements Iterable<E> {
 
     public E removeHead() {
         if (this.isEmpty()) throw new NoSuchElementException();
-        E retVal = this.head.element;
+        final var result = this.head.element;
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
         } else {
             this.head = this.head.next;
         }
-        return retVal;
-    }
-
-    @Override
-    public void forEach(Consumer<? super E> consumer) {
-        LinkedNode<E> node = this.head;
-        while (node != null) {
-            consumer.accept(node.element);
-            node = node.next;
-        }
+        return result;
     }
 
     @Override
