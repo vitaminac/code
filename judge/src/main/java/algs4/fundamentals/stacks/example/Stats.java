@@ -1,8 +1,7 @@
 package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
-import core.behaviour.Bag;
-import core.map.SeparateChainingHashTableMap;
+import core.bag.Bag;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/Stats.java.html
@@ -10,7 +9,7 @@ import core.map.SeparateChainingHashTableMap;
 public class Stats {
     public static void main(String[] args) {
         // read in numbers
-        Bag<Double> numbers = Bag.fromMap(SeparateChainingHashTableMap::new);
+        Bag<Double> numbers = Bag.fromSinglyLinkedListDoubleReference();
         while (!StdIn.isEmpty()) {
             numbers.add(StdIn.readDouble());
         }
@@ -19,14 +18,14 @@ public class Stats {
         // compute sample mean
         double sum = 0.0;
         for (double x : numbers) {
-            sum += x * numbers.getCount(x);
+            sum += x;
         }
         double mean = sum / n;
 
         // compute sample standard deviation
         sum = 0.0;
         for (double x : numbers) {
-            sum += ((x - mean) * (x - mean)) * numbers.getCount(x);
+            sum += (x - mean) * (x - mean);
         }
 
         double stddev = java.lang.Math.sqrt(sum / (n - 1));

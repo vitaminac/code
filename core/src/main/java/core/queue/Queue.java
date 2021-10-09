@@ -47,7 +47,7 @@ public interface Queue<E> {
     }
 
     static <E> Queue<E> fromSinglyLinkedListDoubleReference() {
-        final SinglyLinkedListDoubleReference<E> list = new SinglyLinkedListDoubleReference<>();
+        final var list = new SinglyLinkedListDoubleReference<E>();
         return new Queue<E>() {
             @Override
             public int size() {
