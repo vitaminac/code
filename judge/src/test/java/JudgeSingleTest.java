@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.creative.CreativeProblem45VerifyIntermixedStackOperationSequence;
+import algs4.fundamentals.stacks.creative.CreativeProblem51EvaluateDeluxe;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(CreativeProblem45VerifyIntermixedStackOperationSequence.class, null);
+        Judge.judge(CreativeProblem51EvaluateDeluxe.class, null);
     }
 }

@@ -1,4 +1,4 @@
-package algs4.fundamentals.stacks;
+package algs4.fundamentals.stacks.creative;
 
 import core.deque.DoublyLinkedList;
 import core.stack.Stack;
@@ -9,8 +9,10 @@ import java.util.StringTokenizer;
 /**
  * https://www.geeksforgeeks.org/arithmetic-expression-evalution/
  * https://www.geeksforgeeks.org/expression-evaluation/
+ * https://algs4.cs.princeton.edu/13stacks/EvaluateDeluxe.java.html
  */
-public class Ex11ExtentionEvaluate {
+public class CreativeProblem51EvaluateDeluxe {
+    // result of applying binary operator op to two operands val1 and val2
     private static double apply(String op, double right, double left) {
         switch (op) {
             case "*":
