@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.exercises;
 
 import java.util.Scanner;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 import core.stack.Stack;
 
@@ -10,7 +11,7 @@ public class Ex3VerifyIntermixedStackOperationSequence {
         try (final var sc = new Scanner(System.in)) {
             while (sc.hasNextInt()) {
                 final var queue = Queue.<Integer>fromSinglyLinkedListDoubleReference();
-                final var stack = Stack.<Integer>fromSinglyLinkedListDoubleReference();
+                final var stack = Stack.<Integer>fromSteque(SinglyLinkedListDoubleReference::new);
                 for (int i = 0; i <= 9; i++) {
                     queue.enqueue(sc.nextInt());
                 }

@@ -1,13 +1,14 @@
 package algs4.fundamentals.stacks;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.stack.Stack;
 
 import java.util.Scanner;
 
 public class WebEx9TuringTape {
     public static void main(String[] args) {
-        Stack<Integer> left = Stack.fromSinglyLinkedListDoubleReference();;
-        Stack<Integer> right = Stack.fromSinglyLinkedListDoubleReference();;
+        Stack<Integer> left = Stack.fromSteque(SinglyLinkedListDoubleReference::new);;
+        Stack<Integer> right = Stack.fromSteque(SinglyLinkedListDoubleReference::new);;
         int active = 0;
 
         Scanner scanner = new Scanner(System.in);

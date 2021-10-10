@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.stack.Stack;
 
 /**
@@ -11,7 +12,7 @@ import core.stack.Stack;
  */
 public class Ex11EvaluatePostfix {
     public static void main(String[] args) {
-        Stack<Integer> stack = Stack.fromSinglyLinkedListDoubleReference();
+        Stack<Integer> stack = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
 
         while (!StdIn.isEmpty()) {
             final var tokenizer = new StringTokenizer(StdIn.readLine());

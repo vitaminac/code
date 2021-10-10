@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.stack.Stack;
 
 /**
@@ -9,7 +10,7 @@ import core.stack.Stack;
  */
 public class Reverse {
     public static void main(String[] args) {
-        Stack<Integer> stack = Stack.fromSinglyLinkedListDoubleReference();
+        Stack<Integer> stack = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
         while (!StdIn.isEmpty()) {
             stack.push(StdIn.readInt());
         }

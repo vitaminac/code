@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 import core.behaviour.Collection;
 import core.deque.Deque;
-import core.linkedlist.SinglyLinkedListDoubleReference;
+import core.linkedlist.Steque;
 import core.list.List;
 
 public interface Stack<E> extends Collection<E> {
@@ -51,37 +51,37 @@ public interface Stack<E> extends Collection<E> {
         };
     }
 
-    static <E> Stack<E> fromSinglyLinkedListDoubleReference() {
-        final SinglyLinkedListDoubleReference<E> list = new SinglyLinkedListDoubleReference<>();
+    static <E> Stack<E> fromSteque(final Supplier<Steque<E>> supplier) {
+        final Steque<E> steque = supplier.get();
         return new Stack<E>() {
             @Override
             public int size() {
-                return list.size();
+                return steque.size();
             }
 
             @Override
             public boolean isEmpty() {
-                return list.isEmpty();
+                return steque.isEmpty();
             }
 
             @Override
             public E peek() {
-                return list.peek();
+                return steque.peek();
             }
 
             @Override
             public void push(E element) {
-                list.prependHead(element);
+                steque.push(element);
             }
 
             @Override
             public E pop() {
-                return list.removeHead();
+                return steque.pop();
             }
 
             @Override
             public Iterator<E> iterator() {
-                return list.iterator();
+                return steque.iterator();
             }
         };
     }

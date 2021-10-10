@@ -1,9 +1,10 @@
 package algs4.fundamentals.stacks.web;
 
-import core.stack.Stack;
-
 import java.util.PrimitiveIterator;
 import java.util.Scanner;
+
+import core.linkedlist.SinglyLinkedListDoubleReference;
+import core.stack.Stack;
 
 public class WebEx15Infix2Postfix {
     private static final int precedence[] = new int[128];
@@ -20,7 +21,7 @@ public class WebEx15Infix2Postfix {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 PrimitiveIterator.OfInt it = line.chars().iterator();
-                Stack<Character> stack = Stack.fromSinglyLinkedListDoubleReference();
+                Stack<Character> stack = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
                 StringBuilder sb = new StringBuilder();
                 while (it.hasNext()) {
                     char c = (char) (int) it.next();

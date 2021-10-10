@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import core.bag.Bag;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/Stats.java.html
@@ -9,7 +10,7 @@ import core.bag.Bag;
 public class Stats {
     public static void main(String[] args) {
         // read in numbers
-        Bag<Double> numbers = Bag.fromSinglyLinkedListDoubleReference();
+        Bag<Double> numbers = Bag.fromSteque(SinglyLinkedListDoubleReference::new);
         while (!StdIn.isEmpty()) {
             numbers.add(StdIn.readDouble());
         }

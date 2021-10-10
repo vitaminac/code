@@ -66,12 +66,12 @@ public interface Queue<E> {
 
             @Override
             public void enqueue(E element) {
-                list.appendTail(element);
+                list.append(element);
             }
 
             @Override
             public E dequeue() {
-                return list.removeHead();
+                return list.pop();
             }
         };
     }

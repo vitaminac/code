@@ -2,6 +2,7 @@ package core.stack;
 
 import core.deque.ArrayDeque;
 import core.deque.DoublyLinkedList;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +34,7 @@ public class StackTest {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Stack<String>>) () -> Stack.fromDeque(() -> new ArrayDeque<>(5))},
                 {(Supplier<Stack<String>>) () -> Stack.fromDeque(DoublyLinkedList::new)},
-                {(Supplier<Stack<String>>) Stack::fromSinglyLinkedListDoubleReference},
+                {(Supplier<Stack<String>>) () -> Stack.fromSteque(SinglyLinkedListDoubleReference::new)},
         });
     }
 

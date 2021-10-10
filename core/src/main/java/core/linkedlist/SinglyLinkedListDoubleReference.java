@@ -3,9 +3,7 @@ package core.linkedlist;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import core.behaviour.OrderedCollection;
-
-public class SinglyLinkedListDoubleReference<E> implements OrderedCollection<E> {
+public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
     private static class LinkedNode<E> {
         private final E element;
         private LinkedNode<E> next;
@@ -37,11 +35,13 @@ public class SinglyLinkedListDoubleReference<E> implements OrderedCollection<E> 
         return n;
     }
 
+    @Override
     public E peek() {
         return this.head.element;
     }
 
-    public void prependHead(E element) {
+    @Override
+    public void push(E element) {
         final var node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
@@ -51,7 +51,8 @@ public class SinglyLinkedListDoubleReference<E> implements OrderedCollection<E> 
         this.head = node;
     }
 
-    public void appendTail(E element) {
+    @Override
+    public void append(E element) {
         final var node = new LinkedNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
@@ -61,7 +62,8 @@ public class SinglyLinkedListDoubleReference<E> implements OrderedCollection<E> 
         this.tail = node;
     }
 
-    public E removeHead() {
+    @Override
+    public E pop() {
         if (this.isEmpty()) throw new NoSuchElementException();
         final var result = this.head.element;
         if (this.head == this.tail) {

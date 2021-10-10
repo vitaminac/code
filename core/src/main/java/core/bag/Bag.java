@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 import core.behaviour.Collection;
 import core.deque.Deque;
-import core.linkedlist.SinglyLinkedListDoubleReference;
+import core.linkedlist.Steque;
 
 public interface Bag<E> extends Collection<E> {
     void add(E element);
@@ -35,27 +35,27 @@ public interface Bag<E> extends Collection<E> {
         };
     }
 
-    static <E> Bag<E> fromSinglyLinkedListDoubleReference() {
-        final var list = new SinglyLinkedListDoubleReference<E>();
+    static <E> Bag<E> fromSteque(final Supplier<Steque<E>> supplier) {
+        final var steque = supplier.get();
         return new Bag<E>() {
             @Override
             public void add(E element) {
-                list.prependHead(element);
+                steque.push(element);
             }
 
             @Override
             public boolean isEmpty() {
-                return list.isEmpty();
+                return steque.isEmpty();
             }
 
             @Override
             public int size() {
-                return list.size();
+                return steque.size();
             }
 
             @Override
             public Iterator<E> iterator() {
-                return list.iterator();
+                return steque.iterator();
             }
         };
     }

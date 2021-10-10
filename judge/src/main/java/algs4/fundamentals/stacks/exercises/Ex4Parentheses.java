@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.exercises;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.stack.Stack;
 
 /**
@@ -16,7 +17,7 @@ public class Ex4Parentheses {
     private static final char RIGHT_BRACKET = ']';
 
     public static boolean isBalanced(String s) {
-        final var stack = Stack.<Character>fromSinglyLinkedListDoubleReference();
+        final var stack = Stack.<Character>fromSteque(SinglyLinkedListDoubleReference::new);
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == LEFT_PAREN) stack.push(LEFT_PAREN);
             if (s.charAt(i) == LEFT_BRACE) stack.push(LEFT_BRACE);
