@@ -1,9 +1,9 @@
 package core.queue;
 
-import core.deque.Deque;
-import core.linkedlist.SinglyLinkedListDoubleReference;
-
 import java.util.function.Supplier;
+
+import core.deque.Deque;
+import core.linkedlist.Steque;
 
 public interface Queue<E> {
     int size();
@@ -46,32 +46,32 @@ public interface Queue<E> {
         };
     }
 
-    static <E> Queue<E> fromSinglyLinkedListDoubleReference() {
-        final var list = new SinglyLinkedListDoubleReference<E>();
+    static <E> Queue<E> fromSteque(final Supplier<Steque<E>> supplier) {
+        final var steque = supplier.get();
         return new Queue<E>() {
             @Override
             public int size() {
-                return list.size();
+                return steque.size();
             }
 
             @Override
             public boolean isEmpty() {
-                return list.isEmpty();
+                return steque.isEmpty();
             }
 
             @Override
             public E peek() {
-                return list.peek();
+                return steque.peek();
             }
 
             @Override
             public void enqueue(E element) {
-                list.append(element);
+                steque.append(element);
             }
 
             @Override
             public E dequeue() {
-                return list.pop();
+                return steque.pop();
             }
         };
     }

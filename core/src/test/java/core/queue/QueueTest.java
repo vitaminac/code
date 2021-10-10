@@ -6,6 +6,7 @@ import java.util.function.Supplier;
 
 import core.deque.ArrayDeque;
 import core.deque.DoublyLinkedList;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +33,7 @@ public class QueueTest {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Queue<String>>) () -> Queue.fromDeque(() -> new ArrayDeque<>(5))},
                 {(Supplier<Queue<String>>) () -> Queue.fromDeque(DoublyLinkedList::new)},
-                {(Supplier<Queue<String>>) Queue::fromSinglyLinkedListDoubleReference}
+                {(Supplier<Queue<String>>) () -> Queue.fromSteque(SinglyLinkedListDoubleReference::new)}
         });
     }
 

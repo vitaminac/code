@@ -1,12 +1,13 @@
 package algs4.fundamentals.stacks;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 
 import java.util.Scanner;
 
 public class WebEx8TagSystem {
     public static void main(String[] args) {
-        Queue<Integer> queue = Queue.fromSinglyLinkedListDoubleReference();
+        Queue<Integer> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine().chars().forEach(queue::enqueue);
 

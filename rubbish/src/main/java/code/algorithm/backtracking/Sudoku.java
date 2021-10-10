@@ -1,6 +1,7 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 
 public class Sudoku implements SolutionNode<Sudoku> {
@@ -86,7 +87,7 @@ public class Sudoku implements SolutionNode<Sudoku> {
 
     @Override
     public Queue<Sudoku> branch() {
-        Queue<Sudoku> queue = Queue.fromSinglyLinkedListDoubleReference();
+        Queue<Sudoku> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
         this.setValue(this.k, this.value);
         for (int i = 1; i <= 9; i++) {
             queue.enqueue(new Sudoku(this.table, this.nextK(), i));

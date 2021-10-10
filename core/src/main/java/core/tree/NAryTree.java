@@ -1,6 +1,7 @@
 package core.tree;
 
 import core.functional.Enumerable;
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 
 public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tree<E, SelfType> {
@@ -36,7 +37,7 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
 
     default Enumerable<SelfType> bfs() {
         return consumer -> {
-            Queue<SelfType> unvisited = Queue.fromSinglyLinkedListDoubleReference();
+            Queue<SelfType> unvisited = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
             unvisited.enqueue((SelfType) this);
             while (!unvisited.isEmpty()) {
                 var node = unvisited.dequeue();

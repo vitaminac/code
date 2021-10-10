@@ -1,9 +1,10 @@
 package code.adt.queue.simulation;
 
+import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 
 public class InfiniteQueue extends Component {
-    private final Queue<Atom> queue = Queue.fromSinglyLinkedListDoubleReference();
+    private final Queue<Atom> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
 
     public InfiniteQueue(Clock clock, ChooseOut chooseOut) {
         super(chooseOut);

@@ -10,7 +10,7 @@ public class Ex3VerifyIntermixedStackOperationSequence {
     public static void main(String[] args) {
         try (final var sc = new Scanner(System.in)) {
             while (sc.hasNextInt()) {
-                final var queue = Queue.<Integer>fromSinglyLinkedListDoubleReference();
+                final var queue = Queue.<Integer>fromSteque(SinglyLinkedListDoubleReference::new);
                 final var stack = Stack.<Integer>fromSteque(SinglyLinkedListDoubleReference::new);
                 for (int i = 0; i <= 9; i++) {
                     queue.enqueue(sc.nextInt());
