@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.exercises.Ex4Parentheses;
+import algs4.fundamentals.stacks.web.WebEx15Infix2Postfix;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(Ex4Parentheses.class, null);
+        Judge.judge(WebEx15Infix2Postfix.class, null);
     }
 }
