@@ -1,4 +1,4 @@
-package algs4.fundamentals.stacks.exercises;
+package algs4.fundamentals.stacks.creative;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
 import core.stack.Stack;
 
-public class Ex3VerifyIntermixedStackOperationSequence {
+public class CreativeProblem45VerifyIntermixedStackOperationSequence {
     public static void main(String[] args) {
         try (final var sc = new Scanner(System.in)) {
             while (sc.hasNextInt()) {
