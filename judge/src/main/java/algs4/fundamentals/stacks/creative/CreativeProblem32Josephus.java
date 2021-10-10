@@ -1,4 +1,4 @@
-package algs4.fundamentals.stacks;
+package algs4.fundamentals.stacks.creative;
 
 import core.linkedlist.SinglyLinkedListDoubleReference;
 import core.queue.Queue;
@@ -17,7 +17,7 @@ import java.util.Scanner;
  * and prints out the order in which people are eliminated
  * (and thus would show Josephus where to sit in the circle).
  */
-public class WebEx32Josephus {
+public class CreativeProblem32Josephus {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int m = scanner.nextInt();
