@@ -19,6 +19,20 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
     public SinglyLinkedListDoubleReference() {
     }
 
+    public SinglyLinkedListDoubleReference(SinglyLinkedListDoubleReference<E> list) {
+        if (list.head != null) {
+            this.head = new LinkedNode<>(list.head.element);
+            var from = list.head;
+            var to = this.head;
+            while (from.next != null) {
+                to.next = new LinkedNode<>(from.next.element);
+                from = from.next;
+                to = to.next;
+            }
+            this.tail = to;
+        }
+    }
+
     @Override
     public boolean isEmpty() {
         return this.head == null;
