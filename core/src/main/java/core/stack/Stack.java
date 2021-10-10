@@ -18,7 +18,7 @@ public interface Stack<E> extends Collection<E> {
 
     static <E> Stack<E> fromDeque(final Supplier<Deque<E>> supplier) {
         final var deque = supplier.get();
-        return new Stack<E>() {
+        return new Stack<>() {
             @Override
             public int size() {
                 return deque.size();

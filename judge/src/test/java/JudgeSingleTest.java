@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.example.Bag;
+import algs4.fundamentals.stacks.example.ResizingArrayBag;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(Bag.class, null);
+        Judge.judge(ResizingArrayBag.class, null);
     }
 }
