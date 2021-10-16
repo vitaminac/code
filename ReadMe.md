@@ -9,11 +9,6 @@ How to become a good developer?
 - [X] 数学之美
 - [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
 
-### Mathematics
-
-- [ ] [What Is Mathematics? An Elementary Approach to Ideas and Methods](https://archive.org/details/WhatIsMathematics)
-- [ ] [Interactive Linear Algebra](https://textbooks.math.gatech.edu/ila/)
-
 ### Programming
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
@@ -47,7 +42,6 @@ How to become a good developer?
 ## Roadmap
 
 * [MIT EECS Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
-* [MIT Mathematics Roadmaps](https://math.mit.edu/academics/undergrad/roadmaps.php)
 * [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
 * [Stanford Undergraduate Programs in Computer Science](https://exploredegrees.stanford.edu/schoolofengineering/computerscience/#courseinventory)
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
