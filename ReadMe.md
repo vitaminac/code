@@ -6,7 +6,6 @@ How to become a good developer?
 
 ### Introduction
 
-- [X] 数学之美
 - [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
 
 ### Programming
