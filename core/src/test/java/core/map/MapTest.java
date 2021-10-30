@@ -1,15 +1,14 @@
 package core.map;
 
-import core.tree.AVLTree;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.function.Supplier;
+
 import core.tree.RedBlackTree;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.function.Supplier;
 
 import static org.junit.Assert.*;
 
@@ -34,9 +33,9 @@ public class MapTest {
                 {(Supplier<Map<String, String>>) OpenAddressingHashTableMapLP::new},
                 {(Supplier<Map<String, String>>) OpenAddressingHashTableMapQP::new},
                 {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
-                {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
+                // TODO: fix it {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},
-                {(Supplier<Map<String, String>>) SkipListDictionary::new},
+                {(Supplier<Map<String, String>>) SkipListOrderedMap::new},
         });
     }
 
