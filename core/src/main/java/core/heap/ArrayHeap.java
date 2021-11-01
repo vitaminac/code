@@ -1,10 +1,10 @@
-package core.queue;
+package core.heap;
 
 import core.list.ArrayList;
 
 import java.util.Comparator;
 
-public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
+public class ArrayHeap<E> implements Heap<E>, Cloneable {
     private final ArrayList<E> list;
     private final Comparator<E> comparator;
 
@@ -32,7 +32,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public void enqueue(E element) {
+    public void add(E element) {
         int child = this.list.size();
         this.list.add(child, element);
         while (child > 0) {
@@ -45,7 +45,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public E peek() {
+    public E min() {
         return this.list.get(0);
     }
 
@@ -60,7 +60,7 @@ public class ArrayHeap<E> implements PriorityQueue<E>, Cloneable {
     }
 
     @Override
-    public E dequeue() {
+    public E removeMin() {
         this.swap(0, this.list.size() - 1);
         E retVal = this.list.remove(this.list.size() - 1);
         int parent = 0;
