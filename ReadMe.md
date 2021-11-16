@@ -4,10 +4,6 @@ How to become a good developer?
 
 ## Resources
 
-### Introduction
-
-- [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
-
 ### Programming
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
