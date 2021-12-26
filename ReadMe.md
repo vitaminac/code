@@ -4,10 +4,16 @@ How to become a good developer?
 
 ## Resources
 
+### Introduction
+
+- [ ] [CS50's Introduction to Computer Science](https://www.edx.org/course/introduction-computer-science-harvardx-cs50x)
+- [ ] [Google IT Support Professional Certificate](https://www.coursera.org/professional-certificates/google-it-support)
+
 ### Programming
 
 - [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
+- [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
 - [ ] The Pragmatic Programmer: Your Journey To Mastery
 - [ ] [Java SE Specifications](https://docs.oracle.com/javase/specs/index.html)
@@ -26,6 +32,8 @@ How to become a good developer?
 
 ### Algorithms
 
+- [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
+- [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-third-edition)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - [ ] The Art of Multiprocessor Programming
@@ -73,3 +81,13 @@ How to become a good developer?
 - [ ] [TCP](https://tools.ietf.org/html/rfc793)
 - [ ] [IPv4](https://tools.ietf.org/html/rfc791)
 - [ ] [IPv6](https://tools.ietf.org/html/rfc2460)
+
+## MOOC
+
+* [Coursera](https://www.coursera.org/)
+* [edX](https://www.edx.org/)
+* [Udacity](https://www.udacity.com/)
+* [MIT Open Courseware](https://ocw.mit.edu)
+* [Khan Academy](https://www.khanacademy.org/)
+* [Udemy](https://www.udemy.com/)
+* [Code](https://code.org/beyond/extended-learning)
