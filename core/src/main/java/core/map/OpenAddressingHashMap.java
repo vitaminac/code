@@ -2,8 +2,44 @@ package core.map;
 
 import java.util.function.Consumer;
 
-public abstract class AbstractOpenAddressingHashMap<Key, Value> extends AbstractHashMap<Key, Value, Relation<Key, Value>> {
+public class OpenAddressingHashMap<Key, Value> extends AbstractHashMap<Key, Value, Relation<Key, Value>> {
     private static final Relation SKIP = new Relation<>(null, null);
+
+    private static interface Rehasher {
+        public int rehash(int hash, int key, int trial);
+    }
+
+    private final Rehasher rehasher;
+
+    private OpenAddressingHashMap(final Rehasher rehasher) {
+        this.rehasher = rehasher;
+    }
+
+
+    private static final Rehasher LINEAR_PROBE_REHASHER = (hash, key, trial) -> hash + trial;
+
+    public static <Key, Value> OpenAddressingHashMap<Key, Value> linearProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashMap<>(LINEAR_PROBE_REHASHER);
+    }
+
+    private static final Rehasher QUADRATIC_PROBE_REHASHER = (hash, key, trial) -> hash + trial * trial;
+
+    public static <Key, Value> OpenAddressingHashMap<Key, Value> quadraticProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashMap<>(QUADRATIC_PROBE_REHASHER);
+    }
+
+    private static final Rehasher DOUBLE_HASH_REHASHER = new Rehasher() {
+        private static final int Q = 7;
+
+        @Override
+        public int rehash(int hash, int key, int trial) {
+            return hash + trial * (Q - (key % Q));
+        }
+    };
+
+    public static <Key, Value> OpenAddressingHashMap<Key, Value> doubleHashProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashMap<>(DOUBLE_HASH_REHASHER);
+    }
 
     @Override
     public void put(Key key, Value value) {
@@ -13,7 +49,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && relation != SKIP && !relation.getKey().equals(key); index = this.compress(this.rehash(hash, k, i++)), relation = this.entries[index])
+        for (Relation<Key, Value> relation = this.entries[index]; relation != null && relation != SKIP && !relation.getKey().equals(key); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
             ;
         this.entries[index] = new Relation<>(key, value);
         ++this.size;
@@ -25,7 +61,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehash(hash, k, i++)), relation = this.entries[index])
+        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
             ;
         if (this.entries[index] == null) {
             return null;
@@ -41,7 +77,7 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehash(hash, k, i++)), relation = this.entries[index])
+        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
             ;
         if (this.entries[index] != null) {
             this.entries[index] = SKIP;
@@ -59,8 +95,6 @@ public abstract class AbstractOpenAddressingHashMap<Key, Value> extends Abstract
             }
         }
     }
-
-    protected abstract int rehash(int hash, int key, int trial);
 
     @SuppressWarnings("unchecked")
     @Override

@@ -29,9 +29,9 @@ public class MapTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapDH::new},
-                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapLP::new},
-                {(Supplier<Map<String, String>>) OpenAddressingHashTableMapQP::new},
+                {(Supplier<Map<String, String>>) OpenAddressingHashMap::doubleHashProbeOpenAddressingHashMap},
+                {(Supplier<Map<String, String>>) OpenAddressingHashMap::linearProbeOpenAddressingHashMap},
+                {(Supplier<Map<String, String>>) OpenAddressingHashMap::quadraticProbeOpenAddressingHashMap},
                 {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
                 // TODO: fix it {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},

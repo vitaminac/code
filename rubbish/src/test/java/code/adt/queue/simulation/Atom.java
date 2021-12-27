@@ -1,10 +1,10 @@
 package code.adt.queue.simulation;
 
-import core.map.OpenAddressingHashTableMapLP;
 import core.map.Map;
+import core.map.SeparateChainingHashTableMap;
 
 public class Atom {
-    private Map<String, Object> map = new OpenAddressingHashTableMapLP<>();
+    private final Map<String, Object> map = new SeparateChainingHashTableMap<>();
 
     public void save(String name, Object value) {
         this.map.put(name, value);
