@@ -33,7 +33,7 @@ How to become a good developer?
 ### Algorithms
 
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
-- [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-third-edition)
+- [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-fourth-edition)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - [ ] The Art of Multiprocessor Programming
