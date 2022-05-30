@@ -1,4 +1,4 @@
-import algs4.fundamentals.stacks.creative.CreativeProblem51EvaluateDeluxe;
+import codeforces.P1553D;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(CreativeProblem51EvaluateDeluxe.class, null);
+        Judge.judge(P1553D.class, null);
     }
 }

@@ -20,6 +20,9 @@ allprojects {
 subprojects {
     apply plugin: 'java'
 
+    sourceCompatibility = 11
+    targetCompatibility = 11
+
     version = '1.0'
     group 'code'
     ext.junit4Version = '4.13'
