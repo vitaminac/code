@@ -47,7 +47,6 @@ How to become a good developer?
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
 * [Harvard CS Courses](https://harvardcs.info/concentration/courses/)
 * [CMU CS Curriculum](https://www.csd.cs.cmu.edu/academics/undergraduate/requirements)
-* [CMU B.S. AI Curriculum](https://www.cs.cmu.edu/bs-in-artificial-intelligence/curriculum)
 * [Berkeley Undergraduate Computer Science Courses](http://guide.berkeley.edu/undergraduate/degree-programs/computer-science/#coursestext)
 * [Berkeley Graduate Computer Science Courses](http://guide.berkeley.edu/graduate/degree-programs/computer-science/#coursestext)
 * [Illinois B.S. in Computer Science](https://cs.illinois.edu/academics/undergraduate/degree-program-options/bs-computer-science)
