@@ -39,7 +39,8 @@ public interface CountBag<E> extends Bag<E> {
 
             @Override
             public int getCount(T element) {
-                return map.get(element);
+                final Integer count = map.get(element);
+                return count == null ? 0 : count;
             }
 
             @Override
