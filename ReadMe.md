@@ -59,6 +59,7 @@ How to become a good developer?
 * [OpenJDK](http://openjdk.java.net/)
 * [Spring](https://github.com/spring-projects)
 * [Tomcat](https://github.com/apache/tomcat)
+* [Dagger](https://github.com/google/dagger)
 * [Apache commons-lang](https://github.com/apache/commons-lang)
 * [Apache commons-collections](https://github.com/apache/commons-collections)
 * [Apache commons-io](https://github.com/apache/commons-io)
