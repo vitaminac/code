@@ -75,6 +75,7 @@ How to become a good developer?
 * [Lombok](https://github.com/projectlombok/lombok)
 * [Apache Log4j 2](https://github.com/apache/logging-log4j2)
 * [Jackson](https://github.com/FasterXML/jackson)
+* [Hibernate](https://github.com/hibernate/)
 
 ### Testing
 
