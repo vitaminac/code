@@ -76,3 +76,4 @@ How to become a good developer?
 * [Apache Log4j 2](https://github.com/apache/logging-log4j2)
 * [Jackson](https://github.com/FasterXML/jackson)
 * [Mockito](https://github.com/mockito/mockito)
+* [AspectJ](https://github.com/eclipse/org.aspectj)
