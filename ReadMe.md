@@ -61,6 +61,7 @@ How to become a good developer?
 * [Tomcat](https://github.com/apache/tomcat)
 * [Dagger](https://github.com/google/dagger)
 * [Apache Commons](https://commons.apache.org/)
+* [Apache HttpComponents](https://hc.apache.org/)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Guava](https://github.com/google/guava)
