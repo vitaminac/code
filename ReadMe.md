@@ -61,6 +61,7 @@ How to become a good developer?
 * [Tomcat](https://github.com/apache/tomcat)
 * [Apache commons-lang](https://github.com/apache/commons-lang)
 * [Apache commons-collections](https://github.com/apache/commons-collections)
+* [Apache commons-io](https://github.com/apache/commons-io)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Guava](https://github.com/google/guava)
@@ -71,3 +72,5 @@ How to become a good developer?
 * [OkHttp](https://github.com/square/okhttp/)
 * [Retrofit](https://github.com/square/retrofit)
 * [Auto](https://github.com/google/auto)
+* [Resilience4j](https://github.com/resilience4j/resilience4j)
+* [Lombok](https://github.com/projectlombok/lombok)
