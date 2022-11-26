@@ -60,11 +60,9 @@ How to become a good developer?
 * [Spring](https://github.com/spring-projects)
 * [Tomcat](https://github.com/apache/tomcat)
 * [Dagger](https://github.com/google/dagger)
-* [Apache Commons](https://commons.apache.org/)
 * [Apache HttpComponents](https://hc.apache.org/)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
-* [Guava](https://github.com/google/guava)
 * [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [Netty](https://github.com/netty/netty)
@@ -74,9 +72,23 @@ How to become a good developer?
 * [Auto](https://github.com/google/auto)
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
 * [Lombok](https://github.com/projectlombok/lombok)
-* [Apache Log4j 2](https://github.com/apache/logging-log4j2)
-* [Jackson](https://github.com/FasterXML/jackson)
 * [Hibernate](https://github.com/hibernate/)
+
+### Utils
+
+* [Apache Commons](https://commons.apache.org/)
+* [Guava](https://github.com/google/guava)
+* [Eclipse Collections](https://github.com/eclipse/eclipse-collections)
+
+### Logging
+
+* [Apache Log4j 2](https://github.com/apache/logging-log4j2)
+* [SLF4J](https://github.com/qos-ch/slf4j)
+
+### JSON
+
+* [Jackson](https://github.com/FasterXML/jackson)
+* [GSON](https://github.com/google/gson)
 
 ### Testing
 
