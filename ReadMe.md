@@ -77,3 +77,4 @@ How to become a good developer?
 * [Jackson](https://github.com/FasterXML/jackson)
 * [Mockito](https://github.com/mockito/mockito)
 * [AspectJ](https://github.com/eclipse/org.aspectj)
+* [AssertJ](https://github.com/assertj/assertj)
