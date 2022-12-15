@@ -61,19 +61,22 @@ How to become a good developer?
 * [Spring](https://github.com/spring-projects)
 * [Tomcat](https://github.com/apache/tomcat)
 * [Dagger](https://github.com/google/dagger)
-* [Apache HttpComponents](https://hc.apache.org/)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
-* [Netty](https://github.com/netty/netty)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
-* [OkHttp](https://github.com/square/okhttp/)
-* [Retrofit](https://github.com/square/retrofit)
 * [Auto](https://github.com/google/auto)
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
 * [Lombok](https://github.com/projectlombok/lombok)
 * [Hibernate](https://github.com/hibernate/)
+
+### Network Protocol
+
+* [Netty](https://github.com/netty/netty)
+* [Apache HttpComponents](https://hc.apache.org/)
+* [OkHttp](https://github.com/square/okhttp/)
+* [Retrofit](https://github.com/square/retrofit)
 
 ### Utils
 
