@@ -74,7 +74,10 @@ How to become a good developer?
 ### Network Protocol
 
 * [Netty](https://github.com/netty/netty)
+* [Apache Dubbo](https://github.com/apache/dubbo)
+* [Google Protocol Buffers](https://github.com/protocolbuffers/protobuf)
 * [Apache HttpComponents](https://hc.apache.org/)
+* [Apache Thrift](https://github.com/apache/thrift)
 * [OkHttp](https://github.com/square/okhttp/)
 * [Retrofit](https://github.com/square/retrofit)
 
