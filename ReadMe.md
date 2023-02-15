@@ -11,7 +11,7 @@ How to become a good developer?
 
 ### Programming
 
-- [ ] [On Java 8](https://lingcoder.github.io/OnJava8/)
+- [ ] [On Java 8](https://www.onjava8.com/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
 - [ ] [Alibaba Java Coding Guidelines](https://github.com/alibaba/p3c)
@@ -26,6 +26,7 @@ How to become a good developer?
 - [X] [Clean Code: A Handbook of Agile Software Craftsmanship](http://cleancoder.com)
 - [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
+- [ ] [Refactoring.Guru](https://refactoring.guru/)
 
 
 ### Software Architecture
