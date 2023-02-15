@@ -20,15 +20,20 @@ How to become a good developer?
 - [ ] [Java Concurrency in Practice](https://jcip.net/)
 - [ ] Code Complete
 
-### Software Engineering
+### Software Design
 
 - [X] [Refactoring: Improving the Design of Existing Code](https://refactoring.com/)
 - [X] [Clean Code: A Handbook of Agile Software Craftsmanship](http://cleancoder.com)
-- [ ] Clean Architecture: A Craftsman's Guide to Software Structure and Design
 - [ ] Agile Software Development, Principles, Patterns, and Practice
 - [ ] Design Patterns: Elements Of Reusable Object-Oriented Software
+
+
+### Software Architecture
+
 - [ ] Domain-Driven Design
-- [ ] [The Architecture of Open Source Applications](http://aosabook.org/en/index.html)
+- [ ] Clean Architecture: A Craftsman's Guide to Software Structure and Design
+- [ ] [Patterns of Enterprise Application Architecture](https://www.martinfowler.com/books/eaa.html)
+- [ ] [The Architecture of Open Source Applications](http://aosabook.org/)
 
 ### Algorithms
 
