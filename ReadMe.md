@@ -72,10 +72,16 @@ How to become a good developer?
 * [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
-* [Auto](https://github.com/google/auto)
+
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
-* [Lombok](https://github.com/projectlombok/lombok)
+
 * [Hibernate](https://github.com/hibernate/)
+
+### Compiler Plugin
+
+* [Auto](https://github.com/google/auto)
+* [Lombok](https://github.com/projectlombok/lombok)
+* [Manifold](https://github.com/manifold-systems/manifold)
 
 ### Network Protocol
 
