@@ -87,6 +87,7 @@ How to become a good developer?
 
 * [Netty](https://github.com/netty/netty)
 * [Apache Dubbo](https://github.com/apache/dubbo)
+* [Apache bRPC](https://github.com/apache/brpc)
 * [Google Protocol Buffers](https://github.com/protocolbuffers/protobuf)
 * [gRPC](https://github.com/grpc)
 * [Apache HttpComponents](https://hc.apache.org/)
