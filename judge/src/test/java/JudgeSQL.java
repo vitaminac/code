@@ -1,6 +1,5 @@
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import org.h2.jdbc.JdbcSQLException;
 import org.junit.*;
 
 import java.io.File;
@@ -10,6 +9,7 @@ import java.io.Reader;
 import java.lang.reflect.Type;
 import java.sql.*;
 import java.util.*;
+import java.util.function.Predicate;
 
 public final class JudgeSQL {
     private static class SQLTest {
@@ -140,11 +140,14 @@ public final class JudgeSQL {
             String SQL = readAllString(sqlReader);
             StringBuilder sb = new StringBuilder();
             sb.append('[');
-            final Iterator<String> it = Arrays.asList(SQL.split("\n\n")).iterator();
+            final Iterator<String> it = Arrays.stream(SQL.replace("\r\n", "\n").split("\n\n"))
+                    .map(String::trim)
+                    .filter(Predicate.not(String::isBlank))
+                    .iterator();
             while (it.hasNext()) {
                 String sql = it.next();
-                try {
-                    final ResultSet rs = statement.executeQuery(sql);
+                if (statement.execute(sql)) {
+                    final ResultSet rs = statement.getResultSet();
                     ResultSetMetaData metadata = rs.getMetaData();
                     sb.append('{');
                     sb.append("\"headers\":");
@@ -187,19 +190,17 @@ public final class JudgeSQL {
                     if (it.hasNext()) {
                         sb.append(',');
                     }
-                } catch (JdbcSQLException e) {
-                    statement.execute(sql);
                 }
             }
             sb.append(']');
             String output = sb.toString();
             ArrayList<SQLResult> current = gson.fromJson(output, resultType);
-            Assert.assertEquals(gson.toJson(expected), gson.toJson(current));
+            Assert.assertEquals(expected, current);
         }
     }
 
     @Test
     public void testOne() throws Exception {
-        testSQL(sql.get("Practica"));
+        testSQL(sql.get("Person"));
     }
 }

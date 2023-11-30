@@ -10,16 +10,8 @@ public class SQLResult {
         return headers;
     }
 
-    public void setHeaders(List<String> headers) {
-        this.headers = headers;
-    }
-
     public List<List<String>> getValues() {
         return values;
-    }
-
-    public void setValues(List<List<String>> values) {
-        this.values = values;
     }
 
     @Override

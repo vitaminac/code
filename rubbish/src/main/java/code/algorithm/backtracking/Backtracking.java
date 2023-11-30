@@ -1,6 +1,7 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
+import core.queue.Queue;
 
 public class Backtracking<Solution extends SolutionNode<Solution>> {
     public Solution solve(Solution partialSolution) {
@@ -8,8 +9,9 @@ public class Backtracking<Solution extends SolutionNode<Solution>> {
             if (partialSolution.isSolution()) {
                 return partialSolution;
             } else {
-                for (Solution sol : partialSolution.branch()) {
-                    final Solution solution = this.solve(sol);
+                final Queue<Solution> candidateSolutionQueue = partialSolution.branch();
+                while (!candidateSolutionQueue.isEmpty()) {
+                    final Solution solution = this.solve(candidateSolutionQueue.dequeue());
                     if (solution != null) {
                         return solution;
                     }

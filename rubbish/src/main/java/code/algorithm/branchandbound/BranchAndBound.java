@@ -1,6 +1,7 @@
 package code.algorithm.branchandbound;
 
 import code.algorithm.common.SolutionNode;
+import core.queue.Queue;
 
 import java.util.PriorityQueue;
 
@@ -10,7 +11,9 @@ public class BranchAndBound<Solution extends SolutionNode<Solution> & Comparable
         problemSpace.add(initialPartialSolution);
         while (!problemSpace.isEmpty()) {
             Solution solution = problemSpace.remove();
-            for (Solution child : solution.branch()) {
+            final Queue<Solution> candidateSolutionQueue = solution.branch();
+            while (!candidateSolutionQueue.isEmpty()) {
+                final Solution child = candidateSolutionQueue.dequeue();
                 if (child.isFeasible() && (child.compareTo(bound) < 0)) {
                     if (solution.isSolution()) {
                         bound = solution;
