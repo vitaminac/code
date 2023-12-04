@@ -14,7 +14,6 @@ rootProject.name = "code"
 
 include("core", "json", "judge")
 include("proc", "proc-test")
-include("core.ioc")
 include("web")
 include("concurrent")
 include("coursera")
