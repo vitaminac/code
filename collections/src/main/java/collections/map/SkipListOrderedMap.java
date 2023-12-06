@@ -98,8 +98,8 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void put(Key key, Value value) {
-        this.link(this.top, new Vocabulary<>(key, value));
+    public void put(Key domain, Value coDomain) {
+        this.link(this.top, new Vocabulary<>(domain, coDomain));
         if (this.top.next != null) {
             var newTop = new SkipListNode<>(MIN_SENTIMENTAL);
             newTop.down = this.top;
@@ -124,13 +124,13 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void remove(Key key) {
+    public void remove(Key domain) {
         SkipListNode<Vocabulary<Key, Value>> current = this.top;
         int diff = -1;
         Value result = null;
         while (current.down != null) {
             current = current.down;
-            while (current.next != null && (diff = current.next.element.compareTo(key)) < 0) {
+            while (current.next != null && (diff = current.next.element.compareTo(domain)) < 0) {
                 current = current.next;
             }
             if (diff == 0) {

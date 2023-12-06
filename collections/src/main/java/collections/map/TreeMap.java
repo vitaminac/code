@@ -26,8 +26,8 @@ public class TreeMap<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void put(Key key, Value value) {
-        this.tree.insert(key, value);
+    public void put(Key domain, Value coDomain) {
+        this.tree.insert(domain, coDomain);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class TreeMap<Key extends Comparable<? super Key>, Value>
     }
 
     @Override
-    public void remove(Key key) {
-        this.tree.remove(key);
+    public void remove(Key domain) {
+        this.tree.remove(domain);
     }
 
     @Override

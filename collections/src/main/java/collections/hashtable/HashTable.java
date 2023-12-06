@@ -2,17 +2,17 @@ package collections.hashtable;
 
 import core.functional.Enumerable;
 
-public interface HashTable<Key, Value>
-        extends Enumerable<Key> {
+public interface HashTable<Item>
+        extends Enumerable<Item> {
     boolean isEmpty();
 
     int size();
 
-    Value get(final Key key);
+    Item get(final Item hint);
 
-    void put(final Key key, final Value value);
+    void put(final Item item);
 
-    void remove(final Key key);
+    void remove(final Item hint);
 
     void clear();
 }

@@ -7,23 +7,23 @@ import java.util.function.Supplier;
 
 public interface MutableMap<Domain, CoDomain>
         extends Map<Domain, CoDomain> {
-    void put(final Domain key, final CoDomain value);
+    void put(final Domain domain, final CoDomain coDomain);
 
-    void remove(final Domain key);
+    void remove(final Domain domain);
 
     void clear();
 
-    static <Domain, CoDomain> MutableMap<Domain, CoDomain> fromHashTable(final Supplier<HashTable<Domain, CoDomain>> supplier) {
-        final HashTable<Domain, CoDomain> hashTable = supplier.get();
+    static <Domain, CoDomain> MutableMap<Domain, CoDomain> fromHashTable(final Supplier<HashTable<Relation<Domain, CoDomain>>> supplier) {
+        final HashTable<Relation<Domain, CoDomain>> hashTable = supplier.get();
         return new MutableMap<>() {
             @Override
-            public void put(final Domain key, final CoDomain value) {
-                hashTable.put(key, value);
+            public void put(final Domain domain, final CoDomain coDomain) {
+                hashTable.put(new Relation<>(domain, coDomain));
             }
 
             @Override
-            public void remove(final Domain key) {
-                hashTable.remove(key);
+            public void remove(final Domain domain) {
+                hashTable.remove(new Relation<>(domain, null));
             }
 
             @Override
@@ -43,12 +43,13 @@ public interface MutableMap<Domain, CoDomain>
 
             @Override
             public CoDomain get(final Domain domain) {
-                return hashTable.get(domain);
+                final var relation = hashTable.get(new Relation<>(domain, null));
+                return relation == null ? null : relation.getValue();
             }
 
             @Override
             public void enumerate(Consumer<? super Domain> consumer) {
-                hashTable.enumerate(consumer);
+                hashTable.enumerate((relation) -> consumer.accept(relation.getKey()));
             }
         };
     }

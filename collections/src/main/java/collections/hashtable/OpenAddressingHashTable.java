@@ -1,23 +1,23 @@
 package collections.hashtable;
 
-import collections.map.Relation;
-
 import java.util.function.Consumer;
 
-public class OpenAddressingHashTable<Key, Value> extends AbstractHashTable<Key, Value, Relation<Key, Value>> {
-    private static final Relation SKIP = new Relation<>(null, null);
+public class OpenAddressingHashTable<Item>
+        extends AbstractHashTable<Item> {
+    private static final Object SKIP = new Object();
 
     private final Rehasher rehasher;
+    private Object[] buckets;
 
     private OpenAddressingHashTable(final Rehasher rehasher) {
         this.rehasher = rehasher;
     }
 
-    public static <Key, Value> OpenAddressingHashTable<Key, Value> linearProbeOpenAddressingHashMap() {
+    public static <Item> OpenAddressingHashTable<Item> linearProbeOpenAddressingHashMap() {
         return new OpenAddressingHashTable<>(Rehasher.LINEAR_PROBE_REHASHER);
     }
 
-    public static <Key, Value> OpenAddressingHashTable<Key, Value> quadraticProbeOpenAddressingHashMap() {
+    public static <Item> OpenAddressingHashTable<Item> quadraticProbeOpenAddressingHashMap() {
         return new OpenAddressingHashTable<>(Rehasher.QUADRATIC_PROBE_REHASHER);
     }
 
@@ -30,50 +30,49 @@ public class OpenAddressingHashTable<Key, Value> extends AbstractHashTable<Key, 
         }
     };
 
-    public static <Key, Value> OpenAddressingHashTable<Key, Value> doubleHashProbeOpenAddressingHashMap() {
+    public static <Item> OpenAddressingHashTable<Item> doubleHashProbeOpenAddressingHashMap() {
         return new OpenAddressingHashTable<>(DOUBLE_HASH_REHASHER);
     }
 
     @Override
-    public void put(Key key, Value value) {
-        this.remove(key); // ensure that we can place at first SKIP position
+    public void put(final Item item) {
+        this.remove(item); // ensure that we can place at first SKIP position
         if (this.size > this.capacity * LOAD_FACTOR) this.resize(this.capacity * 2);
-        int k = this.hash(key);
+        int k = this.hash(item);
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && relation != SKIP && !relation.getKey().equals(key); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
+        for (var existingItem = this.buckets[index]; existingItem != null && existingItem != SKIP && !existingItem.equals(item); index = this.compress(this.rehasher.rehash(hash, k, i++)), existingItem = this.buckets[index])
             ;
-        this.entries[index] = new Relation<>(key, value);
+        this.buckets[index] = item;
         ++this.size;
     }
 
     @Override
-    public Value get(Key key) {
-        int k = this.hash(key);
+    public Item get(final Item hint) {
+        int k = this.hash(hint);
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
+        for (var existingItem = this.buckets[index]; existingItem != null && (existingItem == SKIP || !existingItem.equals(hint)); index = this.compress(this.rehasher.rehash(hash, k, i++)), existingItem = this.buckets[index])
             ;
-        if (this.entries[index] == null) {
+        if (this.buckets[index] == null) {
             return null;
         } else {
-            return this.entries[index].getValue();
+            return (Item) this.buckets[index];
         }
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void remove(Key key) {
-        int k = this.hash(key);
+    public void remove(final Item hint) {
+        int k = this.hash(hint);
         int hash = this.compress(k);
         int index = hash;
         int i = 1;
-        for (Relation<Key, Value> relation = this.entries[index]; relation != null && (relation == SKIP || !relation.getKey().equals(key)); index = this.compress(this.rehasher.rehash(hash, k, i++)), relation = this.entries[index])
+        for (var existingItem = this.buckets[index]; existingItem != null && (existingItem == SKIP || !existingItem.equals(hint)); index = this.compress(this.rehasher.rehash(hash, k, i++)), existingItem = this.buckets[index])
             ;
-        if (this.entries[index] != null) {
-            this.entries[index] = SKIP;
+        if (this.buckets[index] != null) {
+            this.buckets[index] = SKIP;
             --this.size;
             if (this.size < this.capacity * LOAD_FACTOR * LOAD_FACTOR * LOAD_FACTOR && this.capacity > DEFAULT_INITIAL_CAPACITY)
                 this.resize(this.capacity / 2);
@@ -81,28 +80,27 @@ public class OpenAddressingHashTable<Key, Value> extends AbstractHashTable<Key, 
     }
 
     @Override
-    public void enumerate(Consumer<? super Key> consumer) {
-        for (Relation<Key, Value> relation : this.entries) {
-            if (relation != null && relation != SKIP) {
-                consumer.accept(relation.getKey());
+    public void enumerate(Consumer<? super Item> consumer) {
+        for (final var item : this.buckets) {
+            if (item != null && item != SKIP) {
+                consumer.accept((Item) item);
             }
         }
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void init(int capacity) {
         this.capacity = capacity;
-        this.entries = new Relation[this.capacity];
+        this.buckets = new Object[this.capacity];
         this.size = 0;
     }
 
     private void resize(int capacity) {
-        var old = this.entries;
+        var oldBuckets = this.buckets;
         this.init(capacity);
-        for (var relation : old) {
-            if (relation != null && relation != SKIP) {
-                this.put(relation.getKey(), relation.getValue());
+        for (var item : oldBuckets) {
+            if (item != null && item != SKIP) {
+                this.put((Item) item);
             }
         }
     }

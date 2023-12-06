@@ -1,51 +1,53 @@
 package collections.hashtable;
 
 import collections.linkedlist.SinglyLinkedListNode;
-import collections.map.Relation;
 
 import java.util.function.Consumer;
 
-public class SeparateChainingHashTable<Key, Value> extends AbstractHashTable<Key, Value, SinglyLinkedListNode<Relation<Key, Value>>> {
+public class SeparateChainingHashTable<Item>
+        extends AbstractHashTable<Item> {
+    private SinglyLinkedListNode<Item>[] buckets;
+
     @Override
-    public void put(final Key key, final Value value) {
-        int bucketIndex = this.compress(this.hash(key));
-        var current = this.entries[bucketIndex];
+    public void put(final Item item) {
+        int bucketIndex = this.compress(this.hash(item));
+        var current = this.buckets[bucketIndex];
         if (current == null) {
-            addNewEntry(key, value, bucketIndex);
-        } else if (current.getElement().getKey().equals(key)) {
-            this.entries[bucketIndex] = new SinglyLinkedListNode<>(new Relation<>(key, value));
+            addNewEntry(item, bucketIndex);
+        } else if (current.getElement().equals(item)) {
+            this.buckets[bucketIndex] = new SinglyLinkedListNode<>(item);
         } else {
             var prev = current;
             while ((current = current.getNext()) != null) {
-                if (current.getElement().getKey().equals(key)) {
+                if (current.getElement().equals(item)) {
                     var next = current.getNext();
-                    final var newEntry = new SinglyLinkedListNode<>(new Relation<>(key, value));
+                    final var newEntry = new SinglyLinkedListNode<>(item);
                     prev.setNext(newEntry);
                     newEntry.setNext(next);
                     return;
                 }
                 prev = current;
             }
-            addNewEntry(key, value, bucketIndex);
+            addNewEntry(item, bucketIndex);
         }
     }
 
-    private void addNewEntry(final Key key, final Value value, final int bucketIndex) {
-        var newEntry = new SinglyLinkedListNode<>(new Relation<>(key, value));
-        newEntry.setNext(this.entries[bucketIndex]);
-        this.entries[bucketIndex] = newEntry;
+    private void addNewEntry(final Item item, final int bucketIndex) {
+        var newEntry = new SinglyLinkedListNode<>(item);
+        newEntry.setNext(this.buckets[bucketIndex]);
+        this.buckets[bucketIndex] = newEntry;
         this.size += 1;
         if (this.size > this.capacity * LOAD_FACTOR) this.resize(this.capacity * 2);
     }
 
     @Override
-    public Value get(Key key) {
-        int index = this.compress(this.hash(key));
-        if (this.entries[index] != null) {
-            var current = this.entries[index];
+    public Item get(final Item hint) {
+        int index = this.compress(this.hash(hint));
+        if (this.buckets[index] != null) {
+            var current = this.buckets[index];
             while (current != null) {
-                if (current.getElement().getKey().equals(key)) {
-                    return current.getElement().getValue();
+                if (current.getElement().equals(hint)) {
+                    return current.getElement();
                 }
                 current = current.getNext();
             }
@@ -54,16 +56,16 @@ public class SeparateChainingHashTable<Key, Value> extends AbstractHashTable<Key
     }
 
     @Override
-    public void remove(Key key) {
-        int index = this.compress(this.hash(key));
-        var current = this.entries[index];
+    public void remove(Item hint) {
+        int index = this.compress(this.hash(hint));
+        var current = this.buckets[index];
         if (current != null) {
-            if (current.getElement().getKey().equals(key)) {
-                this.entries[index] = current.getNext();
+            if (current.getElement().equals(hint)) {
+                this.buckets[index] = current.getNext();
                 this.size -= 1;
             } else {
                 while (current.getNext() != null) {
-                    if (current.getNext().getElement().getKey().equals(key)) {
+                    if (current.getNext().getElement().equals(hint)) {
                         current.setNext(current.getNext().getNext());
                         this.size -= 1;
                         break;
@@ -77,10 +79,10 @@ public class SeparateChainingHashTable<Key, Value> extends AbstractHashTable<Key
     }
 
     @Override
-    public void enumerate(Consumer<? super Key> consumer) {
-        for (SinglyLinkedListNode<Relation<Key, Value>> entry : this.entries) {
+    public void enumerate(Consumer<? super Item> consumer) {
+        for (SinglyLinkedListNode<Item> entry : this.buckets) {
             while (entry != null) {
-                consumer.accept(entry.getElement().getKey());
+                consumer.accept(entry.getElement());
                 entry = entry.getNext();
             }
         }
@@ -91,17 +93,17 @@ public class SeparateChainingHashTable<Key, Value> extends AbstractHashTable<Key
     protected void init(int capacity) {
         this.capacity = capacity;
         @SuppressWarnings("unchecked")
-        final SinglyLinkedListNode<Relation<Key, Value>>[] entries = new SinglyLinkedListNode[this.capacity];
-        this.entries = entries;
+        final SinglyLinkedListNode<Item>[] entries = new SinglyLinkedListNode[this.capacity];
+        this.buckets = entries;
         this.size = 0;
     }
 
     private void resize(int capacity) {
-        var old = this.entries;
+        var old = this.buckets;
         this.init(capacity);
         for (var current : old) {
             while (current != null) {
-                this.put(current.getElement().getKey(), current.getElement().getValue());
+                this.put(current.getElement());
                 current = current.getNext();
             }
         }

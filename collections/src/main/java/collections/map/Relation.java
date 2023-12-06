@@ -6,7 +6,7 @@ public class Relation<Domain, CoDomain> {
     private final Domain key;
     private final CoDomain value;
 
-    public Relation(Domain key, CoDomain value) {
+    public Relation(final Domain key, final CoDomain value) {
         this.key = key;
         this.value = value;
     }
@@ -20,7 +20,7 @@ public class Relation<Domain, CoDomain> {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Relation<?, ?> relation = (Relation<?, ?>) o;
@@ -29,7 +29,7 @@ public class Relation<Domain, CoDomain> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(key);
+        return key.hashCode();
     }
 
     @Override

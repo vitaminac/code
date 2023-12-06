@@ -1,12 +1,11 @@
 package collections.hashtable;
 
-public abstract class AbstractHashTable<Key, Value, Entry>
-        implements HashTable<Key, Value> {
+public abstract class AbstractHashTable<Item>
+        implements HashTable<Item> {
     protected static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
     protected static final double LOAD_FACTOR = 0.5;
     protected int capacity;
     protected int size;
-    protected Entry[] entries;
 
     public AbstractHashTable() {
         this(DEFAULT_INITIAL_CAPACITY);
@@ -31,8 +30,8 @@ public abstract class AbstractHashTable<Key, Value, Entry>
         this.init(DEFAULT_INITIAL_CAPACITY);
     }
 
-    protected int hash(Key key) {
-        return key.hashCode();
+    protected int hash(final Item item) {
+        return item.hashCode();
     }
 
     protected int compress(int hash) {
