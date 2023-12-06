@@ -1,6 +1,7 @@
 package core.map;
 
-public abstract class AbstractHashMap<Key, Value, Entry> implements Map<Key, Value> {
+public abstract class AbstractHashMap<Key, Value, Entry>
+        implements MutableMap<Key, Value> {
     protected static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
     protected static final double LOAD_FACTOR = 0.5;
     protected int capacity;

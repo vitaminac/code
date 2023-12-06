@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class TreeMap<Key extends Comparable<? super Key>, Value>
-        implements OrderedMap<Key, Value> {
+        implements MutableMap<Key, Value>, OrderedMap<Key, Value> {
     private final Supplier<SearchTree<Key, Value>> supplier;
     private SearchTree<Key, Value> tree;
 

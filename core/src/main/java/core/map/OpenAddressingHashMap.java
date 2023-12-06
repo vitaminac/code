@@ -5,27 +5,18 @@ import java.util.function.Consumer;
 public class OpenAddressingHashMap<Key, Value> extends AbstractHashMap<Key, Value, Relation<Key, Value>> {
     private static final Relation SKIP = new Relation<>(null, null);
 
-    private static interface Rehasher {
-        public int rehash(int hash, int key, int trial);
-    }
-
     private final Rehasher rehasher;
 
     private OpenAddressingHashMap(final Rehasher rehasher) {
         this.rehasher = rehasher;
     }
 
-
-    private static final Rehasher LINEAR_PROBE_REHASHER = (hash, key, trial) -> hash + trial;
-
     public static <Key, Value> OpenAddressingHashMap<Key, Value> linearProbeOpenAddressingHashMap() {
-        return new OpenAddressingHashMap<>(LINEAR_PROBE_REHASHER);
+        return new OpenAddressingHashMap<>(Rehasher.LINEAR_PROBE_REHASHER);
     }
 
-    private static final Rehasher QUADRATIC_PROBE_REHASHER = (hash, key, trial) -> hash + trial * trial;
-
     public static <Key, Value> OpenAddressingHashMap<Key, Value> quadraticProbeOpenAddressingHashMap() {
-        return new OpenAddressingHashMap<>(QUADRATIC_PROBE_REHASHER);
+        return new OpenAddressingHashMap<>(Rehasher.QUADRATIC_PROBE_REHASHER);
     }
 
     private static final Rehasher DOUBLE_HASH_REHASHER = new Rehasher() {

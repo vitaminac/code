@@ -8,11 +8,6 @@ public interface Map<Domain, CoDomain>
 
     int size();
 
-    void put(Domain key, CoDomain value);
-
     CoDomain get(Domain key);
 
-    void remove(Domain key);
-
-    void clear();
 }

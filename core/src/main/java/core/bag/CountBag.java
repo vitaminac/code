@@ -1,10 +1,10 @@
 package core.bag;
 
+import core.map.MutableMap;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Supplier;
-
-import core.map.Map;
 
 public interface CountBag<E> extends Bag<E> {
     void add(E element, int nCopies);
@@ -17,9 +17,9 @@ public interface CountBag<E> extends Bag<E> {
 
     int getCount(E element);
 
-    static <T> CountBag<T> fromMap(Supplier<Map<T, Integer>> supplier) {
+    static <T> CountBag<T> fromMap(Supplier<MutableMap<T, Integer>> supplier) {
         return new CountBag<T>() {
-            private final Map<T, Integer> map = supplier.get();
+            private final MutableMap<T, Integer> map = supplier.get();
             private int size = 0;
 
             @Override

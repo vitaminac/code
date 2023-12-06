@@ -1,23 +1,23 @@
 package core.map;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.function.Supplier;
-
 import core.tree.RedBlackTree;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.function.Supplier;
+
 import static org.junit.Assert.*;
 
 @RunWith(Parameterized.class)
-public class MapTest {
-    private Map<String, String> map;
-    private final Supplier<Map<String, String>> supplier;
+public class MutableMapTest {
+    private MutableMap<String, String> map;
+    private final Supplier<MutableMap<String, String>> supplier;
 
-    public MapTest(Supplier<Map<String, String>> supplier) {
+    public MutableMapTest(Supplier<MutableMap<String, String>> supplier) {
         this.supplier = supplier;
     }
 

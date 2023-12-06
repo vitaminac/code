@@ -1,19 +1,20 @@
 package core.set;
 
+import core.map.MutableMap;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import core.map.Map;
-
-public interface MutableSet<E> extends NavigableSet<E> {
+public interface MutableSet<E>
+        extends NavigableSet<E> {
     void add(E element);
 
     void remove(E element);
 
     void clear();
 
-    static <T> MutableSet<T> fromMap(Supplier<Map<T, Boolean>> supplier) {
-        final Map<T, Boolean> map = supplier.get();
+    static <T> MutableSet<T> fromMap(final Supplier<MutableMap<T, Boolean>> supplier) {
+        final MutableMap<T, Boolean> map = supplier.get();
         return new MutableSet<T>() {
             @Override
             public int size() {

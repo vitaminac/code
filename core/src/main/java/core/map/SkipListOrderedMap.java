@@ -2,7 +2,8 @@ package core.map;
 
 import java.util.function.Consumer;
 
-public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value> implements OrderedMap<Key, Value> {
+public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
+        implements MutableMap<Key, Value>, OrderedMap<Key, Value> {
     private static class SkipListNode<E> {
         private E element;
         private SkipListNode<E> next;

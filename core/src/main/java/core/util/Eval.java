@@ -1,16 +1,16 @@
 package core.util;
 
-import java.util.function.Function;
-
 import core.deque.DoublyLinkedList;
-import core.map.Map;
+import core.map.MutableMap;
 import core.map.SeparateChainingHashTableMap;
 import core.stack.Stack;
+
+import java.util.function.Function;
 
 import static core.util.ExpressionTokenizer.*;
 
 public final class Eval {
-    private static final Map<String, Integer> PRECEDENCE;
+    private static final MutableMap<String, Integer> PRECEDENCE;
 
     static {
         PRECEDENCE = new SeparateChainingHashTableMap<>();
