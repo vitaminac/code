@@ -1,6 +1,6 @@
-package collections.map;
+package collections.hashtable;
 
-interface Rehasher {
+public interface Rehasher {
     Rehasher LINEAR_PROBE_REHASHER = (hash, key, trial) -> hash + trial;
     Rehasher QUADRATIC_PROBE_REHASHER = (hash, key, trial) -> hash + trial * trial;
 

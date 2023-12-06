@@ -2,9 +2,10 @@ package collections.graph;
 
 import java.util.function.Consumer;
 
+import collections.map.MutableMap;
 import core.functional.Enumerable;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
 import collections.queue.Queue;
 import collections.set.MutableSet;
 import collections.set.NavigableSet;
@@ -17,7 +18,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     boolean isAdjacent(Vertex u, Vertex v);
 
     default NavigableSet<Vertex> getAdjacentVertices(Vertex vertex) {
-        final var set = MutableSet.<Vertex>fromMap(SeparateChainingHashTableMap::new);
+        final var set = MutableSet.<Vertex>fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
         this.getEdges(vertex).forEach(edge -> set.add(edge.getDestination()));
         return set;
     }
@@ -28,7 +29,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
 
     default Enumerable<Vertex> bfs(Vertex u) {
         return consumer -> {
-            final var visited = MutableSet.<Vertex>fromMap(SeparateChainingHashTableMap::new);
+            final var visited = MutableSet.<Vertex>fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
             Queue<Vertex> q = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
             q.enqueue(u);
             while (!q.isEmpty()) {
@@ -51,6 +52,6 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     }
 
     default Enumerable<Vertex> dfs(Vertex u) {
-        return consumer -> this.dfs(u, MutableSet.fromMap(SeparateChainingHashTableMap::new), consumer);
+        return consumer -> this.dfs(u, MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new)), consumer);
     }
 }

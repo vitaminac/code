@@ -1,22 +1,24 @@
-package collections.map;
+package collections.hashtable;
+
+import collections.map.Relation;
 
 import java.util.function.Consumer;
 
-public class OpenAddressingHashMap<Key, Value> extends AbstractHashMap<Key, Value, Relation<Key, Value>> {
+public class OpenAddressingHashTable<Key, Value> extends AbstractHashTable<Key, Value, Relation<Key, Value>> {
     private static final Relation SKIP = new Relation<>(null, null);
 
     private final Rehasher rehasher;
 
-    private OpenAddressingHashMap(final Rehasher rehasher) {
+    private OpenAddressingHashTable(final Rehasher rehasher) {
         this.rehasher = rehasher;
     }
 
-    public static <Key, Value> OpenAddressingHashMap<Key, Value> linearProbeOpenAddressingHashMap() {
-        return new OpenAddressingHashMap<>(Rehasher.LINEAR_PROBE_REHASHER);
+    public static <Key, Value> OpenAddressingHashTable<Key, Value> linearProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashTable<>(Rehasher.LINEAR_PROBE_REHASHER);
     }
 
-    public static <Key, Value> OpenAddressingHashMap<Key, Value> quadraticProbeOpenAddressingHashMap() {
-        return new OpenAddressingHashMap<>(Rehasher.QUADRATIC_PROBE_REHASHER);
+    public static <Key, Value> OpenAddressingHashTable<Key, Value> quadraticProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashTable<>(Rehasher.QUADRATIC_PROBE_REHASHER);
     }
 
     private static final Rehasher DOUBLE_HASH_REHASHER = new Rehasher() {
@@ -28,8 +30,8 @@ public class OpenAddressingHashMap<Key, Value> extends AbstractHashMap<Key, Valu
         }
     };
 
-    public static <Key, Value> OpenAddressingHashMap<Key, Value> doubleHashProbeOpenAddressingHashMap() {
-        return new OpenAddressingHashMap<>(DOUBLE_HASH_REHASHER);
+    public static <Key, Value> OpenAddressingHashTable<Key, Value> doubleHashProbeOpenAddressingHashMap() {
+        return new OpenAddressingHashTable<>(DOUBLE_HASH_REHASHER);
     }
 
     @Override

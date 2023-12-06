@@ -1,6 +1,7 @@
 package code.adt.queue.simulation;
 
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
+import collections.map.MutableMap;
 import collections.set.MutableSet;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ public class Consumer extends Component {
         super(null);
     }
 
-    private final MutableSet<Atom> bag = MutableSet.fromMap(SeparateChainingHashTableMap::new);
+    private final MutableSet<Atom> bag = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
 
     @Override
     public void enter(Atom atom) {

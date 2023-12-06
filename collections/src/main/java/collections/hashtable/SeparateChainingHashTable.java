@@ -1,8 +1,10 @@
-package collections.map;
+package collections.hashtable;
+
+import collections.map.Relation;
 
 import java.util.function.Consumer;
 
-public class SeparateChainingHashTableMap<Key, Value> extends AbstractHashMap<Key, Value, SeparateChainingHashTableMap.Entry<Key, Value>> {
+public class SeparateChainingHashTable<Key, Value> extends AbstractHashTable<Key, Value, SeparateChainingHashTable.Entry<Key, Value>> {
     public static class Entry<Key, Value> extends Relation<Key, Value> {
         private Entry<Key, Value> next;
 

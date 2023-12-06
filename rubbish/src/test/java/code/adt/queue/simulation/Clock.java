@@ -1,6 +1,7 @@
 package code.adt.queue.simulation;
 
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
+import collections.map.MutableMap;
 import collections.set.MutableSet;
 
 import java.util.PriorityQueue;
@@ -11,7 +12,7 @@ public class Clock {
     // private PriorityQueue<Event> events = ArrayHeap.create(); TODO
     private final PriorityQueue<Event> events = new PriorityQueue<>();
 
-    private final MutableSet<Runnable> listeners = MutableSet.fromMap(SeparateChainingHashTableMap::new);
+    private final MutableSet<Runnable> listeners = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
 
     public void run(int hours) {
         var until = hours * 60 * 60;

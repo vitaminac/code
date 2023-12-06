@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.util.*;
 
 @SupportedAnnotationTypes("proc.BuilderProperty")
-@SupportedSourceVersion(SourceVersion.RELEASE_11)
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 public class BuilderProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {

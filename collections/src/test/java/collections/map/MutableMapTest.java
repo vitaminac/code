@@ -1,5 +1,7 @@
 package collections.map;
 
+import collections.hashtable.OpenAddressingHashTable;
+import collections.hashtable.SeparateChainingHashTable;
 import collections.tree.RedBlackTree;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,10 +31,10 @@ public class MutableMapTest {
     @Parameterized.Parameters
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
-                {(Supplier<Map<String, String>>) OpenAddressingHashMap::doubleHashProbeOpenAddressingHashMap},
-                {(Supplier<Map<String, String>>) OpenAddressingHashMap::linearProbeOpenAddressingHashMap},
-                {(Supplier<Map<String, String>>) OpenAddressingHashMap::quadraticProbeOpenAddressingHashMap},
-                {(Supplier<Map<String, String>>) SeparateChainingHashTableMap::new},
+                {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(OpenAddressingHashTable::doubleHashProbeOpenAddressingHashMap)},
+                {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(OpenAddressingHashTable::linearProbeOpenAddressingHashMap)},
+                {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(OpenAddressingHashTable::quadraticProbeOpenAddressingHashMap)},
+                {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(SeparateChainingHashTable::new)},
                 // TODO: fix it {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},
                 {(Supplier<Map<String, String>>) SkipListOrderedMap::new},

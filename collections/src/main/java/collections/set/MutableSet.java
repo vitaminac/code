@@ -13,6 +13,7 @@ public interface MutableSet<E>
 
     void clear();
 
+    @Deprecated
     static <T> MutableSet<T> fromMap(final Supplier<MutableMap<T, Boolean>> supplier) {
         final MutableMap<T, Boolean> map = supplier.get();
         return new MutableSet<T>() {

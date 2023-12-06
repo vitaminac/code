@@ -2,15 +2,16 @@ package code.adt.queue.simulation;
 
 import collections.list.ArrayList;
 import collections.list.List;
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
+import collections.map.MutableMap;
 import collections.set.MutableSet;
 
 import java.util.function.Consumer;
 
 public abstract class Component {
     protected final List<Component> outs = new ArrayList<>();
-    private final MutableSet<Consumer<Atom>> consumersOnEnter = MutableSet.fromMap(SeparateChainingHashTableMap::new);
-    private final MutableSet<Consumer<Atom>> consumersOnExit = MutableSet.fromMap(SeparateChainingHashTableMap::new);
+    private final MutableSet<Consumer<Atom>> consumersOnEnter = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
+    private final MutableSet<Consumer<Atom>> consumersOnExit = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
     private final ChooseOut chooseOut;
 
     public Component(ChooseOut chooseOut) {

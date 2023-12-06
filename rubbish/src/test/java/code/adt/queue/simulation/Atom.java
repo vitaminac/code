@@ -1,10 +1,10 @@
 package code.adt.queue.simulation;
 
 import collections.map.MutableMap;
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
 
 public class Atom {
-    private final MutableMap<String, Object> map = new SeparateChainingHashTableMap<>();
+    private final MutableMap<String, Object> map = MutableMap.fromHashTable(SeparateChainingHashTable::new);
 
     public void save(String name, Object value) {
         this.map.put(name, value);

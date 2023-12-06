@@ -8,6 +8,5 @@ public interface Map<Domain, CoDomain>
 
     int size();
 
-    CoDomain get(Domain key);
-
+    CoDomain get(final Domain domain);
 }

@@ -1,18 +1,18 @@
-package collections.map;
+package collections.hashtable;
 
-public abstract class AbstractHashMap<Key, Value, Entry>
-        implements MutableMap<Key, Value> {
+public abstract class AbstractHashTable<Key, Value, Entry>
+        implements HashTable<Key, Value> {
     protected static final int DEFAULT_INITIAL_CAPACITY = 1 << 4;
     protected static final double LOAD_FACTOR = 0.5;
     protected int capacity;
     protected int size;
     protected Entry[] entries;
 
-    public AbstractHashMap() {
+    public AbstractHashTable() {
         this(DEFAULT_INITIAL_CAPACITY);
     }
 
-    public AbstractHashMap(int capacity) {
+    public AbstractHashTable(int capacity) {
         this.init(capacity);
     }
 

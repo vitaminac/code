@@ -2,14 +2,15 @@ package collections.tree;
 
 import org.junit.Test;
 
-public class RedBlackTreeTest {
+import static org.junit.Assert.assertEquals;
 
+public class RedBlackTreeTest {
     @Test
-    public void testToString() {
+    public void testSize_happyPath() {
         var tree = new RedBlackTree<Integer, String>();
         for (int i = 0; i < 10; i++) {
             tree.insert(i, String.valueOf(i));
-            System.out.println(tree.toString());
         }
+        assertEquals(10, tree.size());
     }
 }

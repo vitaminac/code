@@ -2,7 +2,7 @@ package parser;
 
 import collections.deque.DoublyLinkedList;
 import collections.map.MutableMap;
-import collections.map.SeparateChainingHashTableMap;
+import collections.hashtable.SeparateChainingHashTable;
 import collections.stack.Stack;
 
 import java.util.function.Function;
@@ -13,7 +13,7 @@ public final class Eval {
     private static final MutableMap<String, Integer> PRECEDENCE;
 
     static {
-        PRECEDENCE = new SeparateChainingHashTableMap<>();
+        PRECEDENCE = MutableMap.fromHashTable(SeparateChainingHashTable::new);
         PRECEDENCE.put(BINARY_OPERATOR_ADD, 1);
         PRECEDENCE.put(BINARY_OPERATOR_MINUS, 1);
         PRECEDENCE.put(BINARY_OPERATOR_MUL, 2);
