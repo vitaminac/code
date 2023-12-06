@@ -38,7 +38,7 @@ public class DoublyLinkedList<E>
         return this.tail.getElement();
     }
 
-    public void addFirst(E element) {
+    public void appendFirst(E element) {
         DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
@@ -49,7 +49,7 @@ public class DoublyLinkedList<E>
         this.head = node;
     }
 
-    public void addLast(E element) {
+    public void appendLast(E element) {
         DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;

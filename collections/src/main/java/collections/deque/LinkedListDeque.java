@@ -25,12 +25,12 @@ public class LinkedListDeque<E>
 
     @Override
     public void addFirst(E element) {
-        doublyLinkedList.addFirst(element);
+        doublyLinkedList.appendFirst(element);
     }
 
     @Override
     public void addLast(E element) {
-        doublyLinkedList.addLast(element);
+        doublyLinkedList.appendLast(element);
     }
 
     @Override

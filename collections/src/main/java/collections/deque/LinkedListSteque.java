@@ -15,22 +15,22 @@ public class LinkedListSteque<E>
 
     @Override
     public E peek() {
-        return singlyLinkedListDoubleReference.peek();
+        return singlyLinkedListDoubleReference.getFirst();
     }
 
     @Override
     public void push(final E element) {
-        singlyLinkedListDoubleReference.push(element);
+        singlyLinkedListDoubleReference.appendFirst(element);
     }
 
     @Override
     public E pop() {
-        return singlyLinkedListDoubleReference.pop();
+        return singlyLinkedListDoubleReference.removeFirst();
     }
 
     @Override
     public void append(final E element) {
-        singlyLinkedListDoubleReference.append(element);
+        singlyLinkedListDoubleReference.appendLast(element);
     }
 
     @Override

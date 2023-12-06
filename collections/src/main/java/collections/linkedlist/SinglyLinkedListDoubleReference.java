@@ -43,11 +43,11 @@ public class SinglyLinkedListDoubleReference<E>
         return n;
     }
 
-    public E peek() {
+    public E getFirst() {
         return this.head.getElement();
     }
 
-    public void push(final E element) {
+    public void appendFirst(final E element) {
         final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
@@ -57,7 +57,7 @@ public class SinglyLinkedListDoubleReference<E>
         this.head = node;
     }
 
-    public void append(final E element) {
+    public void appendLast(final E element) {
         final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
@@ -67,7 +67,7 @@ public class SinglyLinkedListDoubleReference<E>
         this.tail = node;
     }
 
-    public E pop() {
+    public E removeFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
         final var result = this.head.getElement();
         if (this.head == this.tail) {
