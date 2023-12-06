@@ -1,6 +1,6 @@
 package geeksforgeeks.backtracking;
 
-import core.graph.SimpleUndirectedGraph;
+import collections.graph.SimpleUndirectedGraph;
 
 import java.util.HashSet;
 import java.util.LinkedList;

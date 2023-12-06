@@ -1,8 +1,8 @@
 package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
-import core.bag.Bag;
-import core.linkedlist.SinglyLinkedListDoubleReference;
+import collections.bag.Bag;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/Stats.java.html

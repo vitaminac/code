@@ -1,5 +1,7 @@
 dependencies {
     implementation project(':core')
+    implementation project(':collections')
+    implementation project(':parser')
     implementation project(':test')
     testImplementation group: 'com.h2database', name: 'h2', version: '1.4.197'
     testImplementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'

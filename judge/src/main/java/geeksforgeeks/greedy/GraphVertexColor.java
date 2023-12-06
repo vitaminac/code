@@ -3,9 +3,9 @@ package geeksforgeeks.greedy;
 import java.util.Arrays;
 
 import core.util.Reference;
-import core.graph.SimpleUndirectedGraph;
-import core.heap.ArrayHeap;
-import core.heap.Heap;
+import collections.graph.SimpleUndirectedGraph;
+import collections.heap.ArrayHeap;
+import collections.heap.Heap;
 
 // https://www.geeksforgeeks.org/graph-coloring-set-2-greedy-algorithm/
 public class GraphVertexColor {

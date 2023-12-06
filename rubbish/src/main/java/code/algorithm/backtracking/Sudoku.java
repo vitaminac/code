@@ -1,8 +1,8 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.queue.Queue;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
 
 public class Sudoku implements SolutionNode<Sudoku> {
     private final int table[][];

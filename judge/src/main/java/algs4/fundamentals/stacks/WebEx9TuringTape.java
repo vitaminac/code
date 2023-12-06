@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.stack.Stack;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.stack.Stack;
 
 import java.util.Scanner;
 

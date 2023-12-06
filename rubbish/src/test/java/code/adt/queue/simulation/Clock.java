@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.map.SeparateChainingHashTableMap;
-import core.set.MutableSet;
+import collections.map.SeparateChainingHashTableMap;
+import collections.set.MutableSet;
 
 import java.util.PriorityQueue;
 

@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.map.MutableMap;
-import core.map.SeparateChainingHashTableMap;
+import collections.map.MutableMap;
+import collections.map.SeparateChainingHashTableMap;
 
 public class Atom {
     private final MutableMap<String, Object> map = new SeparateChainingHashTableMap<>();

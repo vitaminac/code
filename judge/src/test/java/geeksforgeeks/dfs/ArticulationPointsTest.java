@@ -1,7 +1,7 @@
 package geeksforgeeks.dfs;
 
-import core.graph.SimpleEdge;
-import core.graph.SimpleUndirectedGraph;
+import collections.graph.SimpleEdge;
+import collections.graph.SimpleUndirectedGraph;
 import org.junit.Assert;
 import org.junit.Test;
 

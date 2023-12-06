@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
 import code.algorithm.Statistic;
-import core.list.List;
+import collections.list.List;
 
 public class RandomChooseOutput implements ChooseOut {
     public static final ChooseOut instance = new RandomChooseOutput();

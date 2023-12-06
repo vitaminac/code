@@ -3,7 +3,7 @@ package divideconquer;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import core.map.Relation;
+import collections.map.Relation;
 
 public class SkyLining {
     private final int n;

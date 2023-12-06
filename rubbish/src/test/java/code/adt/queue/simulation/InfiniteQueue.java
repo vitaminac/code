@@ -1,7 +1,7 @@
 package code.adt.queue.simulation;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.queue.Queue;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
 
 public class InfiniteQueue extends Component {
     private final Queue<Atom> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);

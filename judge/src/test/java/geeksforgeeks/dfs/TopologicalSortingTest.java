@@ -4,8 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import core.functional.Iterable;
-import core.graph.SimpleDirectedGraph;
-import core.graph.SimpleEdge;
+import collections.graph.SimpleDirectedGraph;
+import collections.graph.SimpleEdge;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

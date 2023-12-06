@@ -2,8 +2,8 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
-import core.deque.ArrayDeque;
-import core.stack.Stack;
+import collections.deque.ArrayDeque;
+import collections.stack.Stack;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/ResizingArrayStack.java.html

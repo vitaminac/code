@@ -2,9 +2,9 @@ package algs4.fundamentals.stacks.creative;
 
 import java.util.Scanner;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.queue.Queue;
-import core.stack.Stack;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
+import collections.stack.Stack;
 
 public class CreativeProblem45VerifyIntermixedStackOperationSequence {
     public static void main(String[] args) {

@@ -3,8 +3,8 @@ package algs4.fundamentals.stacks.example;
 import java.util.StringTokenizer;
 
 import algs4.stdlib.StdIn;
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.stack.Stack;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.stack.Stack;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/Evaluate.java.html

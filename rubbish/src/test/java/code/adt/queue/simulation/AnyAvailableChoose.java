@@ -1,6 +1,6 @@
 package code.adt.queue.simulation;
 
-import core.list.List;
+import collections.list.List;
 
 public class AnyAvailableChoose implements ChooseOut {
     public static final ChooseOut instance = new AnyAvailableChoose();

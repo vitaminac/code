@@ -1,9 +1,9 @@
 package code.adt.queue.simulation;
 
-import core.list.ArrayList;
-import core.list.List;
-import core.map.SeparateChainingHashTableMap;
-import core.set.MutableSet;
+import collections.list.ArrayList;
+import collections.list.List;
+import collections.map.SeparateChainingHashTableMap;
+import collections.set.MutableSet;
 
 import java.util.function.Consumer;
 

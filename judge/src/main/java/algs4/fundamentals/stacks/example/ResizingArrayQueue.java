@@ -2,8 +2,8 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
-import core.deque.ArrayDeque;
-import core.queue.Queue;
+import collections.deque.ArrayDeque;
+import collections.queue.Queue;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/ResizingArrayQueue.java.html

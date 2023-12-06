@@ -1,6 +1,6 @@
 package aceptaelreto;
 
-import core.graph.Utils;
+import collections.graph.Utils;
 
 import java.util.*;
 

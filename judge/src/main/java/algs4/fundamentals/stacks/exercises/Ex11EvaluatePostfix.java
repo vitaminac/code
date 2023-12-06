@@ -4,8 +4,8 @@ import java.util.StringTokenizer;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.stack.Stack;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.stack.Stack;
 
 /**
  * https://algs4.cs.princeton.edu/13stacks/EvaluatePostfix.java.html

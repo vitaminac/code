@@ -1,6 +1,6 @@
 package geeksforgeeks.dfs;
 
-import core.graph.SimpleDirectedGraph;
+import collections.graph.SimpleDirectedGraph;
 
 import java.util.Collections;
 import java.util.Stack;

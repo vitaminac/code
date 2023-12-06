@@ -2,8 +2,8 @@ package algs4.fundamentals.stacks;
 
 import java.util.Scanner;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.queue.Queue;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
 
 public class WebEx11StreamingAlgorithm {
     public static void main(String[] args) {

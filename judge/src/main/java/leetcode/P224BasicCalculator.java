@@ -1,6 +1,6 @@
 package leetcode;
 
-import static core.util.Eval.evalAsInteger;
+import static parser.Eval.evalAsInteger;
 
 public class P224BasicCalculator {
     public int calculate(String expression) {

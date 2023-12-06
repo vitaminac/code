@@ -1,7 +1,7 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
-import core.queue.Queue;
+import collections.queue.Queue;
 
 public class Backtracking<Solution extends SolutionNode<Solution>> {
     public Solution solve(Solution partialSolution) {

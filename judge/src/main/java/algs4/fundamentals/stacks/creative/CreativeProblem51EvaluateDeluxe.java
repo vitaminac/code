@@ -2,7 +2,7 @@ package algs4.fundamentals.stacks.creative;
 
 import java.util.Scanner;
 
-import static core.util.Eval.evalAsDouble;
+import static parser.Eval.evalAsDouble;
 
 /**
  * https://www.geeksforgeeks.org/arithmetic-expression-evalution/

@@ -12,7 +12,11 @@ plugins {
 
 rootProject.name = "code"
 
-include("core", "json", "judge")
+include("core")
+include("collections")
+include("json")
+include("parser")
+include("judge")
 include("proc", "proc-test")
 include("web")
 include("concurrent")

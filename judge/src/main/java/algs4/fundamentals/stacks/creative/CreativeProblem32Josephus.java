@@ -1,7 +1,7 @@
 package algs4.fundamentals.stacks.creative;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.queue.Queue;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
 
 import java.util.Scanner;
 

@@ -1,7 +1,7 @@
 package code.algorithm.branchandbound;
 
 import code.algorithm.common.SolutionNode;
-import core.queue.Queue;
+import collections.queue.Queue;
 
 import java.util.PriorityQueue;
 

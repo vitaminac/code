@@ -3,8 +3,8 @@ package algs4.fundamentals.stacks.web;
 import java.util.PrimitiveIterator;
 import java.util.Scanner;
 
-import core.linkedlist.SinglyLinkedListDoubleReference;
-import core.stack.Stack;
+import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.stack.Stack;
 
 public class WebEx15InfixToPostfix {
     private static final int PRECEDENCE[] = new int[128];
