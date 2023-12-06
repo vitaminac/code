@@ -1,6 +1,6 @@
 package collections.set;
 
-import collections.map.MutableMap;
+import collections.hashtable.HashTable;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -13,40 +13,39 @@ public interface MutableSet<E>
 
     void clear();
 
-    @Deprecated
-    static <T> MutableSet<T> fromMap(final Supplier<MutableMap<T, Boolean>> supplier) {
-        final MutableMap<T, Boolean> map = supplier.get();
+    static <T> MutableSet<T> fromHashTable(final Supplier<HashTable<T>> supplier) {
+        final HashTable<T> hashTable = supplier.get();
         return new MutableSet<T>() {
             @Override
             public int size() {
-                return map.size();
+                return hashTable.size();
             }
 
             @Override
             public void enumerate(Consumer<? super T> consumer) {
-                for (final var key : map) {
+                for (final var key : hashTable) {
                     consumer.accept(key);
                 }
             }
 
             @Override
             public boolean contains(T element) {
-                return map.get(element) != null;
+                return hashTable.get(element) != null;
             }
 
             @Override
             public void add(T element) {
-                map.put(element, Boolean.TRUE);
+                hashTable.put(element);
             }
 
             @Override
             public void remove(T element) {
-                map.remove(element);
+                hashTable.remove(element);
             }
 
             @Override
             public void clear() {
-                map.clear();
+                hashTable.clear();
             }
         };
     }

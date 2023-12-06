@@ -8,7 +8,7 @@ import collections.set.NavigableSet;
 public interface UndirectedGraph<Vertex, E extends Edge<Vertex>> extends DirectedGraph<Vertex, E> {
     @Override
     default NavigableSet<Vertex> getAdjacentVertices(Vertex vertex) {
-        final var set = MutableSet.<Vertex>fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
+        final var set = MutableSet.<Vertex>fromHashTable(SeparateChainingHashTable::new);
         this.getEdges(vertex).forEach(edge -> {
             if (vertex.equals(edge.getSource())) {
                 set.add(edge.getDestination());

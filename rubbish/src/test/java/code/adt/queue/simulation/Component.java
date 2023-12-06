@@ -10,8 +10,8 @@ import java.util.function.Consumer;
 
 public abstract class Component {
     protected final List<Component> outs = new ArrayList<>();
-    private final MutableSet<Consumer<Atom>> consumersOnEnter = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
-    private final MutableSet<Consumer<Atom>> consumersOnExit = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
+    private final MutableSet<Consumer<Atom>> consumersOnEnter = MutableSet.fromHashTable(SeparateChainingHashTable::new);
+    private final MutableSet<Consumer<Atom>> consumersOnExit = MutableSet.fromHashTable(SeparateChainingHashTable::new);
     private final ChooseOut chooseOut;
 
     public Component(ChooseOut chooseOut) {

@@ -12,7 +12,7 @@ public class Clock {
     // private PriorityQueue<Event> events = ArrayHeap.create(); TODO
     private final PriorityQueue<Event> events = new PriorityQueue<>();
 
-    private final MutableSet<Runnable> listeners = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
+    private final MutableSet<Runnable> listeners = MutableSet.fromHashTable(SeparateChainingHashTable::new);
 
     public void run(int hours) {
         var until = hours * 60 * 60;

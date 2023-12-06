@@ -12,7 +12,7 @@ public class Consumer extends Component {
         super(null);
     }
 
-    private final MutableSet<Atom> bag = MutableSet.fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
+    private final MutableSet<Atom> bag = MutableSet.fromHashTable(SeparateChainingHashTable::new);
 
     @Override
     public void enter(Atom atom) {
