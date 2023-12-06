@@ -15,7 +15,7 @@ public interface MutableMap<Domain, CoDomain>
 
     static <Domain, CoDomain> MutableMap<Domain, CoDomain> fromHashTable(final Supplier<HashTable<Domain, CoDomain>> supplier) {
         final HashTable<Domain, CoDomain> hashTable = supplier.get();
-        return new MutableMap<Domain, CoDomain>() {
+        return new MutableMap<>() {
             @Override
             public void put(final Domain key, final CoDomain value) {
                 hashTable.put(key, value);

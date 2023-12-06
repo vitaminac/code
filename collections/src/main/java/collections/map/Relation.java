@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Relation<Domain, CoDomain> {
     private final Domain key;
-    private CoDomain value;
+    private final CoDomain value;
 
     public Relation(Domain key, CoDomain value) {
         this.key = key;
@@ -17,10 +17,6 @@ public class Relation<Domain, CoDomain> {
 
     public CoDomain getValue() {
         return this.value;
-    }
-
-    public void setValue(CoDomain value) {
-        this.value = value;
     }
 
     @Override
