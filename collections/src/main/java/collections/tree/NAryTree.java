@@ -1,5 +1,6 @@
 package collections.tree;
 
+import collections.deque.LinkedListSteque;
 import core.functional.Enumerable;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.queue.Queue;
@@ -37,7 +38,7 @@ public interface NAryTree<E, SelfType extends NAryTree<E, SelfType>> extends Tre
 
     default Enumerable<SelfType> bfs() {
         return consumer -> {
-            Queue<SelfType> unvisited = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
+            Queue<SelfType> unvisited = Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
             unvisited.enqueue((SelfType) this);
             while (!unvisited.isEmpty()) {
                 var node = unvisited.dequeue();

@@ -1,17 +1,19 @@
 package collections.linkedlist;
 
+import core.behaviour.OrderedCollection;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SinglyLinkedListDoubleReference<E>
-        implements Steque<E> {
+        implements OrderedCollection<E> {
     private SinglyLinkedListNode<E> head;
     private SinglyLinkedListNode<E> tail;
 
     public SinglyLinkedListDoubleReference() {
     }
 
-    public SinglyLinkedListDoubleReference(SinglyLinkedListDoubleReference<E> list) {
+    public SinglyLinkedListDoubleReference(final SinglyLinkedListDoubleReference<E> list) {
         if (list.head != null) {
             this.head = new SinglyLinkedListNode<>(list.head.getElement());
             var from = list.head;
@@ -41,13 +43,11 @@ public class SinglyLinkedListDoubleReference<E>
         return n;
     }
 
-    @Override
     public E peek() {
         return this.head.getElement();
     }
 
-    @Override
-    public void push(E element) {
+    public void push(final E element) {
         final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
@@ -57,8 +57,7 @@ public class SinglyLinkedListDoubleReference<E>
         this.head = node;
     }
 
-    @Override
-    public void append(E element) {
+    public void append(final E element) {
         final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
@@ -68,7 +67,6 @@ public class SinglyLinkedListDoubleReference<E>
         this.tail = node;
     }
 
-    @Override
     public E pop() {
         if (this.isEmpty()) throw new NoSuchElementException();
         final var result = this.head.getElement();

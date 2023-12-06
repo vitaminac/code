@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.creative;
 
 import java.util.Scanner;
 
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.queue.Queue;
 import collections.stack.Stack;
@@ -11,8 +12,8 @@ public class CreativeProblem45VerifyIntermixedStackOperationSequence {
         try (final var sc = new Scanner(System.in)) {
             while (sc.hasNextInt()) {
                 int N = sc.nextInt();
-                final var queue = Queue.<Integer>fromSteque(SinglyLinkedListDoubleReference::new);
-                final var stack = Stack.<Integer>fromSteque(SinglyLinkedListDoubleReference::new);
+                final var queue = Queue.<Integer>fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
+                final var stack = Stack.<Integer>fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
                 for (int i = 0; i < N; i++) {
                     queue.enqueue(sc.nextInt());
                 }

@@ -1,6 +1,7 @@
 package code.algorithm.backtracking;
 
 import code.algorithm.common.SolutionNode;
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.queue.Queue;
 
@@ -35,7 +36,7 @@ public class Labyrinth implements SolutionNode<Labyrinth> {
     @Override
     public Queue<Labyrinth> branch() {
         this.labyrinth[this.x][this.y] = this.step;
-        Queue<Labyrinth> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
+        Queue<Labyrinth> queue = Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
         if (x - 1 >= 0 && this.labyrinth[x - 1][this.y] == 0) {
             queue.enqueue(new Labyrinth(this.labyrinth, step + 1, x - 1, y));
         }

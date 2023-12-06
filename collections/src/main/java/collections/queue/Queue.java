@@ -3,7 +3,7 @@ package collections.queue;
 import java.util.function.Supplier;
 
 import collections.deque.Deque;
-import collections.linkedlist.Steque;
+import collections.deque.Steque;
 
 public interface Queue<E> {
     int size();

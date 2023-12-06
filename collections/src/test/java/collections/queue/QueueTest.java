@@ -5,7 +5,9 @@ import java.util.Collection;
 import java.util.function.Supplier;
 
 import collections.deque.ArrayDeque;
-import collections.deque.DoublyLinkedList;
+import collections.deque.LinkedListDeque;
+import collections.deque.LinkedListSteque;
+import collections.linkedlist.DoublyLinkedList;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,8 +34,8 @@ public class QueueTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Queue<String>>) () -> Queue.fromDeque(() -> new ArrayDeque<>(5))},
-                {(Supplier<Queue<String>>) () -> Queue.fromDeque(DoublyLinkedList::new)},
-                {(Supplier<Queue<String>>) () -> Queue.fromSteque(SinglyLinkedListDoubleReference::new)}
+                {(Supplier<Queue<String>>) () -> Queue.fromDeque(() -> new LinkedListDeque<>(DoublyLinkedList::new))},
+                {(Supplier<Queue<String>>) () -> Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new))}
         });
     }
 

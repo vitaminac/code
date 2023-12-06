@@ -1,10 +1,11 @@
 package code.adt.queue.simulation;
 
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.queue.Queue;
 
 public class InfiniteQueue extends Component {
-    private final Queue<Atom> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
+    private final Queue<Atom> queue = Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
 
     public InfiniteQueue(Clock clock, ChooseOut chooseOut) {
         super(chooseOut);

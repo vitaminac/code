@@ -1,5 +1,6 @@
 package algs4.fundamentals.stacks;
 
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.stack.MinStack;
 import collections.stack.Stack;
@@ -18,7 +19,7 @@ import java.util.Scanner;
 public class WebEx5StackMax {
     public static void main(String[] args) {
         try (Scanner sc = new Scanner(System.in)) {
-            MinStack<Integer> maxStack = new MinStack<>(() -> Stack.<Integer>fromSteque(SinglyLinkedListDoubleReference::new), Comparator.reverseOrder());
+            MinStack<Integer> maxStack = new MinStack<>(() -> Stack.<Integer>fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new)), Comparator.reverseOrder());
             while (sc.hasNext()) {
                 String op = sc.next();
                 switch (op) {

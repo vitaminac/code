@@ -1,8 +1,11 @@
 package collections.stack;
 
 import collections.deque.ArrayDeque;
-import collections.deque.DoublyLinkedList;
+import collections.deque.LinkedListDeque;
+import collections.deque.LinkedListSteque;
+import collections.linkedlist.DoublyLinkedList;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
+import collections.queue.Queue;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,8 +36,8 @@ public class StackTest {
     public static Collection<Object[]> initialize() {
         return Arrays.asList(new Object[][]{
                 {(Supplier<Stack<String>>) () -> Stack.fromDeque(() -> new ArrayDeque<>(5))},
-                {(Supplier<Stack<String>>) () -> Stack.fromDeque(DoublyLinkedList::new)},
-                {(Supplier<Stack<String>>) () -> Stack.fromSteque(SinglyLinkedListDoubleReference::new)},
+                {(Supplier<Stack<String>>) () -> Stack.fromDeque(() -> new LinkedListDeque<>(DoublyLinkedList::new))},
+                {(Supplier<Stack<String>>) () -> Stack.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new))},
         });
     }
 

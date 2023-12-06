@@ -1,5 +1,6 @@
 package algs4.fundamentals.stacks.creative;
 
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.queue.Queue;
 
@@ -8,10 +9,10 @@ import java.util.Scanner;
 /**
  * In the Josephus problem from antiquity,
  * N people are in dire straits and agree to the following strategy to reduce the population.
- *
+ * <p>
  * They arrange themselves in a circle (at positions numbered from 0 to N-1) and proceed around the circle,
  * eliminating every Mth person until only one person is left.
- *
+ * <p>
  * Legend has it that Josephus figured out where to sit to avoid being eliminated.
  * Write a Queue client Josephus.java that takes M and N from the command line
  * and prints out the order in which people are eliminated
@@ -24,7 +25,7 @@ public class CreativeProblem32Josephus {
         int n = scanner.nextInt();
 
         // initialize the queue
-        Queue<Integer> queue = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
+        Queue<Integer> queue = Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
         for (int i = 0; i < n; i++)
             queue.enqueue(i);
 

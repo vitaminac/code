@@ -2,9 +2,10 @@ package parser;
 
 import java.util.Iterator;
 
+import collections.deque.LinkedListSteque;
 import core.functional.Iterable;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
-import collections.linkedlist.Steque;
+import collections.deque.Steque;
 
 /**
  * <expression> ::= <whitespace><term><more-expression>
@@ -24,7 +25,7 @@ public class ExpressionTokenizer implements Iterable<String> {
     public static final String BINARY_OPERATOR_MUL = "B*";
     public static final String BINARY_OPERATOR_DIV = "B/";
 
-    private final Steque<String> queue = new SinglyLinkedListDoubleReference<>();
+    private final Steque<String> queue = new LinkedListSteque<>(SinglyLinkedListDoubleReference::new);
 
     public ExpressionTokenizer(final String expression) {
         parseExpression(expression.toCharArray(), 0);

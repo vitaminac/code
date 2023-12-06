@@ -3,6 +3,7 @@ package algs4.fundamentals.stacks.example;
 import java.util.StringTokenizer;
 
 import algs4.stdlib.StdIn;
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.stack.Stack;
 
@@ -13,8 +14,8 @@ public class Evaluate {
     public static void main(String[] args) {
         while (!StdIn.isEmpty()) {
             StringTokenizer tk = new StringTokenizer(StdIn.readLine());
-            Stack<String> ops = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
-            Stack<Double> values = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
+            Stack<String> ops = Stack.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
+            Stack<Double> values = Stack.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
             while (tk.hasMoreTokens()) {
                 String token = tk.nextToken();
                 if (token.equals("(")) ;

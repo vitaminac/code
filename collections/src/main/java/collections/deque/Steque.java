@@ -1,4 +1,4 @@
-package collections.linkedlist;
+package collections.deque;
 
 import core.behaviour.OrderedCollection;
 

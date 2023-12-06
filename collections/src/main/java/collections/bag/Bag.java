@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 import core.behaviour.Collection;
 import collections.deque.Deque;
-import collections.linkedlist.Steque;
+import collections.deque.Steque;
 
 public interface Bag<E> extends Collection<E> {
     void add(E element);

@@ -1,6 +1,7 @@
 package parser;
 
-import collections.deque.DoublyLinkedList;
+import collections.deque.LinkedListDeque;
+import collections.linkedlist.DoublyLinkedList;
 import collections.map.MutableMap;
 import collections.hashtable.SeparateChainingHashTable;
 import collections.stack.Stack;
@@ -57,8 +58,8 @@ public final class Eval {
                              final BinaryOperatorApplier<T> binaryOperatorApplier,
                              final UnaryOperatorApplier<T> unaryOperatorApplier) {
         final var tk = new ExpressionTokenizer(expression);
-        Stack<String> ops = Stack.fromDeque(DoublyLinkedList::new);
-        Stack<T> values = Stack.fromDeque(DoublyLinkedList::new);
+        Stack<String> ops = Stack.fromDeque(() -> new LinkedListDeque<>(DoublyLinkedList::new));
+        Stack<T> values = Stack.fromDeque(() -> new LinkedListDeque<>(DoublyLinkedList::new));
         for (final var token : tk) {
             if (LEFT_PARENTHESES.equals(token)) {
                 ops.push(token);

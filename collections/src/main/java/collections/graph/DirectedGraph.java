@@ -2,6 +2,7 @@ package collections.graph;
 
 import java.util.function.Consumer;
 
+import collections.deque.LinkedListSteque;
 import collections.map.MutableMap;
 import core.functional.Enumerable;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
@@ -30,7 +31,7 @@ public interface DirectedGraph<Vertex, E extends Edge<Vertex>> {
     default Enumerable<Vertex> bfs(Vertex u) {
         return consumer -> {
             final var visited = MutableSet.<Vertex>fromMap(() -> MutableMap.fromHashTable(SeparateChainingHashTable::new));
-            Queue<Vertex> q = Queue.fromSteque(SinglyLinkedListDoubleReference::new);
+            Queue<Vertex> q = Queue.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
             q.enqueue(u);
             while (!q.isEmpty()) {
                 var vertex = q.dequeue();

@@ -1,4 +1,4 @@
-package collections.deque;
+package collections.linkedlist;
 
 public class DoublyLinkedListNode<E> {
     private final E element;

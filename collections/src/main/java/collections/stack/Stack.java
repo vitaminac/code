@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 import core.behaviour.Collection;
 import collections.deque.Deque;
-import collections.linkedlist.Steque;
+import collections.deque.Steque;
 import collections.list.List;
 
 public interface Stack<E> extends Collection<E> {

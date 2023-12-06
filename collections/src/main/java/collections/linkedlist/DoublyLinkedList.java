@@ -1,21 +1,14 @@
-package collections.deque;
+package collections.linkedlist;
 
-import core.functional.Enumerable;
+import core.behaviour.OrderedCollection;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class DoublyLinkedList<E>
-        implements Deque<E> {
+        implements OrderedCollection<E> {
     private DoublyLinkedListNode<E> head;
     private DoublyLinkedListNode<E> tail;
-
-    public DoublyLinkedList() {
-    }
-
-    public DoublyLinkedList(Enumerable<E> enumerable) {
-        enumerable.forEach(this::addLast);
-    }
 
     @Override
     public int size() {
@@ -33,21 +26,18 @@ public class DoublyLinkedList<E>
         return this.head == null;
     }
 
-    @Override
     public E getFirst() {
         if (this.isEmpty())
             throw new NoSuchElementException();
         return this.head.getElement();
     }
 
-    @Override
     public E getLast() {
         if (this.isEmpty())
             throw new NoSuchElementException();
         return this.tail.getElement();
     }
 
-    @Override
     public void addFirst(E element) {
         DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
@@ -59,7 +49,6 @@ public class DoublyLinkedList<E>
         this.head = node;
     }
 
-    @Override
     public void addLast(E element) {
         DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
@@ -71,7 +60,6 @@ public class DoublyLinkedList<E>
         this.tail = node;
     }
 
-    @Override
     public E removeFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
         final E tmp = this.head.getElement();
@@ -85,7 +73,6 @@ public class DoublyLinkedList<E>
         return tmp;
     }
 
-    @Override
     public E removeLast() {
         if (this.isEmpty()) throw new NoSuchElementException();
         final E tmp = this.tail.getElement();

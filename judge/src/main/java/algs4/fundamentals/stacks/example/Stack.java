@@ -2,6 +2,7 @@ package algs4.fundamentals.stacks.example;
 
 import algs4.stdlib.StdIn;
 import algs4.stdlib.StdOut;
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 
 /**
@@ -9,7 +10,7 @@ import collections.linkedlist.SinglyLinkedListDoubleReference;
  */
 public class Stack {
     public static void main(String[] args) {
-        collections.stack.Stack<String> stack = collections.stack.Stack.fromSteque(SinglyLinkedListDoubleReference::new);
+        collections.stack.Stack<String> stack = collections.stack.Stack.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
         while (!StdIn.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-"))

@@ -3,6 +3,7 @@ package algs4.fundamentals.stacks.web;
 import java.util.PrimitiveIterator;
 import java.util.Scanner;
 
+import collections.deque.LinkedListSteque;
 import collections.linkedlist.SinglyLinkedListDoubleReference;
 import collections.stack.Stack;
 
@@ -19,7 +20,7 @@ public class WebEx15InfixToPostfix {
     private static String infix2Postfix(final String infix) {
         StringBuilder sb = new StringBuilder();
         PrimitiveIterator.OfInt it = infix.chars().iterator();
-        Stack<Character> stack = Stack.fromSteque(SinglyLinkedListDoubleReference::new);
+        Stack<Character> stack = Stack.fromSteque(() -> new LinkedListSteque<>(SinglyLinkedListDoubleReference::new));
         while (it.hasNext()) {
             char c = (char) (int) it.next();
             if (c == '(') {

@@ -3,7 +3,8 @@ package collections.deque;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayDeque<E> implements Deque<E> {
+public class ArrayDeque<E>
+        implements Deque<E> {
     private static final int DEFAULT_CAPACITY = 8;
     private E[] elements;
     private int first = 0;
