@@ -63,26 +63,25 @@ How to become a good developer?
 
 ## Project
 
-* [OpenJDK](http://openjdk.java.net/)
-* [Spring](https://github.com/spring-projects)
-* [Dagger](https://github.com/google/dagger)
 * [GraalVM](https://github.com/oracle/graal)
-* [Tomcat](https://github.com/apache/tomcat)
 * [RxJava](https://github.com/ReactiveX/RxJava)
-* [Corretto JDK](https://github.com/corretto)
-* [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
-
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
-
 * [Hibernate](https://github.com/hibernate/)
+
+### JDK
+
+* [OpenJDK](http://openjdk.java.net/)
+* [Corretto JDK](https://github.com/corretto)
 
 ### Compiler Plugin
 
-* [Auto](https://github.com/google/auto)
+* [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Lombok](https://github.com/projectlombok/lombok)
+* [Dagger](https://github.com/google/dagger)
+* [AspectJ](https://github.com/eclipse/org.aspectj)
 * [Manifold](https://github.com/manifold-systems/manifold)
 
 ### Network Protocol
@@ -117,5 +116,9 @@ How to become a good developer?
 
 * [JUnit](https://github.com/junit-team)
 * [Mockito](https://github.com/mockito/mockito)
-* [AspectJ](https://github.com/eclipse/org.aspectj)
 * [AssertJ](https://github.com/assertj/assertj)
+
+### Web
+
+* [Spring](https://github.com/spring-projects)
+* [Tomcat](https://github.com/apache/tomcat)
