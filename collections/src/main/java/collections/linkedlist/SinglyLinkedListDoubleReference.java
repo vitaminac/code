@@ -3,31 +3,23 @@ package collections.linkedlist;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
-    private static class LinkedNode<E> {
-        private final E element;
-        private LinkedNode<E> next;
-
-        private LinkedNode(E element) {
-            this.element = element;
-        }
-    }
-
-    private LinkedNode<E> head;
-    private LinkedNode<E> tail;
+public class SinglyLinkedListDoubleReference<E>
+        implements Steque<E> {
+    private SinglyLinkedListNode<E> head;
+    private SinglyLinkedListNode<E> tail;
 
     public SinglyLinkedListDoubleReference() {
     }
 
     public SinglyLinkedListDoubleReference(SinglyLinkedListDoubleReference<E> list) {
         if (list.head != null) {
-            this.head = new LinkedNode<>(list.head.element);
+            this.head = new SinglyLinkedListNode<>(list.head.getElement());
             var from = list.head;
             var to = this.head;
-            while (from.next != null) {
-                to.next = new LinkedNode<>(from.next.element);
-                from = from.next;
-                to = to.next;
+            while (from.getNext() != null) {
+                to.setNext(new SinglyLinkedListNode<>(from.getNext().getElement()));
+                from = from.getNext();
+                to = to.getNext();
             }
             this.tail = to;
         }
@@ -43,7 +35,7 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
         int n = 0;
         var current = this.head;
         while (current != null) {
-            current = current.next;
+            current = current.getNext();
             n += 1;
         }
         return n;
@@ -51,27 +43,27 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
 
     @Override
     public E peek() {
-        return this.head.element;
+        return this.head.getElement();
     }
 
     @Override
     public void push(E element) {
-        final var node = new LinkedNode<E>(element);
+        final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
         } else {
-            node.next = this.head;
+            node.setNext(this.head);
         }
         this.head = node;
     }
 
     @Override
     public void append(E element) {
-        final var node = new LinkedNode<E>(element);
+        final var node = new SinglyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
         } else {
-            this.tail.next = node;
+            this.tail.setNext(node);
         }
         this.tail = node;
     }
@@ -79,12 +71,12 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
     @Override
     public E pop() {
         if (this.isEmpty()) throw new NoSuchElementException();
-        final var result = this.head.element;
+        final var result = this.head.getElement();
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
         } else {
-            this.head = this.head.next;
+            this.head = this.head.getNext();
         }
         return result;
     }
@@ -92,7 +84,7 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = SinglyLinkedListDoubleReference.this.head;
+            private SinglyLinkedListNode<E> next = SinglyLinkedListDoubleReference.this.head;
 
             @Override
             public boolean hasNext() {
@@ -102,8 +94,8 @@ public class SinglyLinkedListDoubleReference<E> implements Steque<E> {
             @Override
             public E next() {
                 if (this.next == null) throw new NoSuchElementException();
-                final var item = this.next.element;
-                this.next = this.next.next;
+                final var item = this.next.getElement();
+                this.next = this.next.getNext();
                 return item;
             }
         };

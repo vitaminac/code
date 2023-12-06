@@ -1,23 +1,14 @@
 package collections.deque;
 
+import core.functional.Enumerable;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import core.functional.Enumerable;
-
-public class DoublyLinkedList<E> implements Deque<E> {
-    private static class LinkedNode<E> {
-        private final E element;
-        private LinkedNode<E> next;
-        private LinkedNode<E> prev;
-
-        private LinkedNode(E element) {
-            this.element = element;
-        }
-    }
-
-    private LinkedNode<E> head;
-    private LinkedNode<E> tail;
+public class DoublyLinkedList<E>
+        implements Deque<E> {
+    private DoublyLinkedListNode<E> head;
+    private DoublyLinkedListNode<E> tail;
 
     public DoublyLinkedList() {
     }
@@ -29,10 +20,10 @@ public class DoublyLinkedList<E> implements Deque<E> {
     @Override
     public int size() {
         int n = 0;
-        LinkedNode<E> node = this.head;
+        DoublyLinkedListNode<E> node = this.head;
         while (node != null) {
             n++;
-            node = node.next;
+            node = node.getNext();
         }
         return n;
     }
@@ -46,36 +37,36 @@ public class DoublyLinkedList<E> implements Deque<E> {
     public E getFirst() {
         if (this.isEmpty())
             throw new NoSuchElementException();
-        return this.head.element;
+        return this.head.getElement();
     }
 
     @Override
     public E getLast() {
         if (this.isEmpty())
             throw new NoSuchElementException();
-        return this.tail.element;
+        return this.tail.getElement();
     }
 
     @Override
     public void addFirst(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
+        DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.tail = node;
         } else {
-            this.head.prev = node;
-            node.next = this.head;
+            this.head.setPrev(node);
+            node.setNext(this.head);
         }
         this.head = node;
     }
 
     @Override
     public void addLast(E element) {
-        LinkedNode<E> node = new LinkedNode<E>(element);
+        DoublyLinkedListNode<E> node = new DoublyLinkedListNode<E>(element);
         if (this.isEmpty()) {
             this.head = node;
         } else {
-            this.tail.next = node;
-            node.prev = this.tail;
+            this.tail.setNext(node);
+            node.setPrev(this.tail);
         }
         this.tail = node;
     }
@@ -83,13 +74,13 @@ public class DoublyLinkedList<E> implements Deque<E> {
     @Override
     public E removeFirst() {
         if (this.isEmpty()) throw new NoSuchElementException();
-        final E tmp = this.head.element;
+        final E tmp = this.head.getElement();
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
         } else {
-            this.head = this.head.next;
-            this.head.prev = null;
+            this.head = this.head.getNext();
+            this.head.setPrev(null);
         }
         return tmp;
     }
@@ -97,13 +88,13 @@ public class DoublyLinkedList<E> implements Deque<E> {
     @Override
     public E removeLast() {
         if (this.isEmpty()) throw new NoSuchElementException();
-        final E tmp = this.tail.element;
+        final E tmp = this.tail.getElement();
         if (this.head == this.tail) {
             this.head = null;
             this.tail = null;
         } else {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
+            this.tail = this.tail.getPrev();
+            this.tail.setNext(null);
         }
         return tmp;
     }
@@ -111,7 +102,7 @@ public class DoublyLinkedList<E> implements Deque<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            private LinkedNode<E> next = DoublyLinkedList.this.head;
+            private DoublyLinkedListNode<E> next = DoublyLinkedList.this.head;
 
             @Override
             public boolean hasNext() {
@@ -121,8 +112,8 @@ public class DoublyLinkedList<E> implements Deque<E> {
             @Override
             public E next() {
                 if (this.next == null) throw new NoSuchElementException();
-                final var item = this.next.element;
-                this.next = this.next.next;
+                final var item = this.next.getElement();
+                this.next = this.next.getNext();
                 return item;
             }
         };
