@@ -197,7 +197,7 @@ public class AVLTree<Key extends Comparable<Key>, Value>
 
     @Override
     public void remove(Key key) {
-        this.delete(this.root, key);
+        this.root = this.delete(this.root, key);
     }
 
     public int getHeight() {

@@ -2,7 +2,8 @@ package collections.tree;
 
 import core.functional.Enumerable;
 
-public interface BinarySearchTree<E extends Comparable<? super E>, SelfType extends BinarySearchTree<E, SelfType>> extends Tree<E, SelfType> {
+public interface BinarySearchTree<E extends Comparable<? super E>, SelfType extends BinarySearchTree<E, SelfType>>
+        extends Tree<E, SelfType> {
     default SelfType search(E key) {
         int diff = key.compareTo(this.getElement());
         if (diff == 0) return (SelfType) this;

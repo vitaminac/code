@@ -2,6 +2,7 @@ package collections.map;
 
 import collections.hashtable.OpenAddressingHashTable;
 import collections.hashtable.SeparateChainingHashTable;
+import collections.tree.AVLTree;
 import collections.tree.RedBlackTree;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,7 +25,7 @@ public class MutableMapTest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.map = this.supplier.get();
     }
 
@@ -35,30 +36,30 @@ public class MutableMapTest {
                 {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(OpenAddressingHashTable::linearProbeOpenAddressingHashMap)},
                 {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(OpenAddressingHashTable::quadraticProbeOpenAddressingHashMap)},
                 {(Supplier<Map<String, String>>) () -> MutableMap.fromHashTable(SeparateChainingHashTable::new)},
-                // TODO: fix it {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
+                {(Supplier<Map<String, String>>) () -> new TreeMap<>(AVLTree::new)},
                 {(Supplier<Map<String, String>>) () -> new TreeMap<>(RedBlackTree::new)},
                 {(Supplier<Map<String, String>>) SkipListOrderedMap::new},
         });
     }
 
     @Test
-    public void sizeInc() {
-        for (int i = 0; i < 10; i++) {
+    public void testSize_afterAddingThousandOfItems_returnsOneThousand() {
+        for (int i = 0; i < 1000; i++) {
             assertEquals(i, this.map.size());
-            this.map.put(String.valueOf(i), String.valueOf(i));
+            this.map.put("key_" + i, "value_" + i);
         }
-        assertEquals(10, this.map.size());
+        assertEquals(1000, this.map.size());
     }
 
     @Test
-    public void sizeDec() {
+    public void testSizeDec() {
         for (int i = 0; i < 10; i++) {
             assertEquals(i, this.map.size());
-            this.map.put(String.valueOf(i), String.valueOf(i));
+            this.map.put("key_" + i, "value_" + i);
         }
         assertEquals(10, this.map.size());
         for (int i = 9; i >= 0; i--) {
-            this.map.remove(String.valueOf(i));
+            this.map.remove("key_" + i);
             assertEquals(i, this.map.size());
         }
         assertEquals(0, this.map.size());
@@ -116,12 +117,13 @@ public class MutableMapTest {
     }
 
     @Test
-    public void testAddOneRemoveOne() {
+    public void test_whenAddOneRemoveOne_returnsZeroSizeAndIsEmpty() {
         this.map.put("0", "hello");
         assertEquals("hello", this.map.get("0"));
         assertEquals(1, this.map.size());
         this.map.remove("0");
         assertEquals(0, this.map.size());
+        assertTrue(this.map.isEmpty());
     }
 
     @Test

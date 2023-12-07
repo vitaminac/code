@@ -42,9 +42,10 @@ How to become a good developer?
 - [ ] [Algorithms](https://algs4.cs.princeton.edu/home/)
 - [ ] [Introduction to Algorithms](https://mitpress.mit.edu/books/introduction-algorithms-fourth-edition)
 - [ ] [The Algorithm Design Manual](http://www.algorist.com/)
-- [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 - [ ] The Art of Multiprocessor Programming
 - [ ] [The Art of Computer Programming](https://www-cs-faculty.stanford.edu/~knuth/taocp.html)
+- [ ] [Data Structures and Algorithms in Java](https://www.amazon.com/dp/1118771338)
+- [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 
 ## Roadmap
 

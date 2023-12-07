@@ -1,5 +1,6 @@
 package collections.map;
 
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
@@ -33,6 +34,7 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
     }
 
 
+    private final Random randomGenerator = new Random(0);
     private final Vocabulary<Key, Value> MIN_SENTIMENTAL = new Vocabulary<>(null, null) {
         @Override
         public int compareTo(Key key) {
@@ -44,7 +46,9 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
 
     @Override
     public boolean isEmpty() {
-        return this.top.down == null;
+        var currentLevel = this.top;
+        while (currentLevel.down != null) currentLevel = currentLevel.down;
+        return currentLevel.next == null;
     }
 
     @Override
@@ -87,7 +91,7 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
             if (newSkipListNode != null) {
                 newSkipListNode.next = current.next;
                 current.next = newSkipListNode;
-                if (Math.random() > 0.5) {
+                if (randomGenerator.nextDouble() > 0.5) {
                     var retVal = new SkipListNode<>(vocabulary);
                     retVal.down = newSkipListNode;
                     return retVal;
@@ -127,7 +131,6 @@ public class SkipListOrderedMap<Key extends Comparable<? super Key>, Value>
     public void remove(Key domain) {
         SkipListNode<Vocabulary<Key, Value>> current = this.top;
         int diff = -1;
-        Value result = null;
         while (current.down != null) {
             current = current.down;
             while (current.next != null && (diff = current.next.element.compareTo(domain)) < 0) {
