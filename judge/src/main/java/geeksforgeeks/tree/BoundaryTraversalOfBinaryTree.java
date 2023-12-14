@@ -67,6 +67,54 @@ public class BoundaryTraversalOfBinaryTree {
     class IterativeSolution {
         ArrayList<Integer> boundary(Node root) {
             final ArrayList<Integer> ans = new ArrayList<>();
+            // root
+            ans.add(root.data);
+            // traverse left-most
+            if (root.left != null) {
+                Node leftMost = root.left;
+                while (leftMost.left != null || leftMost.right != null) {
+                    ans.add(leftMost.data);
+                    if (leftMost.left != null) {
+                        leftMost = leftMost.left;
+                    } else {
+                        leftMost = leftMost.right;
+                    }
+                }
+            }
+            // traverse leaves
+            final Deque<Node> stack = new LinkedList<>();
+            if (root.right != null) stack.push(root.right);
+            if (root.left != null) stack.push(root.left);
+            while (!stack.isEmpty()) {
+                Node current = stack.pop();
+                if (current.left == null && current.right == null) {
+                    ans.add(current.data);
+                } else {
+                    if (current.right != null) stack.push(current.right);
+                    if (current.left != null) stack.push(current.left);
+                }
+            }
+            // traverse right-most
+            if (root.right != null) {
+                Node rightMost = root.right;
+                while (rightMost.left != null || rightMost.right != null) {
+                    stack.push(rightMost);
+                    if (rightMost.right != null) {
+                        rightMost = rightMost.right;
+                    } else {
+                        rightMost = rightMost.left;
+                    }
+                }
+            }
+            while (!stack.isEmpty()) ans.add(stack.pop().data);
+            // finally
+            return ans;
+        }
+    }
+
+    class IterativeOneRunSolution {
+        ArrayList<Integer> boundary(Node root) {
+            final ArrayList<Integer> ans = new ArrayList<>();
             final Deque<Node> stack = new LinkedList<>();
             // root
             ans.add(root.data);
