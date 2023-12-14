@@ -1,7 +1,10 @@
 package geeksforgeeks.tree;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 
 // https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
 public class BoundaryTraversalOfBinaryTree {
@@ -16,11 +19,11 @@ public class BoundaryTraversalOfBinaryTree {
     }
 
     class Solution {
-        ArrayList<Integer> boundary(Node node) {
+        ArrayList<Integer> boundary(Node root) {
             final ArrayList<Integer> ans = new ArrayList<>();
-            ans.add(node.data);
-            if (node.left != null) traverseLeftBoundaries(node.left, ans);
-            if (node.right != null) traverseRightBoundaries(node.right, ans);
+            ans.add(root.data);
+            if (root.left != null) traverseLeftBoundaries(root.left, ans);
+            if (root.right != null) traverseRightBoundaries(root.right, ans);
             return ans;
         }
 
