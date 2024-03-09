@@ -38,6 +38,7 @@ public class JudgeTest extends TestCase {
                 "codechef",
                 "codeforces",
                 "concurso",
+                "geeksforgeeks",
                 "kickstart",
                 "poj",
                 "spoj",

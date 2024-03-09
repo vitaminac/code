@@ -1,4 +1,4 @@
-import codeforces.P1553D;
+import geeksforgeeks.dp.LongestCommonSubstring;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(P1553D.class, null);
+        Judge.judge(LongestCommonSubstring.class, null);
     }
 }
