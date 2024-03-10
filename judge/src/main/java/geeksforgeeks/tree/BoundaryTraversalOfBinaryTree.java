@@ -4,6 +4,7 @@ package geeksforgeeks.tree;
 import java.util.*;
 
 // https://www.geeksforgeeks.org/boundary-traversal-of-binary-tree/
+// https://www.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1
 public class BoundaryTraversalOfBinaryTree {
     class Node {
         int data;
