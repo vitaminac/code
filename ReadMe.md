@@ -48,6 +48,11 @@ How to become a good developer?
 - [ ] [Data Structures and Algorithms in Java](https://www.amazon.com/dp/1118771338)
 - [ ] [Algorithms](http://jeffe.cs.illinois.edu/teaching/algorithms/)
 
+### Interview
+
+- [x] 剑指Offer: 名企面试官精讲典型编程题
+- [ ] [Cracking the Coding Interview 6th: 189 programming interview questions and answers](https://www.crackingthecodinginterview.com)
+
 ## Roadmap
 
 * [MIT EECS Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
