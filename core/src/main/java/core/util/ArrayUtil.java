@@ -1,8 +1,8 @@
-package core;
+package core.util;
 
 import java.util.Comparator;
 
-public final class Arrays {
+public final class ArrayUtil {
     public static <E> void copyTo(E[] source, E[] destination, int from, int to, int offset) {
         for (int i = from; i <= to; i++) destination[offset + i] = source[i];
     }
@@ -116,7 +116,7 @@ public final class Arrays {
             int mid = low + (high - low) / 2;
             merge_sort(arr, aux, low, mid, comparator);
             merge_sort(arr, aux, mid + 1, high, comparator);
-            Arrays.copyTo(arr, aux, low, high);
+            ArrayUtil.copyTo(arr, aux, low, high);
             merge(arr, aux, low, mid, high, comparator);
         }
     }

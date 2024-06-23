@@ -1,6 +1,6 @@
 package concurrente;
 
-import core.Arrays;
+import core.util.ArrayUtil;
 import core.util.Utils;
 import core.concurrent.SemaphoreArrayBlockingQueue;
 
@@ -125,10 +125,10 @@ public class Tema3 {
                 throw new RuntimeException(e);
             }
             proc.release();
-            Arrays.copyTo(arr, aux, low, high);
-            Arrays.merge(arr, aux, low, mid, high, Integer::compareTo);
+            ArrayUtil.copyTo(arr, aux, low, high);
+            ArrayUtil.merge(arr, aux, low, mid, high, Integer::compareTo);
         } else {
-            Arrays.merge_sort(arr, aux, low, high, Integer::compareTo);
+            ArrayUtil.merge_sort(arr, aux, low, high, Integer::compareTo);
         }
     }
 

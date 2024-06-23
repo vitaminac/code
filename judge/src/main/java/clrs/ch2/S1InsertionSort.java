@@ -1,6 +1,6 @@
 package clrs.ch2;
 
-import core.Arrays;
+import core.util.ArrayUtil;
 
 import java.util.Scanner;
 
@@ -13,8 +13,8 @@ public class S1InsertionSort {
                 for (int i = 0; i < N; i++) {
                     nums[i] = sc.nextInt();
                 }
-                Arrays.insertion_sort(nums, 0, N - 1, Integer::compare);
-                System.out.println(Arrays.toString(nums));
+                ArrayUtil.insertion_sort(nums, 0, N - 1, Integer::compare);
+                System.out.println(ArrayUtil.toString(nums));
             }
         }
     }

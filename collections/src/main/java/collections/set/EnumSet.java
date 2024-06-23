@@ -1,6 +1,6 @@
 package collections.set;
 
-import core.Arrays;
+import core.util.ArrayUtil;
 
 public interface EnumSet<E extends Enum<E>> extends Set<E> {
     @SafeVarargs
@@ -8,9 +8,9 @@ public interface EnumSet<E extends Enum<E>> extends Set<E> {
         @SuppressWarnings("unchecked") final Class<E> enumType = (Class<E>) first.getClass();
         final E[] allEnumValues = enumType.getEnumConstants();
         if (allEnumValues.length > 64) {
-            return Set.frozenSetOf(Arrays.prepend(first, rest));
+            return Set.frozenSetOf(ArrayUtil.prepend(first, rest));
         } else {
-            return new OptimizedEnumSetImpl<E>(Arrays.prepend(first, rest));
+            return new OptimizedEnumSetImpl<E>(ArrayUtil.prepend(first, rest));
         }
     }
 

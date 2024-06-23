@@ -3,7 +3,7 @@ package collections.list;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import core.Arrays;
+import core.util.ArrayUtil;
 
 public class ArrayList<E> implements List<E> {
     private static final int DEFAULT_CAPACITY = 8;
@@ -21,7 +21,7 @@ public class ArrayList<E> implements List<E> {
     }
 
     public ArrayList(ArrayList<E> list) {
-        this(Arrays.copyFrom(list.elements, 0, list.elements.length), list.size);
+        this(ArrayUtil.copyFrom(list.elements, 0, list.elements.length), list.size);
     }
 
     @SuppressWarnings("unchecked")
@@ -123,7 +123,7 @@ public class ArrayList<E> implements List<E> {
     }
 
     public E[] toArray() {
-        return Arrays.copyFrom(this.elements, 0, this.size);
+        return ArrayUtil.copyFrom(this.elements, 0, this.size);
     }
 
     private void checkIndex(int index, int size) {
