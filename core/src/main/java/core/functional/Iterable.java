@@ -1,14 +1,16 @@
 package core.functional;
 
+import core.util.Iterators;
+
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
-
-import core.util.Iterators;
 
 @FunctionalInterface
 public interface Iterable<E> extends java.lang.Iterable<E> {
@@ -66,6 +68,7 @@ public interface Iterable<E> extends java.lang.Iterable<E> {
         });
     }
 
+    // terminal operations
     default <R> R reduce(final R identity, final BiFunction<E, R, R> accumulator) {
         final Reducer<E, R> reducer = new Reducer<>(identity, accumulator);
         this.forEach(reducer);
@@ -84,6 +87,21 @@ public interface Iterable<E> extends java.lang.Iterable<E> {
             if (predicate.test(e)) return true;
         }
         return false;
+    }
+
+
+    default Optional<E> min(final Comparator<E> comparator) {
+        final var it = this.iterator();
+        if (!it.hasNext()) return Optional.empty();
+
+        E min = it.next();
+        while (it.hasNext()) {
+            final E next = it.next();
+            if (comparator.compare(min, next) > 0) {
+                min = next;
+            }
+        }
+        return Optional.of(min);
     }
 
     static Iterable<Integer> range(final int start, final int stop, final int step) {

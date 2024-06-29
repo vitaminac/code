@@ -1,5 +1,7 @@
 package geeksforgeeks.dp;
 
+import core.util.StringUtil;
+
 import java.util.Scanner;
 
 /**
@@ -9,33 +11,7 @@ import java.util.Scanner;
 public class LongestCommonSubstring {
     static class Solution {
         public int longestCommonSubstr(final String text1, final String text2, final int m, final int n) {
-            if (m > n) return longestCommonSubstr(text2, text1, n, m);
-
-            final char[] s1 = text1.toCharArray(), s2 = text2.toCharArray();
-
-            // mex length of longest common substring (LCS)
-            int max = 0;
-            // length of LCS of ended at j-th character of s2 with s1 when length of substring is i
-            final int[] dp = new int[n + 1];
-
-            for (int i = 1; i <= m; i++) {
-                // length of LCS of ended at j - 1 character of s2 with s1 when length of substring is i - 1
-                int prev = 0;
-                for (int j = 1; j <= n; j++) {
-                    int tmp = dp[j];
-                    if (s1[i - 1] == s2[j - 1]) {
-                        // if i-th character of s1 corresponds to j-th character of s2
-                        // then add one to the length of LCS of ended at j - 1 character of s2 with s1 when length of substring is i - 1
-                        dp[j] = prev + 1;
-                        max = Math.max(max, dp[j]);
-                    } else {
-                        // otherwise length of LCS of ended at j character of s2 with s1 is 0
-                        dp[j] = 0;
-                    }
-                    prev = tmp;
-                }
-            }
-            return max;
+            return StringUtil.longestCommonSubstring(text1, text2).length();
         }
     }
 
