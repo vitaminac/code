@@ -1,4 +1,4 @@
-import geeksforgeeks.dp.LongestCommonSubstring;
+import geeksforgeeks.dp.LongestCommonSubsequence;
 import test.TestCase;
 import test.TestSuite;
 import test.UnitTest;
@@ -7,6 +7,6 @@ import test.UnitTest;
 public class JudgeSingleTest extends TestCase {
     @UnitTest
     public void test() throws Exception {
-        Judge.judge(LongestCommonSubstring.class, null);
+        Judge.judge(LongestCommonSubsequence.class, null);
     }
 }
