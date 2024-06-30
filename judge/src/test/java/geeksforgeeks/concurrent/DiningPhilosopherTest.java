@@ -1,7 +1,7 @@
 package geeksforgeeks.concurrent;
 
 import org.junit.Test;
-import test.NullOutputStream;
+import core.io.NullOutputStream;
 
 import java.io.PrintStream;
 

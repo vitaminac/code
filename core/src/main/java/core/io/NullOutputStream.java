@@ -1,4 +1,4 @@
-package test;
+package core.io;
 
 import org.jetbrains.annotations.NotNull;
 
