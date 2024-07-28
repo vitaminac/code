@@ -108,24 +108,3 @@ How to become a good developer?
 * [Apache Commons](https://commons.apache.org/)
 * [Guava](https://github.com/google/guava)
 * [Eclipse Collections](https://github.com/eclipse/eclipse-collections)
-
-### Logging
-
-* [Apache Log4j 2](https://github.com/apache/logging-log4j2)
-* [SLF4J](https://github.com/qos-ch/slf4j)
-
-### JSON
-
-* [Jackson](https://github.com/FasterXML/jackson)
-* [GSON](https://github.com/google/gson)
-
-### Testing
-
-* [JUnit](https://github.com/junit-team)
-* [Mockito](https://github.com/mockito/mockito)
-* [AssertJ](https://github.com/assertj/assertj)
-
-### Web
-
-* [Spring](https://github.com/spring-projects)
-* [Tomcat](https://github.com/apache/tomcat)
