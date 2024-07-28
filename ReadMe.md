@@ -87,7 +87,6 @@ How to become a good developer?
 
 * [AutoValue](https://github.com/google/auto/tree/master/value)
 * [Lombok](https://github.com/projectlombok/lombok)
-* [Dagger](https://github.com/google/dagger)
 * [AspectJ](https://github.com/eclipse/org.aspectj)
 * [Manifold](https://github.com/manifold-systems/manifold)
 
