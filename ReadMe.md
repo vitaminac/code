@@ -12,6 +12,7 @@ How to become a good developer?
 
 ### Programming
 
+- [ ] Structure and Interpretation of Computer Programs
 - [ ] [On Java 8](https://www.onjava8.com/)
 - [X] [Effective Java](https://sjsdfg.github.io/effective-java-3rd-chinese/)
 - [ ] 深入理解Java虚拟机: JVM高级特性与最佳实践
