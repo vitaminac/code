@@ -94,12 +94,7 @@ How to become a good developer?
 ### Network Protocol
 
 * [Netty](https://github.com/netty/netty)
-* [Apache Dubbo](https://github.com/apache/dubbo)
-* [Apache bRPC](https://github.com/apache/brpc)
-* [Google Protocol Buffers](https://github.com/protocolbuffers/protobuf)
-* [gRPC](https://github.com/grpc)
 * [Apache HttpComponents](https://hc.apache.org/)
-* [Apache Thrift](https://github.com/apache/thrift)
 * [OkHttp](https://github.com/square/okhttp/)
 * [Retrofit](https://github.com/square/retrofit)
 
