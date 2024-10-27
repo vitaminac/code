@@ -57,7 +57,8 @@ How to become a good developer?
 ## Roadmap
 
 * [MIT EECS Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
-* [Stanford Computer Science Program Sheet](https://cs.stanford.edu/degrees/undergrad/ProgramSheets.shtml)
+* [Stanford Engineering Computer Science BS Program Sheet](https://www.cs.stanford.edu/bs-tracks-program-sheets)
+* [Stanford Engineering Computer Science MS Program Sheet](https://www.cs.stanford.edu/masters-specializations/ms-program-sheets)
 * [Stanford Undergraduate Programs in Computer Science](https://exploredegrees.stanford.edu/schoolofengineering/computerscience/#courseinventory)
 * [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
 * [Harvard CS Courses](https://harvardcs.info/concentration/courses/)
