@@ -1,19 +1,11 @@
 ## Project
 
-* [GraalVM](https://github.com/oracle/graal)
 * [RxJava](https://github.com/ReactiveX/RxJava)
 * [Kotlin](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/)
 * [C#](https://referencesource.microsoft.com/#mscorlib,namespaces)
 * [MyBatis](https://github.com/mybatis/mybatis-3)
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
 * [Hibernate](https://github.com/hibernate/)
-
-### Compiler Plugin
-
-* [AutoValue](https://github.com/google/auto/tree/master/value)
-* [Lombok](https://github.com/projectlombok/lombok)
-* [AspectJ](https://github.com/eclipse/org.aspectj)
-* [Manifold](https://github.com/manifold-systems/manifold)
 
 ### Utils
 
