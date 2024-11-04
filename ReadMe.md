@@ -8,11 +8,6 @@
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
 * [Hibernate](https://github.com/hibernate/)
 
-### JDK
-
-* [OpenJDK](http://openjdk.java.net/)
-* [Corretto JDK](https://github.com/corretto)
-
 ### Compiler Plugin
 
 * [AutoValue](https://github.com/google/auto/tree/master/value)
