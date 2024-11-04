@@ -15,13 +15,6 @@
 * [AspectJ](https://github.com/eclipse/org.aspectj)
 * [Manifold](https://github.com/manifold-systems/manifold)
 
-### Network Protocol
-
-* [Netty](https://github.com/netty/netty)
-* [Apache HttpComponents](https://hc.apache.org/)
-* [OkHttp](https://github.com/square/okhttp/)
-* [Retrofit](https://github.com/square/retrofit)
-
 ### Utils
 
 * [Apache Commons](https://commons.apache.org/)
