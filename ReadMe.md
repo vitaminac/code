@@ -7,8 +7,3 @@
 * [Resilience4j](https://github.com/resilience4j/resilience4j)
 * [Hibernate](https://github.com/hibernate/)
 
-### Utils
-
-* [Apache Commons](https://commons.apache.org/)
-* [Guava](https://github.com/google/guava)
-* [Eclipse Collections](https://github.com/eclipse/eclipse-collections)
