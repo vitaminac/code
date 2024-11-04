@@ -1,21 +1,3 @@
-# Developer Roadmap
-
-## Roadmap
-
-* [MIT EECS Roadmaps](https://www.eecs.mit.edu/docs/ug/freshman_roadmaps.pdf)
-* [Stanford Engineering Computer Science BS Program Sheet](https://www.cs.stanford.edu/bs-tracks-program-sheets)
-* [Stanford Engineering Computer Science MS Program Sheet](https://www.cs.stanford.edu/masters-specializations/ms-program-sheets)
-* [Stanford Undergraduate Programs in Computer Science](https://exploredegrees.stanford.edu/schoolofengineering/computerscience/#courseinventory)
-* [Stanford EE-CS Courses](https://ee.stanford.edu/eecs)
-* [Harvard CS Courses](https://harvardcs.info/concentration/courses/)
-* [CMU CS Curriculum](https://www.csd.cs.cmu.edu/academics/undergraduate/requirements)
-* [Berkeley Undergraduate Computer Science Courses](http://guide.berkeley.edu/undergraduate/degree-programs/computer-science/#coursestext)
-* [Berkeley Graduate Computer Science Courses](http://guide.berkeley.edu/graduate/degree-programs/computer-science/#coursestext)
-* [Illinois B.S. in Computer Science](https://cs.illinois.edu/academics/undergraduate/degree-program-options/bs-computer-science)
-* [Illinois Master in Computer Science](https://cs.illinois.edu/academics/graduate/ms-program)
-* [Oxford CS Courses](https://www.cs.ox.ac.uk/teaching/courses/)
-* [Cambridge CS Courses](https://www.cl.cam.ac.uk/teaching/2021/)
-
 ## Project
 
 * [GraalVM](https://github.com/oracle/graal)
