@@ -82,20 +82,18 @@ public final class Judge {
 
         int count = 0;
         final URL testResource = clazz.getResource(clazz.getSimpleName());
-        if (testResource == null) {
-            Utils.warn(clazz.getName() + " skipped, test resource is empty!");
-        }
-
-        Path testSourcePath = Paths.get(testResource.toURI());
-        File testSourceFile = testSourcePath.toFile();
-        if (testSourceFile.exists() && testSourceFile.isDirectory()) {
-            final List<Path> inputs = Files.list(testSourcePath).toList();
-            assertNotEquals(clazz.getSimpleName() + "'s input is empty", 0, inputs.size());
-            for (Path input : inputs) {
-                if (input.toString().endsWith(".in")) {
-                    String filename = input.getFileName().toString();
-                    judge(clazz, main, null, params, input, testSourcePath.resolve(filename.substring(0, filename.length() - 3) + ".out"));
-                    count += 1;
+        if (testResource != null) {
+            Path testSourcePath = Paths.get(testResource.toURI());
+            File testSourceFile = testSourcePath.toFile();
+            if (testSourceFile.exists() && testSourceFile.isDirectory()) {
+                final List<Path> inputs = Files.list(testSourcePath).toList();
+                assertNotEquals(clazz.getSimpleName() + "'s input is empty", 0, inputs.size());
+                for (Path input : inputs) {
+                    if (input.toString().endsWith(".in")) {
+                        String filename = input.getFileName().toString();
+                        judge(clazz, main, null, params, input, testSourcePath.resolve(filename.substring(0, filename.length() - 3) + ".out"));
+                        count += 1;
+                    }
                 }
             }
         }
