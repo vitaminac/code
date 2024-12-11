@@ -1,4 +1,5 @@
 dependencies {
     compileOnly project(':proc')
+    testImplementation project(':test')
     annotationProcessor project(':proc')
 }
