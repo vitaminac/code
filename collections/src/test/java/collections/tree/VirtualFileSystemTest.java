@@ -28,9 +28,7 @@ public class VirtualFileSystemTest {
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
                 "/b/d/f\n" +
-                "/b/d/f/e.ext\n" +
-                "/b/d/.e\n" +
-                "/b/d/.e/d.ext\n";
+                "/b/d/f/e.ext\n";
         assertEquals(expected, this.vfs.toString());
     }
 
@@ -56,9 +54,7 @@ public class VirtualFileSystemTest {
                 "/b/c\n" +
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
-                "/b/d/f\n" +
-                "/b/d/.e\n" +
-                "/b/d/.e/d.ext\n";
+                "/b/d/f\n";
         assertEquals(expected, this.vfs.toString());
     }
 
@@ -78,13 +74,13 @@ public class VirtualFileSystemTest {
 
     @Test
     public void parent() {
-        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/.e/"), VirtualFileSystem.find(this.vfs, "/b/d/.e/d.ext").parent());
-        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/.e"), VirtualFileSystem.find(this.vfs, "/b/d/.e/d.ext").parent());
+        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/f/"), VirtualFileSystem.find(this.vfs, "/b/d/f/e.ext").parent());
+        assertEquals(VirtualFileSystem.find(this.vfs, "/b/d/f"), VirtualFileSystem.find(this.vfs, "/b/d/f/e.ext").parent());
     }
 
     @Test
     public void add() {
-        VirtualFileSystem.find(this.vfs, "/b/d/.e").addChild(new VirtualFileSystem<>("o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8)));
+        VirtualFileSystem.find(this.vfs, "/b/c").addChild(new VirtualFileSystem<>("o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8)));
         VirtualFileSystem.find(this.vfs, "/b/d/f").addChild(new VirtualFileSystem<>("o.ext", "Hola Mundo".getBytes(StandardCharsets.UTF_8)));
         String expected = "\n" +
                 "/a\n" +
@@ -92,14 +88,12 @@ public class VirtualFileSystemTest {
                 "/a/b.ext\n" +
                 "/b\n" +
                 "/b/c\n" +
+                "/b/c/o.ext\n" +
                 "/b/c/c.ext\n" +
                 "/b/d\n" +
                 "/b/d/f\n" +
                 "/b/d/f/o.ext\n" +
-                "/b/d/f/e.ext\n" +
-                "/b/d/.e\n" +
-                "/b/d/.e/d.ext\n" +
-                "/b/d/.e/o.ext\n";
+                "/b/d/f/e.ext\n";
         assertEquals(expected, this.vfs.toString());
     }
 }

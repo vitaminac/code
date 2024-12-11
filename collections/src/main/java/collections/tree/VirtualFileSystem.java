@@ -24,7 +24,7 @@ public class VirtualFileSystem<Key, E> implements NAryTree<E, VirtualFileSystem<
             final File[] files = root.listFiles();
             if (files != null) {
                 for (File file : files) {
-                    if (!file.isHidden()) {
+                    if (!isHidden(file)) {
                         if (file.isDirectory()) {
                             VirtualFileSystem<String, byte[]> subtree = new VirtualFileSystem<>(file.getName(), null);
                             load(subtree, file);
@@ -36,6 +36,10 @@ public class VirtualFileSystem<Key, E> implements NAryTree<E, VirtualFileSystem<
                 }
             }
         }
+    }
+
+    private static boolean isHidden(final File file) {
+        return file.getName().startsWith(".");
     }
 
     public static VirtualFileSystem<String, byte[]> loadFromFileSystem(File root) throws IOException {
