@@ -17,7 +17,7 @@ public final class StudentAnalytics {
      * @return Average age of enrolled students
      */
     public double averageAgeOfEnrolledStudentsImperative(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         List<Student> activeStudents = new ArrayList<Student>();
 
         for (Student s : studentArray) {
@@ -44,13 +44,13 @@ public final class StudentAnalytics {
      * @return Average age of enrolled students
      */
     public double averageAgeOfEnrolledStudentsParallelStream(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         return Arrays.stream(studentArray)
-                .parallel()
-                .filter(Student::checkIsCurrent)
-                .mapToDouble(Student::getAge)
-                .average()
-                .orElse(Double.NaN);
+            .parallel()
+            .filter(Student::checkIsCurrent)
+            .mapToDouble(Student::getAge)
+            .average()
+            .orElse(Double.NaN);
     }
 
     /**
@@ -61,7 +61,7 @@ public final class StudentAnalytics {
      * @return Most common first name of inactive students
      */
     public String mostCommonFirstNameOfInactiveStudentsImperative(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         List<Student> inactiveStudents = new ArrayList<Student>();
 
         for (Student s : studentArray) {
@@ -74,8 +74,7 @@ public final class StudentAnalytics {
 
         for (Student s : inactiveStudents) {
             if (nameCounts.containsKey(s.getFirstName())) {
-                nameCounts.put(s.getFirstName(),
-                        new Integer(nameCounts.get(s.getFirstName()) + 1));
+                nameCounts.put(s.getFirstName(), nameCounts.get(s.getFirstName()) + 1);
             } else {
                 nameCounts.put(s.getFirstName(), 1);
             }
@@ -103,16 +102,16 @@ public final class StudentAnalytics {
      * @return Most common first name of inactive students
      */
     public String mostCommonFirstNameOfInactiveStudentsParallelStream(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         return Arrays.stream(studentArray)
-                .parallel()
-                .filter(s -> !s.checkIsCurrent())
-                .collect(Collectors.groupingBy(Student::getFirstName, Collectors.counting()))
-                .entrySet()
-                .parallelStream()
-                .max(Comparator.comparingLong(Map.Entry::<String, Long>getValue))
-                .map(Map.Entry::getKey)
-                .orElse(null);
+            .parallel()
+            .filter(s -> !s.checkIsCurrent())
+            .collect(Collectors.groupingBy(Student::getFirstName, Collectors.counting()))
+            .entrySet()
+            .parallelStream()
+            .max(Comparator.comparingLong(Map.Entry::<String, Long>getValue))
+            .map(Map.Entry::getKey)
+            .orElse(null);
     }
 
     /**
@@ -125,7 +124,7 @@ public final class StudentAnalytics {
      * @return Number of failed grades from students older than 20 years old.
      */
     public int countNumberOfFailedStudentsOlderThan20Imperative(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         int count = 0;
         for (Student s : studentArray) {
             if (!s.checkIsCurrent() && s.getAge() > 20 && s.getGrade() < 65) {
@@ -147,10 +146,10 @@ public final class StudentAnalytics {
      * @return Number of failed grades from students older than 20 years old.
      */
     public int countNumberOfFailedStudentsOlderThan20ParallelStream(
-            final Student[] studentArray) {
+        final Student[] studentArray) {
         return (int) Arrays.stream(studentArray)
-                .parallel()
-                .filter(s -> !s.checkIsCurrent() && s.getAge() > 20 && s.getGrade() < 65)
-                .count();
+            .parallel()
+            .filter(s -> !s.checkIsCurrent() && s.getAge() > 20 && s.getGrade() < 65)
+            .count();
     }
 }
